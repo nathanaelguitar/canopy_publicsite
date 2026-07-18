@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CanopyChat | Eco-Friendly Intelligence</title>
   <meta name="description" content="CanopyChat is a private, local-first AI chat app for iPhone with on-device intelligence, optional web grounding, and user-controlled attachments.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
   <header class="shell nav">
     <a class="brand" href="index.html" aria-label="CanopyChat home">
-      <span class="mark">C</span>
+      <img class="mark" src="assets/logo.svg" alt="" width="46" height="46">
       <strong>CanopyChat</strong>
     </a>
     <nav class="nav-links" aria-label="Primary navigation">
@@ -20,12 +21,12 @@
     </nav>
   </header>
 
-  <main class="shell">
-    <section class="hero">
+  <main>
+    <section class="shell hero">
       <div>
         <div class="eyebrow">Eco-Friendly Intelligence</div>
         <h1>Private AI that lives closer to you.</h1>
-        <p class="lead">CanopyChat runs local conversations on your iPhone by default, uses web grounding only when needed, and keeps control of chats, files, photos, and location in your hands.</p>
+        <p class="lead">CanopyChat runs conversations on your iPhone by default, uses web grounding only when needed, and keeps control of chats, files, photos, and location in your hands.</p>
         <div class="actions">
           <a class="button" href="support.html">Get Support</a>
           <a class="button secondary" href="privacy.html">Read Privacy Policy</a>
@@ -34,27 +35,97 @@
 
       <div class="phone-card" aria-label="CanopyChat preview">
         <div class="screen">
-          <div class="chat-line">Find a quiet coffee spot near me.</div>
-          <div class="bubble">Use my location if needed.</div>
-          <div class="chat-line">I'll look for nearby places and prefer current, grounded sources.</div>
-          <span class="source-pill">Sources available when web search is used</span>
+          <div class="screen-header">
+            <img src="assets/logo.svg" alt="" width="28" height="28">
+            <div>
+              <strong>Quiet Coffee Nearby</strong>
+              <span>with Canopy</span>
+            </div>
+          </div>
+          <div class="messages">
+            <div class="msg user">Find a quiet coffee spot near me.</div>
+            <div class="msg ai">Happy to help. Want me to use your location to check what's close by?</div>
+            <div class="msg user">Yes, somewhere with outdoor seating.</div>
+            <div class="msg ai">Fern &amp; Grounds is a six-minute walk — a calm patio under the trees, open until 6pm.
+              <span class="source-pill">Sources shown when web search is used</span>
+            </div>
+          </div>
+          <div class="input-mock">
+            <span>Message your assistant&hellip;</span>
+            <span class="send-dot" aria-hidden="true">&#8593;</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="grid" aria-label="CanopyChat features">
-      <article class="panel">
-        <h3>On-device first</h3>
-        <p>Chats are designed to run locally on iPhone with a cached model, reducing reliance on remote inference for everyday use.</p>
-      </article>
-      <article class="panel">
-        <h3>Privacy by default</h3>
-        <p>Conversation history, personas, workspaces, and summaries are stored on your device unless you choose to share content.</p>
-      </article>
-      <article class="panel">
-        <h3>Grounded when useful</h3>
-        <p>When you ask for current or local information, CanopyChat can use search and location-aware context to improve answers.</p>
-      </article>
+    <section class="canopy-band" aria-hidden="true">
+      <svg viewBox="0 0 1440 220" preserveAspectRatio="xMidYMax slice" role="presentation">
+        <g fill="#8faf74" opacity="0.55">
+          <ellipse cx="60" cy="150" rx="130" ry="80"/>
+          <ellipse cx="270" cy="130" rx="150" ry="90"/>
+          <ellipse cx="500" cy="150" rx="140" ry="82"/>
+          <ellipse cx="720" cy="126" rx="160" ry="94"/>
+          <ellipse cx="950" cy="148" rx="145" ry="84"/>
+          <ellipse cx="1180" cy="128" rx="155" ry="92"/>
+          <ellipse cx="1390" cy="150" rx="135" ry="80"/>
+        </g>
+        <g fill="#6f8b55" opacity="0.8">
+          <ellipse cx="140" cy="180" rx="145" ry="82"/>
+          <ellipse cx="390" cy="164" rx="150" ry="88"/>
+          <ellipse cx="630" cy="182" rx="140" ry="80"/>
+          <ellipse cx="870" cy="160" rx="158" ry="92"/>
+          <ellipse cx="1110" cy="182" rx="146" ry="82"/>
+          <ellipse cx="1350" cy="164" rx="150" ry="88"/>
+        </g>
+        <g fill="#43663f">
+          <ellipse cx="30" cy="222" rx="150" ry="84"/>
+          <ellipse cx="260" cy="206" rx="150" ry="86"/>
+          <ellipse cx="500" cy="224" rx="152" ry="84"/>
+          <ellipse cx="740" cy="204" rx="160" ry="90"/>
+          <ellipse cx="980" cy="224" rx="150" ry="84"/>
+          <ellipse cx="1210" cy="206" rx="152" ry="86"/>
+          <ellipse cx="1420" cy="224" rx="140" ry="82"/>
+        </g>
+      </svg>
+    </section>
+
+    <section class="eco">
+      <div class="shell">
+        <div class="eyebrow">Easy on the planet</div>
+        <h2>Intelligence under your own canopy.</h2>
+        <p class="eco-lead">Most AI assistants send every message to a data center. CanopyChat answers on the phone already in your hand — so everyday conversations don't need a server farm at all.</p>
+        <div class="grid eco-grid">
+          <article class="panel">
+            <h3>No round trips</h3>
+            <p>Everyday chats run entirely on your iPhone. No data-center inference, no network hops, no idle servers waiting on your next message.</p>
+          </article>
+          <article class="panel">
+            <h3>One download, endless chats</h3>
+            <p>The Canopy model is downloaded once and cached locally. After that, conversations cost only the energy in your pocket.</p>
+          </article>
+          <article class="panel">
+            <h3>Web search, only when it earns it</h3>
+            <p>CanopyChat reaches for the network only when you ask about current or local information — a lighter footprint by design.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell">
+      <div class="grid" aria-label="CanopyChat features">
+        <article class="panel">
+          <h3>On-device first</h3>
+          <p>Chats are designed to run locally on iPhone with a cached model, reducing reliance on remote inference for everyday use.</p>
+        </article>
+        <article class="panel">
+          <h3>Privacy by default</h3>
+          <p>Conversation history, personas, workspaces, and summaries are stored on your device unless you choose to share content.</p>
+        </article>
+        <article class="panel">
+          <h3>Grounded when useful</h3>
+          <p>When you ask for current or local information, CanopyChat can use search and location-aware context to improve answers.</p>
+        </article>
+      </div>
     </section>
   </main>
 
