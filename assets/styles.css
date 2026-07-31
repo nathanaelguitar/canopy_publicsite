@@ -480,6 +480,14 @@ h3 {
   font-size: clamp(52px, 8.2vw, 92px);
 }
 
+/* h2 has no top margin, so eyebrows need their own breathing room */
+.founding-invitation .eyebrow,
+.founding-section-heading .eyebrow,
+.founding-enrollment .eyebrow,
+.founding-final-card .eyebrow {
+  margin-bottom: 14px;
+}
+
 .founding-invitation {
   position: relative;
   overflow: hidden;
@@ -556,6 +564,7 @@ h3 {
   border: 0;
   font: inherit;
   font-weight: 700;
+  white-space: nowrap;
   cursor: pointer;
   transition: background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
@@ -633,8 +642,9 @@ h3 {
   content: "";
   position: absolute;
   top: 24px;
-  right: 10%;
-  left: 10%;
+  /* run from the first marker's center to the last marker's center */
+  left: 24px;
+  right: calc(25% - 43.5px);
   height: 1px;
   background: var(--line);
 }
@@ -866,8 +876,15 @@ h3 {
     padding: 0 20px;
   }
 
+  .founding-final-card {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
   .founding-cta {
     width: 100%;
+    padding: 0 14px;
+    font-size: 16px;
   }
 }
 
