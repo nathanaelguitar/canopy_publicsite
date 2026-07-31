@@ -10,28 +10,32 @@
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <header class="shell nav">
     <a class="brand" href="index.html" aria-label="CanopyChat home">
       <img class="mark" src="assets/app-icon.png" alt="" width="46" height="46">
       <strong>CanopyChat</strong>
     </a>
     <nav class="nav-links" aria-label="Primary navigation">
+      <a href="founding.html#how-it-works">How It Works</a>
       <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
       <a href="support.html">Support</a>
+      <a class="button nav-cta" href="founding.html#founding-access" data-analytics="home_nav_cta_click">Become a Founding Member</a>
     </nav>
   </header>
 
-  <main>
+  <main id="main">
     <section class="shell hero">
       <div>
         <div class="eyebrow">Eco-Friendly Intelligence</div>
         <h1>Private LLM intelligence that lives closer to you.</h1>
         <p class="lead">CanopyChat answers right on your iPhone and keeps your chats, photos, files, and location in your hands.</p>
         <div class="actions">
-          <a class="button" href="support.html">Get Support</a>
-          <a class="button secondary" href="privacy.html">Read Privacy Policy</a>
+          <a class="button" href="founding.html#founding-access" data-analytics="home_hero_cta_click">Become a Founding Member</a>
+          <a class="button secondary" href="founding.html#how-it-works">See How It Works</a>
         </div>
+        <p class="hero-note">One-time $10 &middot; Early beta access &middot; Three months of Premium once you are in</p>
       </div>
 
       <div class="phone-card" aria-label="CanopyChat preview">
@@ -128,13 +132,27 @@
         </article>
       </div>
     </section>
+
+    <section class="shell section final-cta" aria-labelledby="home-founding-heading">
+      <div class="panel final-cta-card">
+        <div class="eyebrow">Founding Access</div>
+        <h2 id="home-founding-heading">Join the first group of CanopyChat users.</h2>
+        <p class="lead">A one-time $10 payment brings early beta access, three months of Premium once your access is activated, and a hand in what the app becomes.</p>
+        <div class="actions">
+          <a class="button" href="founding.html#founding-access" data-analytics="home_final_cta_click">Become a Founding Member</a>
+          <a class="button secondary" href="founding.html">Read the details</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
     <div class="shell footer-inner">
       <span>Copyright 2026 CanopyChat</span>
-      <span><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a> | <a href="support.html">Support</a></span>
+      <span><a href="founding.html">Founding Access</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a> | <a href="support.html">Support</a></span>
     </div>
   </footer>
+
+  <script src="assets/founding.js" defer></script>
 </body>
 </html>

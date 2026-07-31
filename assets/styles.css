@@ -311,17 +311,20 @@ h3 {
   height: clamp(120px, 18vw, 220px);
 }
 
-.eco {
+.eco,
+.band {
   background: linear-gradient(180deg, #43663f, #35522f);
   color: var(--cream);
   padding: 64px 0 80px;
 }
 
-.eco .eyebrow {
+.eco .eyebrow,
+.band .eyebrow {
   color: #cfe3b7;
 }
 
-.eco h2 {
+.eco h2,
+.band h2 {
   color: #fff7e8;
 }
 
@@ -336,19 +339,22 @@ h3 {
   margin: 34px 0 0;
 }
 
-.eco .panel {
+.eco .panel,
+.band .panel {
   background: rgba(255, 247, 232, 0.08);
   border-color: rgba(255, 247, 232, 0.16);
   backdrop-filter: none;
   box-shadow: none;
 }
 
-.eco .panel h3 {
+.eco .panel h3,
+.band .panel h3 {
   color: #fff7e8;
   margin-top: 0;
 }
 
-.eco .panel p {
+.eco .panel p,
+.band .panel p {
   color: #cfdcb9;
 }
 
@@ -458,6 +464,370 @@ h3 {
   }
 
   .phone-card {
+    transform: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Shared interaction states and accessibility
+   --------------------------------------------------------------- */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 20;
+  padding: 12px 18px;
+  border-radius: 0 0 14px 0;
+  background: var(--oak);
+  color: var(--cream);
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--oak-bright);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.button {
+  border: 0;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.button:hover {
+  background: var(--oak-bright);
+  color: var(--cream);
+  transform: translateY(-1px);
+  box-shadow: 0 20px 38px rgba(122, 74, 35, 0.28);
+}
+
+.button.secondary:hover {
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--oak-bright);
+  box-shadow: none;
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button[disabled],
+.button.is-loading {
+  cursor: not-allowed;
+  opacity: 0.62;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ---------------------------------------------------------------
+   Founding Member page
+   --------------------------------------------------------------- */
+
+.nav-links a.nav-cta {
+  color: var(--cream);
+  font-size: 15px;
+  min-height: 42px;
+  padding: 0 18px;
+  box-shadow: 0 10px 22px rgba(122, 74, 35, 0.22);
+}
+
+.nav-links a.nav-cta:hover {
+  color: var(--cream);
+}
+
+.founding-hero {
+  padding-bottom: 64px;
+}
+
+.hero-note {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.section {
+  padding: 68px 0 8px;
+}
+
+.section-head {
+  max-width: 760px;
+}
+
+.section-head .lead {
+  margin-bottom: 0;
+}
+
+.section .grid {
+  margin-top: 32px;
+  margin-bottom: 0;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.step h3 {
+  margin-top: 14px;
+}
+
+.step-num {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: rgba(111, 139, 85, 0.18);
+  color: #55703f;
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* On the home page the canopy band tucks under the hero; on the founding page
+   it follows a card section and needs breathing room instead of an overlap. */
+.section + .canopy-band {
+  margin-top: 34px;
+}
+
+.offer-band {
+  margin-top: 8px;
+}
+
+.offer-card {
+  max-width: 680px;
+  margin: 36px auto 0;
+  padding: clamp(28px, 4vw, 44px);
+  text-align: left;
+}
+
+.offer-price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(255, 247, 232, 0.16);
+}
+
+.offer-amount {
+  font-family: var(--serif);
+  font-size: clamp(52px, 8vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  color: #fff7e8;
+}
+
+.offer-terms {
+  color: #cfdcb9;
+  font-size: 16px;
+}
+
+.offer-list {
+  margin: 24px 0 30px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.offer-list li {
+  position: relative;
+  padding-left: 30px;
+  color: #e6efd8;
+}
+
+.offer-list li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #a9c98a;
+  font-weight: 700;
+}
+
+.offer-cta {
+  width: 100%;
+}
+
+.offer-fineprint {
+  margin: 16px 0 0;
+  color: #cfdcb9;
+  font-size: 15px;
+}
+
+.offer-status {
+  margin: 12px 0 0;
+  color: #fff7e8;
+  font-size: 15px;
+  min-height: 0;
+}
+
+.offer-status.is-visible {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 247, 232, 0.12);
+}
+
+.trust-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.placeholder-note {
+  border-left-color: var(--oak-bright);
+  background: rgba(163, 106, 53, 0.14);
+}
+
+.placeholder-note p {
+  margin: 8px 0 0;
+}
+
+.placeholder-inline {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(163, 106, 53, 0.14);
+}
+
+.faq {
+  display: grid;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.faq-item {
+  padding: 4px 26px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 10px 30px rgba(38, 24, 12, 0.08);
+}
+
+.faq-item summary {
+  padding: 18px 0;
+  font-family: var(--serif);
+  font-size: 21px;
+  letter-spacing: -0.03em;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "\002B";
+  float: right;
+  margin-left: 16px;
+  color: var(--oak);
+  font-family: var(--sans);
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.faq-item[open] summary::after {
+  content: "\2212";
+}
+
+.faq-item p {
+  margin: 0 0 20px;
+  color: var(--muted);
+}
+
+.final-cta {
+  padding-bottom: 72px;
+}
+
+.final-cta-card {
+  padding: clamp(30px, 5vw, 58px);
+  text-align: center;
+}
+
+.final-cta-card .lead {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.final-cta-card .actions {
+  justify-content: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* --muted is tuned for the cream background and drops below AA contrast on
+     the dark one. Lift it for surfaces that actually sit on the dark page —
+     not the phone mock, whose screen stays light in both themes. */
+  .panel p,
+  .lead,
+  .hero-note,
+  .meta,
+  .footer,
+  .nav-links a {
+    color: #b9a48d;
+  }
+
+  .faq-item {
+    background: rgba(28, 20, 15, 0.76);
+    border-color: rgba(255, 244, 223, 0.11);
+  }
+
+  .faq-item p {
+    color: #d8c5ae;
+  }
+
+  .step-num {
+    background: rgba(143, 175, 116, 0.2);
+    color: #b7d199;
+  }
+
+  .button.secondary:hover {
+    background: rgba(255, 244, 223, 0.16);
+    color: var(--cream);
+  }
+}
+
+@media (max-width: 820px) {
+  .nav-links {
+    justify-content: flex-start;
+  }
+
+  .steps,
+  .trust-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding-top: 48px;
+  }
+
+  .offer-card {
+    margin-top: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .button,
+  .button:hover,
+  .button:active {
+    transition: none;
     transform: none;
   }
 }
