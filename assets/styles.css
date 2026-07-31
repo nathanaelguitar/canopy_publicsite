@@ -461,3 +461,418 @@ h3 {
     transform: none;
   }
 }
+
+/* Founding Members page */
+
+.founding-page .nav-links a[aria-current="page"] {
+  color: var(--oak);
+}
+
+.founding-hero {
+  padding-bottom: 76px;
+}
+
+.founding-hero > * {
+  min-width: 0;
+}
+
+.founding-page h1 {
+  font-size: clamp(52px, 8.2vw, 92px);
+}
+
+.founding-invitation {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(28px, 4vw, 46px);
+}
+
+.founding-invitation::after {
+  content: "";
+  position: absolute;
+  right: -72px;
+  bottom: -88px;
+  width: 230px;
+  height: 230px;
+  border: 44px solid rgba(111, 139, 85, 0.12);
+  border-radius: 50%;
+}
+
+.founding-invitation-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 52px;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.founding-invitation-top img {
+  border-radius: 17px;
+  box-shadow: 0 10px 24px rgba(47, 82, 51, 0.2);
+}
+
+.founding-invitation h2 {
+  position: relative;
+  z-index: 1;
+  max-width: 500px;
+  font-size: clamp(36px, 4.6vw, 54px);
+}
+
+.founding-invitation-list {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 12px;
+  margin: 30px 0 0;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.founding-invitation-list li {
+  position: relative;
+  padding-left: 25px;
+}
+
+.founding-invitation-list li::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--moss);
+}
+
+.founding-action {
+  margin-top: 30px;
+}
+
+.founding-cta {
+  border: 0;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.founding-cta:hover {
+  background: var(--oak-bright);
+  color: var(--cream);
+  transform: translateY(-1px);
+}
+
+.founding-cta:active {
+  transform: translateY(0);
+}
+
+.founding-cta:focus-visible,
+.founding-faq summary:focus-visible {
+  outline: 3px solid var(--oak-bright);
+  outline-offset: 4px;
+}
+
+.founding-action-status {
+  min-height: 1.65em;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.founding-section {
+  padding: 68px 0 28px;
+}
+
+.founding-section-heading {
+  max-width: 760px;
+}
+
+.founding-section-heading > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(18px, 2.2vw, 23px);
+}
+
+.founding-benefits {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.founding-benefit {
+  min-height: 270px;
+  padding: clamp(28px, 4vw, 42px);
+}
+
+.founding-benefit-number {
+  color: var(--moss);
+  font-family: var(--serif);
+  font-size: 18px;
+}
+
+.founding-benefit h3 {
+  margin-top: 38px;
+}
+
+.founding-steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
+  margin: 44px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.founding-steps::before {
+  content: "";
+  position: absolute;
+  top: 24px;
+  right: 10%;
+  left: 10%;
+  height: 1px;
+  background: var(--line);
+}
+
+.founding-steps li {
+  position: relative;
+}
+
+.founding-step-marker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(111, 139, 85, 0.35);
+  border-radius: 50%;
+  background: var(--paper);
+  color: #55703f;
+  font-family: var(--serif);
+  font-size: 21px;
+  box-shadow: 0 8px 22px rgba(38, 24, 12, 0.08);
+}
+
+.founding-steps h3 {
+  margin-top: 24px;
+  font-size: 25px;
+}
+
+.founding-steps p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.founding-canopy-band {
+  margin-top: 76px;
+}
+
+.founding-enrollment {
+  padding: 68px 0 78px;
+  background: linear-gradient(180deg, #43663f, #35522f);
+  color: var(--cream);
+}
+
+.founding-enrollment-inner {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(42px, 8vw, 100px);
+  align-items: start;
+}
+
+.founding-enrollment .eyebrow {
+  color: #cfe3b7;
+}
+
+.founding-enrollment h2 {
+  color: #fff7e8;
+}
+
+.founding-enrollment-copy {
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 247, 232, 0.18);
+}
+
+.founding-enrollment-copy p {
+  margin-top: 0;
+  color: #d9e6c4;
+  font-size: clamp(17px, 2vw, 21px);
+}
+
+.founding-enrollment-copy p + p {
+  margin-top: 22px;
+}
+
+.founding-faq-section {
+  max-width: 920px;
+}
+
+.founding-faq {
+  display: grid;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.founding-faq details {
+  padding: 0 26px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 10px 30px rgba(38, 24, 12, 0.07);
+}
+
+.founding-faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 0;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  cursor: pointer;
+  list-style: none;
+}
+
+.founding-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.founding-faq summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--oak);
+  font-family: var(--sans);
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.founding-faq details[open] summary::after {
+  content: "\2212";
+}
+
+.founding-faq details p {
+  margin: 0 0 22px;
+  color: var(--muted);
+}
+
+.founding-final {
+  padding: 72px 0 92px;
+}
+
+.founding-final-card {
+  padding: clamp(34px, 7vw, 76px);
+  text-align: center;
+}
+
+.founding-final-card h2 {
+  max-width: 760px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.founding-final-card > p {
+  max-width: 680px;
+  margin-right: auto;
+  margin-left: auto;
+  color: var(--muted);
+  font-size: clamp(18px, 2.2vw, 22px);
+}
+
+.founding-action-note {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .founding-page .nav-links a[aria-current="page"] {
+    color: #d6b486;
+  }
+
+  .founding-page .lead,
+  .founding-page .nav-links a:not([aria-current="page"]),
+  .founding-page .footer,
+  .founding-invitation-list,
+  .founding-invitation-top,
+  .founding-section-heading > p,
+  .founding-benefit p,
+  .founding-steps p,
+  .founding-action-status,
+  .founding-action-note,
+  .founding-final-card > p,
+  .founding-faq details p {
+    color: #cdbba6;
+  }
+
+  .founding-step-marker {
+    background: #251a14;
+    color: #bcd6a3;
+  }
+
+  .founding-faq details {
+    background: rgba(28, 20, 15, 0.76);
+    border-color: rgba(255, 244, 223, 0.11);
+  }
+}
+
+@media (max-width: 820px) {
+  .founding-benefits,
+  .founding-enrollment-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .founding-steps {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 42px;
+  }
+
+  .founding-steps::before {
+    display: none;
+  }
+
+  .founding-invitation-top {
+    margin-bottom: 36px;
+  }
+
+  .founding-canopy-band {
+    margin-top: 52px;
+  }
+}
+
+@media (max-width: 560px) {
+  .founding-page h1 {
+    font-size: 46px;
+  }
+
+  .founding-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .founding-benefit {
+    min-height: 0;
+  }
+
+  .founding-faq details {
+    padding: 0 20px;
+  }
+
+  .founding-cta {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .founding-cta {
+    transition: none;
+  }
+}
