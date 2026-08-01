@@ -352,6 +352,28 @@ h3 {
   color: #cfdcb9;
 }
 
+.climate-commitment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 760px;
+  margin: -42px auto 0;
+  color: #d9e6c4;
+  font-size: 15px;
+  text-align: center;
+}
+
+.climate-commitment::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #9dc67b;
+  box-shadow: 0 0 0 4px rgba(157, 198, 123, 0.12);
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
