@@ -352,6 +352,28 @@ h3 {
   color: #cfdcb9;
 }
 
+.climate-commitment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 760px;
+  margin: -42px auto 0;
+  color: #d9e6c4;
+  font-size: 15px;
+  text-align: center;
+}
+
+.climate-commitment::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #9dc67b;
+  box-shadow: 0 0 0 4px rgba(157, 198, 123, 0.12);
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -585,11 +607,52 @@ h3 {
   outline-offset: 4px;
 }
 
+.founding-cta[disabled] {
+  cursor: not-allowed;
+  opacity: 0.65;
+  transform: none;
+}
+
+.founding-cta.is-loading {
+  position: relative;
+  color: transparent;
+}
+
+.founding-cta.is-loading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 244, 223, 0.45);
+  border-top-color: var(--cream);
+  animation: founding-spin 700ms linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .founding-cta.is-loading::after {
+    animation: none;
+  }
+}
+
+@keyframes founding-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .founding-action-status {
   min-height: 1.65em;
   margin: 12px 0 0;
   color: var(--muted);
   font-size: 14px;
+}
+
+.founding-action-status.is-error {
+  color: #a13a2c;
+  font-weight: 600;
 }
 
 .founding-section {
@@ -832,6 +895,10 @@ h3 {
   .founding-faq details {
     background: rgba(28, 20, 15, 0.76);
     border-color: rgba(255, 244, 223, 0.11);
+  }
+
+  .founding-action-status.is-error {
+    color: #e08a76;
   }
 }
 
