@@ -358,10 +358,11 @@ h3 {
   justify-content: center;
   gap: 10px;
   max-width: 760px;
-  margin: -42px auto 0;
+  margin: 28px auto 0;
   color: #d9e6c4;
   font-size: 15px;
   text-align: center;
+  line-height: 1.5;
 }
 
 .climate-commitment::before {
@@ -372,6 +373,118 @@ h3 {
   border-radius: 999px;
   background: #9dc67b;
   box-shadow: 0 0 0 4px rgba(157, 198, 123, 0.12);
+}
+
+/* Polished climate card — user liked this version (20-35-19) */
+.climate-commitment-v2 {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 34px;
+  align-items: center;
+  margin-top: 54px;
+  padding: clamp(24px, 4vw, 36px);
+  border-radius: 28px;
+  background: linear-gradient(165deg, rgba(255, 247, 232, 0.12), rgba(255, 247, 232, 0.06));
+  border: 1px solid rgba(255, 247, 232, 0.18);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+  backdrop-filter: blur(12px);
+}
+
+.climate-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(157, 198, 123, 0.18);
+  border: 1px solid rgba(157, 198, 123, 0.28);
+  color: #d9e6c4;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.climate-dot-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #9dc67b;
+  box-shadow: 0 0 0 0 rgba(157, 198, 123, 0.6);
+  animation: climate-pulse 2.4s infinite;
+}
+
+@keyframes climate-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(157, 198, 123, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(157, 198, 123, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(157, 198, 123, 0); }
+}
+
+.climate-commitment-v2 h3 {
+  margin: 0 0 10px;
+  color: #fff7e8;
+  font-size: clamp(22px, 3vw, 28px);
+}
+
+.climate-commitment-v2 p {
+  margin: 0;
+  color: #cfdcb9;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.climate-commitment-v2 p em {
+  color: #fff7e8;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.climate-illustration {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+}
+
+.ci-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 247, 232, 0.18);
+}
+.ci-ring-2 { inset: 14px; border-color: rgba(157, 198, 123, 0.28); }
+.ci-ring-3 { inset: 30px; background: rgba(255,247,232,0.08); }
+
+.ci-center {
+  position: relative;
+  z-index: 1;
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: #fff7e8;
+  background: rgba(67, 102, 63, 0.9);
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,247,232,0.2);
+}
+
+.ci-caption {
+  text-align: center;
+  font-size: 13px;
+  color: rgba(217, 230, 196, 0.78);
+  max-width: 220px;
+  margin: 14px auto 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 820px) {
+  .climate-commitment-v2 {
+    grid-template-columns: 1fr;
+  }
 }
 
 .grid {
