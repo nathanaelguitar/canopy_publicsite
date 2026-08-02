@@ -691,6 +691,48 @@ h3 {
   margin-top: 38px;
 }
 
+.founding-bridge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 34px;
+  margin-top: 28px;
+  padding: 30px 34px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.42);
+  box-shadow: 0 12px 34px rgba(38, 24, 12, 0.06);
+}
+
+.founding-bridge .eyebrow {
+  margin-bottom: 10px;
+}
+
+.founding-bridge h3 {
+  margin: 0;
+  font-size: clamp(25px, 3vw, 34px);
+}
+
+.founding-bridge > div:first-child {
+  max-width: 620px;
+}
+
+.founding-bridge > div:first-child p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.founding-bridge .founding-action {
+  flex: 0 0 auto;
+  margin-top: 0;
+  text-align: right;
+}
+
+.founding-bridge .founding-action-note {
+  white-space: nowrap;
+}
+
 .founding-steps {
   position: relative;
   display: grid;
@@ -897,6 +939,11 @@ h3 {
     border-color: rgba(255, 244, 223, 0.11);
   }
 
+  .founding-bridge {
+    background: rgba(28, 20, 15, 0.58);
+    border-color: rgba(255, 244, 223, 0.11);
+  }
+
   .founding-action-status.is-error {
     color: #e08a76;
   }
@@ -906,6 +953,15 @@ h3 {
   .founding-benefits,
   .founding-enrollment-inner {
     grid-template-columns: 1fr;
+  }
+
+  .founding-bridge {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .founding-bridge .founding-action {
+    text-align: left;
   }
 
   .founding-steps {
@@ -946,6 +1002,19 @@ h3 {
   .founding-final-card {
     padding-right: 24px;
     padding-left: 24px;
+  }
+
+  .founding-bridge {
+    padding: 26px 22px;
+  }
+
+  .founding-bridge .founding-action,
+  .founding-bridge .founding-cta {
+    width: 100%;
+  }
+
+  .founding-bridge .founding-action-note {
+    white-space: normal;
   }
 
   .founding-cta {
