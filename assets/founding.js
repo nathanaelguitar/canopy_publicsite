@@ -9,6 +9,7 @@
 
   var CHECKOUT_ENDPOINT = 'https://founding-api.canopychat.app/v1/checkout';
   var SUPPORT_EMAIL = 'support@canopychat.app';
+  var MIN_AMOUNT_CENTS = 1000;
 
   var STATUS_MESSAGES = {
     starting: 'Opening secure checkout…',
@@ -18,6 +19,7 @@
     country_not_supported:
       'Founding Member beta enrollment is currently available in the United States.',
     misconfigured: 'Checkout is temporarily unavailable. Please try again shortly.',
+    invalid_amount: 'Choose a contribution of at least $10 in whole dollars.',
     generic_error: 'Something went wrong starting checkout. Please try again.',
     cancelled: 'Your payment was not completed. You can return whenever you are ready.',
   };
@@ -36,15 +38,74 @@
     this.root = root;
     this.button = root.querySelector('[data-founding-member-cta]');
     this.status = root.querySelector('[data-founding-member-status]');
+    this.amountChoices = root.querySelectorAll('[data-founding-amount-cents]');
+    this.customAmount = root.querySelector('[data-founding-custom-amount]');
+    this.amountCents = MIN_AMOUNT_CENTS;
     this.busy = false;
   }
 
   FoundingMemberCTA.prototype.connect = function () {
     var component = this;
     if (!component.button) return;
+    Array.prototype.forEach.call(component.amountChoices, function (choice) {
+      choice.addEventListener('click', function () {
+        component.setAmount(Number(choice.getAttribute('data-founding-amount-cents')));
+        if (component.customAmount) component.customAmount.value = '';
+      });
+    });
+    if (component.customAmount) {
+      component.customAmount.addEventListener('input', function () {
+        component.setCustomAmountState();
+      });
+    }
     component.button.addEventListener('click', function () {
       handleFoundingMemberCheckout(component);
     });
+    component.updateButtonLabel();
+  };
+
+  FoundingMemberCTA.prototype.setAmount = function (amountCents) {
+    if (!Number.isSafeInteger(amountCents) || amountCents < MIN_AMOUNT_CENTS) return;
+    this.amountCents = amountCents;
+    Array.prototype.forEach.call(this.amountChoices, function (choice) {
+      var isSelected = Number(choice.getAttribute('data-founding-amount-cents')) === amountCents;
+      choice.setAttribute('aria-pressed', String(isSelected));
+      choice.classList.toggle('is-selected', isSelected);
+    });
+    this.updateButtonLabel();
+  };
+
+  FoundingMemberCTA.prototype.setCustomAmountState = function () {
+    var raw = this.customAmount ? this.customAmount.value.trim() : '';
+    if (!raw) {
+      this.updateButtonLabel();
+      return;
+    }
+    var dollars = Number(raw);
+    if (Number.isSafeInteger(dollars) && dollars >= 10) {
+      this.setAmount(dollars * 100);
+    } else {
+      Array.prototype.forEach.call(this.amountChoices, function (choice) {
+        choice.setAttribute('aria-pressed', 'false');
+        choice.classList.remove('is-selected');
+      });
+      this.updateButtonLabel();
+    }
+  };
+
+  FoundingMemberCTA.prototype.getAmountCents = function () {
+    var raw = this.customAmount ? this.customAmount.value.trim() : '';
+    if (raw) {
+      var dollars = Number(raw);
+      return Number.isSafeInteger(dollars) && dollars >= 10 ? dollars * 100 : null;
+    }
+    return this.amountCents;
+  };
+
+  FoundingMemberCTA.prototype.updateButtonLabel = function () {
+    if (!this.button) return;
+    var dollars = Math.round(this.amountCents / 100);
+    this.button.textContent = 'Continue securely with $' + dollars;
   };
 
   FoundingMemberCTA.prototype.setStatus = function (message, isError) {
@@ -63,6 +124,13 @@
   async function handleFoundingMemberCheckout(component) {
     if (component.busy) return; // guards against double-submission on rapid clicks
 
+    var amountCents = component.getAmountCents();
+    if (!Number.isSafeInteger(amountCents) || amountCents < MIN_AMOUNT_CENTS) {
+      component.setStatus(STATUS_MESSAGES.invalid_amount, true);
+      if (component.customAmount) component.customAmount.focus();
+      return;
+    }
+
     component.setBusy(true);
     component.setStatus(STATUS_MESSAGES.starting, false);
     trackEvent('founding_member_checkout_started', {});
@@ -72,7 +140,7 @@
       response = await fetch(CHECKOUT_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: '{}',
+        body: JSON.stringify({ amount_cents: amountCents }),
       });
     } catch (networkError) {
       component.setBusy(false);
@@ -106,6 +174,13 @@
       component.setBusy(false);
       component.setStatus(STATUS_MESSAGES.misconfigured, true);
       trackEvent('founding_member_checkout_error', { reason: 'misconfigured' });
+      return;
+    }
+
+    if (response.status === 400) {
+      component.setBusy(false);
+      component.setStatus(STATUS_MESSAGES.invalid_amount, true);
+      trackEvent('founding_member_checkout_error', { reason: 'invalid_amount' });
       return;
     }
 

@@ -695,6 +695,105 @@ h3 {
   margin-top: 30px;
 }
 
+.founding-amounts {
+  max-width: 720px;
+  margin: 0 auto 22px;
+  padding: 0;
+  border: 0;
+  text-align: left;
+}
+
+.founding-amounts legend {
+  margin-bottom: 12px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.founding-amount-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(142px, 1.35fr);
+  gap: 10px;
+}
+
+.founding-amount-choice,
+.founding-custom-amount {
+  min-height: 54px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--oak);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.founding-amount-choice {
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.founding-amount-choice:hover {
+  border-color: var(--oak-bright);
+  transform: translateY(-1px);
+}
+
+.founding-amount-choice[aria-pressed="true"],
+.founding-amount-choice.is-selected {
+  border-color: var(--oak);
+  background: var(--oak);
+  color: var(--cream);
+}
+
+.founding-amount-choice:focus-visible,
+.founding-custom-amount:focus-within {
+  outline: 3px solid var(--oak-bright);
+  outline-offset: 3px;
+}
+
+.founding-custom-amount {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 12px 0 16px;
+}
+
+.founding-custom-amount-input {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--oak);
+}
+
+.founding-custom-amount input {
+  width: 76px;
+  min-width: 0;
+  padding: 7px 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.founding-custom-amount input::placeholder {
+  color: var(--muted);
+  opacity: 0.9;
+}
+
+.founding-custom-amount input:focus {
+  outline: 0;
+}
+
+.founding-amount-hint {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
 .founding-cta {
   border: 0;
   font: inherit;
@@ -1016,6 +1115,10 @@ h3 {
   font-size: clamp(18px, 2.2vw, 22px);
 }
 
+.founding-final-card .founding-cta {
+  margin-inline: auto;
+}
+
 .founding-action-note {
   margin: 14px 0 0;
   color: var(--muted);
@@ -1059,6 +1162,34 @@ h3 {
 
   .founding-action-status.is-error {
     color: #e08a76;
+  }
+
+  .founding-amounts legend,
+  .founding-amount-hint {
+    color: #cdbba6;
+  }
+
+  .founding-amount-choice,
+  .founding-custom-amount {
+    background: rgba(28, 20, 15, 0.58);
+    border-color: rgba(255, 244, 223, 0.16);
+    color: #d6b486;
+  }
+
+  .founding-amount-choice[aria-pressed="true"],
+  .founding-amount-choice.is-selected {
+    background: #a36a35;
+    border-color: #d6b486;
+    color: #fff4df;
+  }
+
+  .founding-custom-amount-input,
+  .founding-custom-amount input {
+    color: #fff4df;
+  }
+
+  .founding-custom-amount input::placeholder {
+    color: #cdbba6;
   }
 }
 
@@ -1134,6 +1265,14 @@ h3 {
     width: 100%;
     padding: 0 14px;
     font-size: 16px;
+  }
+
+  .founding-amount-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .founding-custom-amount {
+    grid-column: span 2;
   }
 }
 

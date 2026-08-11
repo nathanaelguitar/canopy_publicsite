@@ -7,7 +7,7 @@
   <meta name="description" content="Join CanopyChat before public launch. Private intelligence that lives on your phone — not in a big data center. Help shape a lighter, more thoughtful AI.">
   <link rel="icon" type="image/png" href="assets/app-icon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/styles.css?v=founding-3">
+  <link rel="stylesheet" href="assets/styles.css?v=founding-4">
 </head>
 <body class="founding-page">
   <header class="shell nav">
@@ -204,9 +204,26 @@
       <div class="panel founding-final-card">
         <div class="eyebrow">Founding Membership</div>
         <h2 id="final-cta-title">Come help shape what CanopyChat becomes.</h2>
-        <p>Founding Membership includes a small, one-time $10 contribution that supports the iPhone beta and reserves your place in the current group. It does not begin a subscription.</p>
+        <p>Founding Membership includes a one-time contribution of at least $10 that supports the iPhone beta and reserves your place in the current group. Choose the amount that feels right; it does not begin a subscription.</p>
         <div class="founding-action" data-founding-member-flow="final">
-          <button class="button founding-cta" type="button" data-founding-member-cta>Become a Founding Member</button>
+          <fieldset class="founding-amounts" aria-describedby="founding-amount-hint">
+            <legend>Choose your contribution</legend>
+            <div class="founding-amount-grid" role="group" aria-label="Contribution presets">
+              <button class="founding-amount-choice" type="button" data-founding-amount-cents="1000" aria-pressed="true">$10</button>
+              <button class="founding-amount-choice" type="button" data-founding-amount-cents="2500" aria-pressed="false">$25</button>
+              <button class="founding-amount-choice" type="button" data-founding-amount-cents="5000" aria-pressed="false">$50</button>
+              <button class="founding-amount-choice" type="button" data-founding-amount-cents="10000" aria-pressed="false">$100</button>
+              <label class="founding-custom-amount">
+                <span>Custom</span>
+                <span class="founding-custom-amount-input">
+                  <span aria-hidden="true">$</span>
+                  <input type="number" min="10" step="1" inputmode="numeric" placeholder="Other" aria-label="Custom contribution in whole dollars" data-founding-custom-amount>
+                </span>
+              </label>
+            </div>
+            <p class="founding-amount-hint" id="founding-amount-hint">Minimum contribution: $10. Every amount helps.</p>
+          </fieldset>
+          <button class="button founding-cta" type="button" data-founding-member-cta>Continue securely with $10</button>
           <p class="founding-action-note">US beta enrollment only. Contributions are final and non-refundable, except where required by law. If the current group is full, you will be offered the waitlist instead.</p>
           <p class="founding-action-status" data-founding-member-status role="status" aria-live="polite"></p>
           <div data-founding-member-email-slot hidden></div>
@@ -222,6 +239,6 @@
     </div>
   </footer>
 
-  <script src="assets/founding.js?v=founding-6" defer></script>
+  <script src="assets/founding.js?v=founding-7" defer></script>
 </body>
 </html>
