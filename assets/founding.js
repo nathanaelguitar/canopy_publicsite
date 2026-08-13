@@ -29,6 +29,7 @@
    * unless something else on the page defines window.canopyTrack.
    */
   function trackEvent(name, props) {
+    if (typeof window.canopyMetaTrack === 'function') window.canopyMetaTrack(name, props || {});
     if (typeof window.canopyTrack === 'function') {
       window.canopyTrack(name, props || {});
     }
@@ -133,7 +134,7 @@
 
     component.setBusy(true);
     component.setStatus(STATUS_MESSAGES.starting, false);
-    trackEvent('founding_member_checkout_started', {});
+    trackEvent('InitiateCheckout', { value: amountCents / 100, currency: 'USD' });
 
     var response;
     try {

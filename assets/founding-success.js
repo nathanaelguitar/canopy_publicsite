@@ -11,9 +11,19 @@
   var STATUS_ENDPOINT = 'https://founding-api.canopychat.app/v1/checkout-session';
 
   function trackEvent(name, props) {
+    if (typeof window.canopyMetaTrack === 'function') window.canopyMetaTrack(name, props || {});
     if (typeof window.canopyTrack === 'function') {
       window.canopyTrack(name, props || {});
     }
+  }
+
+  function trackConfirmedPurchaseOnce(sessionId) {
+    var key = 'canopychat_purchase_tracked_' + sessionId;
+    try {
+      if (window.sessionStorage.getItem(key)) return;
+      window.sessionStorage.setItem(key, '1');
+    } catch (storageError) {}
+    trackEvent('Purchase', {}, { eventID: 'canopychat_' + sessionId });
   }
 
   function els() {
@@ -64,6 +74,7 @@
     }
 
     if (body.status === 'confirmed') {
+      trackConfirmedPurchaseOnce(sessionId);
       trackEvent('founding_member_payment_confirmed', {});
       render('You are a Founding Member', 'Payment received. Thank you for joining early.', true);
       return;
