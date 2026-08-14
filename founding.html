@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://connect.facebook.net; connect-src 'self' https://founding-api.canopychat.app https://www.facebook.com https://connect.facebook.net; img-src 'self' data: https://www.facebook.com; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://checkout.stripe.com; upgrade-insecure-requests">
   <meta name="theme-color" content="#0c2b1d">
   <title>Founding Members | Help care for our planet | CanopyChat</title>
   <meta name="description" content="Help care for our planet by supporting a private, on-device AI for iPhone. Join CanopyChat as a Founding Member before public launch.">
@@ -20,7 +22,7 @@
     FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
   -->
   <header class="founding-topbar">
-    <a class="founding-brand" href="index.html" aria-label="CanopyChat home">
+    <a class="founding-brand" href="/" aria-label="CanopyChat home">
       <img src="assets/app-icon.png" alt="" width="38" height="38">
       <span>CanopyChat</span>
     </a>
@@ -116,7 +118,7 @@
                 <span>Custom</span>
                 <span class="founding-custom-amount-input">
                   <span aria-hidden="true">$</span>
-                  <input type="number" min="10" step="1" inputmode="numeric" placeholder="Other" aria-label="Custom contribution in whole dollars" data-founding-custom-amount>
+                  <input type="number" min="10" step="1" inputmode="numeric" pattern="[0-9]*" placeholder="Other" aria-label="Custom contribution in whole dollars" data-founding-custom-amount>
                 </span>
               </label>
             </div>
@@ -137,7 +139,7 @@
 
   <footer class="founding-footer">
     <span>Copyright 2026 CanopyChat</span>
-    <span><a href="privacy.html">Privacy</a> <a href="terms.html">Terms</a> <a href="support.html">Support</a></span>
+    <span><a href="/privacy">Privacy</a> <a href="/terms">Terms</a> <a href="/support">Support</a></span>
     <small class="founding-device-disclosure">Beta hardware requirement: iPhone 12 Pro or newer.</small>
   </footer>
 

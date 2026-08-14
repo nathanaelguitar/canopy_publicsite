@@ -123,6 +123,14 @@
       return;
     }
 
+    // Keep the Stripe session identifier out of browser history, analytics
+    // page views, and future referrer values. The value is already captured
+    // locally for the authoritative status lookup above.
+    params.delete('session_id');
+    var newSearch = params.toString();
+    var cleanUrl = window.location.pathname + (newSearch ? '?' + newSearch : '') + window.location.hash;
+    window.history.replaceState(null, '', cleanUrl);
+
     checkStatus(sessionId, 0);
   }
 

@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#fff4df" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#120d0a" media="(prefers-color-scheme: dark)">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://connect.facebook.net; connect-src 'self' https://founding-api.canopychat.app https://www.facebook.com https://connect.facebook.net; img-src 'self' data: https://www.facebook.com; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://checkout.stripe.com; upgrade-insecure-requests">
   <title>CanopyChat Support</title>
   <meta name="description" content="Support page for CanopyChat.">
   <link rel="icon" type="image/png" href="assets/app-icon.png">
@@ -11,12 +15,12 @@
 </head>
 <body>
   <header class="shell nav">
-    <a class="brand" href="index.html"><img class="mark" src="assets/app-icon.png" alt="" width="46" height="46"><strong>CanopyChat</strong></a>
+    <a class="brand" href="/"><img class="mark" src="assets/app-icon.png" alt="" width="46" height="46"><strong>CanopyChat</strong></a>
     <nav class="nav-links" aria-label="Primary navigation">
-      <a href="founding.html">Founding Members</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
-      <a href="support.html">Support</a>
+      <a href="/founding">Founding Members</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/support">Support</a>
     </nav>
   </header>
 
@@ -45,14 +49,14 @@
       <p>Location, camera, photo, and file access can be changed in iOS Settings. CanopyChat asks for these permissions only when a feature needs them.</p>
 
       <h2>Privacy and Terms</h2>
-      <p>Review the <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Use</a>.</p>
+      <p>Review the <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms of Use</a>.</p>
     </article>
   </main>
 
   <footer class="footer">
     <div class="shell footer-inner">
       <span>Copyright 2026 CanopyChat</span>
-      <span><a href="index.html">Home</a> | <a href="privacy.html">Privacy</a> | <a href="terms.html">Terms</a></span>
+      <span><a href="/">Home</a> | <a href="/privacy">Privacy</a> | <a href="/terms">Terms</a></span>
     </div>
   </footer>
 </body>
