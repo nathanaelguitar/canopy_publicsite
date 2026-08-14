@@ -285,31 +285,6 @@
     });
   }
 
-  function setupQuickContributionCTA() {
-    var quick = document.querySelector('[data-founding-quick-cta]');
-    var hero = document.querySelector('.founding-screen-hero');
-    var contribution = document.querySelector('[data-contribute-section]');
-    if (!quick || !hero || !contribution || !('IntersectionObserver' in window)) return;
-
-    quick.classList.remove('is-ready');
-
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.target === hero) {
-            quick.classList.toggle('is-ready', !entry.isIntersecting);
-          }
-          if (entry.target === contribution) {
-            quick.classList.toggle('at-contribute', entry.isIntersecting);
-          }
-        });
-      },
-      { threshold: 0.22 },
-    );
-    observer.observe(hero);
-    observer.observe(contribution);
-  }
-
   var flows = document.querySelectorAll('[data-founding-member-flow]');
   Array.prototype.forEach.call(flows, function (root) {
     new FoundingMemberCTA(root).connect();
@@ -318,7 +293,6 @@
   showCancelledStateIfPresent();
   trackFoundingSectionViewedOnce();
   trackFaqInteractions();
-  setupQuickContributionCTA();
 
   // Exposed for the confirmation page and for tests.
   window.handleFoundingMemberCheckout = handleFoundingMemberCheckout;

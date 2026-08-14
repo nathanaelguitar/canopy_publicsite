@@ -1630,7 +1630,6 @@ html:has(.founding-mobile-funnel) {
 
 .founding-primary-action:focus-visible,
 .founding-text-action:focus-visible,
-.founding-quick-cta-button:focus-visible,
 .founding-cta:focus-visible {
   outline: 3px solid var(--funnel-lime);
   outline-offset: 4px;
@@ -1947,10 +1946,6 @@ html:has(.founding-mobile-funnel) {
   color: #ffb9a5;
 }
 
-.founding-quick-cta {
-  display: none;
-}
-
 .founding-footer {
   display: flex;
   justify-content: space-between;
@@ -1999,10 +1994,6 @@ html:has(.founding-mobile-funnel) {
   .founding-screen-membership .founding-screen-inner,
   .founding-contribute-inner {
     margin-left: max(0px, calc((100vw - 1120px) / 2));
-  }
-
-  .founding-quick-cta {
-    display: none !important;
   }
 }
 
@@ -2122,42 +2113,9 @@ html:has(.founding-mobile-funnel) {
     grid-column: span 2;
   }
 
-  .founding-quick-cta {
-    display: none;
-    position: fixed;
-    z-index: 30;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 10px 16px max(10px, env(safe-area-inset-bottom));
-    background: rgba(12, 43, 29, 0.94);
-    box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.16);
-    backdrop-filter: blur(18px);
-  }
-
-  .founding-quick-cta.is-ready {
-    display: block;
-  }
-
-  .founding-quick-cta.at-contribute {
-    display: none;
-  }
-
-  .founding-quick-cta-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 48px;
-    border-radius: 999px;
-    background: var(--funnel-lime);
-    color: var(--funnel-forest);
-    font-size: 15px;
-    font-weight: 850;
-  }
-
   .founding-footer {
     display: block;
-    padding-bottom: calc(100px + env(safe-area-inset-bottom));
+    padding-bottom: max(32px, calc(20px + env(safe-area-inset-bottom)));
   }
 
   .founding-footer span {
