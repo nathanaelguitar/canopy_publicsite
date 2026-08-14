@@ -32,7 +32,7 @@ Visitors arrive from short videos, read the Founding Members invitation on a pho
 
 ## Brand Commitments
 
-The product name is CanopyChat. The existing brand uses a tree mark and connects privacy, on-device intelligence, and a lighter infrastructure footprint. The founding page should speak plainly and make the contribution terms easy to understand.
+The product name is CanopyChat. The existing brand uses a tree mark and connects privacy, on-device intelligence, and a lighter infrastructure footprint. CanopyChat contributes a percentage of revenue through Stripe Climate to help advance emerging permanent carbon-removal technologies. The founding page should speak plainly and make the contribution terms easy to understand.
 
 ## Evidence on Hand
 

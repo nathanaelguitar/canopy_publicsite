@@ -1684,6 +1684,20 @@ html:has(.founding-mobile-funnel) {
   color: rgba(244, 240, 228, 0.74);
 }
 
+.founding-climate-note {
+  max-width: 600px;
+  margin: 26px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(196, 238, 119, 0.34);
+  color: rgba(244, 240, 228, 0.7);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.founding-climate-note strong {
+  color: var(--funnel-lime);
+}
+
 .founding-mobile-funnel .founding-action {
   margin-top: 38px;
 }
