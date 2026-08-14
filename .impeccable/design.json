@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-13T00:00:00.000Z",
+  "title": "Design System: CanopyChat Public Site",
+  "extensions": {
+    "colorMeta": {
+      "forest": { "role": "primary", "displayName": "Canopy Forest", "canonical": "#0c2b1d", "tonalRamp": ["#0c2b1d", "#17452d", "#355f43"] },
+      "signal-lime": { "role": "secondary", "displayName": "Signal Lime", "canonical": "#c4ee77", "tonalRamp": ["#9dcb4c", "#c4ee77", "#d7f89c"] },
+      "warm-cream": { "role": "neutral", "displayName": "Warm Device-Light", "canonical": "#f4f0e4", "tonalRamp": ["#e4dfd0", "#f4f0e4", "#fffdf5"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Editorial Display", "purpose": "Large thesis and section headlines on persuasion surfaces." },
+      "body": { "displayName": "Readable Sans", "purpose": "Explanatory copy, terms, and controls." }
+    },
+    "shadows": [
+      { "name": "mark-ambient", "value": "0 24px 60px rgba(0,0,0,0.28)", "purpose": "Soft depth for the supplied tree mark in the hero." },
+      { "name": "action-lift", "value": "0 16px 34px rgba(0,0,0,0.2)", "purpose": "Quiet lift for the primary contribution action." }
+    ],
+    "motion": [
+      { "name": "hero-enter", "value": "650ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "One authored entrance for the first screen." },
+      { "name": "control-state", "value": "180ms ease", "purpose": "Button and focus state changes." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "620px" },
+      { "name": "wide", "value": "821px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Lime pill action with authored inline SVG arrow; full-width at the contribution decision.",
+      "html": "<a class=\"founding-primary-action\" href=\"#contribute\"><span>Choose my contribution</span><svg aria-hidden=\"true\" viewBox=\"0 0 20 20\"></svg></a>",
+      "css": ".founding-primary-action { min-height: 58px; padding: 0 18px 0 22px; border: 1px solid #c4ee77; border-radius: 999px; background: #c4ee77; color: #0c2b1d; font-weight: 850; }"
+    },
+    {
+      "name": "Amount Choice",
+      "kind": "chip",
+      "refersTo": "amount-choice-selected",
+      "description": "Thumb-sized contribution preset with an explicit selected state.",
+      "html": "<button class=\"founding-amount-choice\" aria-pressed=\"true\">$25</button>",
+      "css": ".founding-amount-choice { min-height: 56px; border: 1px solid rgba(244,240,228,.24); border-radius: 14px; background: rgba(244,240,228,.08); color: #f4f0e4; } .founding-amount-choice[aria-pressed=\"true\"] { border-color: #c4ee77; background: #c4ee77; color: #0c2b1d; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "A signal through the canopy",
+    "overview": "Deep forest, warm device-light, and one bright lime signal make the product's on-device choice legible. The founding route is a four-screen mobile funnel for visitors arriving from short-form video.",
+    "keyCharacteristics": ["Tonal depth over card chrome", "Editorial serif thesis headlines", "Thumb-first contribution controls", "Plainspoken terms"],
+    "rules": [
+      { "name": "The One Signal Rule", "body": "Signal lime marks the action or selected state; it is not a general decoration.", "section": "colors" },
+      { "name": "The Headline Carries the Hook Rule", "body": "Do not add an eyebrow or kicker above the main headline.", "section": "typography" },
+      { "name": "The Tonal Layer Rule", "body": "Use forest, forest-soft, and warm cream to establish hierarchy before adding chrome.", "section": "elevation" }
+    ],
+    "dos": ["Do keep the on-device mechanism visible immediately.", "Do keep contribution terms and the $10 option visible."],
+    "donts": ["Don't return to a long brochure of generic cards.", "Don't use unverifiable per-dollar environmental claims."]
+  }
+}
