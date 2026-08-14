@@ -1798,6 +1798,12 @@ html:has(.founding-mobile-funnel) {
   color: rgba(244, 240, 228, 0.8);
 }
 
+.founding-device-disclosure {
+  flex-basis: 100%;
+  color: rgba(244, 240, 228, 0.42);
+  font-size: 11px;
+}
+
 @keyframes founding-hero-enter {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }

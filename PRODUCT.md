@@ -25,6 +25,7 @@ Visitors arrive from short videos, read the Founding Members invitation on a pho
 ## Capabilities and Constraints
 
 - Founding Membership currently supports US iPhone beta enrollment.
+- Beta hardware requirement: iPhone 12 Pro or newer.
 - The contribution minimum is $10 and the contribution is one-time, not an automatic subscription.
 - Premium access is included throughout the three-month iPhone beta.
 - Checkout is created by the founding API and payment details are collected by Stripe-hosted Checkout.
