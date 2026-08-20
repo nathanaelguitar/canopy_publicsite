@@ -334,6 +334,23 @@
     }
   }
 
+  function localPreviewAccess() {
+    var params = new URLSearchParams(window.location.search);
+    var localHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    if (!localHost || params.get('preview') !== 'paid') return null;
+    return {
+      stripe_email: 'founding-member@example.com',
+      platforms: [],
+      testflight_url: 'https://testflight.apple.com/join/preview',
+      testflight_code: 'CANOPY-TEST',
+      android_google_play_email: null,
+      android_provisioning_status: 'not_requested',
+      android_access_requested_at: null,
+      android_access_granted_at: null,
+      android_play_store_url: null,
+    };
+  }
+
   function init() {
     var params = new URLSearchParams(window.location.search);
     var incomingToken = params.get('access_token');
@@ -356,6 +373,13 @@
         renderSelection(accessState);
       });
     });
+
+    var previewAccess = localPreviewAccess();
+    if (previewAccess) {
+      renderSelection(previewAccess);
+      return;
+    }
+
     var iosLink = $('[data-testflight-link]');
     if (iosLink) iosLink.addEventListener('click', function () {
       trackEvent('ios_testflight_clicked', {});
