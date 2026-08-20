@@ -1017,6 +1017,241 @@ h3 {
   }
 }
 
+/* Founding Member access router: same warm paper language as the existing
+ * success page, with the two beta choices carrying the hierarchy. */
+.founding-access {
+  width: min(760px, 100%);
+}
+
+.founding-access h1 {
+  max-width: 620px;
+}
+
+.founding-access-lead {
+  max-width: 620px;
+  font-size: clamp(20px, 3vw, 28px);
+  line-height: 1.35;
+}
+
+.founding-access-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 34px 0 12px;
+}
+
+.founding-access-option {
+  display: flex;
+  min-height: 172px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 24px;
+  border: 1px solid rgba(122, 74, 35, 0.28);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.42);
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.founding-access-option:hover,
+.founding-access-option:focus-visible {
+  border-color: var(--oak);
+  background: rgba(255, 255, 255, 0.72);
+  transform: translateY(-2px);
+}
+
+.founding-access-option:focus-visible,
+.founding-access-back:focus-visible,
+.founding-access-secondary:focus-visible,
+.founding-access-form input:focus-visible {
+  outline: 3px solid var(--moss);
+  outline-offset: 3px;
+}
+
+.founding-access-option-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.founding-access-option-copy {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.founding-access-option-status {
+  margin-top: auto;
+  padding-top: 18px;
+  color: var(--oak);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.founding-access-device-hint {
+  margin-top: 14px;
+  color: var(--oak);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.founding-access-reassurance,
+.founding-access-note,
+.founding-access-field-note,
+.founding-access-form-status {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.founding-access-panel {
+  max-width: 640px;
+}
+
+.founding-access-panel h2 {
+  margin-top: 18px;
+}
+
+.founding-access-back,
+.founding-access-secondary {
+  border: 0;
+  background: transparent;
+  color: var(--oak);
+  cursor: pointer;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.founding-access-back {
+  margin-bottom: 24px;
+}
+
+.founding-access-secondary {
+  display: block;
+  margin-top: 28px;
+}
+
+.founding-access-cta {
+  margin-top: 22px;
+}
+
+.founding-access-form {
+  max-width: 520px;
+  margin-top: 28px;
+}
+
+.founding-access-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.founding-access-form input {
+  display: block;
+  width: 100%;
+  min-height: 54px;
+  padding: 0 15px;
+  border: 1px solid rgba(122, 74, 35, 0.32);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--ink);
+  font: inherit;
+}
+
+.founding-access-form-status {
+  min-height: 1.5em;
+  margin: 14px 0 0;
+}
+
+.founding-access-android-success {
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.founding-access-android-success h3 {
+  margin-top: 0;
+}
+
+.founding-access-support {
+  margin-top: 58px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 15px;
+}
+
+.founding-access-support p {
+  margin: 8px 0;
+}
+
+.founding-recovery-link {
+  margin: 18px 0 0;
+  color: var(--funnel-muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+.founding-recovery-link a {
+  color: inherit;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .founding-access-options {
+    grid-template-columns: 1fr;
+  }
+
+  .founding-access-option {
+    min-height: 142px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .founding-access-option {
+    border-color: rgba(255, 244, 223, 0.2);
+    background: rgba(255, 244, 223, 0.06);
+    color: var(--cream);
+  }
+
+  .founding-access-option:hover,
+  .founding-access-option:focus-visible {
+    border-color: #c5965d;
+    background: rgba(255, 244, 223, 0.12);
+  }
+
+  .founding-access-option-copy,
+  .founding-access-reassurance,
+  .founding-access-note,
+  .founding-access-field-note,
+  .founding-access-form-status {
+    color: #d8c5ae;
+  }
+
+  .founding-access-form label {
+    color: var(--cream);
+  }
+
+  .founding-access-form input {
+    border-color: rgba(255, 244, 223, 0.22);
+    background: rgba(255, 244, 223, 0.08);
+    color: var(--cream);
+  }
+}
+
 @keyframes founding-spin {
   to {
     transform: rotate(360deg);
