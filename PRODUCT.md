@@ -8,11 +8,11 @@ web
 
 ## Users
 
-Primary users are people arriving from short-form video who want a private, lighter-weight AI assistant on iPhone. The founding flow is intended for early adopters deciding whether to make a one-time contribution before public launch.
+Primary users are people arriving from short-form video who want a private, lighter-weight AI assistant on iPhone or Android. The founding flow is intended for early adopters joining the live private beta with a one-time contribution.
 
 ## Product Purpose
 
-CanopyChat is a private, local-first chat app for iPhone. It aims to make useful everyday AI available while keeping conversations, photos, files, and location closer to the user's device.
+CanopyChat is a private, local-first chat app in beta on iPhone and Android. It aims to make useful everyday AI available while keeping conversations, photos, files, and location closer to the user's device.
 
 ## Positioning
 
@@ -20,14 +20,14 @@ CanopyChat is designed to answer on the iPhone first, with optional web groundin
 
 ## Operating Context
 
-Visitors arrive from short videos, read the Founding Members invitation on a phone, choose a one-time contribution, and are redirected to Stripe-hosted Checkout. Successful founding members receive iPhone beta/TestFlight setup details by email.
+Visitors arrive from short videos, read the Founding Members invitation on a phone, choose a one-time contribution, and are redirected to Stripe-hosted Checkout. Successful founding members land on a verified beta access router, with email recovery for later access.
 
 ## Capabilities and Constraints
 
-- Founding Membership currently supports US iPhone beta enrollment.
+- Founding Membership currently supports US private beta enrollment on iPhone and Android.
 - Beta hardware requirement: iPhone 12 Pro or newer.
 - The contribution minimum is $10 and the contribution is one-time, not an automatic subscription.
-- Premium access is included throughout the three-month iPhone beta.
+- Premium access is included throughout the three-month beta.
 - Checkout is created by the founding API and payment details are collected by Stripe-hosted Checkout.
 - Enrollment may be capacity-limited; a full group routes visitors to a waitlist path.
 

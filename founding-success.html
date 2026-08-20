@@ -7,12 +7,12 @@
   <meta name="theme-color" content="#fff4df" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#120d0a" media="(prefers-color-scheme: dark)">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://connect.facebook.net; connect-src 'self' https://founding-api.canopychat.app https://www.facebook.com https://connect.facebook.net; img-src 'self' data: https://www.facebook.com; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://checkout.stripe.com; upgrade-insecure-requests">
-  <title>Founding Member — CanopyChat</title>
-  <meta name="description" content="Confirming your CanopyChat Founding Member payment.">
+  <title>Founding Member Access — CanopyChat</title>
+  <meta name="description" content="Choose your CanopyChat iPhone or Android private beta access.">
   <meta name="robots" content="noindex">
   <link rel="icon" type="image/png" href="assets/app-icon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/styles.css?v=founding-2">
+    <link rel="stylesheet" href="assets/styles.css?v=founding-3">
 </head>
 <body class="founding-page">
   <header class="shell nav">
@@ -29,21 +29,85 @@
   </header>
 
   <main class="shell" id="main">
-    <article class="document">
-      <p class="eyebrow">Founding Membership</p>
-      <h1 data-founding-success-heading>Confirming your payment&hellip;</h1>
-
-      <p data-founding-success-message>One moment while we confirm your payment with Stripe.</p>
-
-      <div class="callout" data-founding-success-details hidden>
-        <strong>What happens next</strong>
-        <p>You have reserved a place in the current Founding Member group. There is no recurring charge — the $10 was a one-time payment. Your three-month Premium period has not started yet; it begins when your iPhone beta access is activated. We will email your TestFlight link and setup details.</p>
+    <article class="document founding-access" data-founding-access-root>
+      <div data-founding-success-loading>
+        <p class="eyebrow">Founding Membership</p>
+        <h1>Confirming your payment&hellip;</h1>
+        <p>One moment while we confirm your payment with Stripe.</p>
       </div>
 
-      <h2>Questions?</h2>
-      <p>Contact <a href="mailto:support@canopychat.app">support@canopychat.app</a> and mention your payment email address.</p>
+      <div data-founding-success-error hidden>
+        <p class="eyebrow">Founding Membership</p>
+        <h1 data-founding-success-heading>We could not confirm your payment</h1>
+        <p data-founding-success-message>If you were charged, contact support and we will verify it manually.</p>
+      </div>
 
-      <p><a href="/founding">Back to Founding Members</a></p>
+      <section class="founding-access-selection" data-access-selection hidden aria-labelledby="access-title">
+        <p class="eyebrow">Founding Membership</p>
+        <h1 id="access-title">You’re in.</h1>
+        <p class="founding-access-lead">CanopyChat is in private beta on iPhone and Android. Where do you want to use it?</p>
+        <div class="founding-access-options" role="group" aria-label="Choose a beta platform">
+          <button class="founding-access-option" type="button" data-platform-choice="ios">
+            <span class="founding-access-option-title">iPhone</span>
+            <span class="founding-access-option-copy">Ready now through TestFlight.</span>
+            <span class="founding-access-device-hint" data-device-hint="ios" hidden>Recommended on this device</span>
+            <span class="founding-access-option-status" data-platform-status="ios"></span>
+          </button>
+          <button class="founding-access-option" type="button" data-platform-choice="android">
+            <span class="founding-access-option-title">Android</span>
+            <span class="founding-access-option-copy">Join the closed Google Play beta.</span>
+            <span class="founding-access-device-hint" data-device-hint="android" hidden>Recommended on this device</span>
+            <span class="founding-access-option-status" data-platform-status="android"></span>
+          </button>
+        </div>
+        <p class="founding-access-reassurance">You can add the other platform later without paying twice.</p>
+      </section>
+
+      <section class="founding-access-panel" data-access-panel="ios" hidden aria-labelledby="ios-access-title">
+        <button class="founding-access-back" type="button" data-access-back>Choose another platform</button>
+        <p class="eyebrow">iPhone beta</p>
+        <h2 id="ios-access-title">Your beta is ready.</h2>
+        <p>Install CanopyChat through TestFlight on your iPhone or iPad.</p>
+        <a class="button founding-access-cta" data-testflight-link href="#" rel="external">Open in TestFlight</a>
+        <p class="founding-access-note" data-testflight-note></p>
+        <button class="founding-access-secondary" type="button" data-access-other>Need the beta on another device?</button>
+      </section>
+
+      <section class="founding-access-panel" data-access-panel="android" hidden aria-labelledby="android-access-title">
+        <button class="founding-access-back" type="button" data-access-back>Choose another platform</button>
+        <p class="eyebrow">Android beta</p>
+        <h2 id="android-access-title">Let’s get Android ready.</h2>
+        <p>CanopyChat for Android is currently a closed Google Play beta. We need the Google account you use with the Play Store to grant access.</p>
+        <form class="founding-access-form" data-android-form novalidate>
+          <label for="android-google-email">Google Play email</label>
+          <input id="android-google-email" type="email" inputmode="email" autocomplete="email" required maxlength="254" data-android-email>
+          <p class="founding-access-field-note">If your Play Store uses a different Google account, change it here.</p>
+          <button class="button founding-access-cta" type="submit" data-android-submit>Get Android Beta Access</button>
+          <p class="founding-access-form-status" data-android-status role="status" aria-live="polite"></p>
+        </form>
+        <div class="founding-access-android-success" data-android-success hidden>
+          <h3 data-android-success-heading>You’re on the Android beta list.</h3>
+          <p data-android-success-message>We’ve got your Google Play account. We’ll use it to grant access to the closed Android beta.</p>
+          <a class="button founding-access-cta" data-play-store-link href="#" hidden rel="external">Open Google Play</a>
+        </div>
+        <button class="founding-access-secondary" type="button" data-access-other>Need the beta on another device?</button>
+      </section>
+
+      <section class="founding-access-recovery" data-access-recovery hidden aria-labelledby="recovery-title">
+        <h2 id="recovery-title">Already a Founding Member?</h2>
+        <p>Enter the email you used at Stripe and we’ll send a secure beta access link.</p>
+        <form class="founding-access-form" data-recovery-form novalidate>
+          <label for="recovery-email">Stripe email</label>
+          <input id="recovery-email" type="email" inputmode="email" autocomplete="email" required maxlength="254" data-recovery-email>
+          <button class="button founding-access-cta" type="submit" data-recovery-submit>Email me my access link</button>
+          <p class="founding-access-form-status" data-recovery-status role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <div class="founding-access-support">
+        <p>Questions? Contact <a href="mailto:support@canopychat.app">support@canopychat.app</a>.</p>
+        <p><a href="/founding">Back to Founding Members</a></p>
+      </div>
     </article>
   </main>
 
@@ -54,7 +118,7 @@
     </div>
   </footer>
 
-  <script src="assets/founding-success.js?v=founding-4" defer></script>
+  <script src="assets/founding-success.js?v=founding-5" defer></script>
   <script src="assets/meta-pixel.js?v=1" defer></script>
 </body>
 </html>
