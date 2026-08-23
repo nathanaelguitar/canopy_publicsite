@@ -2,10 +2,11 @@
  * CanopyChat Web Lab Entry Point
  */
 
-import { AppState } from './state.js?v=20260823c';
-import { CanopyApiClient } from './api.js?v=20260823c';
-import { OakCanvasRenderer } from './oakCanvas.js?v=20260823c';
-import { CanopyUI } from './ui.js?v=20260823c';
+import { AppState } from './state.js?v=20260823e';
+import { CanopyApiClient } from './api.js?v=20260823e';
+import { OakCanvasRenderer } from './oakCanvas.js?v=20260823e';
+import { CanopyUI } from './ui.js?v=20260823e';
+import { BrowserLocalCanopyLite } from './browserLocal.js?v=20260823e';
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Initialize procedural oak background
@@ -20,8 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const api = new CanopyApiClient(state.backendUrl);
   api.setMockMode(state.mockMode);
 
+  const browserLocal = new BrowserLocalCanopyLite();
+
   // 4. Initialize UI manager
-  const ui = new CanopyUI(state, api);
+  const ui = new CanopyUI(state, api, browserLocal);
 
   // 5. Connect theme updates to canvas
   state.on('themeChange', theme => {

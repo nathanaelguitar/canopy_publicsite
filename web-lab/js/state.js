@@ -112,6 +112,7 @@ export class AppState {
     this.fontScale = 1.0;
     this.webSearchEnabled = false;
     this.modelPreference = 'auto';
+    this.browserLocalMode = false;
 
     this.isSending = false;
     this.currentStreamingText = '';
@@ -161,6 +162,9 @@ export class AppState {
         this.modelPreference = savedModelPreference;
       }
 
+      const savedBrowserLocalMode = localStorage.getItem('canopy_browser_local_mode');
+      if (savedBrowserLocalMode !== null) this.browserLocalMode = savedBrowserLocalMode === 'true';
+
       const savedFontScale = localStorage.getItem('canopy_font_scale');
       if (savedFontScale) this.fontScale = parseFloat(savedFontScale);
 
@@ -194,6 +198,7 @@ export class AppState {
       localStorage.setItem('canopy_mock_mode', String(this.mockMode));
       localStorage.setItem('canopy_font_scale', String(this.fontScale));
       localStorage.setItem('canopy_model_preference', this.modelPreference);
+      localStorage.setItem('canopy_browser_local_mode', String(this.browserLocalMode));
     } catch (e) {
       console.warn('Failed to persist settings:', e);
     }
@@ -225,6 +230,12 @@ export class AppState {
     this.modelPreference = ['auto', 'canopy-lore-v1', 'canopy-lite'].includes(modelId) ? modelId : 'auto';
     this.saveSettings();
     this.emit('configChange', { modelPreference: this.modelPreference });
+  }
+
+  setBrowserLocalMode(enabled) {
+    this.browserLocalMode = Boolean(enabled);
+    this.saveSettings();
+    this.emit('configChange', { browserLocalMode: this.browserLocalMode });
   }
 
   setFontScale(scale) {

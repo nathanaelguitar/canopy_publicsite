@@ -3,8 +3,8 @@
  * Manages fitted Your Grove homepage, responsive sidebar, conversation stream, smart scroll anchoring, modals, and hotkeys.
  */
 
-import { WORKSPACES, PERSONAS } from './state.js?v=20260823c';
-import { cleanAssistantText, escapeHtml, renderMarkdown } from './markdown.js?v=20260823c';
+import { WORKSPACES, PERSONAS } from './state.js?v=20260823e';
+import { cleanAssistantText, escapeHtml, renderMarkdown } from './markdown.js?v=20260823e';
 
 // SVG Icon Library
 export const ICONS = {
@@ -108,9 +108,10 @@ Browser: ${userAgent}`;
 }
 
 export class CanopyUI {
-  constructor(state, api) {
+  constructor(state, api, browserLocal = null) {
     this.state = state;
     this.api = api;
+    this.browserLocal = browserLocal;
     this.currentView = 'grove'; // 'grove' | 'chat'
     this.selectedWorkspaceFilter = null;
     this.typingInterval = null;
@@ -210,6 +211,12 @@ export class CanopyUI {
     this.state.on('themeChange', theme => this.applyTheme(theme));
     this.state.on('configChange', ({ fontScale }) => {
       if (fontScale) this.applyFontScale(fontScale);
+    });
+    this.browserLocal?.setStatusListener?.(status => {
+      this.browserLocalStatus = status;
+      if (this.currentView === 'chat' && !this.state.isSending) this.renderCurrentChat();
+      const statusText = status.ready ? 'Canopy Lite in browser' : status.loading ? 'Preparing Canopy Lite…' : null;
+      if (statusText) document.querySelectorAll('.status-text').forEach(el => { el.textContent = statusText; });
     });
     this.state.on('conversationsUpdated', () => {
       this.renderSidebar();
@@ -1120,7 +1127,8 @@ export class CanopyUI {
       let firstTokenReceived = false;
       let streamedFullText = '';
 
-      await this.api.streamChat(
+      const streamRunner = this.state.browserLocalMode ? this.browserLocal : this.api;
+      await streamRunner.streamChat(
         apiMessages,
         // Canopy Lore is a large local model on a laptop. Keep the default web
         // response bounded so a reasoning-heavy completion does not leave the
@@ -1198,8 +1206,9 @@ export class CanopyUI {
 
   showChatError(errorMessage) {
     const rawError = errorMessage || 'The local model did not return a response.';
-    const isModelSetupError = /Canopy Lore (?:is not ready|couldn’t get ready)|model_unavailable|local model/i.test(rawError);
-    const headline = isModelSetupError ? 'Canopy Lore needs to finish setup.' : 'Canopy couldn’t finish responding.';
+    const isBrowserSetupError = this.state.browserLocalMode && !this.browserLocalStatus?.ready;
+    const isModelSetupError = isBrowserSetupError || /Canopy Lore (?:is not ready|couldn’t get ready)|model_unavailable|local model/i.test(rawError);
+    const headline = isBrowserSetupError ? 'Canopy Lite needs a model file.' : isModelSetupError ? 'Canopy Lore needs to finish setup.' : 'Canopy couldn’t finish responding.';
     const safeError = escapeHtml(rawError);
     const errEl = document.createElement('div');
     errEl.className = 'chat-error-banner';
@@ -1213,7 +1222,9 @@ export class CanopyUI {
     `;
     errEl.querySelector('.btn-retry').addEventListener('click', () => {
       errEl.remove();
-      if (isModelSetupError && !this.modelStatus?.ready) {
+      if (isBrowserSetupError) {
+        this.openSettingsModal();
+      } else if (isModelSetupError && !this.modelStatus?.ready) {
         this.handleModelDownload();
       } else {
         this.handleSend();
@@ -1445,7 +1456,13 @@ export class CanopyUI {
         description: model.description,
         meta: `${model.parameters} · ${model.runtime.toUpperCase()} · ${model.recommended_memory_gib} GB memory recommended`,
         disabled: !model.available
-      }))
+      })),
+      ...(models.some(model => model.id === 'canopy-lite') ? [] : [{
+        id: 'canopy-lite',
+        name: 'Canopy Lite',
+        description: 'Small mobile GGUF for an experimental browser-local run.',
+        meta: 'Browser/WASM · choose a .gguf file below'
+      }])
     ];
     const modelChoiceHtml = modelOptions.map(option => `
       <label class="model-choice ${this.state.modelPreference === option.id ? 'selected' : ''} ${option.disabled ? 'disabled' : ''}">
@@ -1475,6 +1492,25 @@ export class CanopyUI {
           <div class="form-group">
             <span class="form-label">Local model</span>
             <div class="model-choice-list" id="setting-model-choice-list">${modelChoiceHtml}</div>
+          </div>
+
+          <div class="browser-local-panel ${this.state.browserLocalMode ? 'active' : ''}">
+            <div class="browser-local-panel-heading">
+              <div>
+                <span class="form-label">Canopy Lite in this browser</span>
+                <span class="form-hint">Experimental: runs a small GGUF locally with WebAssembly/WebGPU. Your browser must receive the model file.</span>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="setting-browser-local-toggle" ${this.state.browserLocalMode ? 'checked' : ''}>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <input type="file" id="browser-local-model-file" accept=".gguf,application/octet-stream" hidden>
+            <div class="browser-local-actions">
+              <button class="btn-secondary" id="btn-choose-browser-model" type="button">Choose Canopy Lite .gguf</button>
+              <span class="form-hint" id="browser-local-status">${escapeHtml(this.browserLocalStatus?.detail || this.browserLocalStatus?.fileName || 'No model loaded')}</span>
+            </div>
+            <span class="form-hint">The browser path is for testing and convenience. It does not protect model weights from extraction.</span>
           </div>
 
           <div class="form-group">
@@ -1532,6 +1568,13 @@ export class CanopyUI {
       input.addEventListener('change', () => {
         document.querySelectorAll('.model-choice').forEach(choice => choice.classList.remove('selected'));
         input.closest('.model-choice')?.classList.add('selected');
+        if (input.value === 'canopy-lite') {
+          const toggle = document.getElementById('setting-browser-local-toggle');
+          if (toggle) toggle.checked = true;
+          // Selecting Canopy Lite is the action: immediately open the picker
+          // so the user does not have to discover a second setup control.
+          window.setTimeout(() => document.getElementById('browser-local-model-file')?.click(), 0);
+        }
       });
     });
     document.getElementById('btn-save-settings').addEventListener('click', async () => {
@@ -1539,6 +1582,7 @@ export class CanopyUI {
       const mockChecked = document.getElementById('setting-mock-toggle').checked;
       const scale = document.getElementById('setting-font-scale').value;
       const modelPreference = document.querySelector('input[name="model-preference"]:checked')?.value || 'auto';
+      const browserLocalChecked = document.getElementById('setting-browser-local-toggle')?.checked || false;
 
       this.state.setBackendUrl(newUrl);
       this.api.setBaseUrl(newUrl);
@@ -1546,6 +1590,7 @@ export class CanopyUI {
       this.api.setMockMode(mockChecked);
       this.state.setFontScale(scale);
       this.state.setModelPreference(modelPreference);
+      this.state.setBrowserLocalMode(browserLocalChecked && modelPreference === 'canopy-lite');
       try {
         await this.api.selectModel(modelPreference);
         this.modelSetupError = null;
@@ -1554,6 +1599,24 @@ export class CanopyUI {
       }
       await this.checkBackendHealth();
       closeModal();
+    });
+
+    const browserToggle = document.getElementById('setting-browser-local-toggle');
+    const browserFileInput = document.getElementById('browser-local-model-file');
+    const browserStatus = document.getElementById('browser-local-status');
+    document.getElementById('btn-choose-browser-model')?.addEventListener('click', () => browserFileInput?.click());
+    browserFileInput?.addEventListener('change', async () => {
+      const file = browserFileInput.files?.[0];
+      if (!file || !this.browserLocal) return;
+      this.state.setModelPreference('canopy-lite');
+      this.state.setBrowserLocalMode(true);
+      browserStatus.textContent = `Loading ${file.name}…`;
+      try {
+        await this.browserLocal.loadFile(file);
+        browserStatus.textContent = `${file.name} ready${this.browserLocal.supportsWebGPU() ? ' · WebGPU' : ' · CPU/WASM'}`;
+      } catch (error) {
+        browserStatus.textContent = error.message;
+      }
     });
 
     document.getElementById('btn-test-health').addEventListener('click', async () => {
