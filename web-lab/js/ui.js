@@ -889,12 +889,12 @@ export class CanopyUI {
         setupCard.className = 'model-setup-card browser-model-setup-card';
         const status = this.browserLocalStatus || this.browserLocal.getStatus();
         const loading = status.loading || this.browserLocal.loading;
-        const detail = escapeHtml(status.detail || `Preparing ${PUBLIC_CANOPY_LITE_MODEL.name}…`);
+        const detail = escapeHtml(status.detail || 'Preparing local intelligence…');
         if (loading) {
           setupCard.innerHTML = `
             <div class="model-setup-icon">${ICONS.tree}</div>
             <h3 class="model-setup-title">Planting Canopy Lite</h3>
-            <p class="model-setup-desc">Downloading the 4-bit model once to this browser. It will run on this computer after setup.</p>
+            <p class="model-setup-desc">A one-time download lets Canopy respond locally on this computer.</p>
             <div class="indeterminate-progress-bar"></div>
             <span class="form-hint">${detail} Please keep this page open.</span>
           `;
@@ -904,7 +904,7 @@ export class CanopyUI {
           setupCard.innerHTML = `
             <div class="model-setup-icon" style="color: var(--error); background: rgba(200, 64, 64, 0.1);">${ICONS.exclamation}</div>
             <h3 class="model-setup-title">Canopy Lite could not start</h3>
-            <p class="model-setup-desc">${escapeHtml(this.modelSetupError || status.detail || 'The browser model could not be loaded.')}</p>
+            <p class="model-setup-desc">${escapeHtml(this.modelSetupError || 'Canopy Lite could not be prepared in this browser.')}</p>
             <button class="btn-primary" id="btn-retry-browser-model">Try again</button>
           `;
           this.composerTextarea.disabled = true;
@@ -912,7 +912,7 @@ export class CanopyUI {
           setupCard.innerHTML = `
             <div class="model-setup-icon">${ICONS.tree}</div>
             <h3 class="model-setup-title">Start Canopy Lite</h3>
-            <p class="model-setup-desc">Canopy Lite will download the public 4-bit model and run locally in this browser.</p>
+            <p class="model-setup-desc">Canopy Lite will prepare itself once, then run locally in this browser.</p>
             <button class="btn-primary" id="btn-start-browser-model">Try the model locally</button>
           `;
           this.composerTextarea.disabled = true;
@@ -1352,22 +1352,22 @@ export class CanopyUI {
 
     const hardware = this.browserLocal?.getHardwareAssessment?.();
     const hardwareHint = hardware?.likelyCompatible
-      ? 'This computer looks suitable for a local 2B model.'
-      : 'This computer may struggle with a local model; the fallback is recommended.';
+      ? 'This computer looks ready for local intelligence.'
+      : 'This computer may be happier with the fallback.';
     const setupChoice = document.createElement('div');
     setupChoice.className = 'new-chat-model-choice';
     const recommendedRunMode = hardware?.likelyCompatible === false ? 'fallback' : 'local';
     setupChoice.innerHTML = `
-      <div class="new-chat-model-choice-heading">How should this chat run?</div>
-      <div class="new-chat-model-choice-copy">${hardwareHint} You can switch later in Settings.</div>
+      <div class="new-chat-model-choice-heading">Choose how to begin</div>
+      <div class="new-chat-model-choice-copy">${hardwareHint} You can change this later.</div>
       <div class="new-chat-model-choice-actions">
         <button class="new-chat-model-card ${recommendedRunMode === 'local' ? 'selected' : ''}" id="btn-new-chat-local-model" type="button">
           <span class="new-chat-model-icon">${ICONS.tree}</span>
-          <span><strong>Try the model locally</strong><small>${PUBLIC_CANOPY_LITE_MODEL.quantization} · downloads once in this browser</small></span>
+          <span><strong>Try Canopy Lite locally</strong><small>Runs on this computer · one-time setup</small></span>
         </button>
         <button class="new-chat-model-card ${recommendedRunMode === 'fallback' ? 'selected' : ''}" id="btn-new-chat-fallback" type="button">
           <span class="new-chat-model-icon">${ICONS.refresh}</span>
-          <span><strong>Use the fallback</strong><small>Starts immediately with a lightweight simulation</small></span>
+          <span><strong>Start with fallback</strong><small>Begins immediately · no setup</small></span>
         </button>
       </div>
     `;
@@ -1433,13 +1433,13 @@ export class CanopyUI {
   async startPublicBrowserModelSetup() {
     if (!this.browserLocal || this.browserLocal.loading || this.browserLocal.ready) return;
     this.modelSetupError = null;
-    this.browserLocalStatus = { loading: true, detail: `Downloading ${PUBLIC_CANOPY_LITE_MODEL.name}…` };
+    this.browserLocalStatus = { loading: true, detail: 'Downloading local intelligence…' };
     this.renderCurrentChat();
     try {
       await this.browserLocal.loadPublicModel(PUBLIC_CANOPY_LITE_MODEL);
       this.renderCurrentChat();
     } catch (error) {
-      this.modelSetupError = `${error.message} If the browser blocks the public download, choose the .gguf manually in Settings.`;
+      this.modelSetupError = 'Canopy Lite could not be prepared in this browser. Try again, or choose a local model in Settings.';
       this.renderCurrentChat();
     }
   }
@@ -1562,8 +1562,8 @@ export class CanopyUI {
       ...(models.some(model => model.id === 'canopy-lite') ? [] : [{
         id: 'canopy-lite',
         name: 'Canopy Lite',
-        description: 'Small mobile GGUF for an experimental browser-local run.',
-        meta: 'Browser/WASM · choose a .gguf file below'
+        description: 'A lightweight local option for testing in your browser.',
+        meta: 'Browser-local · runs on this computer'
       }])
     ];
     const modelChoiceHtml = modelOptions.map(option => `
@@ -1600,7 +1600,7 @@ export class CanopyUI {
             <div class="browser-local-panel-heading">
               <div>
                 <span class="form-label">Canopy Lite in this browser</span>
-                <span class="form-hint">Experimental: runs a small GGUF locally with WebAssembly/WebGPU. Your browser must receive the model file.</span>
+                <span class="form-hint">Experimental: runs locally in this browser. The first setup may take a moment.</span>
               </div>
               <label class="toggle-switch">
                 <input type="checkbox" id="setting-browser-local-toggle" ${this.state.browserLocalMode ? 'checked' : ''}>
@@ -1609,10 +1609,10 @@ export class CanopyUI {
             </div>
             <input type="file" id="browser-local-model-file" accept=".gguf,application/octet-stream" hidden>
             <div class="browser-local-actions">
-              <button class="btn-secondary" id="btn-choose-browser-model" type="button">Choose Canopy Lite .gguf</button>
-              <span class="form-hint" id="browser-local-status">${escapeHtml(this.browserLocalStatus?.detail || this.browserLocalStatus?.fileName || 'No model loaded')}</span>
+              <button class="btn-secondary" id="btn-choose-browser-model" type="button">Choose a local model</button>
+              <span class="form-hint" id="browser-local-status">${this.browserLocal?.ready ? 'Ready in this browser' : this.browserLocal?.loading ? 'Preparing…' : 'No local model ready'}</span>
             </div>
-            <span class="form-hint">The browser path is for testing and convenience. It does not protect model weights from extraction.</span>
+            <span class="form-hint">This browser path is for testing. Local model files can be inspected by the browser.</span>
           </div>
 
           <div class="form-group">
@@ -1712,12 +1712,12 @@ export class CanopyUI {
       if (!file || !this.browserLocal) return;
       this.state.setModelPreference('canopy-lite');
       this.state.setBrowserLocalMode(true);
-      browserStatus.textContent = `Loading ${file.name}…`;
+      browserStatus.textContent = 'Preparing local intelligence…';
       try {
         await this.browserLocal.loadFile(file);
-        browserStatus.textContent = `${file.name} ready${this.browserLocal.supportsWebGPU() ? ' · WebGPU' : ' · CPU/WASM'}`;
+        browserStatus.textContent = 'Ready in this browser';
       } catch (error) {
-        browserStatus.textContent = error.message;
+        browserStatus.textContent = 'Could not prepare the local model. Try again.';
       }
     });
 
