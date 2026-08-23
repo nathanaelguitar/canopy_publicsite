@@ -73,7 +73,7 @@ export class BrowserLocalCanopyLite {
     this.loading = true;
     this.ready = false;
     this.modelFile = file;
-    this.emit('loading-model', `Loading ${file.name}…`);
+    this.emit('loading-model', 'Preparing local intelligence…');
     try {
       const runtime = await this.ensureRuntime();
       await runtime.loadModel([file], {
@@ -81,11 +81,11 @@ export class BrowserLocalCanopyLite {
         n_gpu_layers: this.supportsWebGPU() ? 999 : 0,
         progressCallback: ({ loaded, total }) => {
           const percent = total ? Math.round((loaded / total) * 100) : 0;
-          this.emit('loading-model', `Loading ${file.name}… ${percent}%`);
+          this.emit('loading-model', `Preparing local intelligence… ${percent}%`);
         }
       });
       this.ready = true;
-      this.emit('ready', 'Canopy Lite is ready in this browser.');
+      this.emit('ready', 'Local intelligence is ready in this browser.');
     } catch (error) {
       this.modelFile = null;
       this.ready = false;
@@ -100,7 +100,7 @@ export class BrowserLocalCanopyLite {
     this.loading = true;
     this.ready = false;
     this.modelFile = { name: model.name };
-    this.emit('downloading-model', `Downloading ${model.name}…`);
+    this.emit('downloading-model', 'Downloading local intelligence…');
     try {
       const response = await fetch(model.url, { mode: 'cors', cache: 'force-cache' });
       if (!response.ok || !response.body) {
@@ -116,11 +116,11 @@ export class BrowserLocalCanopyLite {
         chunks.push(value);
         loaded += value.byteLength;
         const percent = total ? Math.round((loaded / total) * 100) : null;
-        this.emit('downloading-model', percent === null ? `Downloading ${model.name}…` : `Downloading ${model.name}… ${percent}%`);
+        this.emit('downloading-model', percent === null ? 'Downloading local intelligence…' : `Downloading local intelligence… ${percent}%`);
       }
       const file = new File(chunks, model.name, { type: 'application/octet-stream' });
       await this.loadFile(file);
-      this.emit('ready', `${model.name} ready · ${model.quantization}`);
+      this.emit('ready', 'Local intelligence is ready in this browser.');
     } catch (error) {
       this.modelFile = null;
       this.ready = false;
