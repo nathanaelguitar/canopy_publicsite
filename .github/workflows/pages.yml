@@ -31,6 +31,9 @@ jobs:
           mkdir -p _site/assets
           cp -- *.html CNAME .nojekyll _site/
           cp -R assets/. _site/assets/
+          if [ -d web-lab ]; then
+            cp -R web-lab _site/web-lab
+          fi
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
