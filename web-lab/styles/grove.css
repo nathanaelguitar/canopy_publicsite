@@ -1,0 +1,389 @@
+/* Your Grove - Fitted Homepage Dashboard Styles */
+.grove-view {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 24px 28px 80px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grove-inner {
+  width: 100%;
+  max-width: 1140px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Grove Top Header */
+.grove-hero-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 8px 4px 4px 4px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: 20px;
+}
+
+.grove-hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.grove-hero-title {
+  font-family: var(--font-serif);
+  font-size: 34px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.grove-hero-subtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.grove-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Workspace Filter Tabs / Chips */
+.grove-workspace-tray {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 2px 2px;
+}
+
+.grove-workspace-tray::-webkit-scrollbar {
+  display: none;
+}
+
+.grove-ws-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: var(--radius-full);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background-color: var(--chip-pale-bg, rgba(107, 68, 35, 0.08));
+  color: var(--chip-color, var(--oak-medium));
+  transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.grove-ws-chip:hover {
+  transform: translateY(-1px);
+}
+
+.grove-ws-chip.active {
+  background-color: var(--chip-color, var(--oak-medium));
+  color: #FFFFFF;
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .grove-ws-chip:not(.active) {
+  background-color: var(--color-border-subtle);
+  color: var(--color-text-secondary);
+}
+
+.grove-ws-chip svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Sections & Fitted Grid */
+.grove-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.grove-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding: 0 4px;
+}
+
+.grove-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+  width: 100%;
+}
+
+/* Conversation Card */
+.grove-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+  position: relative;
+  min-height: 120px;
+}
+
+.grove-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  background: var(--color-surface-hover);
+  border-color: var(--color-border-focus);
+}
+
+.grove-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.grove-card-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.grove-card-ws-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--ws-bg, rgba(107, 68, 35, 0.1));
+  color: var(--ws-color, var(--oak-medium));
+}
+
+.grove-card-ws-pill svg {
+  width: 12px;
+  height: 12px;
+}
+
+[data-theme="dark"] .grove-card-ws-pill {
+  background: var(--color-border-subtle);
+  color: var(--color-text-secondary);
+}
+
+.grove-card-persona-pill {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-border-subtle);
+  color: var(--color-text-secondary);
+}
+
+.grove-card-time {
+  font-size: 11px;
+  color: var(--color-text-faint);
+  flex-shrink: 0;
+}
+
+.grove-card-title {
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.35;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.grove-card-preview {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.grove-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 4px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.grove-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.grove-card:hover .grove-card-actions,
+.grove-card:focus-within .grove-card-actions {
+  opacity: 1;
+}
+
+.btn-grove-card-action {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.btn-grove-card-action:hover {
+  background: var(--color-surface-hover);
+  color: var(--oak-medium);
+}
+
+.btn-grove-card-action.btn-del:hover {
+  color: var(--error);
+}
+
+.btn-grove-card-action svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* "New Conversation" Card in Grid */
+.grove-card-new {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px 18px;
+  background: rgba(107, 68, 35, 0.04);
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  text-align: center;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  min-height: 120px;
+}
+
+[data-theme="dark"] .grove-card-new {
+  background: rgba(212, 184, 150, 0.04);
+}
+
+.grove-card-new:hover {
+  background: rgba(107, 68, 35, 0.08);
+  border-color: var(--oak-medium);
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .grove-card-new:hover {
+  background: rgba(212, 184, 150, 0.08);
+  border-color: var(--oak-pale);
+}
+
+.grove-card-new-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--oak-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .grove-card-new-icon {
+  color: var(--oak-pale);
+}
+
+.grove-card-new-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.grove-card-new-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Empty Grove in Filter */
+.grove-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 20px;
+  gap: 14px;
+}
+
+.grove-empty-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  background: rgba(74, 124, 74, 0.12);
+  color: var(--forest-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grove-empty-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.grove-empty-title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.grove-empty-desc {
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+  max-width: 360px;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .grove-view {
+    padding: 16px 16px 60px 16px;
+  }
+  .grove-hero-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .grove-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .grove-card-actions {
+    opacity: 1;
+  }
+}
