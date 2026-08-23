@@ -3,8 +3,8 @@
  * Manages fitted Your Grove homepage, responsive sidebar, conversation stream, smart scroll anchoring, modals, and hotkeys.
  */
 
-import { WORKSPACES, PERSONAS } from './state.js?v=20260823d';
-import { cleanAssistantText, escapeHtml, renderMarkdown } from './markdown.js?v=20260823d';
+import { WORKSPACES, PERSONAS } from './state.js?v=20260823e';
+import { cleanAssistantText, escapeHtml, renderMarkdown } from './markdown.js?v=20260823e';
 
 // SVG Icon Library
 export const ICONS = {
@@ -1568,6 +1568,13 @@ export class CanopyUI {
       input.addEventListener('change', () => {
         document.querySelectorAll('.model-choice').forEach(choice => choice.classList.remove('selected'));
         input.closest('.model-choice')?.classList.add('selected');
+        if (input.value === 'canopy-lite') {
+          const toggle = document.getElementById('setting-browser-local-toggle');
+          if (toggle) toggle.checked = true;
+          // Selecting Canopy Lite is the action: immediately open the picker
+          // so the user does not have to discover a second setup control.
+          window.setTimeout(() => document.getElementById('browser-local-model-file')?.click(), 0);
+        }
       });
     });
     document.getElementById('btn-save-settings').addEventListener('click', async () => {
@@ -1601,6 +1608,8 @@ export class CanopyUI {
     browserFileInput?.addEventListener('change', async () => {
       const file = browserFileInput.files?.[0];
       if (!file || !this.browserLocal) return;
+      this.state.setModelPreference('canopy-lite');
+      this.state.setBrowserLocalMode(true);
       browserStatus.textContent = `Loading ${file.name}…`;
       try {
         await this.browserLocal.loadFile(file);
