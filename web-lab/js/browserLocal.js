@@ -9,6 +9,12 @@
 const WLLAMA_VERSION = '3.1.1';
 const WLLAMA_MODULE_URL = `https://esm.sh/@wllama/wllama@${WLLAMA_VERSION}`;
 const WLLAMA_WASM_URL = `https://cdn.jsdelivr.net/npm/@wllama/wllama@${WLLAMA_VERSION}/esm/wasm/wllama.wasm`;
+// Temporary public test model. This is intentionally not the private Canopy Lite artifact.
+export const PUBLIC_CANOPY_LITE_MODEL = {
+  name: 'Qwen3.5-2B-Q4_K_M.gguf',
+  quantization: 'Q4_K_M (4-bit)',
+  url: 'https://huggingface.co/unsloth/Qwen3.5-2B-GGUF/resolve/main/Qwen3.5-2B-Q4_K_M.gguf?download=true'
+};
 
 export class BrowserLocalCanopyLite {
   constructor({ onStatus } = {}) {
@@ -34,6 +40,14 @@ export class BrowserLocalCanopyLite {
       fileName: this.modelFile?.name || null,
       webgpu: this.supportsWebGPU()
     };
+  }
+
+  getHardwareAssessment() {
+    const memory = Number.isFinite(navigator.deviceMemory) ? navigator.deviceMemory : null;
+    const cores = navigator.hardwareConcurrency || null;
+    const canUseWebGPU = this.supportsWebGPU();
+    const likelyCompatible = canUseWebGPU || (memory === null ? true : memory >= 4);
+    return { memory, cores, canUseWebGPU, likelyCompatible };
   }
 
   emit(status, detail = '') {
@@ -77,6 +91,41 @@ export class BrowserLocalCanopyLite {
       this.ready = false;
       this.emit('error', error.message);
       throw new Error(`Canopy Lite could not load in this browser: ${error.message}`);
+    } finally {
+      this.loading = false;
+    }
+  }
+
+  async loadPublicModel(model = PUBLIC_CANOPY_LITE_MODEL) {
+    this.loading = true;
+    this.ready = false;
+    this.modelFile = { name: model.name };
+    this.emit('downloading-model', `Downloading ${model.name}…`);
+    try {
+      const response = await fetch(model.url, { mode: 'cors', cache: 'force-cache' });
+      if (!response.ok || !response.body) {
+        throw new Error(`The public model download failed (HTTP ${response.status}).`);
+      }
+      const total = Number(response.headers.get('content-length')) || 0;
+      const reader = response.body.getReader();
+      const chunks = [];
+      let loaded = 0;
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        chunks.push(value);
+        loaded += value.byteLength;
+        const percent = total ? Math.round((loaded / total) * 100) : null;
+        this.emit('downloading-model', percent === null ? `Downloading ${model.name}…` : `Downloading ${model.name}… ${percent}%`);
+      }
+      const file = new File(chunks, model.name, { type: 'application/octet-stream' });
+      await this.loadFile(file);
+      this.emit('ready', `${model.name} ready · ${model.quantization}`);
+    } catch (error) {
+      this.modelFile = null;
+      this.ready = false;
+      this.emit('error', error.message);
+      throw error;
     } finally {
       this.loading = false;
     }
