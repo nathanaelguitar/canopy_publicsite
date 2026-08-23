@@ -13,6 +13,7 @@
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
+  position: relative;
   padding: 16px 20px 140px 20px;
   display: block;
   width: 100%;
@@ -49,6 +50,14 @@
   gap: 16px;
   width: 100%;
   max-width: 620px;
+}
+
+.chat-empty-state.setup-active .chat-suggestions-grid,
+.chat-empty-state.setup-active .chat-empty-icon-wrap,
+.chat-empty-state.setup-active .chat-empty-title,
+.chat-empty-state.setup-active .chat-empty-subtitle,
+.chat-empty-state.setup-active .chat-empty-badge {
+  visibility: hidden;
 }
 
 .chat-empty-icon-wrap {

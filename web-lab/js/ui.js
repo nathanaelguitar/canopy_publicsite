@@ -881,10 +881,12 @@ export class CanopyUI {
         this.messagesList.innerHTML = '';
       }
       this.messagesInnerColumn.querySelectorAll('.model-setup-card').forEach(el => el.remove());
+      const browserSetupActive = this.state.browserLocalMode && this.browserLocal && !this.browserLocal.ready;
+      this.chatEmptyState.classList.toggle('setup-active', browserSetupActive);
 
       // Browser-local Canopy Lite setup uses the same planting/download treatment
       // as the native local-model path, without sending the user to Settings.
-      if (this.state.browserLocalMode && this.browserLocal && !this.browserLocal.ready) {
+      if (browserSetupActive) {
         const setupCard = document.createElement('div');
         setupCard.className = 'model-setup-card browser-model-setup-card';
         const status = this.browserLocalStatus || this.browserLocal.getStatus();
@@ -905,7 +907,10 @@ export class CanopyUI {
             <div class="model-setup-icon" style="color: var(--error); background: rgba(200, 64, 64, 0.1);">${ICONS.exclamation}</div>
             <h3 class="model-setup-title">Canopy Lite could not start</h3>
             <p class="model-setup-desc">${escapeHtml(this.modelSetupError || 'Canopy Lite could not be prepared in this browser.')}</p>
-            <button class="btn-primary" id="btn-retry-browser-model">Try again</button>
+            <div class="model-setup-actions">
+              <button class="btn-primary" id="btn-retry-browser-model">Try again</button>
+              <button class="btn-secondary" id="btn-use-browser-fallback">Use fallback</button>
+            </div>
           `;
           this.composerTextarea.disabled = true;
         } else {
@@ -920,6 +925,13 @@ export class CanopyUI {
         this.messagesInnerColumn.appendChild(setupCard);
         setupCard.querySelector('#btn-start-browser-model')?.addEventListener('click', () => this.startPublicBrowserModelSetup());
         setupCard.querySelector('#btn-retry-browser-model')?.addEventListener('click', () => this.startPublicBrowserModelSetup());
+        setupCard.querySelector('#btn-use-browser-fallback')?.addEventListener('click', () => {
+          this.state.setBrowserLocalMode(false);
+          this.state.setMockMode(true);
+          this.api.setMockMode(true);
+          this.modelSetupError = null;
+          this.renderCurrentChat();
+        });
         return;
       }
 
@@ -995,6 +1007,7 @@ export class CanopyUI {
     this.composerTextarea.disabled = false;
     this.composerTextarea.placeholder = 'Message your assistant…';
     this.chatEmptyState.style.display = 'none';
+    this.chatEmptyState.classList.remove('setup-active');
     this.messagesInnerColumn.querySelectorAll('.model-setup-card').forEach(el => el.remove());
 
     if (this.messagesList) {
@@ -1433,6 +1446,13 @@ export class CanopyUI {
   async startPublicBrowserModelSetup() {
     if (!this.browserLocal || this.browserLocal.loading || this.browserLocal.ready) return;
     this.modelSetupError = null;
+    const hardware = this.browserLocal.getHardwareAssessment?.();
+    if (hardware && hardware.likelyCompatible === false) {
+      this.modelSetupError = 'This browser may not have enough memory for local intelligence. Use the fallback on this computer.';
+      this.browserLocalStatus = { loading: false, status: 'error' };
+      this.renderCurrentChat();
+      return;
+    }
     this.browserLocalStatus = { loading: true, detail: 'Downloading local intelligence…' };
     this.renderCurrentChat();
     try {

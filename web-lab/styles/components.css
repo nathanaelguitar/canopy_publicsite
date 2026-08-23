@@ -275,6 +275,27 @@
   margin: 12px 0;
 }
 
+.browser-model-setup-card {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  width: min(560px, calc(100% - 48px));
+  margin: 0;
+  transform: translate(-50%, -50%);
+  background: color-mix(in srgb, var(--color-card-bg) 94%, var(--color-surface));
+  box-shadow: 0 20px 60px rgba(20, 13, 8, 0.28), 0 0 0 100vmax rgba(24, 17, 12, 0.16);
+  backdrop-filter: blur(14px);
+}
+
+.model-setup-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .model-setup-icon {
   width: 56px;
   height: 56px;
