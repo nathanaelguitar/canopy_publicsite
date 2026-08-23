@@ -4,6 +4,7 @@
  */
 
 import { WORKSPACES, PERSONAS } from './state.js?v=20260823e';
+import { PUBLIC_CANOPY_LITE_MODEL } from './browserLocal.js?v=20260823e';
 import { cleanAssistantText, escapeHtml, renderMarkdown } from './markdown.js?v=20260823e';
 
 // SVG Icon Library
@@ -881,6 +882,47 @@ export class CanopyUI {
       }
       this.messagesInnerColumn.querySelectorAll('.model-setup-card').forEach(el => el.remove());
 
+      // Browser-local Canopy Lite setup uses the same planting/download treatment
+      // as the native local-model path, without sending the user to Settings.
+      if (this.state.browserLocalMode && this.browserLocal && !this.browserLocal.ready) {
+        const setupCard = document.createElement('div');
+        setupCard.className = 'model-setup-card browser-model-setup-card';
+        const status = this.browserLocalStatus || this.browserLocal.getStatus();
+        const loading = status.loading || this.browserLocal.loading;
+        const detail = escapeHtml(status.detail || `Preparing ${PUBLIC_CANOPY_LITE_MODEL.name}…`);
+        if (loading) {
+          setupCard.innerHTML = `
+            <div class="model-setup-icon">${ICONS.tree}</div>
+            <h3 class="model-setup-title">Planting Canopy Lite</h3>
+            <p class="model-setup-desc">Downloading the 4-bit model once to this browser. It will run on this computer after setup.</p>
+            <div class="indeterminate-progress-bar"></div>
+            <span class="form-hint">${detail} Please keep this page open.</span>
+          `;
+          this.composerTextarea.disabled = true;
+          this.composerTextarea.placeholder = 'Canopy Lite is getting ready…';
+        } else if (this.modelSetupError || status.status === 'error') {
+          setupCard.innerHTML = `
+            <div class="model-setup-icon" style="color: var(--error); background: rgba(200, 64, 64, 0.1);">${ICONS.exclamation}</div>
+            <h3 class="model-setup-title">Canopy Lite could not start</h3>
+            <p class="model-setup-desc">${escapeHtml(this.modelSetupError || status.detail || 'The browser model could not be loaded.')}</p>
+            <button class="btn-primary" id="btn-retry-browser-model">Try again</button>
+          `;
+          this.composerTextarea.disabled = true;
+        } else {
+          setupCard.innerHTML = `
+            <div class="model-setup-icon">${ICONS.tree}</div>
+            <h3 class="model-setup-title">Start Canopy Lite</h3>
+            <p class="model-setup-desc">Canopy Lite will download the public 4-bit model and run locally in this browser.</p>
+            <button class="btn-primary" id="btn-start-browser-model">Try the model locally</button>
+          `;
+          this.composerTextarea.disabled = true;
+        }
+        this.messagesInnerColumn.appendChild(setupCard);
+        setupCard.querySelector('#btn-start-browser-model')?.addEventListener('click', () => this.startPublicBrowserModelSetup());
+        setupCard.querySelector('#btn-retry-browser-model')?.addEventListener('click', () => this.startPublicBrowserModelSetup());
+        return;
+      }
+
       // If model is downloading or needs setup on first run
       if (this.modelStatus && !this.modelStatus.ready && !this.state.mockMode && this.modelStatus.status !== 'offline') {
         const setupCard = document.createElement('div');
@@ -1308,6 +1350,40 @@ export class CanopyUI {
 
     this.modalNewChat.classList.add('open');
 
+    const hardware = this.browserLocal?.getHardwareAssessment?.();
+    const hardwareHint = hardware?.likelyCompatible
+      ? 'This computer looks suitable for a local 2B model.'
+      : 'This computer may struggle with a local model; the fallback is recommended.';
+    const setupChoice = document.createElement('div');
+    setupChoice.className = 'new-chat-model-choice';
+    const recommendedRunMode = hardware?.likelyCompatible === false ? 'fallback' : 'local';
+    setupChoice.innerHTML = `
+      <div class="new-chat-model-choice-heading">How should this chat run?</div>
+      <div class="new-chat-model-choice-copy">${hardwareHint} You can switch later in Settings.</div>
+      <div class="new-chat-model-choice-actions">
+        <button class="new-chat-model-card ${recommendedRunMode === 'local' ? 'selected' : ''}" id="btn-new-chat-local-model" type="button">
+          <span class="new-chat-model-icon">${ICONS.tree}</span>
+          <span><strong>Try the model locally</strong><small>${PUBLIC_CANOPY_LITE_MODEL.quantization} · downloads once in this browser</small></span>
+        </button>
+        <button class="new-chat-model-card ${recommendedRunMode === 'fallback' ? 'selected' : ''}" id="btn-new-chat-fallback" type="button">
+          <span class="new-chat-model-icon">${ICONS.refresh}</span>
+          <span><strong>Use the fallback</strong><small>Starts immediately with a lightweight simulation</small></span>
+        </button>
+      </div>
+    `;
+    const body = this.modalNewChat.querySelector('.modal-body');
+    body.prepend(setupChoice);
+    let runMode = recommendedRunMode;
+    const localChoice = setupChoice.querySelector('#btn-new-chat-local-model');
+    const fallbackChoice = setupChoice.querySelector('#btn-new-chat-fallback');
+    const selectRunMode = (mode) => {
+      runMode = mode;
+      localChoice.classList.toggle('selected', mode === 'local');
+      fallbackChoice.classList.toggle('selected', mode === 'fallback');
+    };
+    localChoice.addEventListener('click', () => selectRunMode('local'));
+    fallbackChoice.addEventListener('click', () => selectRunMode('fallback'));
+
     let selectedWs = 'personal';
     let selectedPersona = 'default';
 
@@ -1334,12 +1410,38 @@ export class CanopyUI {
     document.getElementById('btn-submit-new-chat').addEventListener('click', () => {
       const title = document.getElementById('new-chat-title').value;
       const conv = this.state.createConversation(title, selectedWs, selectedPersona);
+      if (runMode === 'fallback') {
+        this.state.setMockMode(true);
+        this.api.setMockMode(true);
+      } else {
+        this.state.setMockMode(false);
+        this.api.setMockMode(false);
+        this.state.setModelPreference('canopy-lite');
+        this.state.setBrowserLocalMode(true);
+      }
       closeModal();
       this.showChat(conv.id);
+      if (runMode === 'local' && !this.browserLocal?.ready) {
+        this.startPublicBrowserModelSetup();
+      }
       if (window.innerWidth <= 768) {
         this.toggleSidebar(false);
       }
     });
+  }
+
+  async startPublicBrowserModelSetup() {
+    if (!this.browserLocal || this.browserLocal.loading || this.browserLocal.ready) return;
+    this.modelSetupError = null;
+    this.browserLocalStatus = { loading: true, detail: `Downloading ${PUBLIC_CANOPY_LITE_MODEL.name}…` };
+    this.renderCurrentChat();
+    try {
+      await this.browserLocal.loadPublicModel(PUBLIC_CANOPY_LITE_MODEL);
+      this.renderCurrentChat();
+    } catch (error) {
+      this.modelSetupError = `${error.message} If the browser blocks the public download, choose the .gguf manually in Settings.`;
+      this.renderCurrentChat();
+    }
   }
 
   openRenameModal(conv) {
