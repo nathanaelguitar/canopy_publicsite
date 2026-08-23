@@ -1,0 +1,13 @@
+{
+  "name": "canopychat-web-lab",
+  "version": "1.0.0",
+  "description": "CanopyChat local web experience for Canopy Lore V1 and Canopy Lite",
+  "scripts": {
+    "dev": "npx serve -l 3000 .",
+    "start": "npx serve -l 3000 .",
+    "serve": "npx serve -l 3000 ."
+  },
+  "keywords": ["canopychat", "canopy-lore", "gguf", "mlx", "local-inference"],
+  "author": "",
+  "license": "UNLICENSED"
+}
