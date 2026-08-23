@@ -1356,15 +1356,16 @@ export class CanopyUI {
       : 'This computer may struggle with a local model; the fallback is recommended.';
     const setupChoice = document.createElement('div');
     setupChoice.className = 'new-chat-model-choice';
+    const recommendedRunMode = hardware?.likelyCompatible === false ? 'fallback' : 'local';
     setupChoice.innerHTML = `
       <div class="new-chat-model-choice-heading">How should this chat run?</div>
       <div class="new-chat-model-choice-copy">${hardwareHint} You can switch later in Settings.</div>
       <div class="new-chat-model-choice-actions">
-        <button class="new-chat-model-card selected" id="btn-new-chat-local-model" type="button">
+        <button class="new-chat-model-card ${recommendedRunMode === 'local' ? 'selected' : ''}" id="btn-new-chat-local-model" type="button">
           <span class="new-chat-model-icon">${ICONS.tree}</span>
           <span><strong>Try the model locally</strong><small>${PUBLIC_CANOPY_LITE_MODEL.quantization} · downloads once in this browser</small></span>
         </button>
-        <button class="new-chat-model-card" id="btn-new-chat-fallback" type="button">
+        <button class="new-chat-model-card ${recommendedRunMode === 'fallback' ? 'selected' : ''}" id="btn-new-chat-fallback" type="button">
           <span class="new-chat-model-icon">${ICONS.refresh}</span>
           <span><strong>Use the fallback</strong><small>Starts immediately with a lightweight simulation</small></span>
         </button>
@@ -1372,7 +1373,7 @@ export class CanopyUI {
     `;
     const body = this.modalNewChat.querySelector('.modal-body');
     body.prepend(setupChoice);
-    let runMode = 'local';
+    let runMode = recommendedRunMode;
     const localChoice = setupChoice.querySelector('#btn-new-chat-local-model');
     const fallbackChoice = setupChoice.querySelector('#btn-new-chat-fallback');
     const selectRunMode = (mode) => {
