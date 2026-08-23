@@ -46,7 +46,9 @@ export class BrowserLocalCanopyLite {
     const memory = Number.isFinite(navigator.deviceMemory) ? navigator.deviceMemory : null;
     const cores = navigator.hardwareConcurrency || null;
     const canUseWebGPU = this.supportsWebGPU();
-    const likelyCompatible = canUseWebGPU || (memory === null ? true : memory >= 4);
+    // The public browser download is about 1.3 GB before runtime and browser
+    // overhead. CPU/WASM needs more headroom than a GPU path.
+    const likelyCompatible = canUseWebGPU || (memory === null ? true : memory >= 6);
     return { memory, cores, canUseWebGPU, likelyCompatible };
   }
 
@@ -90,7 +92,7 @@ export class BrowserLocalCanopyLite {
       this.modelFile = null;
       this.ready = false;
       this.emit('error', error.message);
-      throw new Error(`Canopy Lite could not load in this browser: ${error.message}`);
+      throw new Error('Canopy Lite could not finish preparing in this browser.');
     } finally {
       this.loading = false;
     }
@@ -125,7 +127,7 @@ export class BrowserLocalCanopyLite {
       this.modelFile = null;
       this.ready = false;
       this.emit('error', error.message);
-      throw error;
+      throw new Error('Canopy Lite could not finish preparing in this browser.');
     } finally {
       this.loading = false;
     }
