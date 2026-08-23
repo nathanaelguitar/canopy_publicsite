@@ -171,6 +171,33 @@
   font-size: 11px;
 }
 
+.browser-local-panel {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid rgba(184, 115, 51, 0.28);
+  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, rgba(184, 115, 51, 0.09), rgba(74, 124, 74, 0.06));
+}
+
+.browser-local-panel-heading,
+.browser-local-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.browser-local-panel-heading > div {
+  display: grid;
+  gap: 4px;
+}
+
+.browser-local-actions {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
 /* First-Run Model Setup Card */
 .model-setup-card {
   display: flex;
