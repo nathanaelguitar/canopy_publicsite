@@ -53,7 +53,7 @@ components:
 
 **Creative North Star: "A signal through the canopy."**
 
-CanopyChat's public site uses a grounded green field, warm device-light, and one bright lime signal to make the product's central choice legible: useful intelligence can start closer to the person using it. The founding surface is deliberately more direct than the legacy brochure layout because visitors arrive from short-form video and need the point, proof, and contribution decision in four thumb-sized beats.
+CanopyChat's public site uses a grounded green field, warm device-light, and one bright lime signal to make the product's central choice legible: useful intelligence can start closer to the person using it. The founding surface is deliberately more direct than the legacy brochure layout because visitors arrive from short-form video and need the point, proof, device choice, and contribution decision in five thumb-sized beats. A separate free Android beta landing page (`/android-beta`) reuses the same campaign language for a single job: claim one of six free spots with a Google Play email.
 
 The existing public pages retain a warm paper / oak / moss language. The Founding Members route introduces a scoped forest-and-lime campaign language while keeping the tree mark, plainspoken copy, and privacy-first meaning continuous with the rest of the site.
 
@@ -108,7 +108,9 @@ The founding funnel uses a committed palette: forest does most of the structural
 
 ## Layout
 
-Founding Members is a four-screen vertical funnel with `scroll-snap-type: y proximity` on larger screens and mobile-friendly anchor targets. Each screen is at least one viewport minus the 64–72px sticky top bar, with 20px horizontal padding on small screens and a 680–760px reading column. Proof is expressed as ruled rows rather than repeated cards. The contribution controls use a two-column grid on small screens and four contribution choices across on wider screens, with Custom as a full-width field.
+Founding Members is a five-screen vertical funnel with `scroll-snap-type: y proximity` on larger screens and mobile-friendly anchor targets. Each screen is at least one viewport minus the 64–72px sticky top bar, with 20px horizontal padding on small screens and a 680–760px reading column. Proof is expressed as ruled rows rather than repeated cards. The device-choice screen (04) offers two ruled paths — iPhone into the contribution flow, Android out to `/android-beta`. The contribution controls use a two-column grid on small screens and four contribution choices across on wider screens, with Custom as a full-width field.
+
+The Android beta page compresses the same language into two screens: a forest hero carrying the six-spot, three-month claim, and a forest claim screen whose form pairs one email field with one lime action.
 
 ## Elevation & Depth
 
@@ -141,6 +143,11 @@ Primary actions are pill-shaped for thumb recognition. Amount choices and input 
 
 - **Style:** Sticky, translucent forest top bar with the tree mark, CanopyChat name, and a compact iPhone beta label.
 - **Mobile treatment:** A bottom contribution bar appears after the hero and disappears while the contribution section is visible.
+
+### Device Choices
+
+- **Style:** Two ruled rows on the cream device screen, each pairing a large serif platform name with an authored arrow. The screen carries no supporting copy at all: no pricing, contribution, or free-spot language appears before the choice is made.
+- **Behavior:** iPhone anchors to the contribution screen; Android navigates to `/android-beta`, where the terms of each path are first revealed. No card grid, no meta pills.
 
 ### Proof Rows
 

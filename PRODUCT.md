@@ -25,6 +25,7 @@ Visitors arrive from short videos, read the Founding Members invitation on a pho
 ## Capabilities and Constraints
 
 - Founding Membership currently supports US private beta enrollment on iPhone and Android.
+- A separate free Android opening at `/android-beta` grants up to six spots through Google Play closed testing; enrollment collects only a Google Play email and involves no payment. Android spots are free for the three-month beta term, matching the Founding Member premium window. The six-spot cap is enforced server-side by the founding API.
 - Beta hardware requirement: iPhone 12 Pro or newer.
 - The contribution minimum is $10 and the contribution is one-time, not an automatic subscription.
 - Premium access is included throughout the three-month beta.
