@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://connect.facebook.net; connect-src 'self' https://founding-api.canopychat.app https://www.facebook.com https://connect.facebook.net; img-src 'self' data: https://www.facebook.com; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="theme-color" content="#0c2b1d">
+  <title>Free Android Beta | Six Spots | CanopyChat</title>
+  <meta name="description" content="CanopyChat's private beta is opening six free Android spots through Google Play closed testing. Claim yours with your Google Play email.">
+  <link rel="icon" type="image/png" href="assets/app-icon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/styles.css?v=android-beta-1">
+</head>
+<body class="android-beta-page founding-mobile-funnel">
+  <!--
+    THESIS: Six free Android spots, claimed with nothing but a Google Play email.
+    OWN-WORLD: Same forest-and-lime campaign language as the founding route.
+    STORY: Visitor understands the spot is free, sees exactly how Play closed testing works, and leaves an email.
+    FIRST VIEWPORT: One large claim, the six-spot truth, one thumb-sized action above the fold.
+    WIRING: The form posts to the Worker contract in HANDOFF-ANDROID-BETA.md; until wired it degrades to a clear try-again message.
+    FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+  -->
+  <header class="founding-topbar">
+    <a class="founding-brand" href="/" aria-label="CanopyChat home">
+      <img src="assets/app-icon.png" alt="" width="38" height="38">
+      <span>CanopyChat</span>
+    </a>
+    <span class="founding-topbar-note" aria-label="Android beta">
+      <span class="founding-topbar-note-full">Android Beta</span>
+      <span class="founding-topbar-note-short">Beta</span>
+    </span>
+  </header>
+
+  <main>
+    <section class="founding-screen android-hero" aria-labelledby="android-title">
+      <div class="founding-screen-inner">
+        <h1 id="android-title">Six free Android spots. Then this door closes.</h1>
+        <p class="android-hero-copy">CanopyChat’s private beta is opening on Android. Six people get in free for the entire three-month beta — no contribution, no card. You bring a Google account; we send the invite.</p>
+        <a class="founding-primary-action" href="#claim">
+          <span>Claim a free spot</span>
+          <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M10 2v14M4.5 10.5 10 16l5.5-5.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/></svg>
+        </a>
+        <div class="android-hero-lockup" aria-hidden="true">
+          <div class="founding-tree-orbit founding-tree-orbit-one"></div>
+          <div class="founding-tree-orbit founding-tree-orbit-two"></div>
+          <img src="assets/app-icon.png" alt="" width="150" height="150">
+        </div>
+      </div>
+    </section>
+
+    <section id="claim" class="founding-screen android-claim" aria-labelledby="claim-title">
+      <div class="founding-screen-inner">
+        <h2 id="claim-title">Leave the email your Play store knows.</h2>
+        <p class="android-claim-copy">Use the Google account signed in on your Android phone — your invite arrives from Google Play, so that’s the mailbox it has to reach. Your spot stays free through the whole three-month beta.</p>
+
+        <form class="android-claim-form" data-android-beta-form novalidate>
+          <label class="android-email-label" for="android-play-email">Google Play email</label>
+          <div class="android-email-row">
+            <input id="android-play-email" name="email" type="email" autocomplete="email" autocapitalize="off" spellcheck="false" inputmode="email" placeholder="you@gmail.com" aria-describedby="android-email-hint" data-android-beta-email>
+            <button class="founding-cta android-submit" type="submit" data-android-beta-submit>Claim my spot</button>
+          </div>
+          <p class="android-email-hint" id="android-email-hint">One spot per person. We only use this address to grant beta access.</p>
+          <p class="founding-action-status android-status" data-android-beta-status role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="android-success" data-android-beta-success hidden>
+          <h3 data-android-beta-success-heading>You’re in.</h3>
+          <p data-android-beta-success-message></p>
+          <div class="android-success-steps">
+            <div><strong>Watch for two emails.</strong><span>One from us confirming your spot, one from Google Play with the testing invite.</span></div>
+            <div><strong>Accept on your phone.</strong><span>Tap the Play invite on your Android phone and CanopyChat installs like any other app.</span></div>
+            <div><strong>Say hi early.</strong><span>Your feedback reaches the builders directly while the details are still being finished.</span></div>
+          </div>
+        </div>
+
+        <p class="android-full-note">All six spots gone? Email <a href="mailto:support@canopychat.app">support@canopychat.app</a> to join the waitlist for the next opening.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="founding-footer">
+    <span>Copyright 2026 CanopyChat</span>
+    <span><a href="/privacy">Privacy</a> <a href="/terms">Terms</a> <a href="/support">Support</a></span>
+    <small class="founding-device-disclosure">CanopyChat on Android uses Google Play closed testing. iPhone access is available through Founding Membership.</small>
+  </footer>
+
+  <script src="assets/android-beta.js?v=1" defer></script>
+  <script src="assets/meta-pixel.js?v=1" defer></script>
+</body>
+</html>
