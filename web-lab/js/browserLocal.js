@@ -7,7 +7,12 @@
  */
 
 const WLLAMA_VERSION = '3.1.1';
-const WLLAMA_MODULE_URL = `https://esm.sh/@wllama/wllama@${WLLAMA_VERSION}`;
+// esm.sh currently returns 404 for this package's bare entry URL. Keep two
+// browser-safe ESM origins so a transient CDN issue does not block setup.
+const WLLAMA_MODULE_URLS = [
+  `https://cdn.jsdelivr.net/npm/@wllama/wllama@${WLLAMA_VERSION}/esm/index.js`,
+  `https://unpkg.com/@wllama/wllama@${WLLAMA_VERSION}/esm/index.js`
+];
 const WLLAMA_WASM_URL = `https://cdn.jsdelivr.net/npm/@wllama/wllama@${WLLAMA_VERSION}/esm/wasm/wllama.wasm`;
 // Temporary public test model. This is intentionally not the private Canopy Lite artifact.
 export const PUBLIC_CANOPY_LITE_MODEL = {
@@ -59,7 +64,18 @@ export class BrowserLocalCanopyLite {
   async ensureRuntime() {
     if (this.runtime) return this.runtime;
     this.emit('loading-runtime', 'Loading the browser inference runtime…');
-    const module = await import(WLLAMA_MODULE_URL);
+    let module;
+    let lastError;
+    for (const moduleUrl of WLLAMA_MODULE_URLS) {
+      try {
+        module = await import(moduleUrl);
+        break;
+      } catch (error) {
+        lastError = error;
+        console.warn('[Canopy Lite] runtime import failed', moduleUrl, error);
+      }
+    }
+    if (!module) throw lastError || new Error('The browser inference runtime could not be loaded.');
     const Wllama = module.Wllama || module.default?.Wllama;
     if (!Wllama) throw new Error('The browser inference runtime could not be loaded.');
     this.runtime = new Wllama({ default: WLLAMA_WASM_URL }, {
