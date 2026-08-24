@@ -1204,10 +1204,15 @@ h3 {
 }
 
 .founding-recovery-link a {
+  display: inline-block;
+  min-height: 44px;
+  line-height: 44px;
+  padding: 0 8px;
   color: inherit;
   font-weight: 800;
   text-decoration: underline;
   text-underline-offset: 3px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @media (max-width: 640px) {
@@ -1713,7 +1718,7 @@ body.founding-mobile-funnel {
 }
 
 html:has(.founding-mobile-funnel) {
-  scroll-padding-top: 72px;
+  scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px));
 }
 
 .founding-mobile-funnel::before {
@@ -1733,8 +1738,11 @@ html:has(.founding-mobile-funnel) {
   justify-content: space-between;
   width: 100%;
   box-sizing: border-box;
-  min-height: 72px;
-  padding: 12px max(20px, calc((100vw - 1180px) / 2));
+  min-height: calc(72px + env(safe-area-inset-top, 0px));
+  padding-top: max(12px, env(safe-area-inset-top, 12px));
+  padding-bottom: 12px;
+  padding-left: max(20px, max(calc((100vw - 1180px) / 2), env(safe-area-inset-left, 0px)));
+  padding-right: max(20px, max(calc((100vw - 1180px) / 2), env(safe-area-inset-right, 0px)));
   background: rgba(12, 43, 29, 0.92);
   color: var(--funnel-cream);
   backdrop-filter: blur(18px);
@@ -1745,11 +1753,13 @@ html:has(.founding-mobile-funnel) {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  min-height: 44px;
   color: var(--funnel-cream);
   font-family: var(--serif);
   font-size: 22px;
   font-weight: 800;
   letter-spacing: -0.04em;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .founding-topbar-note {
@@ -1788,7 +1798,7 @@ html:has(.founding-mobile-funnel) {
   overflow-x: hidden;
   min-height: min(880px, calc(100svh - 72px));
   padding: clamp(64px, 10vw, 132px) 20px;
-  scroll-margin-top: 72px;
+  scroll-margin-top: calc(72px + env(safe-area-inset-top, 0px));
   scroll-snap-align: start;
 }
 
@@ -1839,8 +1849,9 @@ html:has(.founding-mobile-funnel) {
   margin: 0;
   font-family: var(--serif);
   font-weight: 800;
-  letter-spacing: -0.06em;
-  line-height: 0.98;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  text-wrap: balance;
 }
 
 .founding-screen h1 {
@@ -1851,6 +1862,7 @@ html:has(.founding-mobile-funnel) {
 .founding-screen h2 {
   max-width: 650px;
   font-size: clamp(45px, 8vw, 82px);
+  letter-spacing: -0.03em;
 }
 
 .founding-hero-copy {
@@ -1859,6 +1871,7 @@ html:has(.founding-mobile-funnel) {
   color: rgba(244, 240, 228, 0.76);
   font-size: clamp(18px, 2.8vw, 23px);
   line-height: 1.45;
+  text-wrap: pretty;
 }
 
 .founding-primary-action {
@@ -1877,6 +1890,7 @@ html:has(.founding-mobile-funnel) {
   font-weight: 850;
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.2);
   transition: transform 180ms ease, background-color 180ms ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .founding-primary-action svg {
@@ -1888,6 +1902,10 @@ html:has(.founding-mobile-funnel) {
   background: #d7f89c;
   color: var(--funnel-forest);
   transform: translateY(-2px);
+}
+
+.founding-primary-action:active {
+  transform: scale(0.985);
 }
 
 .founding-primary-action:focus-visible,
@@ -2058,11 +2076,12 @@ html:has(.founding-mobile-funnel) {
 
 .founding-honest-note {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   margin-top: 24px;
   color: rgba(244, 240, 228, 0.64);
   font-size: 14px;
+  line-height: 1.5;
 }
 
 .founding-honest-note p {
@@ -2073,6 +2092,7 @@ html:has(.founding-mobile-funnel) {
   flex: 0 0 auto;
   width: 8px;
   height: 8px;
+  margin-top: 6px;
   border-radius: 50%;
   background: var(--funnel-lime);
 }
@@ -2111,6 +2131,7 @@ html:has(.founding-mobile-funnel) {
 .founding-contribute-copy {
   max-width: 600px;
   color: rgba(244, 240, 228, 0.74);
+  text-wrap: pretty;
 }
 
 .founding-climate-note {
@@ -2121,6 +2142,7 @@ html:has(.founding-mobile-funnel) {
   color: rgba(244, 240, 228, 0.7);
   font-size: 15px;
   line-height: 1.5;
+  text-wrap: pretty;
 }
 
 .founding-climate-note strong {
@@ -2154,11 +2176,16 @@ html:has(.founding-mobile-funnel) {
   border-radius: 14px;
   background: rgba(244, 240, 228, 0.08);
   color: var(--funnel-cream);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .founding-mobile-funnel .founding-amount-choice:hover {
   border-color: var(--funnel-lime);
   transform: none;
+}
+
+.founding-mobile-funnel .founding-amount-choice:active {
+  transform: scale(0.985);
 }
 
 .founding-mobile-funnel .founding-amount-choice[aria-pressed="true"],
@@ -2171,11 +2198,26 @@ html:has(.founding-mobile-funnel) {
 .founding-mobile-funnel .founding-custom-amount {
   grid-column: span 4;
   padding: 0 14px 0 16px;
+  cursor: text;
 }
 
 .founding-mobile-funnel .founding-custom-amount-input,
 .founding-mobile-funnel .founding-custom-amount input {
   color: var(--funnel-cream);
+}
+
+.founding-mobile-funnel .founding-custom-amount input {
+  width: 80px;
+  min-width: 0;
+  color-scheme: dark;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.founding-mobile-funnel .founding-custom-amount input::-webkit-outer-spin-button,
+.founding-mobile-funnel .founding-custom-amount input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .founding-mobile-funnel .founding-custom-amount input::placeholder {
@@ -2192,16 +2234,22 @@ html:has(.founding-mobile-funnel) {
   width: 100%;
   min-height: 60px;
   border: 0;
+  border-radius: 999px;
   background: var(--funnel-lime);
   color: var(--funnel-forest);
   font-size: 17px;
   font-weight: 850;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .founding-mobile-funnel .founding-cta:hover {
   background: #d7f89c;
   color: var(--funnel-forest);
   transform: translateY(-2px);
+}
+
+.founding-mobile-funnel .founding-cta:active {
+  transform: scale(0.985);
 }
 
 .founding-mobile-funnel .founding-action-status.is-error {
@@ -2211,16 +2259,26 @@ html:has(.founding-mobile-funnel) {
 .founding-footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 20px;
-  padding: 30px 20px 42px;
+  padding: 30px max(20px, calc((100vw - 1180px) / 2)) 42px;
   background: var(--funnel-forest);
   color: rgba(244, 240, 228, 0.55);
   font-size: 12px;
 }
 
 .founding-footer a {
-  margin-left: 14px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 6px 10px;
+  margin-left: 4px;
   color: rgba(244, 240, 228, 0.8);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.founding-footer a:hover {
+  color: var(--funnel-cream);
 }
 
 .founding-device-disclosure {
@@ -2261,21 +2319,29 @@ html:has(.founding-mobile-funnel) {
 
 @media (max-width: 620px) {
   html:has(.founding-mobile-funnel) {
-    scroll-padding-top: 64px;
+    scroll-padding-top: calc(56px + env(safe-area-inset-top, 0px));
   }
 
   .founding-screen {
-    min-height: calc(100svh - 64px);
-    padding: 48px 20px calc(86px + env(safe-area-inset-bottom));
+    min-height: calc(100svh - 56px);
+    padding-top: 36px;
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+    padding-left: max(16px, env(safe-area-inset-left, 16px));
+    padding-right: max(16px, env(safe-area-inset-right, 16px));
+    scroll-margin-top: calc(56px + env(safe-area-inset-top, 0px));
   }
 
   .founding-topbar {
-    min-height: 56px;
-    padding: 10px 16px;
+    min-height: calc(56px + env(safe-area-inset-top, 0px));
+    padding-top: max(10px, env(safe-area-inset-top, 10px));
+    padding-bottom: 10px;
+    padding-left: max(16px, env(safe-area-inset-left, 16px));
+    padding-right: max(16px, env(safe-area-inset-right, 16px));
   }
 
   .founding-brand {
     font-size: 20px;
+    min-height: 40px;
   }
 
   .founding-brand img {
@@ -2331,16 +2397,25 @@ html:has(.founding-mobile-funnel) {
     right: auto;
     bottom: auto;
     align-self: flex-end;
-    width: 140px;
-    height: 140px;
-    margin: -10px -16px -10px 0;
+    width: 130px;
+    height: 130px;
+    margin: 8px 0 0 0;
+    overflow: visible;
   }
 
   .founding-tree-lockup img {
-    inset: 28px;
-    width: 84px;
-    height: 84px;
-    border-radius: 26px;
+    inset: 26px;
+    width: 78px;
+    height: 78px;
+    border-radius: 24px;
+  }
+
+  .founding-tree-orbit-one {
+    inset: 8px 0;
+  }
+
+  .founding-tree-orbit-two {
+    inset: 0 16px;
   }
 
   .founding-proof-list,
@@ -2360,14 +2435,19 @@ html:has(.founding-mobile-funnel) {
   .founding-text-action {
     display: inline-flex;
     align-items: center;
-    min-height: 46px;
-    padding: 8px 16px;
+    min-height: 48px;
+    padding: 10px 18px;
     margin-top: 18px;
     border-radius: 999px;
     background: rgba(23, 69, 45, 0.12);
     border: 1px solid rgba(23, 69, 45, 0.22);
     text-decoration: none !important;
     font-size: 15px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .founding-text-action:active {
+    transform: scale(0.985);
   }
 
   .founding-member-terms div {
@@ -2391,7 +2471,10 @@ html:has(.founding-mobile-funnel) {
 
   .founding-footer {
     display: block;
-    padding-bottom: max(32px, calc(20px + env(safe-area-inset-bottom)));
+    padding-top: 28px;
+    padding-bottom: max(32px, calc(20px + env(safe-area-inset-bottom, 0px)));
+    padding-left: max(16px, env(safe-area-inset-left, 16px));
+    padding-right: max(16px, env(safe-area-inset-right, 16px));
   }
 
   .founding-footer span {
@@ -2399,11 +2482,47 @@ html:has(.founding-mobile-funnel) {
   }
 
   .founding-footer span + span {
-    margin-top: 12px;
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
   }
 
-  .founding-footer a:first-child {
+  .founding-footer a {
+    min-height: 44px;
+    padding: 8px 6px;
     margin-left: 0;
+    margin-right: 8px;
+  }
+
+  .founding-device-disclosure {
+    display: block;
+    margin-top: 10px;
+    line-height: 1.45;
+  }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .founding-screen {
+    min-height: auto;
+    padding-top: 28px;
+    padding-bottom: 36px;
+  }
+
+  .founding-tree-lockup,
+  .android-hero-lockup {
+    width: 96px;
+    height: 96px;
+    margin: 4px 0 0;
+  }
+
+  .founding-tree-lockup img,
+  .android-hero-lockup img {
+    inset: 18px;
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
   }
 }
 
@@ -2413,7 +2532,9 @@ html:has(.founding-mobile-funnel) {
   }
 
   .founding-primary-action,
-  .founding-mobile-funnel .founding-cta {
+  .founding-mobile-funnel .founding-cta,
+  .founding-device-choice,
+  .founding-text-action {
     transition: none;
   }
 }
@@ -2443,10 +2564,15 @@ html:has(.founding-mobile-funnel) {
   border-bottom: 1px solid var(--funnel-line);
   color: inherit;
   transition: transform 180ms ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .founding-device-choice:hover {
   transform: translateY(-2px);
+}
+
+.founding-device-choice:active {
+  transform: scale(0.985);
 }
 
 .founding-device-choice:focus-visible {
@@ -2511,6 +2637,7 @@ html:has(.founding-mobile-funnel) {
   color: rgba(244, 240, 228, 0.76);
   font-size: clamp(18px, 2.8vw, 23px);
   line-height: 1.45;
+  text-wrap: pretty;
 }
 
 .android-hero-lockup {
@@ -2544,6 +2671,7 @@ html:has(.founding-mobile-funnel) {
   color: rgba(244, 240, 228, 0.74);
   font-size: clamp(17px, 2.6vw, 21px);
   line-height: 1.45;
+  text-wrap: pretty;
 }
 
 .android-claim-form {
@@ -2591,6 +2719,11 @@ html:has(.founding-mobile-funnel) {
   min-height: 60px;
   padding: 0 22px;
   white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.android-submit:active {
+  transform: scale(0.985);
 }
 
 .android-submit.is-loading {
@@ -2601,6 +2734,7 @@ html:has(.founding-mobile-funnel) {
   margin: 12px 0 0;
   color: rgba(244, 240, 228, 0.55);
   font-size: 13px;
+  line-height: 1.45;
 }
 
 .android-status {
@@ -2627,6 +2761,8 @@ html:has(.founding-mobile-funnel) {
   margin: 16px 0 0;
   color: rgba(244, 240, 228, 0.82);
   font-size: 17px;
+  line-height: 1.45;
+  text-wrap: pretty;
 }
 
 .android-success-steps {
@@ -2660,12 +2796,19 @@ html:has(.founding-mobile-funnel) {
   margin: 34px 0 0;
   color: rgba(244, 240, 228, 0.55);
   font-size: 14px;
+  line-height: 1.45;
 }
 
 .android-full-note a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 4px 6px;
   color: rgba(244, 240, 228, 0.85);
+  text-decoration: underline;
   text-decoration-color: rgba(196, 238, 119, 0.5);
   text-underline-offset: 4px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @media (max-width: 620px) {
@@ -2684,7 +2827,8 @@ html:has(.founding-mobile-funnel) {
     align-self: flex-end;
     width: 130px;
     height: 130px;
-    margin: -10px -16px -10px 0;
+    margin: 8px 0 0 0;
+    overflow: visible;
   }
 
   .android-hero-lockup img {
