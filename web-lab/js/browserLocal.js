@@ -91,6 +91,7 @@ export class BrowserLocalCanopyLite {
     } catch (error) {
       this.modelFile = null;
       this.ready = false;
+      console.warn('[Canopy Lite] local model setup failed', error);
       this.emit('error', error.message);
       throw new Error('Canopy Lite could not finish preparing in this browser.');
     } finally {
@@ -126,6 +127,7 @@ export class BrowserLocalCanopyLite {
     } catch (error) {
       this.modelFile = null;
       this.ready = false;
+      console.warn('[Canopy Lite] public model setup failed', error);
       this.emit('error', error.message);
       throw new Error('Canopy Lite could not finish preparing in this browser.');
     } finally {
