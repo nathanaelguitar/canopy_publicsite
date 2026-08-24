@@ -3,9 +3,9 @@
  * Manages fitted Your Grove homepage, responsive sidebar, conversation stream, smart scroll anchoring, modals, and hotkeys.
  */
 
-import { WORKSPACES, PERSONAS } from './state.js?v=20260823f';
-import { PUBLIC_CANOPY_LITE_MODEL } from './browserLocal.js?v=20260823f';
-import { cleanAssistantText, escapeHtml, renderMarkdown } from './markdown.js?v=20260823f';
+import { WORKSPACES, PERSONAS } from './state.js?v=20260823g';
+import { PUBLIC_CANOPY_LITE_MODEL } from './browserLocal.js?v=20260823g';
+import { cleanAssistantText, escapeHtml, renderMarkdown } from './markdown.js?v=20260823g';
 
 // SVG Icon Library
 export const ICONS = {
@@ -216,7 +216,13 @@ export class CanopyUI {
     this.browserLocal?.setStatusListener?.(status => {
       this.browserLocalStatus = status;
       if (this.currentView === 'chat' && !this.state.isSending) this.renderCurrentChat();
-      const statusText = status.ready ? 'Canopy Lite in browser' : status.loading ? 'Preparing Canopy Lite…' : null;
+      const statusText = status.ready
+        ? 'Canopy Lite in browser'
+        : status.loading
+          ? 'Preparing Canopy Lite…'
+          : status.status === 'error'
+            ? 'Local setup unavailable'
+            : null;
       if (statusText) document.querySelectorAll('.status-text').forEach(el => { el.textContent = statusText; });
     });
     this.state.on('conversationsUpdated', () => {
@@ -1459,7 +1465,7 @@ export class CanopyUI {
       await this.browserLocal.loadPublicModel(PUBLIC_CANOPY_LITE_MODEL);
       this.renderCurrentChat();
     } catch (error) {
-      this.modelSetupError = 'Canopy Lite could not be prepared in this browser. Try again, or choose a local model in Settings.';
+      this.modelSetupError = 'This browser could not allocate enough memory or start local acceleration. Try again, or use the fallback on this computer.';
       this.renderCurrentChat();
     }
   }

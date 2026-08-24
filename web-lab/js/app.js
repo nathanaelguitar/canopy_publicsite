@@ -2,11 +2,11 @@
  * CanopyChat Web Lab Entry Point
  */
 
-import { AppState } from './state.js?v=20260823f';
-import { CanopyApiClient } from './api.js?v=20260823f';
-import { OakCanvasRenderer } from './oakCanvas.js?v=20260823f';
-import { CanopyUI } from './ui.js?v=20260823f';
-import { BrowserLocalCanopyLite } from './browserLocal.js?v=20260823f';
+import { AppState } from './state.js?v=20260823g';
+import { CanopyApiClient } from './api.js?v=20260823g';
+import { OakCanvasRenderer } from './oakCanvas.js?v=20260823g';
+import { CanopyUI } from './ui.js?v=20260823g';
+import { BrowserLocalCanopyLite } from './browserLocal.js?v=20260823g';
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Initialize procedural oak background
