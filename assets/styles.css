@@ -1819,7 +1819,8 @@ html:has(.founding-mobile-funnel) {
   color: var(--funnel-cream);
 }
 
-.founding-hero-inner {
+.founding-hero-inner,
+.android-hero-inner {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -1915,21 +1916,23 @@ html:has(.founding-mobile-funnel) {
   outline-offset: 4px;
 }
 
-.founding-tree-lockup {
+.founding-tree-lockup,
+.android-hero-lockup {
   position: absolute;
-  right: -108px;
-  bottom: 12px;
-  width: 286px;
-  height: 286px;
+  right: -40px;
+  bottom: 8px;
+  width: 260px;
+  height: 260px;
   opacity: 0.92;
 }
 
-.founding-tree-lockup img {
+.founding-tree-lockup img,
+.android-hero-lockup img {
   position: absolute;
-  inset: 60px;
-  width: 166px;
-  height: 166px;
-  border-radius: 52px;
+  inset: 55px;
+  width: 150px;
+  height: 150px;
+  border-radius: 47px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
 }
 
@@ -2292,14 +2295,19 @@ html:has(.founding-mobile-funnel) {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.founding-hero-inner > *:not(.founding-tree-lockup) {
+.founding-hero-inner > *:not(.founding-tree-lockup),
+.android-hero-inner > *:not(.android-hero-lockup) {
   animation: founding-hero-enter 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.founding-hero-inner > :nth-child(2) { animation-delay: 60ms; }
-.founding-hero-inner > :nth-child(3) { animation-delay: 120ms; }
-.founding-hero-inner > :nth-child(4) { animation-delay: 180ms; }
-.founding-hero-inner > :nth-child(5) { animation-delay: 240ms; }
+.founding-hero-inner > :nth-child(2),
+.android-hero-inner > :nth-child(2) { animation-delay: 60ms; }
+.founding-hero-inner > :nth-child(3),
+.android-hero-inner > :nth-child(3) { animation-delay: 120ms; }
+.founding-hero-inner > :nth-child(4),
+.android-hero-inner > :nth-child(4) { animation-delay: 180ms; }
+.founding-hero-inner > :nth-child(5),
+.android-hero-inner > :nth-child(5) { animation-delay: 240ms; }
 
 @media (min-width: 821px) {
   .founding-mobile-funnel main {
@@ -2312,8 +2320,40 @@ html:has(.founding-mobile-funnel) {
 
   .founding-screen-impact .founding-screen-inner,
   .founding-screen-membership .founding-screen-inner,
-  .founding-contribute-inner {
+  .founding-contribute-inner,
+  .founding-hero-inner,
+  .android-hero-inner {
     margin-left: max(0px, calc((100vw - 1120px) / 2));
+  }
+}
+
+@media (max-width: 850px) {
+  .founding-tree-lockup,
+  .android-hero-lockup {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    align-self: flex-end;
+    width: 130px;
+    height: 130px;
+    margin: 8px 0 0 0;
+    overflow: visible;
+  }
+
+  .founding-tree-lockup img,
+  .android-hero-lockup img {
+    inset: 26px;
+    width: 78px;
+    height: 78px;
+    border-radius: 24px;
+  }
+
+  .founding-tree-orbit-one {
+    inset: 8px 0;
+  }
+
+  .founding-tree-orbit-two {
+    inset: 0 16px;
   }
 }
 
@@ -2640,24 +2680,6 @@ html:has(.founding-mobile-funnel) {
   text-wrap: pretty;
 }
 
-.android-hero-lockup {
-  position: absolute;
-  right: -100px;
-  bottom: 4px;
-  width: 260px;
-  height: 260px;
-  opacity: 0.92;
-}
-
-.android-hero-lockup img {
-  position: absolute;
-  inset: 55px;
-  width: 150px;
-  height: 150px;
-  border-radius: 47px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
-}
-
 .android-beta-page .android-claim {
   background:
     radial-gradient(circle at 88% 10%, rgba(196, 238, 119, 0.17), transparent 19rem),
@@ -2818,24 +2840,6 @@ html:has(.founding-mobile-funnel) {
 
   .android-submit {
     width: 100%;
-  }
-
-  .android-hero-lockup {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    align-self: flex-end;
-    width: 130px;
-    height: 130px;
-    margin: 8px 0 0 0;
-    overflow: visible;
-  }
-
-  .android-hero-lockup img {
-    inset: 26px;
-    width: 78px;
-    height: 78px;
-    border-radius: 24px;
   }
 
   .android-success-steps div {
