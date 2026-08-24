@@ -105,29 +105,37 @@ export class BrowserLocalCanopyLite {
     this.modelFile = { name: model.name };
     this.emit('downloading-model', 'Downloading local intelligence…');
     try {
-      const response = await fetch(model.url, { mode: 'cors', cache: 'force-cache' });
-      if (!response.ok || !response.body) {
-        throw new Error(`The public model download failed (HTTP ${response.status}).`);
-      }
-      const total = Number(response.headers.get('content-length')) || 0;
-      const reader = response.body.getReader();
-      const chunks = [];
-      let loaded = 0;
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        chunks.push(value);
-        loaded += value.byteLength;
-        const percent = total ? Math.round((loaded / total) * 100) : null;
-        this.emit('downloading-model', percent === null ? 'Downloading local intelligence…' : `Downloading local intelligence… ${percent}%`);
-      }
-      const file = new File(chunks, model.name, { type: 'application/octet-stream' });
-      await this.loadFile(file);
+      // The runtime downloads straight into its own storage-backed cache and
+      // streams from there, avoiding extra full-size copies of the model in
+      // page memory (chunks array + File + worker filesystem).
+      const runtime = await this.ensureRuntime();
+      const gpuReady = typeof runtime.isSupportWebGPU === 'function' ? runtime.isSupportWebGPU() : this.supportsWebGPU();
+      console.warn('[Canopy Lite] stage=load-start', JSON.stringify({
+        webgpuActive: gpuReady,
+        cores: navigator.hardwareConcurrency ?? null,
+        deviceMemory: Number.isFinite(navigator.deviceMemory) ? navigator.deviceMemory : null,
+        crossOriginIsolated: Boolean(self.crossOriginIsolated)
+      }));
+      let sawTransferProgress = false;
+      await runtime.loadModelFromUrl(model.url, {
+        n_ctx: 2048,
+        progressCallback: ({ loaded, total }) => {
+          if (!sawTransferProgress) {
+            sawTransferProgress = true;
+            console.warn('[Canopy Lite] stage=transfer-start');
+            this.emit('downloading-model', 'Downloading local intelligence…');
+          }
+          const percent = total ? Math.round((loaded / total) * 100) : null;
+          this.emit('downloading-model', percent === null ? 'Downloading local intelligence…' : `Downloading local intelligence… ${percent}%`);
+        }
+      });
+      console.warn('[Canopy Lite] stage=load-complete', JSON.stringify({ usedCachedCopy: !sawTransferProgress }));
+      this.ready = true;
       this.emit('ready', 'Local intelligence is ready in this browser.');
     } catch (error) {
       this.modelFile = null;
       this.ready = false;
-      console.warn('[Canopy Lite] public model setup failed', error);
+      console.warn('[Canopy Lite] stage=load-failed public model setup failed', error);
       this.emit('error', error.message);
       throw new Error('Canopy Lite could not finish preparing in this browser.');
     } finally {
