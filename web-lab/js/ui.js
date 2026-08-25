@@ -3,9 +3,9 @@
  * Manages fitted Your Grove homepage, responsive sidebar, conversation stream, smart scroll anchoring, modals, and hotkeys.
  */
 
-import { WORKSPACES, PERSONAS } from './state.js?v=20260823j';
-import { PUBLIC_CANOPY_LITE_MODEL } from './browserLocal.js?v=20260823j';
-import { cleanAssistantText, escapeHtml, renderMarkdown } from './markdown.js?v=20260823j';
+import { WORKSPACES, PERSONAS } from './state.js?v=20260824a';
+import { PUBLIC_CANOPY_LITE_MODEL } from './browserLocal.js?v=20260824a';
+import { cleanAssistantText, escapeHtml, renderMarkdown } from './markdown.js?v=20260824a';
 
 // SVG Icon Library
 export const ICONS = {

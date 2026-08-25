@@ -6,7 +6,8 @@
  * browser; this is a convenience/testing path, not an IP-protection boundary.
  */
 
-const WLLAMA_VERSION = '3.1.1';
+// 3.6.0+ is required for chat_template_kwargs (used to disable Qwen thinking mode).
+const WLLAMA_VERSION = '3.6.0';
 // esm.sh currently returns 404 for this package's bare entry URL. Keep two
 // browser-safe ESM origins so a transient CDN issue does not block setup.
 const WLLAMA_MODULE_URLS = [
@@ -166,7 +167,10 @@ export class BrowserLocalCanopyLite {
     const stream = await this.runtime.createChatCompletion({
       messages,
       stream: true,
-      max_tokens: options.max_tokens ?? 256,
+      // Qwen3.5 is a thinking model: with thinking enabled it can exhaust the
+      // token budget on <think> reasoning and return empty content.
+      chat_template_kwargs: { enable_thinking: false },
+      max_tokens: options.max_tokens ?? 512,
       temperature: options.temperature ?? 0.7,
       top_p: options.top_p ?? 0.9
     });
