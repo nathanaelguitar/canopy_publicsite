@@ -2357,6 +2357,13 @@ html:has(.founding-mobile-funnel) {
   }
 }
 
+@media (min-width: 851px) {
+  .founding-tree-lockup,
+  .android-hero-lockup {
+    right: -200px;
+  }
+}
+
 @media (max-width: 620px) {
   html:has(.founding-mobile-funnel) {
     scroll-padding-top: calc(56px + env(safe-area-inset-top, 0px));
