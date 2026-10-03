@@ -133,8 +133,12 @@ const listen = (srv) => new Promise((r) => srv.listen(0, '127.0.0.1', () => r(sr
   assert.match(done, /CanopyChat for Mac\s+Coming soon/i);
   // Mac has no store listing yet: no link or button next to it.
   assert.strictEqual(await page.locator('[data-view="done"] li:has-text("CanopyChat for Mac") a').count(), 0);
-  assert.strictEqual(await page.locator('[data-view="done"] .link-apps li:has-text("iPhone") a[href*="apps.apple.com"]').count(), 1);
-  assert.strictEqual(await page.locator('#choice-terminal ~ p a[href="/android-beta"]').count(), 1);
+  // iPhone is the terminal path's companion; nothing but Mac on the app path.
+  assert.strictEqual(await page.locator('#choice-terminal ~ p a[href*="apps.apple.com"]').count(), 1);
+  assert.match(await page.locator('#choice-terminal ~ p.link-choice-note').innerText(), /Check on your computer from anywhere: get CanopyChat for iPhone and sign in with this account\./);
+  assert.strictEqual(await page.locator('[data-view="done"] a[href="/android-beta"]').count(), 0);
+  assert.strictEqual(await page.locator('.link-choice[aria-labelledby="choice-app"] a').count(), 0, 'app path has no links');
+  assert.ok(!/iPhone/.test(await page.locator('.link-choice[aria-labelledby="choice-app"]').innerText()), 'no iPhone on the app path');
   assert.strictEqual(await page.locator('#choice-terminal ~ ol a[href^="/link"]').count(), 1);
   assert.strictEqual(await page.locator('#choice-app ~ ol, #choice-app ~ p:has-text("canopy sign-in")').count(), 0, 'no terminal steps on the app path');
   await page.screenshot({ path: path.join(SHOTS, '05-signup-done.png'), fullPage: true });
