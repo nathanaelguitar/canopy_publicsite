@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' https://founding-api.canopychat.app https://founding-api-staging.canopychat.app; img-src 'self' data:; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="theme-color" content="#0c2b1d">
+  <title>Create your account | CanopyChat</title>
+  <meta name="description" content="Create a CanopyChat account with just your email. No password.">
+  <link rel="icon" type="image/png" href="assets/app-icon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/styles.css?v=link-2">
+</head>
+<body class="link-page founding-mobile-funnel">
+  <header class="founding-topbar">
+    <a class="founding-brand" href="/" aria-label="CanopyChat home">
+      <img src="assets/app-icon.png" alt="" width="38" height="38">
+      <span>CanopyChat</span>
+    </a>
+    <span class="founding-topbar-note">Account</span>
+  </header>
+
+  <main>
+    <section class="founding-screen link-screen" aria-labelledby="link-title">
+      <div class="founding-screen-inner">
+        <h1 id="link-title" tabindex="-1" data-title>Create your account.</h1>
+        <p class="link-lead" data-link-lead>Just your email. No password: we send you a 6-digit code. Already have an account? Enter your email the same way to sign in.</p>
+
+        <p class="link-nojs" data-link-nojs>This page needs JavaScript to create your account. Turn it on for canopychat.app, or email <a href="mailto:support@canopychat.app">support@canopychat.app</a> and we will help.</p>
+
+        <div data-link-app hidden>
+          <p class="link-notice" data-link-notice role="status" aria-live="polite" hidden></p>
+
+          <div data-signin>
+            <section class="link-panel" data-view="email" aria-labelledby="link-email-title">
+              <h2 id="link-email-title">Your email</h2>
+              <form class="link-form" data-email-form novalidate>
+                <label class="link-label" for="link-email">Email</label>
+                <div class="link-row">
+                  <input id="link-email" name="email" type="email" autocomplete="email" autocapitalize="off" spellcheck="false" inputmode="email" placeholder="you@example.com" aria-describedby="link-email-hint link-email-error" required>
+                  <button class="founding-cta link-submit" type="submit">Email me a code</button>
+                </div>
+                <p class="link-hint" id="link-email-hint">We only use it to sign you in.</p>
+                <p class="link-error" id="link-email-error" data-error role="alert"></p>
+              </form>
+            </section>
+
+            <section class="link-panel" data-view="code" aria-labelledby="link-code-title" hidden>
+              <h2 id="link-code-title">Enter your code</h2>
+              <form class="link-form" data-code-form novalidate>
+                <label class="link-label" for="link-code">6-digit code</label>
+                <div class="link-row">
+                  <input id="link-code" name="code" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code" autocapitalize="off" spellcheck="false" placeholder="123456" aria-describedby="link-code-hint link-code-error" required>
+                  <button class="founding-cta link-submit" type="submit">Continue</button>
+                </div>
+                <p class="link-hint" id="link-code-hint">We sent it to <strong data-sent-to></strong>. It can take a minute.</p>
+                <p class="link-error" id="link-code-error" data-error role="alert"></p>
+                <p class="link-links"><button class="link-linkbutton" type="button" data-back-to-email>Use a different email</button></p>
+              </form>
+            </section>
+          </div>
+
+          <section class="link-panel" data-view="done" aria-labelledby="link-done-title" hidden>
+            <h2 id="link-done-title" tabindex="-1">You are in. Pick how you will use it.</h2>
+            <div class="link-choices">
+              <article class="link-choice" aria-labelledby="choice-terminal">
+                <h3 id="choice-terminal">I&#8217;ll use the terminal</h3>
+                <p>Canopy Code runs in your terminal.</p>
+                <ol class="link-next">
+                  <li><strong>Install Canopy Code.</strong> <span>Coming soon. We will put the install command here when it is ready.</span></li>
+                  <li><strong>Run <code>canopy sign-in</code>.</strong> <span>It shows a code like WXYZ-1234.</span></li>
+                  <li><strong>Enter the code.</strong> <span><a href="/link">Go to the link page</a> and type it in.</span></li>
+                </ol>
+                <p class="link-choice-note">Check on your computer from anywhere: get <a href="https://apps.apple.com/us/app/canopychat/id6788203137" target="_blank" rel="noopener">CanopyChat for iPhone</a> and sign in with this account.</p>
+              </article>
+              <article class="link-choice" aria-labelledby="choice-app">
+                <h3 id="choice-app">I&#8217;d rather have an app</h3>
+                <p>Sign in with the same account inside the app. No terminal needed.</p>
+                <ul class="link-apps">
+                  <li><strong>CanopyChat for Mac</strong> <span class="link-soon">Coming soon</span></li>
+                </ul>
+              </article>
+            </div>
+            <p class="link-links"><a href="/account" data-account-link>Go to your account</a></p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="founding-footer">
+    <span>Copyright 2026 CanopyChat</span>
+    <span><a href="/privacy">Privacy</a> <a href="/terms">Terms</a> <a href="/support">Support</a></span>
+  </footer>
+
+  <script src="assets/canopy-account.js?v=1" defer></script>
+  <script src="assets/signup.js?v=1" defer></script>
+</body>
+</html>
