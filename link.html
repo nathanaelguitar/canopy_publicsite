@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' https://founding-api.canopychat.app https://founding-api-staging.canopychat.app; img-src 'self' data:; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="theme-color" content="#0c2b1d">
+  <meta name="robots" content="noindex">
+  <title>Link your computer | CanopyChat</title>
+  <meta name="description" content="Sign in to CanopyChat and approve the computer you just started Canopy Code on.">
+  <link rel="icon" type="image/png" href="assets/app-icon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/styles.css?v=link-1">
+</head>
+<body class="link-page founding-mobile-funnel">
+  <header class="founding-topbar">
+    <a class="founding-brand" href="/" aria-label="CanopyChat home">
+      <img src="assets/app-icon.png" alt="" width="38" height="38">
+      <span>CanopyChat</span>
+    </a>
+    <span class="founding-topbar-note">Account</span>
+  </header>
+
+  <main>
+    <section class="founding-screen link-screen" aria-labelledby="link-title">
+      <div class="founding-screen-inner">
+        <h1 id="link-title" tabindex="-1">Link your computer.</h1>
+        <p class="link-lead" data-link-lead>Sign in, then approve the code your computer is showing.</p>
+
+        <p class="link-nojs" data-link-nojs>This page needs JavaScript to sign you in. Turn it on for canopychat.app, or email <a href="mailto:support@canopychat.app">support@canopychat.app</a> and we will help.</p>
+
+        <div data-link-app hidden>
+          <p class="link-notice" data-link-notice role="status" aria-live="polite" hidden></p>
+
+          <!-- Signed out: step 1, email -->
+          <section class="link-panel" data-view="email" aria-labelledby="link-email-title" hidden>
+            <h2 id="link-email-title">1. Sign in</h2>
+            <form class="link-form" data-email-form novalidate>
+              <label class="link-label" for="link-email">Email</label>
+              <div class="link-row">
+                <input id="link-email" name="email" type="email" autocomplete="email" autocapitalize="off" spellcheck="false" inputmode="email" placeholder="you@example.com" aria-describedby="link-email-hint link-email-error" required>
+                <button class="founding-cta link-submit" type="submit">Email me a code</button>
+              </div>
+              <p class="link-hint" id="link-email-hint">We email you a 6-digit code. No password.</p>
+              <p class="link-error" id="link-email-error" data-error role="alert"></p>
+            </form>
+          </section>
+
+          <!-- Signed out: step 1, code -->
+          <section class="link-panel" data-view="code" aria-labelledby="link-code-title" hidden>
+            <h2 id="link-code-title">1. Enter your code</h2>
+            <form class="link-form" data-code-form novalidate>
+              <label class="link-label" for="link-code">6-digit code</label>
+              <div class="link-row">
+                <input id="link-code" name="code" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code" autocapitalize="off" spellcheck="false" placeholder="123456" aria-describedby="link-code-hint link-code-error" required>
+                <button class="founding-cta link-submit" type="submit">Sign in</button>
+              </div>
+              <p class="link-hint" id="link-code-hint">We sent it to <strong data-sent-to></strong>. It can take a minute.</p>
+              <p class="link-error" id="link-code-error" data-error role="alert"></p>
+              <p class="link-links"><button class="link-linkbutton" type="button" data-back-to-email>Use a different email</button></p>
+            </form>
+          </section>
+
+          <!-- Signed in -->
+          <div data-view="account" hidden>
+            <p class="link-whoami">Signed in as <strong data-account-email></strong>. <button class="link-linkbutton" type="button" data-sign-out>Sign out</button></p>
+
+            <section class="link-panel" aria-labelledby="link-approve-title">
+              <h2 id="link-approve-title">2. Approve your computer</h2>
+              <form class="link-form" data-approve-form novalidate>
+                <label class="link-label" for="link-user-code">Code on your computer</label>
+                <input class="link-code-input" id="link-user-code" name="user_code" type="text" maxlength="9" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="WXYZ-1234" aria-describedby="link-user-code-hint link-approve-error" required>
+                <p class="link-hint" id="link-user-code-hint">Run <code>canopy sign-in</code> on your computer to get a code like WXYZ-1234.</p>
+                <p class="link-error" id="link-approve-error" data-error role="alert"></p>
+
+                <label class="link-label link-label-optional" for="link-device-name">Name this computer <span>(optional)</span></label>
+                <input id="link-device-name" name="device_name" type="text" maxlength="60" autocomplete="off" placeholder="Work laptop">
+
+                <button class="founding-cta link-submit link-submit-wide" type="submit">Approve this computer</button>
+              </form>
+
+              <div class="link-success" data-approve-success tabindex="-1" hidden>
+                <h3>Your computer is signed in.</h3>
+                <p>You can close this tab.</p>
+                <p><button class="link-linkbutton" type="button" data-approve-another>Link another computer</button></p>
+              </div>
+            </section>
+
+            <section class="link-panel" aria-labelledby="link-devices-title">
+              <h2 id="link-devices-title">Your devices</h2>
+              <p class="link-hint link-fingerprint-note">The first time your computer and your phone connect, both show the same 6 digits. If they match, it is really your phone.</p>
+              <p class="link-error" data-devices-error role="alert"></p>
+              <p class="link-hint" data-devices-status role="status" aria-live="polite">Loading your devices&hellip;</p>
+              <ul class="link-devices" data-devices aria-labelledby="link-devices-title"></ul>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="link-howto" id="how-it-works" aria-labelledby="howto-title">
+      <div class="founding-screen-inner">
+        <h2 id="howto-title">Set up your computer in three steps.</h2>
+        <ol class="link-steps">
+          <li><strong>Install canopy.</strong><span>Put the canopy app on the computer you want to control from your phone.</span></li>
+          <li><strong>Run <code>canopy sign-in</code>.</strong><span>It shows a short code like WXYZ-1234 and opens this page. Sign in above and approve the code.</span></li>
+          <li><strong>Open CanopyChat on your phone.</strong><span>Sign in with the same email, pick your computer, and check that the 6 digits match on both screens.</span></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="founding-footer">
+    <span>Copyright 2026 CanopyChat</span>
+    <span><a href="/privacy">Privacy</a> <a href="/terms">Terms</a> <a href="/support">Support</a></span>
+  </footer>
+
+  <script src="assets/link.js?v=1" defer></script>
+</body>
+</html>
