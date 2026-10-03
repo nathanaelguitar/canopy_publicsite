@@ -11,7 +11,7 @@
   <meta name="description" content="Your CanopyChat account and the devices signed in to it.">
   <link rel="icon" type="image/png" href="assets/app-icon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/styles.css?v=link-2">
+  <link rel="stylesheet" href="assets/styles.css?v=link-3">
 </head>
 <body class="link-page founding-mobile-funnel">
   <header class="founding-topbar">
@@ -35,6 +35,17 @@
           <p class="link-whoami">Signed in as <strong data-account-email></strong>. <button class="link-linkbutton" type="button" data-sign-out>Sign out</button></p>
           <p class="link-links">Setting up a computer? <a href="/link">Enter its code</a>.</p>
 
+          <section class="link-panel" aria-labelledby="link-billing-title" data-billing>
+            <h2 id="link-billing-title">Remote control</h2>
+            <p class="link-hint" data-billing-status role="status" aria-live="polite">Loading your plan&hellip;</p>
+            <p class="link-notice" data-billing-notice role="status" aria-live="polite" hidden></p>
+            <p class="link-billing-warning" data-billing-warning role="alert" hidden></p>
+            <p class="link-hint" data-billing-detail hidden></p>
+            <p class="link-error" data-billing-error role="alert"></p>
+            <button class="founding-cta link-submit link-submit-wide" type="button" data-billing-trial hidden>Start 7-day free trial ($5/month after)</button>
+            <button class="founding-cta link-submit link-submit-wide" type="button" data-billing-manage hidden>Manage billing</button>
+          </section>
+
           <section class="link-panel" aria-labelledby="link-devices-title">
             <h2 id="link-devices-title">Your devices</h2>
             <p class="link-hint link-fingerprint-note">The first time your computer and your phone connect, both show the same 6 digits. If they match, it is really your phone.</p>
@@ -52,7 +63,7 @@
     <span><a href="/privacy">Privacy</a> <a href="/terms">Terms</a> <a href="/support">Support</a></span>
   </footer>
 
-  <script src="assets/canopy-account.js?v=1" defer></script>
-  <script src="assets/account.js?v=1" defer></script>
+  <script src="assets/canopy-account.js?v=2" defer></script>
+  <script src="assets/account.js?v=2" defer></script>
 </body>
 </html>

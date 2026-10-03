@@ -7,6 +7,12 @@
  * Test hooks:  POST /__test/expire-access   invalidates every access token
  *              POST /__test/reset           clears all state
  *
+ *              POST /__test/session       {email} -> tokens for a signed-in browser
+ *              POST /__test/billing       {email, entitlements, subscription} sets /v1/me billing
+ *
+ * Billing (contract: billing-contract.md): GET /v1/me, POST /v1/billing/checkout
+ * (409 already_subscribed, 400 bad_return_origin) and /v1/billing/portal.
+ *
  * Magic values:
  *   email  ratelimit@example.com        -> 429 rate_limited on /email/start
  *   code   000000                       -> 401 invalid_code on /email/verify
@@ -28,6 +34,9 @@ function createMock() {
       devices: {}, // id -> device
       userCodes: {}, // user_code -> { device_code, approved, device_name, email, lastPoll }
       deviceCodes: {}, // device_code -> user_code
+      billing: {}, // email -> { entitlements, subscription }
+      publicSiteUrl: null, // when set, checkout return_origin must equal it
+      billingCalls: [],
       seq: 0,
       log: [],
     };
@@ -98,6 +107,17 @@ function createMock() {
       return send(res, 200, addDevice(body.email, body));
     }
 
+    if (method === 'POST' && path === '/__test/session') {
+      const acct = state.accounts[body.email] || (state.accounts[body.email] = { id: id('acct'), email: body.email });
+      const dev = addDevice(body.email, { name: 'Chrome on Mac', platform: 'web', kind: 'browser' });
+      return send(res, 200, Object.assign(mintTokens(body.email, dev.id), { account: { id: acct.id, email: acct.email } }));
+    }
+    if (method === 'POST' && path === '/__test/billing') {
+      state.billing[body.email] = { entitlements: body.entitlements || [], subscription: body.subscription || null };
+      if (body.publicSiteUrl !== undefined) state.publicSiteUrl = body.publicSiteUrl;
+      return send(res, 204);
+    }
+
     // ---- website sign-in
     if (method === 'POST' && path === '/v1/auth/email/start') {
       if (body.email === 'ratelimit@example.com') return err(res, 429, 'rate_limited', 'Too many codes.');
@@ -164,6 +184,32 @@ function createMock() {
       rec.approved = true; rec.email = a.email; rec.device_name = body.device_name || rec.device_name || 'Computer';
       state.lastApprove = body;
       return send(res, 204);
+    }
+
+    // ---- billing
+    if (method === 'GET' && path === '/v1/me') {
+      const a = authed(req, res); if (!a) return;
+      const b = state.billing[a.email];
+      const me = { account: { id: (state.accounts[a.email] || {}).id, email: a.email } };
+      if (b) { me.entitlements = b.entitlements; me.subscription = b.subscription; } // absent = old backend
+      return send(res, 200, me);
+    }
+    if (method === 'POST' && path === '/v1/billing/checkout') {
+      const a = authed(req, res); if (!a) return;
+      state.billingCalls.push({ path, body });
+      if (body.product === 'inference') return err(res, 409, 'product_unavailable');
+      if (body.product !== 'remote_control') return err(res, 400, 'invalid_product');
+      if (state.publicSiteUrl && body.return_origin !== state.publicSiteUrl) return err(res, 400, 'bad_return_origin');
+      const b = state.billing[a.email];
+      if (b && b.subscription && ['trialing', 'active'].includes(b.subscription.status)) return err(res, 409, 'already_subscribed');
+      return send(res, 200, { url: 'https://checkout.stripe.test/c/cs_test_1' });
+    }
+    if (method === 'POST' && path === '/v1/billing/portal') {
+      const a = authed(req, res); if (!a) return;
+      state.billingCalls.push({ path, body });
+      const b = state.billing[a.email];
+      if (!b || !b.subscription) return err(res, 404, 'no_customer');
+      return send(res, 200, { url: 'https://billing.stripe.test/p/session_1' });
     }
 
     // ---- devices
