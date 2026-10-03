@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' https://founding-api.canopychat.app https://founding-api-staging.canopychat.app; img-src 'self' data:; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="theme-color" content="#0c2b1d">
+  <meta name="robots" content="noindex">
+  <title>Your account | CanopyChat</title>
+  <meta name="description" content="Your CanopyChat account and the devices signed in to it.">
+  <link rel="icon" type="image/png" href="assets/app-icon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/styles.css?v=link-2">
+</head>
+<body class="link-page founding-mobile-funnel">
+  <header class="founding-topbar">
+    <a class="founding-brand" href="/" aria-label="CanopyChat home">
+      <img src="assets/app-icon.png" alt="" width="38" height="38">
+      <span>CanopyChat</span>
+    </a>
+    <span class="founding-topbar-note">Account</span>
+  </header>
+
+  <main>
+    <section class="founding-screen link-screen" aria-labelledby="link-title">
+      <div class="founding-screen-inner">
+        <h1 id="link-title" tabindex="-1">Your account.</h1>
+
+        <p class="link-nojs" data-link-nojs>This page needs JavaScript to show your account. Turn it on for canopychat.app, or email <a href="mailto:support@canopychat.app">support@canopychat.app</a> and we will help.</p>
+
+        <div data-link-app hidden>
+          <p class="link-notice" data-link-notice role="status" aria-live="polite" hidden></p>
+
+          <p class="link-whoami">Signed in as <strong data-account-email></strong>. <button class="link-linkbutton" type="button" data-sign-out>Sign out</button></p>
+          <p class="link-links">Setting up a computer? <a href="/link">Enter its code</a>.</p>
+
+          <section class="link-panel" aria-labelledby="link-devices-title">
+            <h2 id="link-devices-title">Your devices</h2>
+            <p class="link-hint link-fingerprint-note">The first time your computer and your phone connect, both show the same 6 digits. If they match, it is really your phone.</p>
+            <p class="link-error" data-devices-error role="alert"></p>
+            <p class="link-hint" data-devices-status role="status" aria-live="polite">Loading your devices&hellip;</p>
+            <ul class="link-devices" data-devices aria-labelledby="link-devices-title"></ul>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="founding-footer">
+    <span>Copyright 2026 CanopyChat</span>
+    <span><a href="/privacy">Privacy</a> <a href="/terms">Terms</a> <a href="/support">Support</a></span>
+  </footer>
+
+  <script src="assets/canopy-account.js?v=1" defer></script>
+  <script src="assets/account.js?v=1" defer></script>
+</body>
+</html>
