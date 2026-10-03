@@ -211,6 +211,8 @@
       if (err.status === 404 || err.status === 400 || err.code === 'unknown_code' || err.code === 'not_found' || err.code === 'invalid_code') {
         return 'We do not know that code. Check it against your computer, or run canopy sign-in again.';
       }
+    } else if (context === 'billing') {
+      if (err.code === 'already_subscribed' || err.status === 409) return 'You already have a subscription. Use Manage billing to change it.';
     } else if (context === 'remove') {
       if (err.status === 404) return 'That device is already gone. The list has been refreshed.';
     }
@@ -413,6 +415,122 @@
     return { load: load };
   }
 
+  /* ---------- billing: the Remote control card on /account ---------- */
+
+  function formatDate(iso) {
+    var t = Date.parse(iso);
+    if (!t) return '';
+    try {
+      return new Date(t).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    } catch (e) {
+      return new Date(t).toDateString();
+    }
+  }
+
+  // Which state the card is in, from GET /v1/me. Tolerates old backends that
+  // send neither field (treated as "none").
+  function billingState(me) {
+    var ents = (me && me.entitlements) || [];
+    var sub = (me && me.subscription) || null;
+    var has = ents.indexOf('remote_control') !== -1;
+    if (sub && (sub.status === 'trialing' || sub.status === 'active')) return 'subscribed';
+    if (sub && sub.status === 'past_due') return 'past_due';
+    if (has && !sub) return 'included';
+    if (has) return 'subscribed';
+    return 'none';
+  }
+
+  function bindBilling(root, onSessionLost) {
+    var status = $('[data-billing-status]', root);
+    var detail = $('[data-billing-detail]', root);
+    var warning = $('[data-billing-warning]', root);
+    var errBox = $('[data-billing-error]', root);
+    var trialBtn = $('[data-billing-trial]', root);
+    var manageBtn = $('[data-billing-manage]', root);
+
+    function render(me) {
+      var state = billingState(me);
+      var sub = (me && me.subscription) || null;
+      var detailText = '';
+      var statusText = '';
+      var warn = '';
+      if (state === 'included') {
+        statusText = 'Included with your account';
+      } else if (state === 'subscribed' || state === 'past_due') {
+        var trialing = sub && sub.status === 'trialing';
+        statusText = trialing ? 'Free trial' : (state === 'past_due' ? 'Payment past due' : 'Active');
+        if (sub && sub.cancel_at_period_end) {
+          var endOn = formatDate(sub.current_period_end);
+          detailText = endOn ? 'Ends on ' + endOn + '. It will not renew.' : 'It will not renew.';
+        } else if (trialing) {
+          var tEnd = formatDate(sub.trial_end || sub.current_period_end);
+          detailText = tEnd ? 'Your trial ends on ' + tEnd + ', then $5/month.' : 'Then $5/month.';
+        } else if (sub) {
+          var renew = formatDate(sub.current_period_end);
+          if (renew) detailText = 'Renews on ' + renew + ' ($5/month).';
+        }
+        if (state === 'past_due') {
+          warn = 'We could not charge your card. Update your payment method to keep remote control working.';
+        }
+      } else {
+        statusText = 'Control your computer from your phone. 7-day free trial, then $5/month.';
+      }
+      status.textContent = statusText;
+      status.className = state === 'none' ? 'link-hint' : 'link-billing-state';
+      status.setAttribute('data-billing-state', state);
+      show(status, true);
+      detail.textContent = detailText;
+      show(detail, Boolean(detailText));
+      warning.textContent = warn;
+      show(warning, Boolean(warn));
+      show(trialBtn, state === 'none');
+      show(manageBtn, state === 'subscribed' || state === 'past_due');
+    }
+
+    function load() {
+      errBox.textContent = '';
+      return authed('GET', '/v1/me').then(function (me) {
+        render(me || {});
+        return me || {};
+      }, function (err) {
+        if (isAuthLost(err)) { onSessionLost(); return null; }
+        show(trialBtn, false);
+        show(manageBtn, false);
+        status.textContent = '';
+        errBox.textContent = 'We could not load your plan. ' + messageFor(err, 'billing');
+        return null;
+      });
+    }
+
+    function redirectTo(path, body, btn) {
+      errBox.textContent = '';
+      btn.disabled = true;
+      btn.classList.add('is-loading');
+      authed('POST', path, body).then(function (res) {
+        if (res && typeof res.url === 'string' && /^https:\/\//.test(res.url)) {
+          window.location.assign(res.url);
+          return;
+        }
+        throw new ApiError(500, 'bad_response', '');
+      }).catch(function (err) {
+        if (isAuthLost(err)) return onSessionLost();
+        btn.disabled = false;
+        btn.classList.remove('is-loading');
+        errBox.textContent = messageFor(err, 'billing');
+        if (err.status === 409) load();
+      });
+    }
+
+    trialBtn.addEventListener('click', function () {
+      redirectTo('/v1/billing/checkout', { product: 'remote_control', return_origin: window.location.origin }, trialBtn);
+    });
+    manageBtn.addEventListener('click', function () {
+      redirectTo('/v1/billing/portal', {}, manageBtn);
+    });
+
+    return { load: load, billingState: billingState };
+  }
+
   /* ---------- nav: "Create account" becomes "Account" when signed in ---------- */
 
   function updateNav() {
@@ -431,7 +549,7 @@
     $: $, show: show, el: el, query: query,
     getSession: function () { return session; },
     checkSession: checkSession, signOut: signOut, clearLocal: clearLocal, authed: authed,
-    bindSignIn: bindSignIn, bindDevices: bindDevices,
+    bindSignIn: bindSignIn, bindDevices: bindDevices, bindBilling: bindBilling,
     setError: setError, setBusy: setBusy, setNotice: setNotice,
     messageFor: messageFor, isAuthLost: isAuthLost,
     normalizeUserCode: normalizeUserCode, go: go, carry: carry,
