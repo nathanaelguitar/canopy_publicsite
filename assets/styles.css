@@ -3454,3 +3454,213 @@ html:has(.founding-mobile-funnel) {
 .link-next code {
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
 }
+
+/* ---------- Install Canopy Code ---------- */
+
+.button.install-cta {
+  gap: 10px;
+  min-height: 56px;
+  padding: 0 24px;
+  background: var(--bark);
+  color: var(--cream);
+  font-weight: 700;
+  box-shadow: 0 16px 32px rgba(33, 24, 18, 0.32);
+}
+
+.install-row {
+  margin-top: 30px;
+}
+
+.install-row + .actions {
+  margin-top: 16px;
+}
+
+.button.install-cta:hover,
+.button.install-cta:focus-visible {
+  background: var(--bark-soft);
+}
+
+.install-cta-prompt {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  color: #a9c98c;
+  font-weight: 700;
+}
+
+.install {
+  scroll-margin-top: 24px;
+  padding: 8px 0 56px;
+}
+
+.install-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 28px 40px;
+  align-items: center;
+  padding: 36px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.install:target .install-card {
+  outline: 3px solid var(--moss);
+  outline-offset: 4px;
+}
+
+.install-copy h2 {
+  margin: 6px 0 10px;
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.1;
+}
+
+.install-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.terminal {
+  min-width: 0;
+  border-radius: 18px;
+  background: #15100c;
+  color: #f3e7d2;
+  box-shadow: 0 20px 48px rgba(21, 16, 12, 0.35);
+  overflow: hidden;
+}
+
+.terminal-bar {
+  display: flex;
+  gap: 7px;
+  padding: 12px 16px;
+  background: #241a13;
+}
+
+.terminal-bar span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #5b4636;
+}
+
+.terminal-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px 4px;
+}
+
+.terminal-next {
+  padding-top: 4px;
+  padding-bottom: 16px;
+  opacity: 0.75;
+}
+
+.terminal code {
+  flex: 1;
+  min-width: 0;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 15px;
+  line-height: 1.5;
+  user-select: all;
+}
+
+.terminal .nowrap {
+  white-space: nowrap;
+}
+
+.terminal-prompt {
+  color: #a9c98c;
+  user-select: none;
+}
+
+.copy-button {
+  flex: none;
+  min-height: 36px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--oak-bright);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.copy-button:hover,
+.copy-button:focus-visible {
+  background: var(--oak);
+}
+
+.copy-button.copied {
+  background: var(--moss);
+}
+
+.install-notes {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.install-notes code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.92em;
+}
+
+.install-notes a {
+  color: var(--oak);
+}
+
+@media (max-width: 820px) {
+  .install-card {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+  }
+
+  .install-row {
+    margin-top: 22px;
+  }
+
+  .terminal-line {
+    flex-wrap: wrap;
+  }
+
+  .terminal code {
+    flex-basis: 100%;
+    font-size: 13px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .button.install-cta {
+    background: #e9dcc4;
+    color: var(--bark);
+  }
+
+  .button.install-cta:hover,
+  .button.install-cta:focus-visible {
+    background: var(--cream);
+  }
+
+  .install-cta-prompt {
+    color: #43663f;
+  }
+
+  .install-card {
+    background: rgba(255, 244, 223, 0.06);
+    border-color: rgba(255, 244, 223, 0.14);
+  }
+
+  .install-copy p,
+  .install-notes {
+    color: rgba(255, 244, 223, 0.72);
+  }
+
+  .install-notes a {
+    color: #d9a66b;
+  }
+}
