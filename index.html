@@ -35,6 +35,12 @@
         <div class="eyebrow">Eco-Friendly Intelligence</div>
         <h1>Private intelligence that lives closer to you.</h1>
         <p class="lead">CanopyChat answers right on your iPhone or Android phone and keeps your chats, photos, files, and location in your hands.</p>
+        <div class="install-row">
+            <a class="button install-cta" href="#install" aria-label="Install Canopy Code, the terminal coding agent">
+              <span class="install-cta-prompt" aria-hidden="true">&gt;_</span>
+              <span>Install Canopy Code</span>
+            </a>
+        </div>
         <div class="actions">
           <a class="appstore-badge" href="https://apps.apple.com/us/app/canopychat/id6788203137" target="_blank" rel="noopener" aria-label="Download CanopyChat on iPhone from the App Store">
             <svg viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
@@ -80,6 +86,32 @@
             <span class="send-dot" aria-hidden="true">&#8593;</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="shell install" id="install" aria-labelledby="install-title">
+      <div class="install-card">
+        <div class="install-copy">
+          <div class="eyebrow">Canopy Code</div>
+          <h2 id="install-title">Install Canopy Code</h2>
+          <p>The terminal coding agent behind CanopyChat. Free to use with ChatGPT, Claude or your own models, and you can drive it from your phone with remote control.</p>
+        </div>
+        <div class="terminal" role="group" aria-label="Install command">
+          <div class="terminal-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="terminal-line">
+            <code id="brew-command"><span class="terminal-prompt" aria-hidden="true">$ </span>brew install <span class="nowrap">nathanaelguitar/canopy/canopy-code</span></code>
+            <button class="copy-button" type="button" data-copy-target="brew-command" aria-label="Copy the install command">Copy</button>
+          </div>
+          <div class="terminal-line terminal-next">
+            <code><span class="terminal-prompt" aria-hidden="true">$ </span>canopy</code>
+          </div>
+        </div>
+        <ul class="install-notes">
+          <li>Paste it into Terminal on an Apple silicon Mac. Linux and Windows are coming soon.</li>
+          <li>Need Homebrew first? Get it at <a href="https://brew.sh" target="_blank" rel="noopener">brew.sh</a>.</li>
+          <li>Using Claude? Install Claude Code too (<code>brew install --cask claude-code</code>), then choose <strong>Sign in with Anthropic</strong> in <code>/auth</code>.</li>
+          <li>Want remote control from your phone? <a href="/signup">Create a Canopy account</a>, then <a href="/link">link your computer</a>.</li>
+        </ul>
       </div>
     </section>
 
@@ -182,6 +214,7 @@
       </span>
     </div>
   </footer>
+  <script src="assets/install.js?v=1" defer></script>
   <script src="assets/canopy-account.js?v=1" defer></script>
   <script src="assets/meta-pixel.js?v=1" defer></script>
 </body>
