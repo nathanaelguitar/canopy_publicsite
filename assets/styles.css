@@ -3707,15 +3707,15 @@ html:has(.founding-mobile-funnel) {
   margin-top: 22px;
 }
 
-/* Icon-only Canopy Code pill in the Join Beta row: main's dark install pill, just the prompt. */
-.button.install-cta-icon {
-  min-height: 52px;
-  padding: 0 20px;
+/* Canopy Code pill at the end of the Join Beta row: main's dark install pill, shorter label,
+   at the row's height. The row may wrap so it drops to its own line on narrow phones. */
+.download + .actions .actions-row {
+  flex-wrap: wrap;
 }
 
-.install-cta-icon .install-cta-prompt {
-  font-size: 18px;
-  letter-spacing: 0.02em;
+.button.install-cta-compact {
+  min-height: 52px;
+  padding: 0 22px;
 }
 
 .hero-footnotes {
@@ -3761,9 +3761,9 @@ html:has(.founding-mobile-funnel) {
     margin-top: 18px;
   }
 
-  .button.install-cta-icon {
+  .button.install-cta-compact {
     min-height: 46px;
-    padding: 0 16px;
+    padding: 0 18px;
   }
 
   .hero-footnotes {
