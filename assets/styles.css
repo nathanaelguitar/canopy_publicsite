@@ -3666,119 +3666,41 @@ html:has(.founding-mobile-funnel) {
 }
 
 /* ---------- Download CanopyChat (hero) ---------- */
-/* One pill for the visitor's platform: its device glyph and the word "Download", nothing else
-   (assets/download.js picks it). Beside it, past a hairline, the other platforms as bare, quiet
-   device glyphs from the same line family. Windows keeps Microsoft blue; the rest use bark. */
+/* A serif "Download" heading over equal platform pills. The pills are the hero's existing
+   .appstore-badge (oak pill, glyph, platform name) with the kicker words removed; .dl-pill
+   only makes them equal width in a 2 x 2 grid. assets/download.js holds the URLs. */
 
 .download {
-  --dl-height: 56px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px 18px;
   margin-top: 30px;
 }
 
-.download [hidden] {
+.download-title {
+  margin: 0 0 14px;
+  font-family: var(--serif);
+  font-size: clamp(30px, 3.6vw, 44px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.download-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 200px));
+  gap: 14px;
+}
+
+.download-grid [hidden] {
   display: none !important;
 }
 
-.dl-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  min-height: var(--dl-height);
-  padding: 0 28px 0 22px;
-  border-radius: 999px;
-  background: var(--bark);
-  color: var(--cream);
-  box-shadow: 0 16px 32px rgba(33, 24, 18, 0.26);
-  text-decoration: none;
-  transition: background-color 0.18s ease, transform 0.18s ease;
-}
-
-.dl-btn:hover {
-  transform: translateY(-1px);
-}
-
-.dl-btn:hover,
-.dl-btn:focus-visible {
-  background: var(--bark-soft);
-  color: var(--cream);
-}
-
-.dl-btn:focus-visible,
-.dl-others a:focus-visible {
-  outline: 3px solid var(--oak-bright);
-  outline-offset: 3px;
-}
-
-.dl-glyph {
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
-}
-
-.dl-word {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-
-.dl-generic {
-  background: var(--oak);
-  box-shadow: 0 16px 32px rgba(122, 74, 35, 0.24);
-}
-
-.dl-generic:hover,
-.dl-generic:focus-visible {
-  background: var(--oak-bright);
-}
-
-.dl-windows {
-  background: #0067b8;
-  color: #fff;
-  box-shadow: 0 16px 32px rgba(38, 24, 12, 0.2);
-}
-
-.dl-windows:hover,
-.dl-windows:focus-visible {
-  background: #005a9e;
-  color: #fff;
-}
-
-.dl-divider {
-  width: 1px;
-  height: 28px;
-  background: var(--line);
-}
-
-.dl-others {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-}
-
-.dl-others a {
-  display: inline-flex;
-  align-items: center;
+.dl-pill {
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  color: var(--muted);
-  transition: color 0.18s ease, background-color 0.18s ease;
+  padding-left: 18px;
+  padding-right: 22px;
 }
 
-.dl-others a:hover,
-.dl-others a:focus-visible {
-  background: rgba(122, 74, 35, 0.09);
-  color: var(--oak);
-}
-
-.dl-icon {
-  width: 28px;
-  height: 28px;
+.dl-pill .appstore-badge-line {
+  font-size: 18px;
 }
 
 .download + .actions {
@@ -3808,16 +3730,19 @@ html:has(.founding-mobile-funnel) {
 
 @media (max-width: 820px) {
   .download {
-    --dl-height: 52px;
-    gap: 12px 14px;
-    margin-top: 22px;
+    margin-top: 24px;
   }
 
-  .dl-btn {
-    padding: 0 24px 0 20px;
+  .download-title {
+    margin-bottom: 12px;
   }
 
-  .dl-word {
+  .download-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .dl-pill .appstore-badge-line {
     font-size: 17px;
   }
 
@@ -3837,58 +3762,6 @@ html:has(.founding-mobile-funnel) {
 }
 
 @media (prefers-color-scheme: dark) {
-  .dl-btn {
-    background: #e9dcc4;
-    color: var(--bark);
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
-  }
-
-  .dl-btn:hover,
-  .dl-btn:focus-visible {
-    background: var(--cream);
-    color: var(--bark);
-  }
-
-  .dl-generic {
-    background: #a36a35;
-    color: #fff4df;
-  }
-
-  .dl-generic:hover,
-  .dl-generic:focus-visible {
-    background: #bd8044;
-    color: #fff4df;
-  }
-
-  .dl-windows,
-  .dl-windows:hover,
-  .dl-windows:focus-visible {
-    color: #fff;
-  }
-
-  .dl-windows {
-    background: #0067b8;
-  }
-
-  .dl-windows:hover,
-  .dl-windows:focus-visible {
-    background: #1a78c2;
-  }
-
-  .dl-divider {
-    background: rgba(255, 244, 223, 0.16);
-  }
-
-  .dl-others a {
-    color: rgba(255, 244, 223, 0.66);
-  }
-
-  .dl-others a:hover,
-  .dl-others a:focus-visible {
-    background: rgba(255, 244, 223, 0.08);
-    color: var(--cream);
-  }
-
   .hero-footnotes {
     color: rgba(255, 244, 223, 0.72);
   }
@@ -3898,13 +3771,3 @@ html:has(.founding-mobile-funnel) {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .dl-btn,
-  .dl-others a {
-    transition: none;
-  }
-
-  .dl-btn:hover {
-    transform: none;
-  }
-}

@@ -40,16 +40,11 @@ const DEVICES = {
   chromeos: { platform: 'Linux x86_64', ua: 'Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36' }
 };
 
-const WIN = 'https://downloads.canopychat.app/windows/CanopyChat-Setup.exe';
-const APP_STORE = 'https://apps.apple.com/us/app/canopychat/id6788203137';
-const EXPECT = {
-  windows: { dl: 'windows', href: WIN, label: 'Download CanopyChat for Windows', download: 'CanopyChat-Setup.exe' },
-  mac: { dl: 'mac', href: 'https://testflight.apple.com/join/f5xCZmVv', label: 'Download CanopyChat for Mac (TestFlight beta)' },
-  ipad: { dl: 'ios', href: APP_STORE, label: 'Download CanopyChat on the App Store' },
-  iphone: { dl: 'ios', href: APP_STORE, label: 'Download CanopyChat on the App Store' },
-  android: { dl: 'android', href: 'https://play.google.com/store/apps/details?id=com.nathanaelguitar.canopychat', label: 'Get CanopyChat on Google Play' },
-  linux: { dl: 'other', hrefEndsWith: '#downloads', label: 'Download CanopyChat' },
-  chromeos: { dl: 'other', hrefEndsWith: '#downloads', label: 'Download CanopyChat' }
+const HREF = {
+  windows: 'https://downloads.canopychat.app/windows/CanopyChat-Setup.exe',
+  mac: 'https://testflight.apple.com/join/f5xCZmVv',
+  ios: 'https://apps.apple.com/us/app/canopychat/id6788203137',
+  android: 'https://play.google.com/store/apps/details?id=com.nathanaelguitar.canopychat'
 };
 
 (async () => {
@@ -85,36 +80,35 @@ const EXPECT = {
 
   for (const name of Object.keys(DEVICES)) {
     const { ctx, page, errors } = await open(name);
-    const want = EXPECT[name];
     const got = await page.evaluate(() => {
-      const shown = [...document.querySelectorAll('[data-dl]')].filter((e) => !e.hidden && e.offsetParent !== null);
-      const b = shown[0];
-      const ownLink = document.querySelector('.download-others [data-platform-link]:not([hidden])');
+      const pills = [...document.querySelectorAll('.download-grid > a')].filter((e) => !e.hidden && e.offsetParent !== null);
+      const rows = [...new Set(pills.map((p) => Math.round(p.getBoundingClientRect().top)))];
       return {
-        count: shown.length,
-        dl: b && b.getAttribute('data-dl'),
-        href: b.getAttribute('href') === null ? null : b.href,
-        label: b.getAttribute('aria-label'),
-        word: b.querySelector('.dl-word').textContent,
-        // Nothing may render below the button: the icon row has to share its line.
-        below: (() => { const r = b.getBoundingClientRect(); return [...document.querySelectorAll('.download > *')].filter((e) => e !== b && e.offsetParent !== null && e.getBoundingClientRect().top >= r.bottom - 1).length; })(),
-        icons: [...document.querySelectorAll('.dl-others a')].filter((e) => e.offsetParent !== null).map((e) => [e.getAttribute('aria-label'), e.offsetWidth, e.offsetHeight]),
-        download: b.getAttribute('download'),
+        title: document.querySelector('.download-title').textContent.trim(),
+        names: pills.map((p) => p.textContent.trim()),
+        order: pills.map((p) => p.dataset.platform),
+        hrefs: Object.fromEntries(pills.map((p) => [p.dataset.platform, p.href])),
+        labelled: pills.every((p) => p.getAttribute('aria-label') && p.title),
+        sizes: [...new Set(pills.map((p) => p.offsetWidth + 'x' + p.offsetHeight))],
+        looks: [...new Set(pills.map((p) => { const c = getComputedStyle(p); return c.backgroundColor + c.color + c.boxShadow + c.borderRadius; }))],
+        rows: rows.length,
+        below: document.querySelector('.download').nextElementSibling.className,
+        winDownload: document.querySelector('[data-platform="windows"]').getAttribute('download'),
         overflow: document.documentElement.scrollWidth > window.innerWidth
       };
     });
     assert.deepStrictEqual(errors, [], name + ': page errors');
-    assert.strictEqual(got.count, 1, name + ': exactly one download button shown');
-    assert.strictEqual(got.dl, want.dl, name + ': platform button');
-    assert.strictEqual(got.label, want.label, name + ': label');
-    if (want.hrefEndsWith) assert.ok(got.href.endsWith(want.hrefEndsWith), name + ': href ' + got.href);
-    else assert.strictEqual(got.href, want.href, name + ': href');
-    if (want.download) assert.strictEqual(got.download, want.download, name + ': download attribute');
-    assert.strictEqual(got.word, 'Download', name + ': button says Download');
-    assert.strictEqual(got.below, 0, name + ': nothing under the download button');
-    assert.ok(got.icons.length >= 2 && got.icons.every(([l, w, h]) => l && w >= 44 && h >= 44), name + ': labelled 44px icons ' + JSON.stringify(got.icons));
+    assert.strictEqual(got.title, 'Download', name + ': heading');
+    assert.deepStrictEqual(got.names, ['Windows', 'Mac', 'iPhone', 'Android'], name + ': pills are just platform names');
+    for (const k of Object.keys(HREF)) assert.strictEqual(got.hrefs[k], HREF[k], name + ': ' + k + ' link');
+    assert.strictEqual(got.winDownload, 'CanopyChat-Setup.exe', name + ': windows download attribute');
+    assert.ok(got.labelled, name + ': every pill has aria-label and title');
+    assert.strictEqual(got.sizes.length, 1, name + ': equal pill sizes ' + got.sizes);
+    assert.strictEqual(got.looks.length, 1, name + ': identical pill styling');
+    assert.strictEqual(got.rows, 2, name + ': 2 x 2 grid');
+    assert.strictEqual(got.below, 'actions', name + ': nothing between the pills and Join Beta');
     assert.strictEqual(got.overflow, false, name + ': horizontal scroll');
-    console.log('ok  ' + name + ' -> ' + got.label + ' (' + got.href + ')');
+    console.log('ok  ' + name + ' -> ' + got.names.join(', ') + ' (' + got.sizes[0] + ')');
     await ctx.close();
   }
 
