@@ -1,6 +1,7 @@
-// "Download CanopyChat" in the hero. index.html has one button per platform, all hidden except
-// the generic one; this script shows the visitor's platform button instead. Without JavaScript
-// (or on an unknown device) the generic button jumps to the "Other platforms" links.
+// Hero "Download" button. index.html has one button per platform (logo + "Download"), all hidden
+// except the generic one; this script shows the visitor's instead, and hides that platform from
+// the icon row beside it. Without JavaScript, or on an unknown device, the generic button jumps
+// to the icon row.
 (function () {
   'use strict';
 
@@ -8,9 +9,7 @@
   var CONFIG = {
     // Windows installer (stable "latest" URL on R2; the SHA-256 sits next to it as .sha256).
     windowsUrl: 'https://downloads.canopychat.app/windows/CanopyChat-Setup.exe',
-    // Show the "Windows may show a security prompt" note. Set to false once the installer is code-signed.
-    windowsUnsigned: true,
-    // Linux AppImage. null = not released yet: Linux visitors see "coming soon".
+    // Linux AppImage. null = not released yet: Linux visitors get the generic button.
     linuxUrl: null
   };
 
@@ -28,50 +27,33 @@
     return 'other';
   }
 
-  var root = document.querySelector('[data-download]');
-  if (!root) return;
+  var hero = document.querySelector('[data-download]');
+  if (!hero) return;
 
-  // Keep every Windows link on the configured URL.
-  var winLinks = root.querySelectorAll('[data-download-url="windows"]');
-  for (var i = 0; i < winLinks.length; i++) winLinks[i].href = CONFIG.windowsUrl;
+  var i;
+  var winLinks = hero.querySelectorAll('[data-download-url="windows"]');
+  for (i = 0; i < winLinks.length; i++) winLinks[i].href = CONFIG.windowsUrl;
 
-  // Linux: a real download once linuxUrl is set, otherwise a "coming soon" button with no link.
-  var linuxButton = root.querySelector('[data-dl="linux"]');
-  var linuxLink = root.querySelector('[data-platform-link="linux"]');
   if (CONFIG.linuxUrl) {
-    linuxButton.href = CONFIG.linuxUrl;
-    linuxButton.setAttribute('download', 'CanopyChat.AppImage');
-    root.querySelector('[data-linux-kicker]').textContent = 'Download for';
-    linuxButton.setAttribute('data-caption', 'AppImage · runs on most distributions.');
-    linuxButton.setAttribute('aria-label', 'Download CanopyChat for Linux');
-    if (linuxLink) {
-      linuxLink.href = CONFIG.linuxUrl;
-      linuxLink.setAttribute('download', 'CanopyChat.AppImage');
-      linuxLink.hidden = false;
+    var linuxLinks = hero.querySelectorAll('[data-download-url="linux"]');
+    for (i = 0; i < linuxLinks.length; i++) {
+      linuxLinks[i].href = CONFIG.linuxUrl;
+      linuxLinks[i].setAttribute('download', 'CanopyChat.AppImage');
     }
-  } else {
-    linuxButton.setAttribute('aria-disabled', 'true');
-    linuxButton.classList.add('is-soon');
+    hero.querySelector('.dl-others [data-platform-link="linux"]').hidden = false;
   }
 
   var os = detect();
-  var mine = root.querySelector('[data-dl="' + os + '"]');
+  if (os === 'linux' && !CONFIG.linuxUrl) os = 'other';
+  var mine = hero.querySelector('[data-dl="' + os + '"]');
   if (!mine || os === 'other') return;
 
-  root.setAttribute('data-os', os);
-  root.querySelector('[data-dl="other"]').hidden = true;
+  hero.setAttribute('data-os', os);
+  hero.querySelector('[data-dl="other"]').hidden = true;
   mine.hidden = false;
 
-  // The visitor's own platform is already the big button; don't repeat it below.
-  var own = root.querySelector('[data-platform-link="' + os + '"]');
+  // The visitor's platform is already the button; don't repeat its icon. A Mac visitor keeps the
+  // Apple icon, which leads to the iPhone and iPad app.
+  var own = hero.querySelector('.dl-others [data-platform-link="' + os + '"]');
   if (own) own.hidden = true;
-
-  // One quiet line under the button: requirements, plus the SmartScreen tip while unsigned.
-  var caption = root.querySelector('[data-download-caption]');
-  var text = mine.getAttribute('data-caption');
-  if (caption && text) {
-    caption.querySelector('[data-caption-text]').textContent = text;
-    caption.querySelector('[data-download-note]').hidden = !(os === 'windows' && CONFIG.windowsUnsigned);
-    caption.hidden = false;
-  }
 })();

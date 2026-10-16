@@ -135,10 +135,9 @@ Primary actions are pill-shaped for thumb recognition. Amount choices and input 
 
 ### Download Control (homepage hero)
 
-- **Pattern:** One control for the visitor's platform, detected in `assets/download.js`; the rest sit in a quiet "Also for" text row. No-JS and unknown devices get a generic oak pill.
-- **Desktop buttons:** The hero badge grammar: full pill, glyph, 12px uppercase kicker over a bold 18px line, 56px tall (52px on phones). Windows is Microsoft blue (#0067b8) with the four-pane mark; Mac and Linux use the bark pill; the generic one is oak. Platform colour and glyph are the only recognition cues; the type, shape and warm shadow stay the site's.
-- **Phones:** The official App Store and Google Play badges, unmodified, at the same height as the buttons. Never draw imitation store badges.
-- **Caption:** One muted 15px line under the control (requirements, plus the SmartScreen tip while `windowsUnsigned` is on). No boxes or side borders.
+- **Pattern:** One pill for the visitor's platform, detected in `assets/download.js`: the platform logo and the single word "Download". Nothing sits under it: no size, requirements or tips (size lives in the `title`). No-JS and unknown devices get an oak pill with a download arrow that jumps to the icons.
+- **Colour:** Windows is Microsoft blue (#0067b8) with the four-pane mark; Apple, Android and Linux use the bark pill (cream in dark mode). The logo carries recognition; shape, type and warm shadow stay the site's. No store badges, real or imitation.
+- **Other platforms:** Past a 1px hairline on the same row, bare 20px platform icons in muted ink with 44px round hit areas, `aria-label` and `title` on each; the visitor's own platform is left out.
 
 ### Amount Choices
 

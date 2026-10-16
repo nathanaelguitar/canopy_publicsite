@@ -43,12 +43,12 @@ const DEVICES = {
 const WIN = 'https://downloads.canopychat.app/windows/CanopyChat-Setup.exe';
 const APP_STORE = 'https://apps.apple.com/us/app/canopychat/id6788203137';
 const EXPECT = {
-  windows: { dl: 'windows', href: WIN, label: 'Download CanopyChat for Windows', download: 'CanopyChat-Setup.exe', note: true },
+  windows: { dl: 'windows', href: WIN, label: 'Download CanopyChat for Windows', download: 'CanopyChat-Setup.exe' },
   mac: { dl: 'mac', href: 'https://testflight.apple.com/join/f5xCZmVv', label: 'Download CanopyChat for Mac (TestFlight beta)' },
-  ipad: { dl: 'ios', href: APP_STORE, label: 'Download on the App Store' },
-  iphone: { dl: 'ios', href: APP_STORE, label: 'Download on the App Store' },
-  android: { dl: 'android', href: 'https://play.google.com/store/apps/details?id=com.nathanaelguitar.canopychat', label: 'Get it on Google Play' },
-  linux: { dl: 'linux', href: null, label: 'CanopyChat for Linux is coming soon' },
+  ipad: { dl: 'ios', href: APP_STORE, label: 'Download CanopyChat on the App Store' },
+  iphone: { dl: 'ios', href: APP_STORE, label: 'Download CanopyChat on the App Store' },
+  android: { dl: 'android', href: 'https://play.google.com/store/apps/details?id=com.nathanaelguitar.canopychat', label: 'Get CanopyChat on Google Play' },
+  linux: { dl: 'other', hrefEndsWith: '#downloads', label: 'Download CanopyChat' },
   chromeos: { dl: 'other', hrefEndsWith: '#downloads', label: 'Download CanopyChat' }
 };
 
@@ -89,17 +89,17 @@ const EXPECT = {
     const got = await page.evaluate(() => {
       const shown = [...document.querySelectorAll('[data-dl]')].filter((e) => !e.hidden && e.offsetParent !== null);
       const b = shown[0];
-      const img = b && b.querySelector('img');
       const ownLink = document.querySelector('.download-others [data-platform-link]:not([hidden])');
       return {
         count: shown.length,
         dl: b && b.getAttribute('data-dl'),
         href: b.getAttribute('href') === null ? null : b.href,
-        label: img ? img.alt : b.getAttribute('aria-label'),
-        caption: (document.querySelector('[data-download-caption]:not([hidden])') || {}).textContent || '',
+        label: b.getAttribute('aria-label'),
+        word: b.querySelector('.dl-word').textContent,
+        // Nothing may render below the button: the icon row has to share its line.
+        below: (() => { const r = b.getBoundingClientRect(); return [...document.querySelectorAll('.download > *')].filter((e) => e !== b && e.offsetParent !== null && e.getBoundingClientRect().top >= r.bottom - 1).length; })(),
+        icons: [...document.querySelectorAll('.dl-others a')].filter((e) => e.offsetParent !== null).map((e) => [e.getAttribute('aria-label'), e.offsetWidth, e.offsetHeight]),
         download: b.getAttribute('download'),
-        imgOk: img ? img.complete && img.naturalWidth > 0 : true,
-        note: !document.querySelector('[data-download-note]').hidden,
         overflow: document.documentElement.scrollWidth > window.innerWidth
       };
     });
@@ -110,9 +110,9 @@ const EXPECT = {
     if (want.hrefEndsWith) assert.ok(got.href.endsWith(want.hrefEndsWith), name + ': href ' + got.href);
     else assert.strictEqual(got.href, want.href, name + ': href');
     if (want.download) assert.strictEqual(got.download, want.download, name + ': download attribute');
-    assert.ok(got.imgOk, name + ': badge image loaded');
-    assert.strictEqual(got.note, !!want.note, name + ': unsigned note');
-    if (want.note) assert.ok(/Run anyway/.test(got.caption), name + ': caption carries the SmartScreen tip');
+    assert.strictEqual(got.word, 'Download', name + ': button says Download');
+    assert.strictEqual(got.below, 0, name + ': nothing under the download button');
+    assert.ok(got.icons.length >= 2 && got.icons.every(([l, w, h]) => l && w >= 44 && h >= 44), name + ': labelled 44px icons ' + JSON.stringify(got.icons));
     assert.strictEqual(got.overflow, false, name + ': horizontal scroll');
     console.log('ok  ' + name + ' -> ' + got.label + ' (' + got.href + ')');
     await ctx.close();
