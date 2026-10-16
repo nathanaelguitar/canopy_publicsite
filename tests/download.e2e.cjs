@@ -94,10 +94,14 @@ const HREF = {
         rows: rows.length,
         below: document.querySelector('.download').nextElementSibling.className,
         winDownload: document.querySelector('[data-platform="windows"]').getAttribute('download'),
+        code: (() => { const a = document.querySelector('.install-cta-icon'); const r = a.getBoundingClientRect(); const row = document.querySelector('.actions-row').getBoundingClientRect(); return { label: a.getAttribute('aria-label'), text: a.textContent.trim(), href: a.getAttribute('href'), inRow: Math.abs(r.top - row.top) < 2, h: a.offsetHeight, rowH: document.querySelector('.actions-row .button').offsetHeight }; })(),
+        devLink: [...document.querySelectorAll('.hero-footnotes a')].some((a) => a.getAttribute('href') === '#install'),
         overflow: document.documentElement.scrollWidth > window.innerWidth
       };
     });
     assert.deepStrictEqual(errors, [], name + ': page errors');
+    assert.deepStrictEqual(got.code, { label: 'Install Canopy Code (for developers)', text: '>_', href: '#install', inRow: true, h: got.code.rowH, rowH: got.code.rowH }, name + ': icon-only Canopy Code pill in the Join Beta row');
+    assert.strictEqual(got.devLink, false, name + ': developer text link removed');
     assert.strictEqual(got.title, 'Download', name + ': heading');
     assert.deepStrictEqual(got.names, ['Windows', 'Mac', 'iPhone', 'Android'], name + ': pills are just platform names');
     for (const k of Object.keys(HREF)) assert.strictEqual(got.hrefs[k], HREF[k], name + ': ' + k + ' link');
