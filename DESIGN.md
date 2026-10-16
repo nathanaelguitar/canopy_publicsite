@@ -133,6 +133,13 @@ Primary actions are pill-shaped for thumb recognition. Amount choices and input 
 - **Hover / Focus:** Slight upward lift on hover; a visible lime focus ring with offset on keyboard focus; reduced motion removes transitions.
 - **Text action:** Underlined forest text with an authored inline SVG arrow for secondary progression.
 
+### Download Control (homepage hero)
+
+- **Pattern:** One control for the visitor's platform, detected in `assets/download.js`; the rest sit in a quiet "Also for" text row. No-JS and unknown devices get a generic oak pill.
+- **Desktop buttons:** The hero badge grammar: full pill, glyph, 12px uppercase kicker over a bold 18px line, 56px tall (52px on phones). Windows is Microsoft blue (#0067b8) with the four-pane mark; Mac and Linux use the bark pill; the generic one is oak. Platform colour and glyph are the only recognition cues; the type, shape and warm shadow stay the site's.
+- **Phones:** The official App Store and Google Play badges, unmodified, at the same height as the buttons. Never draw imitation store badges.
+- **Caption:** One muted 15px line under the control (requirements, plus the SmartScreen tip while `windowsUnsigned` is on). No boxes or side borders.
+
 ### Amount Choices
 
 - **Style:** 56px minimum-height dark fields with a 1px translucent stroke and 14px radius.

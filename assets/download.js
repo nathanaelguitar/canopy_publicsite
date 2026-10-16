@@ -41,14 +41,13 @@
   if (CONFIG.linuxUrl) {
     linuxButton.href = CONFIG.linuxUrl;
     linuxButton.setAttribute('download', 'CanopyChat.AppImage');
-    root.querySelector('[data-linux-label]').textContent = 'Download for Linux';
-    root.querySelector('[data-linux-sub]').textContent = 'AppImage · runs on most distributions';
+    root.querySelector('[data-linux-kicker]').textContent = 'Download for';
+    linuxButton.setAttribute('data-caption', 'AppImage · runs on most distributions.');
+    linuxButton.setAttribute('aria-label', 'Download CanopyChat for Linux');
     if (linuxLink) {
-      var a = document.createElement('a');
-      a.href = CONFIG.linuxUrl;
-      a.textContent = 'Linux';
-      a.setAttribute('data-platform-link', 'linux');
-      linuxLink.parentNode.replaceChild(a, linuxLink);
+      linuxLink.href = CONFIG.linuxUrl;
+      linuxLink.setAttribute('download', 'CanopyChat.AppImage');
+      linuxLink.hidden = false;
     }
   } else {
     linuxButton.setAttribute('aria-disabled', 'true');
@@ -67,6 +66,12 @@
   var own = root.querySelector('[data-platform-link="' + os + '"]');
   if (own) own.hidden = true;
 
-  var note = root.querySelector('[data-download-note]');
-  if (note && os === 'windows' && CONFIG.windowsUnsigned) note.hidden = false;
+  // One quiet line under the button: requirements, plus the SmartScreen tip while unsigned.
+  var caption = root.querySelector('[data-download-caption]');
+  var text = mine.getAttribute('data-caption');
+  if (caption && text) {
+    caption.querySelector('[data-caption-text]').textContent = text;
+    caption.querySelector('[data-download-note]').hidden = !(os === 'windows' && CONFIG.windowsUnsigned);
+    caption.hidden = false;
+  }
 })();

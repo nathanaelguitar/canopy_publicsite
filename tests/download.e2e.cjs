@@ -43,12 +43,12 @@ const DEVICES = {
 const WIN = 'https://downloads.canopychat.app/windows/CanopyChat-Setup.exe';
 const APP_STORE = 'https://apps.apple.com/us/app/canopychat/id6788203137';
 const EXPECT = {
-  windows: { dl: 'windows', href: WIN, label: 'Download for Windows', download: 'CanopyChat-Setup.exe', note: true },
-  mac: { dl: 'mac', href: 'https://testflight.apple.com/join/f5xCZmVv', label: 'Download for Mac' },
+  windows: { dl: 'windows', href: WIN, label: 'Download CanopyChat for Windows', download: 'CanopyChat-Setup.exe', note: true },
+  mac: { dl: 'mac', href: 'https://testflight.apple.com/join/f5xCZmVv', label: 'Download CanopyChat for Mac (TestFlight beta)' },
   ipad: { dl: 'ios', href: APP_STORE, label: 'Download on the App Store' },
   iphone: { dl: 'ios', href: APP_STORE, label: 'Download on the App Store' },
   android: { dl: 'android', href: 'https://play.google.com/store/apps/details?id=com.nathanaelguitar.canopychat', label: 'Get it on Google Play' },
-  linux: { dl: 'linux', href: null, label: 'Linux version coming soon' },
+  linux: { dl: 'linux', href: null, label: 'CanopyChat for Linux is coming soon' },
   chromeos: { dl: 'other', hrefEndsWith: '#downloads', label: 'Download CanopyChat' }
 };
 
@@ -95,7 +95,8 @@ const EXPECT = {
         count: shown.length,
         dl: b && b.getAttribute('data-dl'),
         href: b.getAttribute('href') === null ? null : b.href,
-        label: img ? img.alt : b.querySelector('.dl-line').textContent,
+        label: img ? img.alt : b.getAttribute('aria-label'),
+        caption: (document.querySelector('[data-download-caption]:not([hidden])') || {}).textContent || '',
         download: b.getAttribute('download'),
         imgOk: img ? img.complete && img.naturalWidth > 0 : true,
         note: !document.querySelector('[data-download-note]').hidden,
@@ -111,6 +112,7 @@ const EXPECT = {
     if (want.download) assert.strictEqual(got.download, want.download, name + ': download attribute');
     assert.ok(got.imgOk, name + ': badge image loaded');
     assert.strictEqual(got.note, !!want.note, name + ': unsigned note');
+    if (want.note) assert.ok(/Run anyway/.test(got.caption), name + ': caption carries the SmartScreen tip');
     assert.strictEqual(got.overflow, false, name + ': horizontal scroll');
     console.log('ok  ' + name + ' -> ' + got.label + ' (' + got.href + ')');
     await ctx.close();
