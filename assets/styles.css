@@ -3666,6 +3666,8 @@ html:has(.founding-mobile-funnel) {
 }
 
 /* ---------- Download CanopyChat (hero) ---------- */
+/* One button per platform (see assets/download.js). Windows, Mac and Linux are plain buttons
+   in each platform's look; iPhone and Android use the official store badges, unmodified. */
 
 .download {
   margin-top: 30px;
@@ -3675,44 +3677,36 @@ html:has(.founding-mobile-funnel) {
   display: none !important;
 }
 
-.button.download-cta {
+.dl-btn {
+  display: inline-flex;
+  align-items: center;
   gap: 14px;
   min-height: 64px;
-  padding: 9px 28px 9px 22px;
-  background: var(--oak);
-  color: var(--cream);
-  box-shadow: 0 18px 38px rgba(122, 74, 35, 0.3);
+  padding: 10px 26px 10px 20px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  text-decoration: none;
   transition: background-color 0.15s ease, transform 0.15s ease;
 }
 
-.button.download-cta:hover,
-.button.download-cta:focus-visible {
-  background: var(--oak-bright);
-  color: var(--cream);
+.dl-btn:hover {
   transform: translateY(-1px);
 }
 
-.button.download-cta:focus-visible {
+.dl-btn:focus-visible,
+.dl-badge:focus-visible {
   outline: 3px solid var(--moss);
   outline-offset: 3px;
 }
 
-.button.download-cta.is-soon {
-  background: rgba(255, 255, 255, 0.58);
-  color: var(--muted);
-  border: 1px dashed var(--line);
-  box-shadow: none;
-  cursor: default;
-  transform: none;
-}
-
-.download-icon {
+.dl-glyph {
   width: 26px;
   height: 26px;
   flex-shrink: 0;
+  fill: currentColor;
 }
 
-.download-cta-copy {
+.dl-copy {
   display: flex;
   flex-direction: column;
   gap: 3px;
@@ -3720,16 +3714,115 @@ html:has(.founding-mobile-funnel) {
   line-height: 1.1;
 }
 
-.download-cta-line {
+.dl-line {
   font-size: 19px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.01em;
 }
 
-.download-cta-kicker {
+.dl-kicker {
   font-size: 13px;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+/* Generic (unknown device, no JavaScript): the site's own oak button. */
+.dl-generic {
+  border-radius: 999px;
+  background: var(--oak);
+  color: var(--cream);
+  box-shadow: 0 18px 38px rgba(122, 74, 35, 0.3);
+}
+
+.dl-generic:hover,
+.dl-generic:focus-visible {
+  background: var(--oak-bright);
+  color: var(--cream);
+}
+
+/* Windows: Microsoft blue, Segoe UI, white four-pane Windows logo. */
+.dl-windows {
+  background: #0067b8;
+  color: #fff;
+  font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, var(--sans);
+  border-radius: 6px;
+  box-shadow: 0 14px 30px rgba(0, 103, 184, 0.28);
+}
+
+.dl-windows:hover,
+.dl-windows:focus-visible {
+  background: #005a9e;
+  color: #fff;
+}
+
+.dl-windows .dl-glyph {
+  width: 24px;
+  height: 24px;
+}
+
+.dl-windows .dl-line {
   font-weight: 600;
-  opacity: 0.82;
+}
+
+/* Mac (TestFlight beta): black, Apple system font, Apple logo. Not a store badge. */
+.dl-apple {
+  background: #000;
+  color: #fff;
+  border-color: #a6a6a6;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", var(--sans);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+}
+
+.dl-apple:hover,
+.dl-apple:focus-visible {
+  background: #1d1d1f;
+  color: #fff;
+}
+
+.dl-apple .dl-line {
+  font-weight: 600;
+}
+
+/* Linux: charcoal with Tux. */
+.dl-linux {
+  background: #222;
+  color: #fff;
+  font-family: Ubuntu, Cantarell, "DejaVu Sans", var(--sans);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+}
+
+.dl-linux:hover,
+.dl-linux:focus-visible {
+  background: #333;
+  color: #fff;
+}
+
+.dl-linux.is-soon {
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--muted);
+  border: 1px dashed rgba(36, 26, 19, 0.3);
+  box-shadow: none;
+  cursor: default;
+  transform: none;
+}
+
+/* Official store badges, shown as supplied. Apple asks for at least 40px on screen. */
+.dl-badge {
+  display: inline-block;
+  line-height: 0;
+  border-radius: 10px;
+}
+
+.dl-badge img {
+  display: block;
+  width: auto;
+  height: 60px;
+}
+
+/* Google's PNG carries its own clear space; trim it so the badge lines up with the others. */
+.dl-badge-play img {
+  height: 88px;
+  margin: -14px -12px;
 }
 
 .download-note {
@@ -3801,15 +3894,14 @@ html:has(.founding-mobile-funnel) {
     margin-top: 22px;
   }
 
-  .button.download-cta {
+  .dl-btn {
     display: flex;
     width: 100%;
-    justify-content: flex-start;
     min-height: 60px;
-    padding: 9px 22px 9px 18px;
+    padding: 10px 20px 10px 18px;
   }
 
-  .download-cta-line {
+  .dl-line {
     font-size: 18px;
   }
 
@@ -3828,19 +3920,29 @@ html:has(.founding-mobile-funnel) {
 }
 
 @media (prefers-color-scheme: dark) {
-  .button.download-cta {
+  .dl-generic {
     background: #c98a4c;
     color: #1a120c;
     box-shadow: 0 18px 38px rgba(0, 0, 0, 0.35);
   }
 
-  .button.download-cta:hover,
-  .button.download-cta:focus-visible {
+  .dl-generic:hover,
+  .dl-generic:focus-visible {
     background: #dda062;
     color: #1a120c;
   }
 
-  .button.download-cta.is-soon {
+  .dl-windows,
+  .dl-apple,
+  .dl-linux {
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .dl-linux {
+    border-color: rgba(255, 244, 223, 0.2);
+  }
+
+  .dl-linux.is-soon {
     background: rgba(255, 244, 223, 0.06);
     color: rgba(255, 244, 223, 0.7);
     border-color: rgba(255, 244, 223, 0.2);
@@ -3868,11 +3970,11 @@ html:has(.founding-mobile-funnel) {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .button.download-cta {
+  .dl-btn {
     transition: none;
   }
 
-  .button.download-cta:hover {
+  .dl-btn:hover {
     transform: none;
   }
 }

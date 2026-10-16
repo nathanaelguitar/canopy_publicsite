@@ -17,7 +17,7 @@ const { chromium } = require('playwright');
 
 const ROOT = path.resolve(__dirname, '..');
 const SHOTS = path.join(__dirname, 'screenshots');
-const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png' };
+const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png', '.svg': 'image/svg+xml' };
 
 function serveSite() {
   return http.createServer((req, res) => {
@@ -40,14 +40,16 @@ const DEVICES = {
   chromeos: { platform: 'Linux x86_64', ua: 'Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36' }
 };
 
+const WIN = 'https://downloads.canopychat.app/windows/CanopyChat-Setup.exe';
+const APP_STORE = 'https://apps.apple.com/us/app/canopychat/id6788203137';
 const EXPECT = {
-  windows: { href: 'https://downloads.canopychat.app/windows/CanopyChat-Setup.exe', label: 'Download for Windows', note: true },
-  mac: { href: 'https://testflight.apple.com/join/f5xCZmVv', label: 'Get it for Mac' },
-  ipad: { href: 'https://apps.apple.com/us/app/canopychat/id6788203137', label: 'Download on the App Store' },
-  iphone: { href: 'https://apps.apple.com/us/app/canopychat/id6788203137', label: 'Download on the App Store' },
-  android: { href: 'https://play.google.com/store/apps/details?id=com.nathanaelguitar.canopychat', label: 'Get it on Google Play' },
-  linux: { href: null, label: 'Linux version coming soon' },
-  chromeos: { hrefEndsWith: '#downloads', label: 'Download CanopyChat' }
+  windows: { dl: 'windows', href: WIN, label: 'Download for Windows', download: 'CanopyChat-Setup.exe', note: true },
+  mac: { dl: 'mac', href: 'https://testflight.apple.com/join/f5xCZmVv', label: 'Download for Mac' },
+  ipad: { dl: 'ios', href: APP_STORE, label: 'Download on the App Store' },
+  iphone: { dl: 'ios', href: APP_STORE, label: 'Download on the App Store' },
+  android: { dl: 'android', href: 'https://play.google.com/store/apps/details?id=com.nathanaelguitar.canopychat', label: 'Get it on Google Play' },
+  linux: { dl: 'linux', href: null, label: 'Linux version coming soon' },
+  chromeos: { dl: 'other', hrefEndsWith: '#downloads', label: 'Download CanopyChat' }
 };
 
 (async () => {
@@ -77,7 +79,7 @@ const EXPECT = {
     const errors = [];
     page.on('pageerror', (e) => errors.push(e.message));
     await page.goto(SITE);
-    await page.waitForSelector('[data-download-label]');
+    await page.waitForLoadState('load');
     return { ctx, page, errors };
   }
 
@@ -85,18 +87,29 @@ const EXPECT = {
     const { ctx, page, errors } = await open(name);
     const want = EXPECT[name];
     const got = await page.evaluate(() => {
-      const b = document.querySelector('[data-download-button]');
+      const shown = [...document.querySelectorAll('[data-dl]')].filter((e) => !e.hidden && e.offsetParent !== null);
+      const b = shown[0];
+      const img = b && b.querySelector('img');
+      const ownLink = document.querySelector('.download-others [data-platform-link]:not([hidden])');
       return {
+        count: shown.length,
+        dl: b && b.getAttribute('data-dl'),
         href: b.getAttribute('href') === null ? null : b.href,
-        label: document.querySelector('[data-download-label]').textContent,
+        label: img ? img.alt : b.querySelector('.dl-line').textContent,
+        download: b.getAttribute('download'),
+        imgOk: img ? img.complete && img.naturalWidth > 0 : true,
         note: !document.querySelector('[data-download-note]').hidden,
         overflow: document.documentElement.scrollWidth > window.innerWidth
       };
     });
     assert.deepStrictEqual(errors, [], name + ': page errors');
+    assert.strictEqual(got.count, 1, name + ': exactly one download button shown');
+    assert.strictEqual(got.dl, want.dl, name + ': platform button');
     assert.strictEqual(got.label, want.label, name + ': label');
     if (want.hrefEndsWith) assert.ok(got.href.endsWith(want.hrefEndsWith), name + ': href ' + got.href);
     else assert.strictEqual(got.href, want.href, name + ': href');
+    if (want.download) assert.strictEqual(got.download, want.download, name + ': download attribute');
+    assert.ok(got.imgOk, name + ': badge image loaded');
     assert.strictEqual(got.note, !!want.note, name + ': unsigned note');
     assert.strictEqual(got.overflow, false, name + ': horizontal scroll');
     console.log('ok  ' + name + ' -> ' + got.label + ' (' + got.href + ')');
@@ -109,11 +122,14 @@ const EXPECT = {
     ['download-iphone-light.png', 'iphone', {}],
     ['download-android-dark.png', 'android', { dark: true }],
     ['download-windows-mobile-width.png', 'windows', { viewport: { width: 390, height: 844 } }],
-    ['download-linux-light.png', 'linux', {}]
+    ['download-linux-light.png', 'linux', {}],
+    ['download-mac-light.png', 'mac', {}],
+    ['download-iphone-dark.png', 'iphone', { dark: true }],
+    ['download-android-light.png', 'android', {}]
   ];
   for (const [file, name, opts] of shots) {
     const { ctx, page } = await open(name, opts);
-    await (opts.viewport || DEVICES[name].mobile ? page : page.locator('.hero')).screenshot({ path: path.join(SHOTS, file) });
+    await (opts.viewport || DEVICES[name].mobile ? page : page.locator('.hero > div').first()).screenshot({ path: path.join(SHOTS, file) });
     console.log('shot ' + path.join(SHOTS, file));
     await ctx.close();
   }
