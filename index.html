@@ -12,7 +12,7 @@
   <meta name="description" content="CanopyChat is a private, local-first chat app available on iPhone and Android, with on-device intelligence and user-controlled attachments.">
   <link rel="icon" type="image/png" href="assets/app-icon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/styles.css?v=link-2">
+  <link rel="stylesheet" href="assets/styles.css?v=download-1">
 </head>
 <body>
   <header class="shell nav">
@@ -34,33 +34,32 @@
       <div>
         <div class="eyebrow">Eco-Friendly Intelligence</div>
         <h1>Private intelligence that lives closer to you.</h1>
-        <p class="lead">CanopyChat answers right on your iPhone or Android phone and keeps your chats, photos, files, and location in your hands.</p>
-        <div class="install-row">
-            <a class="button install-cta" href="#install" aria-label="Install Canopy Code, the terminal coding agent">
-              <span class="install-cta-prompt" aria-hidden="true">&gt;_</span>
-              <span>Install Canopy Code</span>
-            </a>
+        <p class="lead">CanopyChat answers right on your phone or computer and keeps your chats, photos, files, and location in your hands.</p>
+        <div class="download" data-download>
+          <a class="button download-cta" href="#downloads" data-download-button>
+            <svg class="download-icon" viewBox="0 0 24 24" aria-hidden="true" data-download-icon><path d="M12 3v12m0 0-5-5m5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="download-cta-copy">
+              <span class="download-cta-line" data-download-label>Download CanopyChat</span>
+              <span class="download-cta-kicker" data-download-sub>For Windows, Mac, iPhone and Android</span>
+            </span>
+          </a>
+          <p class="download-note" data-download-note hidden>Windows may show a blue security prompt the first time. Click <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
+          <p class="download-others" id="downloads">
+            <span class="download-others-label">Other platforms:</span>
+            <a href="https://downloads.canopychat.app/windows/CanopyChat-Setup.exe" data-platform-link="windows">Windows</a>
+            <a href="https://testflight.apple.com/join/f5xCZmVv" target="_blank" rel="noopener" data-platform-link="mac">Mac (beta)</a>
+            <a href="https://apps.apple.com/us/app/canopychat/id6788203137" target="_blank" rel="noopener" data-platform-link="ios">iPhone</a>
+            <a href="https://play.google.com/store/apps/details?id=com.nathanaelguitar.canopychat" target="_blank" rel="noopener" data-platform-link="android">Android</a>
+            <span class="download-soon" data-platform-link="linux">Linux (coming soon)</span>
+          </p>
         </div>
         <div class="actions">
-          <a class="appstore-badge" href="https://apps.apple.com/us/app/canopychat/id6788203137" target="_blank" rel="noopener" aria-label="Download CanopyChat on iPhone from the App Store">
-            <svg viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-            <span class="appstore-badge-copy">
-              <span class="appstore-badge-kicker">Download on</span>
-              <span class="appstore-badge-line">iPhone</span>
-            </span>
-          </a>
-          <a class="appstore-badge" href="https://play.google.com/store/apps/details?id=com.nathanaelguitar.canopychat" target="_blank" rel="noopener" aria-label="Get CanopyChat on Android from Google Play">
-            <svg viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M3.61 1.81 13.79 12 3.61 22.19a1.5 1.5 0 0 1-.61-1.21V3.02c0-.49.23-.93.61-1.21zm11.24 11.25 2.39 2.39-11.1 6.33 8.71-8.72zm3.69-3.69 2.79 1.59c.84.48.84 1.6 0 2.08l-2.79 1.59L15.91 12l2.63-2.63zM6.14 2.22l11.1 6.33-2.39 2.39-8.71-8.72z"/></svg>
-            <span class="appstore-badge-copy">
-              <span class="appstore-badge-kicker">Get it on</span>
-              <span class="appstore-badge-line">Android</span>
-            </span>
-          </a>
           <div class="actions-row">
             <a class="button" href="/founding">Join Beta</a>
             <a class="button secondary" href="#how-it-works">How It Works</a>
           </div>
         </div>
+        <p class="dev-callout">Developer? <a href="#install"><span class="install-cta-prompt" aria-hidden="true">&gt;_</span> Install Canopy Code</a>, the terminal version.</p>
         <p class="link-callout">Signed in on your computer? <a href="/link">Link it here</a></p>
       </div>
 
@@ -92,9 +91,9 @@
     <section class="shell install" id="install" aria-labelledby="install-title">
       <div class="install-card">
         <div class="install-copy">
-          <div class="eyebrow">Canopy Code</div>
+          <div class="eyebrow">For developers</div>
           <h2 id="install-title">Install Canopy Code</h2>
-          <p>The terminal coding agent behind CanopyChat. Free to use with ChatGPT, Claude or your own models, and you can drive it from your phone with remote control.</p>
+          <p>Comfortable in a terminal? Canopy Code is the coding agent behind CanopyChat. Free to use with ChatGPT, Claude or your own models, and you can drive it from your phone with remote control.</p>
         </div>
         <div class="terminal" role="group" aria-label="Install command">
           <div class="terminal-bar" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -214,6 +213,7 @@
       </span>
     </div>
   </footer>
+  <script src="assets/download.js?v=1" defer></script>
   <script src="assets/install.js?v=1" defer></script>
   <script src="assets/canopy-account.js?v=1" defer></script>
   <script src="assets/meta-pixel.js?v=1" defer></script>
