@@ -3664,3 +3664,126 @@ html:has(.founding-mobile-funnel) {
     color: #d9a66b;
   }
 }
+
+/* ---------- Download CanopyChat (hero) ---------- */
+/* A serif "Download" heading over equal platform pills. The pills are the hero's existing
+   .appstore-badge (oak pill, glyph, platform name) with the kicker words removed; .dl-pill
+   only makes them equal width in a 2 x 2 grid. assets/download.js holds the URLs. */
+
+.download {
+  margin-top: 30px;
+}
+
+.download-title {
+  margin: 0 0 14px;
+  font-family: var(--serif);
+  font-size: clamp(30px, 3.6vw, 44px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.download-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 200px));
+  gap: 14px;
+}
+
+.download-grid [hidden] {
+  display: none !important;
+}
+
+.dl-pill {
+  justify-content: center;
+  padding-left: 18px;
+  padding-right: 22px;
+}
+
+.dl-pill .appstore-badge-line {
+  font-size: 18px;
+}
+
+.download + .actions {
+  margin-top: 22px;
+}
+
+/* Canopy Code pill at the end of the Join Beta row: main's dark install pill, shorter label,
+   at the row's height. The row may wrap so it drops to its own line on narrow phones. */
+.download + .actions .actions-row {
+  flex-wrap: wrap;
+}
+
+.button.install-cta-compact {
+  min-height: 52px;
+  padding: 0 22px;
+}
+
+.hero-footnotes {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 24px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.hero-footnotes span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 44px;
+}
+
+.hero-footnotes a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 820px) {
+  .download {
+    margin-top: 24px;
+  }
+
+  .download-title {
+    margin-bottom: 12px;
+  }
+
+  .download-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .dl-pill .appstore-badge-line {
+    font-size: 17px;
+  }
+
+  .download + .actions {
+    margin-top: 18px;
+  }
+
+  .button.install-cta-compact {
+    min-height: 46px;
+    padding: 0 18px;
+  }
+
+  .hero-footnotes {
+    flex-direction: column;
+    margin-top: 12px;
+    font-size: 14px;
+  }
+
+  .hero-footnotes span {
+    min-height: 36px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-footnotes {
+    color: rgba(255, 244, 223, 0.72);
+  }
+
+  .hero-footnotes a {
+    color: #d9a66b;
+  }
+}
+

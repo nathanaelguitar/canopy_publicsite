@@ -133,6 +133,11 @@ Primary actions are pill-shaped for thumb recognition. Amount choices and input 
 - **Hover / Focus:** Slight upward lift on hover; a visible lime focus ring with offset on keyboard focus; reduced motion removes transitions.
 - **Text action:** Underlined forest text with an authored inline SVG arrow for secondary progression.
 
+### Download (homepage hero)
+
+- **Pattern:** A serif "Download" heading (800, `clamp(30px, 3.6vw, 44px)`), then the platforms as equal pills in a 2 x 2 grid: Windows, Mac, iPhone, Android, and Linux once it ships. Nothing sits under them.
+- **Pills:** The hero's existing `.appstore-badge` (oak pill, glyph, bold platform name) with no kicker words. Every pill has the same size, colour and shadow; no platform gets its own colour or emphasis. `aria-label` and `title` carry the store or requirements.
+
 ### Amount Choices
 
 - **Style:** 56px minimum-height dark fields with a 1px translucent stroke and 14px radius.
