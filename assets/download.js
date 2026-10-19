@@ -22,33 +22,28 @@
   var win = grid.querySelector('[data-platform="windows"]');
   if (win) win.href = CONFIG.windowsUrl;
 
-  var box = grid.querySelector('[data-linux]');
-  if (!box || !CONFIG.linux) return;
-
-  var pill = box.querySelector('[data-platform="linux"]');
-  var appimage = box.querySelector('[data-linux-appimage]');
-  var other = box.querySelector('[data-linux-other]');
+  var pill = grid.querySelector('[data-platform="linux"]');
+  if (!pill || !CONFIG.linux) return;
 
   function fileName(url) { return url.slice(url.lastIndexOf('/') + 1); }
 
-  // x86_64 unless the browser says this is an ARM computer.
+  // The pill looks like the others (glyph + "Linux"): no text under it. It downloads the .deb
+  // for the visitor's architecture (x86_64 unless the browser says ARM); the AppImage and the
+  // other architecture are named only in the tooltip and the accessible label.
   function show(arch) {
     var mine = CONFIG.linux[arch];
-    var otherArch = arch === 'arm64' ? 'x64' : 'arm64';
+    var label = arch === 'arm64' ? 'ARM64' : 'x86_64';
+    var otherLabel = arch === 'arm64' ? 'x86_64' : 'ARM64';
     pill.href = mine.deb;
     pill.setAttribute('download', fileName(mine.deb));
-    appimage.href = mine.appimage;
-    appimage.setAttribute('download', fileName(mine.appimage));
-    appimage.setAttribute('aria-label', 'AppImage for other Linux distributions (' + (arch === 'arm64' ? 'ARM64' : 'x86_64') + ')');
-    other.href = CONFIG.linux[otherArch].deb;
-    other.setAttribute('download', fileName(CONFIG.linux[otherArch].deb));
-    other.textContent = otherArch === 'arm64' ? 'ARM64' : 'x86_64';
-    other.setAttribute('aria-label', 'Linux .deb for ' + (otherArch === 'arm64' ? 'ARM64' : 'x86_64') + ' computers');
+    pill.title = 'Linux · Ubuntu 22.04 or newer · .deb for ' + label +
+      ' (also available as an AppImage and for ' + otherLabel + ')';
+    pill.setAttribute('aria-label', 'Download CanopyChat for Linux, .deb for Ubuntu 22.04 or newer, ' + label);
   }
 
   var ua = navigator.userAgent || '';
   show(/aarch64|arm64/i.test(ua) ? 'arm64' : 'x64');
-  box.hidden = false;
+  pill.hidden = false;
 
   // Chromium hides the architecture from the user agent; ask for it.
   var uad = navigator.userAgentData;
