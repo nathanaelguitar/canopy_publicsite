@@ -3707,6 +3707,36 @@ html:has(.founding-mobile-funnel) {
   margin-top: 22px;
 }
 
+/* Linux: the .deb pill in its grid cell, and the other formats in one quiet line under it. */
+.dl-linux {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.dl-linux .dl-pill {
+  width: 100%;
+}
+
+.dl-alt {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.dl-alt a {
+  display: inline-block;
+  padding: 10px 2px;
+  color: var(--oak);
+  font-weight: 600;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
 /* Canopy Code pill at the end of the Join Beta row: main's dark install pill, shorter label,
    at the row's height. The row may wrap so it drops to its own line on narrow phones. */
 .download + .actions .actions-row {
