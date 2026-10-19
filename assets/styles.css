@@ -3718,6 +3718,15 @@ html:has(.founding-mobile-funnel) {
   padding: 0 22px;
 }
 
+/* Canopy Code sits in the download grid next to Linux: same footprint as a .dl-pill, but keeps
+   the dark install style so it reads as the developer option, not a sixth platform. */
+.download-grid .button.dl-cc {
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 18px;
+  font-size: 18px;
+}
+
 .hero-footnotes {
   display: flex;
   flex-wrap: wrap;
@@ -3751,6 +3760,13 @@ html:has(.founding-mobile-funnel) {
   .download-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
+  }
+
+  .download-grid .button.dl-cc {
+    min-height: 46px;
+    padding: 0 10px;
+    gap: 7px;
+    font-size: 16px;
   }
 
   .dl-pill .appstore-badge-line {
