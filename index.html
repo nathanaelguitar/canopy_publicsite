@@ -12,7 +12,7 @@
   <meta name="description" content="CanopyChat is a private, local-first chat app available on iPhone and Android, with on-device intelligence and user-controlled attachments.">
   <link rel="icon" type="image/png" href="assets/app-icon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/styles.css?v=download-12">
+  <link rel="stylesheet" href="assets/styles.css?v=install-13">
 </head>
 <body>
   <header class="shell nav">
@@ -106,23 +106,62 @@
         <div class="install-copy">
           <div class="eyebrow">For developers</div>
           <h2 id="install-title">Install Canopy Code</h2>
-          <p>Comfortable in a terminal? Canopy Code is the coding agent behind CanopyChat. Free to use with ChatGPT, Claude or your own models, and you can drive it from your phone with remote control.</p>
+          <p>Comfortable in a terminal? Canopy Code is the coding agent behind CanopyChat, on macOS, Linux and Windows. Free to use with ChatGPT, Claude or your own models, and you can drive it from your phone with remote control.</p>
         </div>
         <div class="terminal" role="group" aria-label="Install command">
-          <div class="terminal-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-          <div class="terminal-line">
-            <code id="brew-command"><span class="terminal-prompt" aria-hidden="true">$ </span>brew install <span class="nowrap">nathanaelguitar/canopy/canopy-code</span></code>
-            <button class="copy-button" type="button" data-copy-target="brew-command" aria-label="Copy the install command">Copy</button>
+          <div class="terminal-bar">
+            <span class="terminal-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+            <div class="terminal-tabs" role="tablist" aria-label="Choose your operating system" hidden>
+              <button class="terminal-tab" type="button" role="tab" id="tab-macos" aria-selected="true" aria-controls="panel-macos" tabindex="0" data-platform="macos" title="Install on macOS (Apple silicon)">macOS</button>
+              <button class="terminal-tab" type="button" role="tab" id="tab-linux" aria-selected="false" aria-controls="panel-linux" tabindex="-1" data-platform="linux" title="Install on Linux (x64 or arm64)">Linux</button>
+              <button class="terminal-tab" type="button" role="tab" id="tab-windows" aria-selected="false" aria-controls="panel-windows" tabindex="-1" data-platform="windows" title="Install on Windows (x64)">Windows</button>
+            </div>
           </div>
-          <div class="terminal-line terminal-next">
-            <code><span class="terminal-prompt" aria-hidden="true">$ </span>canopy</code>
+          <div class="terminal-panel" id="panel-macos" data-platform="macos">
+            <div class="terminal-line terminal-comment">
+              <code># macOS (Apple silicon)</code>
+            </div>
+            <div class="terminal-line">
+              <code id="brew-command"><span class="terminal-prompt" aria-hidden="true">$ </span>brew install <span class="nowrap">nathanaelguitar/canopy/canopy-code</span></code>
+              <button class="copy-button" type="button" data-copy-target="brew-command" aria-label="Copy the macOS install command">Copy</button>
+            </div>
+            <div class="terminal-line terminal-next">
+              <code><span class="terminal-prompt" aria-hidden="true">$ </span>canopy</code>
+            </div>
+          </div>
+          <div class="terminal-panel" id="panel-linux" data-platform="linux">
+            <div class="terminal-line terminal-comment">
+              <code># Linux (x64 or arm64)</code>
+            </div>
+            <div class="terminal-line">
+              <code id="brew-command-linux"><span class="terminal-prompt" aria-hidden="true">$ </span>brew install <span class="nowrap">nathanaelguitar/canopy/canopy-code</span></code>
+              <button class="copy-button" type="button" data-copy-target="brew-command-linux" aria-label="Copy the Linux install command">Copy</button>
+            </div>
+            <div class="terminal-line terminal-next">
+              <code><span class="terminal-prompt" aria-hidden="true">$ </span>canopy</code>
+            </div>
+          </div>
+          <div class="terminal-panel" id="panel-windows" data-platform="windows">
+            <div class="terminal-line terminal-comment">
+              <code># Windows (x64, PowerShell)</code>
+            </div>
+            <div class="terminal-line">
+              <code id="scoop-command"><span class="terminal-prompt" aria-hidden="true">PS&gt; </span>scoop install https://github.com/nathanaelguitar/canopy-code/releases/latest/download/canopy-code.json</code>
+              <button class="copy-button" type="button" data-copy-target="scoop-command" aria-label="Copy the Windows install command">Copy</button>
+            </div>
+            <div class="terminal-line terminal-next">
+              <code><span class="terminal-prompt" aria-hidden="true">PS&gt; </span>canopy</code>
+            </div>
           </div>
         </div>
         <ul class="install-notes">
-          <li>Paste it into Terminal on an Apple silicon Mac. Linux and Windows are coming soon.</li>
-          <li>Need Homebrew first? Get it at <a href="https://brew.sh" target="_blank" rel="noopener">brew.sh</a>.</li>
-          <li>Using Claude? Install Claude Code too (<code>brew install --cask claude-code</code>), then choose <strong>Sign in with Anthropic</strong> in <code>/auth</code>.</li>
-          <li>Want remote control from your phone? <a href="/signup">Create a Canopy account</a>, then <a href="/link">link your computer</a>.</li>
+          <li data-platforms="macos">Paste it into Terminal on an Apple silicon Mac. Need Homebrew first? Get it at <a href="https://brew.sh" target="_blank" rel="noopener">brew.sh</a>.</li>
+          <li data-platforms="linux">Paste it into your shell on 64-bit Intel, AMD or ARM Linux. Homebrew runs on Linux too: get it at <a href="https://brew.sh" target="_blank" rel="noopener">brew.sh</a>.</li>
+          <li data-platforms="windows">Paste it into PowerShell on 64-bit Windows. Need Scoop first? Get it at <a href="https://scoop.sh" target="_blank" rel="noopener">scoop.sh</a>.</li>
+          <li data-platforms="macos">Using Claude? Install Claude Code too (<code>brew install --cask claude-code</code>), then choose <strong>Sign in with Anthropic</strong> in <code>/auth</code>.</li>
+          <li data-platforms="linux">Using Claude? Install Claude Code too (<code>curl -fsSL https://claude.ai/install.sh | bash</code>), then choose <strong>Sign in with Anthropic</strong> in <code>/auth</code>.</li>
+          <li data-platforms="windows">Using Claude? Install Claude Code too (<code>irm https://claude.ai/install.ps1 | iex</code>), then choose <strong>Sign in with Anthropic</strong> in <code>/auth</code>.</li>
+          <li data-platforms="macos linux windows">Want remote control from your phone? <a href="/signup">Create a Canopy account</a>, then <a href="/link">link your computer</a>.</li>
         </ul>
       </div>
     </section>
@@ -227,7 +266,7 @@
     </div>
   </footer>
   <script src="assets/download.js?v=10" defer></script>
-  <script src="assets/install.js?v=1" defer></script>
+  <script src="assets/install.js?v=2" defer></script>
   <script src="assets/canopy-account.js?v=1" defer></script>
   <script src="assets/meta-pixel.js?v=1" defer></script>
 </body>

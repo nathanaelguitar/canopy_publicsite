@@ -51,7 +51,7 @@ const HREF = {
   const srv = serveSite();
   const port = await new Promise((r) => srv.listen(0, '127.0.0.1', () => r(srv.address().port)));
   const SITE = 'http://localhost:' + port + '/';
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined });
   fs.mkdirSync(SHOTS, { recursive: true });
 
   async function open(name, opts = {}) {
