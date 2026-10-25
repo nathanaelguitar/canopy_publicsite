@@ -3876,3 +3876,279 @@ html:has(.founding-mobile-funnel) {
     color: #d9a66b;
   }
 }
+
+/*
+ * Flame invite-only waitlist (flame.html).
+ * Reuses the founding campaign shell, the Android claim form, and the founding
+ * amount controls. New rules cover the portrait hero, the cream rows, and the
+ * contribution block. Flame's lantern amber is the page's one warm light; lime
+ * still marks every action.
+ */
+.flame-page {
+  --flame-amber: #ffb547;
+}
+
+.flame-page .flame-hero {
+  min-height: calc(100svh - 72px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 74% 38%, rgba(255, 181, 71, 0.16), transparent 26rem),
+    radial-gradient(circle at 10% 90%, rgba(23, 69, 45, 0.9), transparent 23rem),
+    var(--funnel-forest);
+  color: var(--funnel-cream);
+}
+
+.flame-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 56px);
+  max-width: 1120px;
+}
+
+.flame-hero-copy-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.flame-hero-copy-block > * {
+  animation: founding-hero-enter 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.flame-hero-copy-block > :nth-child(2) { animation-delay: 60ms; }
+.flame-hero-copy-block > :nth-child(3) { animation-delay: 120ms; }
+
+.flame-page .flame-hero h1 {
+  max-width: 700px;
+  font-size: clamp(50px, 6.6vw, 88px);
+}
+
+.flame-hero-copy {
+  max-width: 540px;
+  margin: 28px 0 0;
+  color: rgba(244, 240, 228, 0.78);
+  font-size: clamp(18px, 2.4vw, 23px);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.flame-portrait {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 480px;
+  justify-self: end;
+}
+
+.flame-portrait img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 28px 48px rgba(0, 0, 0, 0.35));
+  animation: flame-arrive 900ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both;
+}
+
+/* Sits behind the acorn lantern in the artwork (upper left of the frame). */
+.flame-lantern-glow {
+  position: absolute;
+  top: 12%;
+  left: -4%;
+  width: 34%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 181, 71, 0.55), rgba(255, 181, 71, 0) 68%);
+  filter: blur(6px);
+  animation: flame-lantern 4.8s ease-in-out infinite;
+}
+
+@keyframes flame-arrive {
+  from { opacity: 0; transform: translateY(28px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes flame-lantern {
+  0%, 100% { opacity: 0.65; transform: scale(0.92); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+.flame-page .flame-what {
+  background: var(--funnel-cream);
+  color: var(--funnel-ink);
+}
+
+.flame-what-lead {
+  max-width: 560px;
+  margin: 26px 0 0;
+  color: var(--funnel-muted);
+  font-size: clamp(19px, 2.6vw, 24px);
+  line-height: 1.4;
+  text-wrap: pretty;
+}
+
+.flame-rows {
+  margin-top: 46px;
+  border-top: 1px solid var(--funnel-line);
+}
+
+.flame-row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--funnel-line);
+}
+
+.flame-row strong {
+  color: var(--funnel-forest);
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.4vw, 24px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.flame-row p {
+  margin: 0;
+  color: var(--funnel-muted);
+  font-size: 16px;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.flame-page .flame-waitlist {
+  background:
+    radial-gradient(circle at 88% 10%, rgba(196, 238, 119, 0.17), transparent 19rem),
+    var(--funnel-forest);
+  color: var(--funnel-cream);
+}
+
+.flame-waitlist-copy {
+  max-width: 560px;
+  margin: 24px 0 0;
+  color: rgba(244, 240, 228, 0.76);
+  font-size: clamp(17px, 2.6vw, 21px);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.flame-page .android-success:focus {
+  outline: none;
+}
+
+.flame-contribute {
+  margin-top: 64px;
+  padding-top: 34px;
+  border-top: 1px solid rgba(244, 240, 228, 0.2);
+}
+
+.flame-contribute h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(30px, 5vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.flame-contribute-copy {
+  max-width: 560px;
+  margin: 14px 0 0;
+  color: rgba(244, 240, 228, 0.7);
+  font-size: 16px;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.flame-contribute .founding-action {
+  margin-top: 26px;
+}
+
+.flame-page ::selection {
+  background: var(--funnel-lime);
+  color: var(--funnel-forest);
+}
+
+@media (min-width: 821px) {
+  .flame-page .flame-hero .founding-screen-inner {
+    width: min(100%, 1120px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Line the lower screens up with the hero copy's left edge. */
+  .flame-page .flame-what .founding-screen-inner,
+  .flame-page .flame-waitlist .founding-screen-inner {
+    margin-left: max(0px, calc((100vw - 40px - 1120px) / 2));
+  }
+}
+
+@media (max-width: 820px) {
+  .flame-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .flame-portrait {
+    justify-self: center;
+    max-width: min(78vw, 340px);
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 620px) {
+  .flame-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 18px 0;
+  }
+
+  .flame-contribute {
+    margin-top: 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flame-hero-copy-block > *,
+  .flame-portrait img,
+  .flame-lantern-glow {
+    animation: none;
+  }
+}
+
+/* Homepage "Meet Flame" button: Flame's face leads the label. */
+.button.flame-cta {
+  gap: 10px;
+  padding-left: 8px;
+}
+
+.button.flame-cta img {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #ffcf7a;
+  box-shadow: 0 0 0 2px rgba(255, 181, 71, 0.35);
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.button.flame-cta:hover img {
+  transform: rotate(-8deg) scale(1.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button.flame-cta img { transition: none; }
+  .button.flame-cta:hover img { transform: none; }
+}
+
+/* Inline links inside the green eco cards. */
+.eco-grid .panel a {
+  color: var(--funnel-cream, #f4f0e4);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(196, 238, 119, 0.7);
+  text-underline-offset: 3px;
+}

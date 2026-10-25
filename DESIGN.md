@@ -175,3 +175,8 @@ Three ruled rows pair a two-digit index with a short proof statement. They repla
 - **Don't** use guilt as a substitute for evidence about what the product actually does.
 - **Don't** add gradient text, emoji / Unicode icons, hard side-tab borders, or decorative glass to this route.
 - **Don't** make environmental claims about a specific dollar amount unless verified evidence is supplied.
+
+## Flame Waitlist (`/flame`)
+
+Three screens in the founding campaign language: a forest hero with Flame's portrait (`assets/flame_idle_poster_512.png`, from the app's asset catalog) lit by a soft lantern-amber glow, a cream screen of ruled rows (serif label left, explanation right; stacked on phones), and a forest screen with the waitlist email form (the Android claim form components) followed by a separate, clearly optional contribution block that reuses the founding amount controls. Lantern amber (`--flame-amber`, #ffb547) is the one warm light on the page and is never used for actions; lime still marks every action. The homepage "Meet Flame" pill leads with Flame's face (`assets/flame-face-96.png`). Founding Members (`/founding`) is unlisted: not linked from public navigation and `noindex`.
+

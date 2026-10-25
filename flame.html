@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://connect.facebook.net; connect-src 'self' https://founding-api.canopychat.app https://www.facebook.com https://connect.facebook.net; img-src 'self' data: https://www.facebook.com; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://checkout.stripe.com; upgrade-insecure-requests">
+  <meta name="theme-color" content="#0c2b1d">
+  <title>Meet Flame | Invite Only | CanopyChat</title>
+  <meta name="description" content="Flame is CanopyChat's AI agent. It works in the folders you pick on your computer, tells you what it's doing, and answers from your phone. Invite only: join the waitlist.">
+  <link rel="icon" type="image/png" href="assets/app-icon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/styles.css?v=flame-1">
+</head>
+<body class="flame-page founding-mobile-funnel">
+  <!--
+    THESIS: Flame is a character you invite in, not a feature list; the page refuses the AI-agent grid of capability cards.
+    OWN-WORLD: Founding forest and lime, plus Flame's own lantern amber as the one warm light on the page.
+    STORY: Visitor meets Flame, sees exactly what it does on their computer, joins the invite list, and may optionally chip in.
+    FIRST VIEWPORT: The claim and one lime action left; Flame, large, lit by his lantern, right (below the copy on phones).
+    FORM: Three screens: meet, what it does (cream ruled rows), waitlist with a separate optional contribution.
+    FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+  -->
+  <header class="founding-topbar">
+    <a class="founding-brand" href="/" aria-label="CanopyChat home">
+      <img src="assets/app-icon.png" alt="" width="38" height="38">
+      <span>CanopyChat</span>
+    </a>
+    <span class="founding-topbar-note" aria-label="Invite only">
+      <span class="founding-topbar-note-full">Invite only</span>
+      <span class="founding-topbar-note-short">Invite only</span>
+    </span>
+  </header>
+
+  <main>
+    <section class="founding-screen flame-hero" aria-labelledby="flame-title">
+      <div class="founding-screen-inner flame-hero-inner">
+        <div class="flame-hero-copy-block">
+          <h1 id="flame-title">Meet Flame. It gets things done while you’re away.</h1>
+          <p class="flame-hero-copy">Flame is the AI agent inside CanopyChat. Point it at a project on your computer, tell it what you need, and check in from your phone while it works.</p>
+          <a class="founding-primary-action" href="#waitlist">
+            <span>Join the waitlist</span>
+            <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M10 2v14M4.5 10.5 10 16l5.5-5.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/></svg>
+          </a>
+        </div>
+        <figure class="flame-portrait">
+          <span class="flame-lantern-glow" aria-hidden="true"></span>
+          <img src="assets/flame_idle_poster_512.png" alt="Flame, a round orange forest creature with a big yellow mustache, holding a staff with a glowing acorn lantern" width="512" height="512">
+        </figure>
+      </div>
+    </section>
+
+    <section id="what" class="founding-screen flame-what" aria-labelledby="what-title">
+      <div class="founding-screen-inner">
+        <h2 id="what-title">An agent that keeps you in the loop.</h2>
+        <p class="flame-what-lead">You stay in charge of where Flame works and what it keeps. It does the legwork.</p>
+
+        <div class="flame-rows">
+          <div class="flame-row">
+            <strong>Works where you work</strong>
+            <p>Pick a folder on your Mac or PC and say what you need. Flame only works in the places you share with it.</p>
+          </div>
+          <div class="flame-row">
+            <strong>Tells you as it goes</strong>
+            <p>No black box. Flame reports what it’s doing step by step, and you can follow along from your phone.</p>
+          </div>
+          <div class="flame-row">
+            <strong>Answers from anywhere</strong>
+            <p>Step away from your desk. Your computer and your phone stay paired over an end-to-end encrypted connection.</p>
+          </div>
+          <div class="flame-row">
+            <strong>Remembers, if you want it to</strong>
+            <p>Persistent memory is opt-in. Turn it on and Flame remembers your projects and preferences; leave it off and every task starts fresh.</p>
+          </div>
+          <div class="flame-row">
+            <strong>Goes by your name for it</strong>
+            <p>Flame is the default. Call it whatever you like.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="waitlist" class="founding-screen flame-waitlist" aria-labelledby="waitlist-title">
+      <div class="founding-screen-inner">
+        <h2 id="waitlist-title">Flame is invite only, for now.</h2>
+        <p class="flame-waitlist-copy">We’re letting people in a few at a time so every early user gets real attention. Leave your email and we’ll write when there’s a seat for you.</p>
+
+        <form class="android-claim-form" data-flame-waitlist-form novalidate>
+          <label class="android-email-label" for="flame-email">Email</label>
+          <div class="android-email-row">
+            <input id="flame-email" name="email" type="email" autocomplete="email" autocapitalize="off" spellcheck="false" inputmode="email" placeholder="you@example.com" aria-describedby="flame-email-hint" data-flame-email>
+            <button class="founding-cta android-submit" type="submit" data-flame-waitlist-submit>Join the waitlist</button>
+          </div>
+          <p class="android-email-hint" id="flame-email-hint">We only use this to send your invite and the occasional Flame update.</p>
+          <p class="founding-action-status android-status" data-flame-waitlist-status role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="android-success" data-flame-waitlist-success hidden tabindex="-1">
+          <h3>You’re on the list.</h3>
+          <p data-flame-waitlist-success-message></p>
+        </div>
+
+        <div class="flame-contribute" id="contribute" aria-labelledby="contribute-title">
+          <h3 id="contribute-title">Want to help build it?</h3>
+          <p class="flame-contribute-copy">Totally optional. A contribution goes straight into building Flame. It doesn’t change your place on the list, and it isn’t needed for an invite.</p>
+
+          <div class="founding-action" data-flame-contribute>
+            <fieldset class="founding-amounts" aria-describedby="flame-amount-hint">
+              <legend>Choose an amount</legend>
+              <div class="founding-amount-grid" role="group" aria-label="Contribution presets">
+                <button class="founding-amount-choice" type="button" data-flame-amount-cents="1000" aria-pressed="false">$10</button>
+                <button class="founding-amount-choice" type="button" data-flame-amount-cents="2500" aria-pressed="true">$25</button>
+                <button class="founding-amount-choice" type="button" data-flame-amount-cents="5000" aria-pressed="false">$50</button>
+                <button class="founding-amount-choice" type="button" data-flame-amount-cents="10000" aria-pressed="false">$100</button>
+                <label class="founding-custom-amount">
+                  <span>Custom</span>
+                  <span class="founding-custom-amount-input">
+                    <span aria-hidden="true">$</span>
+                    <input type="number" min="10" step="1" inputmode="numeric" pattern="[0-9]*" placeholder="Other" aria-label="Custom contribution in whole dollars" data-flame-custom-amount>
+                  </span>
+                </label>
+              </div>
+              <p class="founding-amount-hint" id="flame-amount-hint">Minimum $10. One-time, not a subscription. Payment is handled by Stripe.</p>
+            </fieldset>
+            <button class="founding-cta" type="button" data-flame-contribute-cta>Contribute $25 securely</button>
+            <p class="founding-action-note">Contributions are final and non-refundable, except where required by law. CanopyChat is not a charity, so contributions are not tax-deductible.</p>
+            <p class="founding-action-status" data-flame-contribute-status role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="founding-footer">
+    <span>Copyright 2026 CanopyChat</span>
+    <span><a href="/">Home</a> <a href="/privacy">Privacy</a> <a href="/terms">Terms</a> <a href="/support">Support</a></span>
+    <small class="founding-device-disclosure">Flame works through CanopyChat on your Mac or PC, with your phone as the remote. Invites go out in small groups.</small>
+  </footer>
+
+  <script src="assets/flame.js?v=1" defer></script>
+  <script src="assets/meta-pixel.js?v=1" defer></script>
+</body>
+</html>
