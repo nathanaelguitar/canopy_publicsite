@@ -212,6 +212,7 @@
         return 'We do not know that code. Check it against your computer, or run canopy sign-in again.';
       }
     } else if (context === 'billing') {
+      if (err.code === 'no_billing_account') return 'This plan is managed through the App Store or Google Play. Manage it in your phone\'s subscription settings.';
       if (err.code === 'already_subscribed' || err.status === 409) return 'You already have a subscription. Use Manage billing to change it.';
     } else if (context === 'remove') {
       if (err.status === 404) return 'That device is already gone. The list has been refreshed.';
@@ -584,8 +585,11 @@
         btn.disabled = false;
         btn.classList.remove('is-loading');
         if (onFail && onFail(err)) return;
+        if (err.status === 409 && err.code !== 'no_billing_account') {
+          load().then(function () { errBox.textContent = messageFor(err, 'billing'); });
+          return;
+        }
         errBox.textContent = messageFor(err, 'billing');
-        if (err.status === 409) load();
       });
     }
 

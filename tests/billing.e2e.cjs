@@ -13,7 +13,8 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
-const { chromium } = require('playwright');
+const { chromium: pwChromium } = require('playwright');
+const chromium = { launch: (o) => pwChromium.launch(Object.assign({ executablePath: process.env.CHROMIUM_PATH || undefined }, o || {})) };
 const { createMock } = require('./mock-accounts-api.cjs');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -180,6 +181,14 @@ const listen = (srv) => new Promise((r) => srv.listen(0, '127.0.0.1', () => r(sr
   assert.equal(await page.locator('[data-plan="plus"]').getAttribute('data-current'), 'true');
   assert.ok(!(await visible(page, 'trial')) && !(await visible(page, 'pro')));
   assert.match(await page.locator('[data-billing-pro-note]').innerText(), /Want Pro/);
+  // ---- Plus bought in the App Store / Google Play: portal says no_billing_account
+  await setBilling({ entitlements: ['remote_control', 'leaf'], subscription: { product: 'leaf', status: 'active', current_period_end: iso(20 * DAY), trial_end: null, cancel_at_period_end: false }, storeOnly: true });
+  await open(page);
+  await page.waitForSelector('[data-billing-manage]:not([hidden])');
+  await page.click('[data-billing-manage]');
+  await page.waitForFunction(() => /App Store or Google Play/.test(document.querySelector('[data-billing-error]').innerText));
+  await setBilling({ entitlements: [], subscription: null, storeOnly: false });
+  step('store Plus: Manage billing explains it is managed in the App Store or Google Play');
   step('Plus trial: Plus highlighted, $9.99/month after, Manage billing, no buy buttons');
 
   // ---- Pro active: Pro highlighted, $49.99

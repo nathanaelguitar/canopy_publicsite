@@ -114,6 +114,7 @@ function createMock() {
     }
     if (method === 'POST' && path === '/__test/billing') {
       state.billing[body.email] = { entitlements: body.entitlements || [], subscription: body.subscription || null };
+      if (body.storeOnly !== undefined) state.storeOnly = Boolean(body.storeOnly);
       if (body.proUnavailable !== undefined) state.proUnavailable = Boolean(body.proUnavailable);
       if (body.publicSiteUrl !== undefined) state.publicSiteUrl = body.publicSiteUrl;
       return send(res, 204);
@@ -211,6 +212,7 @@ function createMock() {
       const a = authed(req, res); if (!a) return;
       state.billingCalls.push({ path, body });
       const b = state.billing[a.email];
+      if (state.storeOnly) return err(res, 409, 'no_billing_account');
       if (!b || !b.subscription) return err(res, 404, 'no_customer');
       return send(res, 200, { url: 'https://billing.stripe.test/p/session_1' });
     }
