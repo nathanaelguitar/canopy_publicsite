@@ -11,7 +11,7 @@
   <meta name="description" content="Your CanopyChat account and the devices signed in to it.">
   <link rel="icon" type="image/png" href="assets/app-icon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/styles.css?v=flame-6">
+  <link rel="stylesheet" href="assets/styles.css?v=plans-1">
 </head>
 <body class="link-page founding-mobile-funnel">
   <header class="founding-topbar">
@@ -36,14 +36,42 @@
           <p class="link-links">Setting up a computer? <a href="/link">Enter its code</a>.</p>
 
           <section class="link-panel" aria-labelledby="link-billing-title" data-billing>
-            <h2 id="link-billing-title">Remote control</h2>
+            <h2 id="link-billing-title">Your plan</h2>
             <p class="link-hint" data-billing-status role="status" aria-live="polite">Loading your plan&hellip;</p>
             <p class="link-notice" data-billing-notice role="status" aria-live="polite" hidden></p>
             <p class="link-billing-warning" data-billing-warning role="alert" hidden></p>
             <p class="link-hint" data-billing-detail hidden></p>
             <p class="link-error" data-billing-error role="alert"></p>
-            <button class="founding-cta link-submit link-submit-wide" type="button" data-billing-trial hidden>Start 7-day free trial ($5/month after)</button>
             <button class="founding-cta link-submit link-submit-wide" type="button" data-billing-manage hidden>Manage billing</button>
+
+            <ul class="account-plans" data-billing-plans aria-label="CanopyChat plans" hidden>
+              <li class="account-plan" data-plan="free">
+                <div class="account-plan-top">
+                  <h3 class="account-plan-name">Grove <span class="account-plan-badge" data-plan-badge hidden>Your plan</span></h3>
+                  <p class="account-plan-price">Free</p>
+                </div>
+                <p class="account-plan-what">Private chat with Canopy Lite on your own computer, with a hardware check that picks the right model.</p>
+              </li>
+              <li class="account-plan" data-plan="plus">
+                <div class="account-plan-top">
+                  <h3 class="account-plan-name">Plus <span class="account-plan-badge" data-plan-badge hidden>Your plan</span></h3>
+                  <p class="account-plan-price">$9.99<span>/month</span></p>
+                </div>
+                <p class="account-plan-what">Your computer from your phone, Canopy cloud models when your computer can't do the job, and Agents: Flame working for you on your computer.</p>
+                <button class="founding-cta link-submit link-submit-wide" type="button" data-billing-trial hidden>Start 7-day free trial</button>
+                <p class="link-hint" data-plan-trial-note hidden>Free for 7 days, then $9.99 a month. Cancel anytime from Manage billing.</p>
+              </li>
+              <li class="account-plan" data-plan="pro">
+                <div class="account-plan-top">
+                  <h3 class="account-plan-name">Pro <span class="account-plan-badge" data-plan-badge hidden>Your plan</span></h3>
+                  <p class="account-plan-price">$49.99<span>/month</span></p>
+                </div>
+                <p class="account-plan-what">Everything in Plus, with far higher usage limits and our most capable cloud models.</p>
+                <button class="founding-cta link-submit link-submit-wide account-plan-secondary" type="button" data-billing-pro hidden>Choose Pro</button>
+                <p class="link-hint" data-billing-pro-note hidden></p>
+              </li>
+            </ul>
+            <p class="account-plans-foot" data-billing-foot hidden>Plus on iPhone is bought through the App Store, and on Android through Google Play; manage those in your phone's settings. Flame's own cloud computer is invite-only for now: <a href="/flame">join the waitlist</a>.</p>
           </section>
 
           <section class="link-panel" aria-labelledby="link-devices-title">
@@ -63,7 +91,7 @@
     <span><a href="/privacy">Privacy</a> <a href="/terms">Terms</a> <a href="/support">Support</a></span>
   </footer>
 
-  <script src="assets/canopy-account.js?v=2" defer></script>
-  <script src="assets/account.js?v=2" defer></script>
+  <script src="assets/canopy-account.js?v=5" defer></script>
+  <script src="assets/account.js?v=3" defer></script>
 </body>
 </html>

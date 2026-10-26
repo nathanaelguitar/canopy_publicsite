@@ -212,6 +212,7 @@
         return 'We do not know that code. Check it against your computer, or run canopy sign-in again.';
       }
     } else if (context === 'billing') {
+      if (err.code === 'no_billing_account') return 'This plan is managed through the App Store or Google Play. Manage it in your phone\'s subscription settings.';
       if (err.code === 'already_subscribed' || err.status === 409) return 'You already have a subscription. Use Manage billing to change it.';
     } else if (context === 'remove') {
       if (err.status === 404) return 'That device is already gone. The list has been refreshed.';
@@ -415,7 +416,7 @@
     return { load: load };
   }
 
-  /* ---------- billing: the Remote control card on /account ---------- */
+  /* ---------- billing: the plan chooser on /account ---------- */
 
   function formatDate(iso) {
     var t = Date.parse(iso);
@@ -440,6 +441,29 @@
     return 'none';
   }
 
+  // Which plan card to highlight: 'pro' (agents), 'plus' (leaf), 'free', or
+  // 'remote' for older Remote control-only accounts (no card matches them).
+  function currentPlan(me, state) {
+    var ents = (me && me.entitlements) || [];
+    var sub = (me && me.subscription) || null;
+    var product = sub && sub.product;
+    if (ents.indexOf('agents') !== -1 || product === 'agents') return 'pro';
+    if (ents.indexOf('leaf') !== -1 || product === 'leaf') return 'plus';
+    if (state === 'none') return 'free';
+    return 'remote';
+  }
+
+  var PLAN_NAMES = { pro: 'Pro', plus: 'Plus', remote: 'Remote control' };
+
+  // Monthly price for the subscription the account actually has. Older
+  // Remote control subscriptions keep renewing at their original price.
+  function priceFor(sub, plan) {
+    var product = (sub && sub.product) || '';
+    if (product === 'agents' || plan === 'pro') return '$49.99/month';
+    if (product === 'remote_control' && plan === 'remote') return '$5/month';
+    return '$9.99/month';
+  }
+
   function bindBilling(root, onSessionLost) {
     var status = $('[data-billing-status]', root);
     var detail = $('[data-billing-detail]', root);
@@ -447,44 +471,86 @@
     var errBox = $('[data-billing-error]', root);
     var trialBtn = $('[data-billing-trial]', root);
     var manageBtn = $('[data-billing-manage]', root);
+    var proBtn = $('[data-billing-pro]', root);
+    var proNote = $('[data-billing-pro-note]', root);
+    var plansList = $('[data-billing-plans]', root);
+    var trialNote = $('[data-plan-trial-note]', root);
+    var foot = $('[data-billing-foot]', root);
+    var proUnavailable = false;
+
+    function showPlans(on) {
+      if (plansList) show(plansList, on);
+      if (foot) show(foot, on);
+    }
+
+    function markCurrent(plan) {
+      if (!plansList) return;
+      var cards = plansList.querySelectorAll('[data-plan]');
+      for (var i = 0; i < cards.length; i++) {
+        var isCurrent = cards[i].getAttribute('data-plan') === plan;
+        cards[i].setAttribute('data-current', isCurrent ? 'true' : 'false');
+        var badge = $('[data-plan-badge]', cards[i]);
+        if (badge) show(badge, isCurrent);
+      }
+    }
+
+    function setProNote(text) {
+      if (!proNote) return;
+      proNote.textContent = text;
+      show(proNote, Boolean(text));
+    }
 
     function render(me) {
       var state = billingState(me);
+      var plan = currentPlan(me, state);
       var sub = (me && me.subscription) || null;
+      var price = priceFor(sub, plan);
       var detailText = '';
       var statusText = '';
       var warn = '';
       if (state === 'included') {
-        statusText = 'Included with your account';
+        statusText = 'Included with your account: ' + (PLAN_NAMES[plan] || 'Remote control');
       } else if (state === 'subscribed' || state === 'past_due') {
         var trialing = sub && sub.status === 'trialing';
-        statusText = trialing ? 'Free trial' : (state === 'past_due' ? 'Payment past due' : 'Active');
+        var label = PLAN_NAMES[plan] || 'Your plan';
+        statusText = label + ': ' + (trialing ? 'Free trial' : (state === 'past_due' ? 'Payment past due' : 'Active'));
         if (sub && sub.cancel_at_period_end) {
           var endOn = formatDate(sub.current_period_end);
           detailText = endOn ? 'Ends on ' + endOn + '. It will not renew.' : 'It will not renew.';
         } else if (trialing) {
           var tEnd = formatDate(sub.trial_end || sub.current_period_end);
-          detailText = tEnd ? 'Your trial ends on ' + tEnd + ', then $5/month.' : 'Then $5/month.';
+          detailText = tEnd ? 'Your trial ends on ' + tEnd + ', then ' + price + '.' : 'Then ' + price + '.';
         } else if (sub) {
           var renew = formatDate(sub.current_period_end);
-          if (renew) detailText = 'Renews on ' + renew + ' ($5/month).';
+          if (renew) detailText = 'Renews on ' + renew + ' (' + price + ').';
         }
         if (state === 'past_due') {
-          warn = 'We could not charge your card. Update your payment method to keep remote control working.';
+          warn = 'We could not charge your card. Update your payment method to keep your plan working.';
         }
       } else {
-        statusText = 'Control your computer from your phone. 7-day free trial, then $5/month.';
+        statusText = 'You are on Grove, the free plan. Try Plus free for 7 days, then $9.99 a month.';
       }
       status.textContent = statusText;
       status.className = state === 'none' ? 'link-hint' : 'link-billing-state';
       status.setAttribute('data-billing-state', state);
+      status.setAttribute('data-billing-plan', plan);
       show(status, true);
       detail.textContent = detailText;
       show(detail, Boolean(detailText));
       warning.textContent = warn;
       show(warning, Boolean(warn));
       show(trialBtn, state === 'none');
+      if (trialNote) show(trialNote, state === 'none');
       show(manageBtn, state === 'subscribed' || state === 'past_due');
+      markCurrent(plan);
+      showPlans(true);
+      if (proBtn) {
+        var offerPro = state === 'none' && !proUnavailable;
+        show(proBtn, offerPro);
+        if (proUnavailable) setProNote('Pro is coming soon.');
+        else if (plan === 'plus') setProNote('Want Pro? Write to support@canopychat.app and we will move you over.');
+        else setProNote('');
+      }
     }
 
     function load() {
@@ -496,13 +562,15 @@
         if (isAuthLost(err)) { onSessionLost(); return null; }
         show(trialBtn, false);
         show(manageBtn, false);
+        if (proBtn) show(proBtn, false);
+        showPlans(false);
         status.textContent = '';
         errBox.textContent = 'We could not load your plan. ' + messageFor(err, 'billing');
         return null;
       });
     }
 
-    function redirectTo(path, body, btn) {
+    function redirectTo(path, body, btn, onFail) {
       errBox.textContent = '';
       btn.disabled = true;
       btn.classList.add('is-loading');
@@ -516,14 +584,33 @@
         if (isAuthLost(err)) return onSessionLost();
         btn.disabled = false;
         btn.classList.remove('is-loading');
+        if (onFail && onFail(err)) return;
+        if (err.status === 409 && err.code !== 'no_billing_account') {
+          load().then(function () { errBox.textContent = messageFor(err, 'billing'); });
+          return;
+        }
         errBox.textContent = messageFor(err, 'billing');
-        if (err.status === 409) load();
       });
     }
 
     trialBtn.addEventListener('click', function () {
+      // remote_control is served the Plus (leaf) plan by the Worker.
       redirectTo('/v1/billing/checkout', { product: 'remote_control', return_origin: window.location.origin }, trialBtn);
     });
+    if (proBtn) {
+      proBtn.addEventListener('click', function () {
+        redirectTo('/v1/billing/checkout', { product: 'agents', return_origin: window.location.origin }, proBtn, function (err) {
+          // A backend that does not sell Pro yet: say so instead of an error.
+          if (err.code === 'product_unavailable' || (err.status === 400 && err.code !== 'bad_return_origin')) {
+            proUnavailable = true;
+            show(proBtn, false);
+            setProNote('Pro is coming soon.');
+            return true;
+          }
+          return false;
+        });
+      });
+    }
     manageBtn.addEventListener('click', function () {
       redirectTo('/v1/billing/portal', {}, manageBtn);
     });
