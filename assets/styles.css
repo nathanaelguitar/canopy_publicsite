@@ -4034,6 +4034,16 @@ html:has(.founding-mobile-funnel) {
   color: var(--funnel-cream);
 }
 
+/* "Join the waitlist" lands on the heading with the whole form in view. The
+   topbar doesn't stay pinned on this page, so drop the funnel's header offset. */
+html:has(.flame-page) {
+  scroll-padding-top: 0;
+}
+
+.flame-page #waitlist-title {
+  scroll-margin-top: 40px;
+}
+
 /* Flame at the laptop, in the lime glow beside the form; wide screens only. */
 .flame-waitlist-typing {
   display: none;
