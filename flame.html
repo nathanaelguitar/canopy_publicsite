@@ -7,16 +7,16 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://connect.facebook.net; connect-src 'self' https://founding-api.canopychat.app https://www.facebook.com https://connect.facebook.net; img-src 'self' data: https://www.facebook.com; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://checkout.stripe.com; upgrade-insecure-requests">
   <meta name="theme-color" content="#0c2b1d">
   <title>Meet Flame | Invite Only | CanopyChat</title>
-  <meta name="description" content="Flame is CanopyChat's AI agent. It works in the folders you pick on your computer, tells you what it's doing, and answers from your phone. Invite only: join the waitlist.">
+  <meta name="description" content="Flame is CanopyChat's AI agent, with its own house in the clouds: a private cloud computer that keeps working after you close your laptop. Invite only: join the waitlist.">
   <link rel="icon" type="image/png" href="assets/app-icon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/styles.css?v=flame-1">
+  <link rel="stylesheet" href="assets/styles.css?v=flame-2">
 </head>
 <body class="flame-page founding-mobile-funnel">
   <!--
     THESIS: Flame is a character you invite in, not a feature list; the page refuses the AI-agent grid of capability cards.
     OWN-WORLD: Founding forest and lime, plus Flame's own lantern amber as the one warm light on the page.
-    STORY: Visitor meets Flame, sees exactly what it does on their computer, joins the invite list, and may optionally chip in.
+    STORY: Visitor meets Flame, sees that it keeps working in its own cloud home, joins the invite list, and may optionally chip in.
     FIRST VIEWPORT: The claim and one lime action left; Flame, large, lit by his lantern, right (below the copy on phones).
     FORM: Three screens: meet, what it does (cream ruled rows), waitlist with a separate optional contribution.
     FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
@@ -37,7 +37,7 @@
       <div class="founding-screen-inner flame-hero-inner">
         <div class="flame-hero-copy-block">
           <h1 id="flame-title">Meet Flame. It gets things done while you’re away.</h1>
-          <p class="flame-hero-copy">Flame is the AI agent inside CanopyChat. Point it at a project on your computer, tell it what you need, and check in from your phone while it works.</p>
+          <p class="flame-hero-copy">Flame is the AI agent inside CanopyChat, and it has its own house in the clouds: a private cloud computer that keeps working after you close your laptop. Tell it what you need, then check in from your phone whenever you like.</p>
           <a class="founding-primary-action" href="#waitlist">
             <span>Join the waitlist</span>
             <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M10 2v14M4.5 10.5 10 16l5.5-5.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/></svg>
@@ -45,7 +45,10 @@
         </div>
         <figure class="flame-portrait">
           <span class="flame-lantern-glow" aria-hidden="true"></span>
-          <img src="assets/flame_idle_poster_512.png" alt="Flame, a round orange forest creature with a big yellow mustache, holding a staff with a glowing acorn lantern" width="512" height="512">
+          <picture>
+            <source srcset="assets/flame_idle_poster_512.png" media="(prefers-reduced-motion: reduce)">
+            <img src="assets/flame-hi-512.webp" alt="Flame, a round orange forest creature with a big yellow mustache, waving hello while holding a staff with a glowing acorn lantern" width="512" height="512" fetchpriority="high">
+          </picture>
         </figure>
       </div>
     </section>
@@ -57,8 +60,12 @@
 
         <div class="flame-rows">
           <div class="flame-row">
+            <strong>Has its own place in the cloud</strong>
+            <p>Flame gets a private cloud computer of its own. Shut your laptop, catch your flight, go to sleep. Flame keeps working.</p>
+          </div>
+          <div class="flame-row">
             <strong>Works where you work</strong>
-            <p>Pick a folder on your Mac or PC and say what you need. Flame only works in the places you share with it.</p>
+            <p>Bring in the projects you want help with from your Mac or PC. Flame only works with what you share with it.</p>
           </div>
           <div class="flame-row">
             <strong>Tells you as it goes</strong>
@@ -66,7 +73,7 @@
           </div>
           <div class="flame-row">
             <strong>Answers from anywhere</strong>
-            <p>Step away from your desk. Your computer and your phone stay paired over an end-to-end encrypted connection.</p>
+            <p>Message Flame from your phone wherever you are, and come back to finished work instead of a stalled task.</p>
           </div>
           <div class="flame-row">
             <strong>Remembers, if you want it to</strong>
@@ -81,9 +88,10 @@
     </section>
 
     <section id="waitlist" class="founding-screen flame-waitlist" aria-labelledby="waitlist-title">
+      <img class="flame-waitlist-typing" src="assets/flame-typing-512.webp" alt="" width="512" height="512" loading="lazy" decoding="async">
       <div class="founding-screen-inner">
-        <h2 id="waitlist-title">Flame is invite only, for now.</h2>
-        <p class="flame-waitlist-copy">We’re letting people in a few at a time so every early user gets real attention. Leave your email and we’ll write when there’s a seat for you.</p>
+        <h2 id="waitlist-title">Flame’s house in the clouds is invite only, for now.</h2>
+        <p class="flame-waitlist-copy">Every paid CanopyChat plan already includes agents and remote control from your phone. A cloud computer for Flame is the part we’re opening a few people at a time, so every early user gets real attention. Leave your email and we’ll write when there’s a spot for you.</p>
 
         <form class="android-claim-form" data-flame-waitlist-form novalidate>
           <label class="android-email-label" for="flame-email">Email</label>
@@ -134,7 +142,7 @@
   <footer class="founding-footer">
     <span>Copyright 2026 CanopyChat</span>
     <span><a href="/">Home</a> <a href="/privacy">Privacy</a> <a href="/terms">Terms</a> <a href="/support">Support</a></span>
-    <small class="founding-device-disclosure">Flame works through CanopyChat on your Mac or PC, with your phone as the remote. Invites go out in small groups.</small>
+    <small class="founding-device-disclosure">Agents and phone remote control come with every paid CanopyChat plan. Flame’s cloud computer is invite only, and invites go out in small groups.</small>
   </footer>
 
   <script src="assets/flame.js?v=1" defer></script>
