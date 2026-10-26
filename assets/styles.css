@@ -3954,17 +3954,14 @@ html:has(.founding-mobile-funnel) {
   width: 100%;
   height: auto;
   filter: drop-shadow(0 28px 48px rgba(0, 0, 0, 0.35));
-  /* The renders are framed tight at the bottom; fade the edge instead of a hard cut. */
-  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 98%);
-  mask-image: linear-gradient(to bottom, #000 72%, transparent 98%);
   animation: flame-arrive 900ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both;
 }
 
 /* Sits behind the acorn lantern in the artwork (upper left of the frame). */
 .flame-lantern-glow {
   position: absolute;
-  top: 12%;
-  left: -4%;
+  top: 8%;
+  left: -3%;
   width: 34%;
   aspect-ratio: 1;
   border-radius: 50%;
