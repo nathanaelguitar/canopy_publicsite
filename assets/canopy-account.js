@@ -464,16 +464,16 @@
           detailText = endOn ? 'Ends on ' + endOn + '. It will not renew.' : 'It will not renew.';
         } else if (trialing) {
           var tEnd = formatDate(sub.trial_end || sub.current_period_end);
-          detailText = tEnd ? 'Your trial ends on ' + tEnd + ', then $5/month.' : 'Then $5/month.';
+          detailText = tEnd ? 'Your trial ends on ' + tEnd + ', then $10/month.' : 'Then $10/month.';
         } else if (sub) {
           var renew = formatDate(sub.current_period_end);
-          if (renew) detailText = 'Renews on ' + renew + ' ($5/month).';
+          if (renew) detailText = 'Renews on ' + renew + ' ($10/month).';
         }
         if (state === 'past_due') {
           warn = 'We could not charge your card. Update your payment method to keep remote control working.';
         }
       } else {
-        statusText = 'Control your computer from your phone. 7-day free trial, then $5/month.';
+        statusText = 'Control your computer from your phone. 7-day free trial, then $10/month.';
       }
       status.textContent = statusText;
       status.className = state === 'none' ? 'link-hint' : 'link-billing-state';
