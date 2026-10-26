@@ -26,12 +26,12 @@
   function afterCheckout() {
     var tries = 0;
     var notice = $('[data-billing-notice]');
-    notice.textContent = 'Thanks. Your free trial is starting. This can take a few seconds.';
+    notice.textContent = 'Thanks. Your plan is starting. This can take a few seconds.';
     A.show(notice, true);
     function poll() {
       billing.load().then(function (me) {
         if (me && billing.billingState(me) !== 'none') {
-          notice.textContent = 'You are all set. Remote control is on for your account.';
+          notice.textContent = 'You are all set. Your plan is on for your account.';
         } else if (me && ++tries < 8) {
           window.setTimeout(poll, 2000);
         } else if (me) {

@@ -114,6 +114,7 @@ function createMock() {
     }
     if (method === 'POST' && path === '/__test/billing') {
       state.billing[body.email] = { entitlements: body.entitlements || [], subscription: body.subscription || null };
+      if (body.proUnavailable !== undefined) state.proUnavailable = Boolean(body.proUnavailable);
       if (body.publicSiteUrl !== undefined) state.publicSiteUrl = body.publicSiteUrl;
       return send(res, 204);
     }
@@ -198,7 +199,9 @@ function createMock() {
       const a = authed(req, res); if (!a) return;
       state.billingCalls.push({ path, body });
       if (body.product === 'inference') return err(res, 409, 'product_unavailable');
-      if (body.product !== 'remote_control') return err(res, 400, 'invalid_product');
+      // Like the Worker: remote_control is served Plus (leaf); agents is Pro.
+      if (body.product === 'agents' && state.proUnavailable) return err(res, 409, 'product_unavailable');
+      if (!['remote_control', 'leaf', 'agents'].includes(body.product)) return err(res, 400, 'invalid_product');
       if (state.publicSiteUrl && body.return_origin !== state.publicSiteUrl) return err(res, 400, 'bad_return_origin');
       const b = state.billing[a.email];
       if (b && b.subscription && ['trialing', 'active'].includes(b.subscription.status)) return err(res, 409, 'already_subscribed');
