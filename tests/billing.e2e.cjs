@@ -87,7 +87,7 @@ const listen = (srv) => new Promise((r) => srv.listen(0, '127.0.0.1', () => r(sr
   await setBilling({ entitlements: [], subscription: null, publicSiteUrl: SITE });
   await open(page);
   await page.waitForSelector('[data-billing-trial]:not([hidden])');
-  assert.match(await page.locator('[data-billing-trial]').innerText(), /Start 7-day free trial \(\$5\/month after\)/);
+  assert.match(await page.locator('[data-billing-trial]').innerText(), /Start 7-day free trial \(\$10\/month after\)/);
   assert.ok(!(await visible(page, 'manage')));
   await page.click('[data-billing-trial]');
   await page.waitForURL(/checkout\.stripe\.test/);
@@ -127,7 +127,7 @@ const listen = (srv) => new Promise((r) => srv.listen(0, '127.0.0.1', () => r(sr
   await open(page);
   await page.waitForSelector('[data-billing-manage]:not([hidden])');
   assert.match(await card(page).innerText(), /Free trial/);
-  assert.match(await page.locator('[data-billing-detail]').innerText(), /trial ends on .*then \$5\/month/);
+  assert.match(await page.locator('[data-billing-detail]').innerText(), /trial ends on .*then \$10\/month/);
   step('trialing: status, trial end date, Manage billing');
 
   // ---- past_due
