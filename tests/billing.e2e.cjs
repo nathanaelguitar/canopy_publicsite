@@ -1,6 +1,5 @@
 /*
- * Headless-Chromium test of the plan chooser on /account and the homepage
- * #plans section
+ * Headless-Chromium test of the plan chooser on /account and the /plans page
  * against tests/mock-accounts-api.cjs. Same setup as tests/link.e2e.cjs:
  *
  *   npm i playwright && npx playwright install chromium   (in any temp dir)
@@ -108,6 +107,7 @@ const listen = (srv) => new Promise((r) => srv.listen(0, '127.0.0.1', () => r(sr
   assert.ok(await page.locator('[data-plan="free"] [data-plan-badge]').isVisible());
   assert.ok(!(await page.locator('[data-plan="plus"] [data-plan-badge]').isVisible()));
   assertCleanCopy(planText, 'account plans');
+  assert.equal(await page.locator('[data-billing-foot] a[href="/plans"]').count(), 1, 'See all plans link');
   await page.click('[data-billing-trial]');
   await page.waitForURL(/checkout\.stripe\.test/);
   const co = mock.state.billingCalls.find((c) => c.path === '/v1/billing/checkout');
@@ -247,24 +247,57 @@ const listen = (srv) => new Promise((r) => srv.listen(0, '127.0.0.1', () => r(sr
   assert.ok(!(await visible(page, 'trial')) && !(await visible(page, 'manage')) && !(await visible(page, 'pro')));
   step('/v1/me error: message, no purchase buttons');
 
-  // ---- homepage #plans: public prices, nav link, plain words
+  // ---- homepage: no plans section, a Plans link to /plans
   const home = await newPage();
   await home.goto(SITE + '/');
-  assert.ok(await home.locator('.nav-links a[href="#plans"]').isVisible(), 'Plans nav link');
-  const plans = home.locator('#plans');
-  assert.ok(await plans.isVisible());
-  const homeText = await plans.innerText();
-  for (const name of ['Grove', 'Plus', 'Pro']) assert.match(homeText, new RegExp(name));
-  assert.match(homeText, /\$9\.99/);
-  assert.match(homeText, /\$49\.99/);
-  assert.match(homeText, /7-day free trial/);
-  assert.match(homeText, /App Store/);
-  assert.match(homeText, /Invite-only/i);
-  assertCleanCopy(homeText, 'homepage plans');
+  assert.ok(await home.locator('.nav-links a[href="/plans"]').isVisible(), 'Plans nav link on the homepage');
+  assert.equal(await home.locator('#plans, [data-plans], .plan-card').count(), 0, 'homepage has no plans section');
+  assert.doesNotMatch(await home.locator('main').innerText(), /\$9\.99|\$49\.99/);
+  step('homepage: no plans section, nav links to /plans');
+
+  // ---- old links: /#plans lands on /plans
+  await home.goto(SITE + '/support');
+  await home.goto(SITE + '/#plans');
+  await home.waitForURL(/\/plans$/);
+  step('/#plans redirects to /plans');
+
+  // ---- /plans: public prices, plain words
+  await home.goto(SITE + '/plans');
+  assert.ok(await home.locator('.nav-links a[href="/plans"][aria-current="page"]').isVisible());
+  assert.equal(await home.locator('link[rel="canonical"]').getAttribute('href'), 'https://canopychat.app/plans');
+  assert.match(await home.title(), /Plans/);
+  const plansText = await home.locator('#plans').innerText();
+  for (const name of ['Grove', 'Plus', 'Pro']) assert.match(plansText, new RegExp(name));
+  assert.match(plansText, /\$9\.99/);
+  assert.match(plansText, /\$49\.99/);
+  assert.match(plansText, /7-day free trial/);
+  assert.match(plansText, /App Store/);
+  assert.match(plansText, /Invite-only/i);
+  assertCleanCopy(plansText, '/plans');
+  const proCard = await home.locator('[data-plan-card="pro"]').innerText();
+  assert.match(proCard, /Canopy Lore/);
+  assert.match(proCard, /only on Pro/);
+  assert.doesNotMatch(await home.locator('[data-plan-card="plus"]').innerText(), /house in the clouds|cloud computer/i, 'Plus never promises the cloud computer');
+  assert.match(await home.locator('.plans-flame').innerText(), /only for Pro members/);
   assert.equal(await home.locator('#plans [data-plan-cta="plus"]').getAttribute('href'), '/account');
+  assert.equal(await home.locator('#plans [data-plan-cta="pro"]').getAttribute('href'), '/account');
+  assert.equal(await home.locator('#plans a.plan-cta', { hasText: 'Download free' }).getAttribute('href'), '/#downloads');
   assert.equal(await home.locator('#plans .plans-flame').getAttribute('href'), '/flame');
   await home.close();
-  step('homepage #plans: Grove / Plus $9.99 / Pro $49.99, nav link, no budget or vendor words');
+  step('/plans: Grove / Plus $9.99 / Pro $49.99, CTAs, canonical, no budget or vendor words');
+
+  // ---- nav consistency: Plans link on the other public pages
+  const nav = await newPage();
+  for (const p of ['/support', '/terms', '/privacy']) {
+    await nav.goto(SITE + p);
+    assert.ok(await nav.locator('.nav-links a[href="/plans"]').isVisible(), 'Plans in nav on ' + p);
+  }
+  for (const p of ['/flame', '/signup', '/link']) {
+    await nav.goto(SITE + p);
+    assert.ok(await nav.locator('footer a[href="/plans"]').count() === 1, 'Plans in footer on ' + p);
+  }
+  await nav.close();
+  step('Plans link on support/terms/privacy navs and flame/signup/link footers');
 
   assert.deepStrictEqual(violations, [], 'no CSP violations or page errors: ' + violations.join('; '));
   step('no CSP violations');
