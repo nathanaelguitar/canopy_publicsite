@@ -1,0 +1,132 @@
+/* Canopy Code page (/canopy-code). Layered on styles.css: reuses its tokens, .grid, .panel and
+   the install card; only the long-form layout lives here. No script or inline style needed. */
+
+.cc-hero {
+  padding: 56px 0 28px;
+}
+
+.cc-hero > * {
+  max-width: 880px;
+}
+
+.cc-hero .actions {
+  max-width: none;
+}
+
+.cc-hero h1 {
+  margin: 12px 0 18px;
+  font-size: clamp(40px, 6.4vw, 76px);
+  line-height: 1.02;
+}
+
+.cc-hero .lead {
+  margin: 0;
+}
+
+.cc-section {
+  padding: 30px 0;
+}
+
+.cc-section h2 {
+  font-size: clamp(30px, 4vw, 44px);
+}
+
+.cc-prose {
+  max-width: 760px;
+}
+
+.cc-prose p,
+.cc-prose li {
+  color: #4a382c;
+}
+
+.cc-prose code,
+.cc-grid code,
+.install-copy code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.88em;
+  padding: 0.1em 0.38em;
+  border-radius: 6px;
+  background: rgba(122, 74, 35, 0.1);
+  overflow-wrap: anywhere;
+}
+
+.cc-list {
+  margin: 0 0 1em;
+  padding-left: 1.2em;
+}
+
+.cc-list li {
+  margin-bottom: 0.5em;
+}
+
+.cc-grid {
+  margin: 24px 0 24px;
+}
+
+.cc-grid .panel {
+  padding: 24px;
+}
+
+.cc-grid .panel h3 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.cc-faq h3 {
+  margin: 26px 0 6px;
+  font-size: 24px;
+}
+
+.cc-faq p {
+  margin: 0;
+}
+
+.install-notes code {
+  overflow-wrap: anywhere;
+}
+
+.cc-attribution {
+  margin-top: 18px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (max-width: 820px) {
+  .cc-hero {
+    padding-top: 28px;
+  }
+
+  .cc-section {
+    padding: 22px 0;
+  }
+
+  .cc-grid {
+    grid-template-columns: 1fr;
+    margin-bottom: 8px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .cc-hero .lead,
+  .cc-grid .panel p {
+    color: #d8c5ae;
+  }
+
+  .cc-prose p,
+  .cc-prose li {
+    color: #d8c5ae;
+  }
+
+  .cc-prose code,
+  .cc-grid code,
+  .install-copy code {
+    background: rgba(255, 244, 223, 0.12);
+  }
+
+  .cc-prose a,
+  .cc-attribution a {
+    color: #d9a66b;
+  }
+}
