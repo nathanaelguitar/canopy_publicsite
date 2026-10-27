@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#fff4df" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#120d0a" media="(prefers-color-scheme: dark)">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <title>Canopy Code | Terminal Coding Agent for Any Model</title>
+  <meta name="description" content="Canopy Code is the terminal coding agent from CanopyChat. Use your own models or local ones, switch mid-session, and control it from your iPhone.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://canopychat.app/canopy-code">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CanopyChat">
+  <meta property="og:title" content="Canopy Code | Terminal Coding Agent for Any Model">
+  <meta property="og:description" content="Canopy Code is the terminal coding agent from CanopyChat. Use your own models or local ones, switch mid-session, and control it from your iPhone.">
+  <meta property="og:url" content="https://canopychat.app/canopy-code">
+  <meta property="og:image" content="https://canopychat.app/assets/icon-512.png">
+  <meta property="og:image:alt" content="The CanopyChat tree mark">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Canopy Code | Terminal Coding Agent for Any Model">
+  <meta name="twitter:description" content="Canopy Code is the terminal coding agent from CanopyChat. Use your own models or local ones, switch mid-session, and control it from your iPhone.">
+  <meta name="twitter:image" content="https://canopychat.app/assets/icon-512.png">
+  <meta name="twitter:image:alt" content="The CanopyChat tree mark">
+  <link rel="icon" type="image/png" href="assets/app-icon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/styles.css?v=plans-2">
+  <link rel="stylesheet" href="assets/canopy-code.css?v=1">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://canopychat.app/#organization",
+      "name": "CanopyChat",
+      "url": "https://canopychat.app/",
+      "logo": "https://canopychat.app/assets/icon-512.png"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://canopychat.app/canopy-code#software",
+      "name": "Canopy Code",
+      "alternateName": [
+        "Canopy Code CLI",
+        "canopy"
+      ],
+      "url": "https://canopychat.app/canopy-code",
+      "description": "Canopy Code is the terminal coding agent from CanopyChat. It works with your own model providers, including local models, lets you switch models mid-session, and can be controlled from the CanopyChat app on your iPhone.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "macOS, Linux, Windows",
+      "softwareRequirements": "macOS on Apple silicon, Linux (x64 or arm64, glibc 2.30 or newer), or 64-bit Windows 10 (version 1809) or newer and Windows 11",
+      "downloadUrl": "https://github.com/nathanaelguitar/canopy-code/releases",
+      "publisher": {
+        "@id": "https://canopychat.app/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Free to install and use with your own model provider. Remote control from the CanopyChat app needs a Canopy account and a plan."
+      },
+      "featureList": [
+        "Works with ChatGPT and Claude sign-in, API keys, and local models",
+        "Switch models mid-session",
+        "Remote control from the CanopyChat app on iPhone",
+        "File checkpoints with /restore",
+        "Advisor mode",
+        "MCP servers, skills and hooks"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://canopychat.app/canopy-code#faq",
+      "url": "https://canopychat.app/canopy-code",
+      "about": {
+        "@id": "https://canopychat.app/canopy-code#software"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Canopy Code?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Canopy Code is the terminal coding agent from CanopyChat. You run it in a project folder, tell it what you want in plain language, and it reads your code, edits files and runs commands with the approval level you set."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Canopy Code the same as the CanopyChat app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. CanopyChat is the private chat app for iPhone, Android and computers. Canopy Code is a separate command-line tool for developers. They connect through remote control, which lets the CanopyChat app on your iPhone follow and steer a Canopy Code session."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Canopy Code free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Canopy Code is free to install and use with your own model provider, such as a ChatGPT or Claude subscription, an API key, or a local model. Remote control from the CanopyChat app needs a Canopy account and a plan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which models can I use with Canopy Code?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can sign in with ChatGPT or a Claude subscription, use any OpenAI-compatible Chat Completions endpoint, Anthropic or Gemini endpoint with an API key, or run a local model through Ollama, LM Studio, vLLM or llama.cpp. You can switch models during a session with the /model command."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I run a coding agent on a local model?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Canopy Code has built-in providers for Ollama and LM Studio and works with other OpenAI-compatible servers such as vLLM and llama.cpp, so the model can run on your own hardware."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I control Canopy Code from my iPhone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sign in to your Canopy account on the computer with canopy sign-in, type /rc in a Canopy Code session, and open the CanopyChat app on your iPhone. On macOS and Linux, canopy host install also keeps the computer ready so you can start sessions from the app."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which systems does Canopy Code run on?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Canopy Code runs on macOS with Apple silicon, on Linux for x64 and arm64, and on 64-bit Windows 10 (version 1809 or newer) and Windows 11. There is no build for Intel Macs yet. Install it with Homebrew or Scoop, or download an archive from GitHub Releases."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <header class="shell nav">
+    <a class="brand" href="/" aria-label="CanopyChat home">
+      <img class="mark" src="assets/app-icon.png" alt="" width="46" height="46">
+      <strong>CanopyChat</strong>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="/signup" class="nav-cta" data-account-nav>Create account</a>
+      <a href="/plans">Plans</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/support">Support</a>
+      <a href="/flame">Flame</a>
+      <a href="/canopy-code" aria-current="page">Canopy Code</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="shell cc-hero" aria-labelledby="cc-title">
+      <div class="eyebrow">For developers</div>
+      <h1 id="cc-title">Canopy Code, the coding agent for your terminal</h1>
+      <p class="lead">Canopy Code is the terminal coding agent from CanopyChat. It reads your project, edits files and runs commands, using the model you choose, and you can check in on it from your iPhone.</p>
+      <div class="actions">
+        <a class="button" href="#install">Install Canopy Code</a>
+        <a class="button secondary" href="/plans">See plans</a>
+      </div>
+    </section>
+
+    <section class="shell cc-section" aria-labelledby="what-title">
+      <div class="cc-prose">
+        <h2 id="what-title">What Canopy Code is</h2>
+        <p>Canopy Code is a coding agent that runs in your terminal. You type <code>canopy</code> in a project folder and describe the job in plain language. It reads your code, makes the changes, runs commands, and shows you what it is doing. You decide how much it may do on its own with approval modes, from asking first to running freely.</p>
+        <p>It is written in Rust and runs on macOS (Apple silicon), Linux and Windows. Canopy Code is the developer tool from <a href="/">CanopyChat</a>, which also makes the private chat app for iPhone, Android and computers. They are separate products that work together: Canopy Code does the coding, and the CanopyChat app on your iPhone can follow and steer it.</p>
+      </div>
+    </section>
+
+    <section class="shell cc-section" aria-labelledby="why-title">
+      <div class="cc-prose">
+        <h2 id="why-title">Why Canopy Code</h2>
+        <ul class="cc-list">
+          <li><strong>You choose the model.</strong> Sign in with a ChatGPT or Claude subscription, add an API key, or point it at a model running on your own machine.</li>
+          <li><strong>You can change your mind mid-session.</strong> Switch models, even across providers, without starting over.</li>
+          <li><strong>It stays on your computer.</strong> It works in your project folder, and your settings, sessions and logins live in <code>~/.canopy</code> on your machine.</li>
+          <li><strong>It follows you off the keyboard.</strong> Start a job at your desk, then watch it, answer it and steer it from your phone.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="shell install" id="install" aria-labelledby="install-title">
+      <div class="install-card">
+        <div class="install-copy">
+          <div class="eyebrow">Install</div>
+          <h2 id="install-title">Install Canopy Code</h2>
+          <p>Install it with Homebrew on macOS and Linux, or Scoop on Windows, then run <code>canopy</code> in a project folder. Type <code>/auth</code> inside Canopy Code to connect a model.</p>
+        </div>
+        <div class="terminal" role="group" aria-label="Install command">
+          <div class="terminal-bar">
+            <span class="terminal-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+            <div class="terminal-tabs" role="tablist" aria-label="Choose your operating system" hidden>
+              <button class="terminal-tab" type="button" role="tab" id="tab-macos" aria-selected="true" aria-controls="panel-macos" tabindex="0" data-platform="macos" title="Install on macOS (Apple silicon)">macOS</button>
+              <button class="terminal-tab" type="button" role="tab" id="tab-linux" aria-selected="false" aria-controls="panel-linux" tabindex="-1" data-platform="linux" title="Install on Linux (x64 or arm64)">Linux</button>
+              <button class="terminal-tab" type="button" role="tab" id="tab-windows" aria-selected="false" aria-controls="panel-windows" tabindex="-1" data-platform="windows" title="Install on Windows (x64)">Windows</button>
+            </div>
+          </div>
+          <div class="terminal-panel" id="panel-macos" data-platform="macos">
+            <div class="terminal-line terminal-comment">
+              <code># macOS (Apple silicon)</code>
+            </div>
+            <div class="terminal-line">
+              <code id="brew-command"><span class="terminal-prompt" aria-hidden="true">$ </span>brew install <span class="nowrap">nathanaelguitar/canopy/canopy-code</span></code>
+              <button class="copy-button" type="button" data-copy-target="brew-command" aria-label="Copy the macOS install command">Copy</button>
+            </div>
+            <div class="terminal-line terminal-next">
+              <code><span class="terminal-prompt" aria-hidden="true">$ </span>canopy</code>
+            </div>
+          </div>
+          <div class="terminal-panel" id="panel-linux" data-platform="linux">
+            <div class="terminal-line terminal-comment">
+              <code># Linux (x64 or arm64)</code>
+            </div>
+            <div class="terminal-line">
+              <code id="brew-command-linux"><span class="terminal-prompt" aria-hidden="true">$ </span>brew install <span class="nowrap">nathanaelguitar/canopy/canopy-code</span></code>
+              <button class="copy-button" type="button" data-copy-target="brew-command-linux" aria-label="Copy the Linux install command">Copy</button>
+            </div>
+            <div class="terminal-line terminal-next">
+              <code><span class="terminal-prompt" aria-hidden="true">$ </span>canopy</code>
+            </div>
+          </div>
+          <div class="terminal-panel" id="panel-windows" data-platform="windows">
+            <div class="terminal-line terminal-comment">
+              <code># Windows (x64, PowerShell)</code>
+            </div>
+            <div class="terminal-line">
+              <code id="scoop-command"><span class="terminal-prompt" aria-hidden="true">PS&gt; </span>scoop install https://github.com/nathanaelguitar/canopy-code/releases/latest/download/canopy-code.json</code>
+              <button class="copy-button" type="button" data-copy-target="scoop-command" aria-label="Copy the Windows install command">Copy</button>
+            </div>
+            <div class="terminal-line terminal-next">
+              <code><span class="terminal-prompt" aria-hidden="true">PS&gt; </span>canopy</code>
+            </div>
+          </div>
+        </div>
+        <ul class="install-notes">
+          <li data-platforms="macos">Paste it into Terminal on an Apple silicon Mac. Intel Macs have no build yet. Need Homebrew first? Get it at <a href="https://brew.sh" target="_blank" rel="noopener">brew.sh</a>.</li>
+          <li data-platforms="linux">Paste it into your shell on 64-bit Intel, AMD or ARM Linux with glibc 2.30 or newer (Ubuntu 20.04 and Debian 11 or later). Get Homebrew at <a href="https://brew.sh" target="_blank" rel="noopener">brew.sh</a>.</li>
+          <li data-platforms="windows">Paste it into PowerShell on 64-bit Windows 10 (version 1809) or newer, or Windows 11. Windows support is new, so please report anything odd. Need Scoop first? Get it at <a href="https://scoop.sh" target="_blank" rel="noopener">scoop.sh</a>.</li>
+          <li data-platforms="macos linux windows">Prefer a download? Each release has an archive per platform with a SHA-256 checksum on <a href="https://github.com/nathanaelguitar/canopy-code/releases" target="_blank" rel="noopener">GitHub Releases</a>.</li>
+          <li data-platforms="macos linux">Update later with <code>brew upgrade canopy-code</code>.</li>
+          <li data-platforms="windows">Update later with <code>scoop update canopy-code</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="shell cc-section" aria-labelledby="models-title">
+      <div class="cc-prose">
+        <h2 id="models-title">Works with your own models</h2>
+        <p>Canopy Code is not tied to one provider. Connect what you already have from <code>/auth</code>, or edit your settings file:</p>
+        <ul class="cc-list">
+          <li><strong>ChatGPT:</strong> sign in with your ChatGPT plan.</li>
+          <li><strong>Claude:</strong> choose Sign in with Anthropic to use your Claude subscription. This runs through Claude Code, so install it and sign in there first.</li>
+          <li><strong>API keys:</strong> any OpenAI-compatible Chat Completions endpoint, plus Anthropic and Gemini endpoints.</li>
+          <li><strong>Local models:</strong> Ollama and LM Studio have built-in providers, and servers such as vLLM and llama.cpp work through their OpenAI-compatible endpoint.</li>
+        </ul>
+        <p>Use <code>/model</code> to switch whenever you like. Canopy Code compacts the conversation first, so a long session still fits the new model. Using your own accounts and keys does not need a CanopyChat plan.</p>
+      </div>
+    </section>
+
+    <section class="shell cc-section" aria-labelledby="remote-title">
+      <div class="cc-prose">
+        <h2 id="remote-title">Remote control from your iPhone</h2>
+        <p>Sign this computer in to your Canopy account with <code>canopy sign-in</code>, then type <code>/rc</code> in a session. The session shows up in the <a href="https://apps.apple.com/us/app/canopychat/id6788203137" target="_blank" rel="noopener">CanopyChat app on your iPhone</a>, where you can follow it, send new instructions, and run slash commands such as <code>/compact</code>, <code>/model</code>, <code>/status</code> and <code>/review</code>.</p>
+        <p>The phone reaches your computer through the Canopy relay, your local network, or Tailscale if you use it. The link between phone and computer is encrypted end to end, a new phone has to be confirmed on the computer before it can connect, and attention notifications carry only a session id, its title and the device name.</p>
+        <p>On macOS and Linux you can also run <code>canopy host install</code>. It keeps that computer ready as an always-on host, so you can start a new session from the app without opening a terminal. Sessions start in folders you allow, with a default folder at <code>~/canopy-flame</code>, which the app shows as <a href="/flame">Flame&rsquo;s folder</a>.</p>
+      </div>
+    </section>
+
+    <section class="shell cc-section" aria-labelledby="features-title">
+      <h2 id="features-title">What else it does</h2>
+      <div class="grid cc-grid">
+        <article class="panel">
+          <h3>Checkpoints and /restore</h3>
+          <p>Canopy Code keeps a file checkpoint for each prompt. <code>/restore</code> puts your files back the way they were before a prompt, and <code>/rewind</code> steps the conversation back.</p>
+        </article>
+        <article class="panel">
+          <h3>An advisor on call</h3>
+          <p>Turn on <code>/advisor</code> and a second model of your choice offers guidance to the main one. Or run it once on a focus, like <code>/advisor the migration</code>.</p>
+        </article>
+        <article class="panel">
+          <h3>Several sessions, one machine</h3>
+          <p><code>/sessions</code> lists the other sessions running on your computer, and <code>/tell</code> leaves a note for one of them. <code>/btw</code> opens a side conversation without derailing the main one.</p>
+        </article>
+        <article class="panel">
+          <h3>Extend it your way</h3>
+          <p>Add MCP servers with <code>/mcp</code>, skills with <code>/skills</code>, lifecycle hooks with <code>/hooks</code>, and your own custom slash commands. Run <code>/review</code> on your current changes any time.</p>
+        </article>
+        <article class="panel">
+          <h3>Talk to it</h3>
+          <p>On a Mac, run <code>/voice setup</code> once, then hold Space to dictate. Speech recognition runs on your device.</p>
+        </article>
+        <article class="panel">
+          <h3>Scripts and a Web Shell</h3>
+          <p><code>canopy exec</code> runs a job without the interface, for scripts. Every install also includes a Web Shell, a browser view of a session.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell cc-section" aria-labelledby="plans-title">
+      <div class="cc-prose">
+        <h2 id="plans-title">Plans</h2>
+        <p>Canopy Code is free to install, and it works with your own model provider on any computer. Remote control from the CanopyChat app needs a Canopy account and a plan. <a href="/plans">See what each plan includes</a>, or <a href="/upgrade">choose your plan</a>.</p>
+      </div>
+    </section>
+
+    <section class="shell cc-section cc-faq" aria-labelledby="faq-title">
+      <div class="cc-prose">
+        <h2 id="faq-title">Canopy Code FAQ</h2>
+        <h3>What is Canopy Code?</h3>
+        <p>Canopy Code is the terminal coding agent from CanopyChat. You run it in a project folder, tell it what you want in plain language, and it reads your code, edits files and runs commands with the approval level you set.</p>
+        <h3>Is Canopy Code the same as the CanopyChat app?</h3>
+        <p>No. CanopyChat is the private chat app for iPhone, Android and computers. Canopy Code is a separate command-line tool for developers. They connect through remote control, which lets the CanopyChat app on your iPhone follow and steer a Canopy Code session.</p>
+        <h3>Is Canopy Code free?</h3>
+        <p>Canopy Code is free to install and use with your own model provider, such as a ChatGPT or Claude subscription, an API key, or a local model. Remote control from the CanopyChat app needs a Canopy account and a plan.</p>
+        <h3>Which models can I use with Canopy Code?</h3>
+        <p>You can sign in with ChatGPT or a Claude subscription, use any OpenAI-compatible Chat Completions endpoint, Anthropic or Gemini endpoint with an API key, or run a local model through Ollama, LM Studio, vLLM or llama.cpp. You can switch models during a session with the /model command.</p>
+        <h3>Can I run a coding agent on a local model?</h3>
+        <p>Yes. Canopy Code has built-in providers for Ollama and LM Studio and works with other OpenAI-compatible servers such as vLLM and llama.cpp, so the model can run on your own hardware.</p>
+        <h3>How do I control Canopy Code from my iPhone?</h3>
+        <p>Sign in to your Canopy account on the computer with canopy sign-in, type /rc in a Canopy Code session, and open the CanopyChat app on your iPhone. On macOS and Linux, canopy host install also keeps the computer ready so you can start sessions from the app.</p>
+        <h3>Which systems does Canopy Code run on?</h3>
+        <p>Canopy Code runs on macOS with Apple silicon, on Linux for x64 and arm64, and on 64-bit Windows 10 (version 1809 or newer) and Windows 11. There is no build for Intel Macs yet. Install it with Homebrew or Scoop, or download an archive from GitHub Releases.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span>Copyright 2026 CanopyChat</span>
+      <span>
+        <a href="/privacy">Privacy Policy</a> |
+        <a href="/terms">Terms of Use</a> |
+        <a href="/support">Support</a>
+      </span>
+    </div>
+    <p class="shell cc-attribution">Canopy Code is built on the open-source OpenAI Codex CLI, which is licensed under the Apache License 2.0. Canopy Code is not affiliated with or endorsed by OpenAI.</p>
+  </footer>
+  <script src="assets/install.js?v=2" defer></script>
+</body>
+</html>
