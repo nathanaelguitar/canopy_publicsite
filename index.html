@@ -12,7 +12,8 @@
   <meta name="description" content="CanopyChat is a private, local-first chat app available on iPhone and Android, with on-device intelligence and user-controlled attachments.">
   <link rel="icon" type="image/png" href="assets/app-icon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/styles.css?v=plans-1">
+  <link rel="stylesheet" href="assets/styles.css?v=plans-2">
+  <script src="assets/plans-redirect.js?v=1"></script>
 </head>
 <body>
   <header class="shell nav">
@@ -22,7 +23,7 @@
     </a>
     <nav class="nav-links" aria-label="Primary navigation">
       <a href="/signup" class="nav-cta" data-account-nav>Create account</a>
-      <a href="#plans">Plans</a>
+      <a href="/plans">Plans</a>
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
       <a href="/support">Support</a>
@@ -106,62 +107,6 @@
           </div>
         </div>
       </div>
-    </section>
-
-    <section class="shell plans" id="plans" aria-labelledby="plans-title" data-plans>
-      <div class="plans-head">
-        <div class="eyebrow">Plans</div>
-        <h2 id="plans-title">Start free. Add more when you want it.</h2>
-        <p class="plans-lead">CanopyChat runs on your own computer for free. Plus and Pro add your phone, cloud help for bigger jobs, and Flame working for you.</p>
-      </div>
-
-      <div class="plans-grid">
-        <article class="plan-card" data-plan-card="free" aria-labelledby="plan-free-name">
-          <h3 class="plan-name" id="plan-free-name">Grove</h3>
-          <p class="plan-price"><span class="plan-amount">Free</span></p>
-          <p class="plan-for">Private chat on your own computer.</p>
-          <ul class="plan-list">
-            <li>Chat with Canopy Lite, right on your computer</li>
-            <li>A quick hardware check picks the right model for your machine</li>
-            <li>No account needed to start</li>
-          </ul>
-          <a class="button secondary plan-cta" href="#downloads">Download free</a>
-          <p class="plan-note">Signing in only takes an email code. The Windows and Linux apps ask once, so we can tell you about updates.</p>
-        </article>
-
-        <article class="plan-card plan-card-featured" data-plan-card="plus" aria-labelledby="plan-plus-name">
-          <h3 class="plan-name" id="plan-plus-name">Plus</h3>
-          <p class="plan-price"><span class="plan-amount">$9.99</span><span class="plan-per">/month</span></p>
-          <p class="plan-for">7-day free trial, then $9.99 a month. Cancel anytime.</p>
-          <ul class="plan-list">
-            <li>Everything in Grove</li>
-            <li>Use your computer from your phone</li>
-            <li>Canopy cloud models step in when your computer can't do the job</li>
-            <li>Agents: Flame works for you on your computer</li>
-          </ul>
-          <a class="button plan-cta" href="/account" data-plan-cta="plus">Start 7-day free trial</a>
-          <p class="plan-note">Works with the Mac, Windows and Linux apps. On iPhone, Plus is bought through the App Store; on Android, through Google Play.</p>
-        </article>
-
-        <article class="plan-card" data-plan-card="pro" aria-labelledby="plan-pro-name">
-          <h3 class="plan-name" id="plan-pro-name">Pro</h3>
-          <p class="plan-price"><span class="plan-amount">$49.99</span><span class="plan-per">/month</span></p>
-          <p class="plan-for">For people who lean on Canopy every day.</p>
-          <ul class="plan-list">
-            <li>Everything in Plus</li>
-            <li>Far higher usage limits</li>
-            <li>Our most capable cloud models</li>
-          </ul>
-          <a class="button secondary plan-cta" href="/account" data-plan-cta="pro">Choose Pro</a>
-          <p class="plan-note">Pro is bought here on the web, from your account.</p>
-        </article>
-      </div>
-
-      <a class="plans-flame" href="/flame">
-        <img src="assets/flame-face-96.png?v=3" alt="" width="40" height="40">
-        <span><strong>Coming: Flame's house in the clouds.</strong> A private cloud computer of Flame's own. Invite-only for now.</span>
-        <span class="plans-flame-go">Join the waitlist</span>
-      </a>
     </section>
 
     <section class="shell install" id="install" aria-labelledby="install-title">

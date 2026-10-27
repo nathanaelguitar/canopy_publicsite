@@ -113,6 +113,11 @@ function flameApi(method, pathname, body) {
 
   // ---- /flame desktop
   await page.goto(SITE + '/flame');
+  {
+    const body = await page.locator('body').innerText();
+    assert.match(body, /Every paid CanopyChat plan already includes agents and remote control/);
+    assert.equal((body.match(/Flame’s house in the clouds is part of Pro\./g) || []).length, 2, 'cloud computer is Pro-only, said twice');
+  }
   await page.waitForTimeout(1100); // let the entrance motion settle before capturing
   assert.ok(await page.locator('.flame-portrait img').evaluate((img) => img.complete && img.naturalWidth === 512));
   await page.screenshot({ path: path.join(SHOTS, 'desktop.png'), fullPage: true });

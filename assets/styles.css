@@ -4631,3 +4631,26 @@ html:has(.flame-page) {
   font-size: 14px;
   line-height: 1.5;
 }
+
+/* ---------- Plans page (/plans) ---------- */
+
+.plans-page {
+  padding-top: clamp(28px, 6vw, 64px);
+}
+
+.plans-page .plans-head h1 {
+  margin: 10px 0 18px;
+  font-size: clamp(44px, 7vw, 82px);
+}
+
+.nav-links a[aria-current="page"] {
+  color: var(--oak);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .nav-links a[aria-current="page"] {
+    color: var(--cream);
+  }
+}

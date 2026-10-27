@@ -2,15 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self'; object-src 'none'; base-uri 'self'">
-  <meta http-equiv="refresh" content="0; url=/#plans">
-  <link rel="canonical" href="https://canopychat.app/#plans">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#fff4df" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#120d0a" media="(prefers-color-scheme: dark)">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' https://founding-api.canopychat.app; img-src 'self' data:; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <title>Plans | CanopyChat</title>
-  <meta name="description" content="CanopyChat plans: Grove is free, Plus is $9.99 a month with a 7-day free trial, Pro is $49.99 a month.">
+  <meta name="description" content="CanopyChat plans: Grove is free on your own computer. Plus is $9.99 a month with a 7-day free trial. Pro is $49.99 a month.">
+  <link rel="canonical" href="https://canopychat.app/plans">
   <link rel="icon" type="image/png" href="assets/app-icon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/styles.css?v=plans-2">
 </head>
 <body>
-  <p><a href="/#plans">See CanopyChat plans</a></p>
+  <header class="shell nav">
+    <a class="brand" href="/" aria-label="CanopyChat home">
+      <img class="mark" src="assets/app-icon.png" alt="" width="46" height="46">
+      <strong>CanopyChat</strong>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="/signup" class="nav-cta" data-account-nav>Create account</a>
+      <a href="/plans" aria-current="page">Plans</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/support">Support</a>
+      <a href="/flame">Flame</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="shell plans plans-page" id="plans" aria-labelledby="plans-title" data-plans>
+      <div class="plans-head">
+        <div class="eyebrow">Plans</div>
+        <h1 id="plans-title">Start free. Add more when you want it.</h1>
+        <p class="plans-lead">CanopyChat runs on your own computer for free. Plus and Pro add your phone, cloud help for bigger jobs, and Flame working for you.</p>
+      </div>
+
+      <div class="plans-grid">
+        <article class="plan-card" data-plan-card="free" aria-labelledby="plan-free-name">
+          <h3 class="plan-name" id="plan-free-name">Grove</h3>
+          <p class="plan-price"><span class="plan-amount">Free</span></p>
+          <p class="plan-for">Private chat on your own computer.</p>
+          <ul class="plan-list">
+            <li>Chat with Canopy Lite, right on your computer</li>
+            <li>A quick hardware check picks the right model for your machine</li>
+            <li>No account needed to start</li>
+          </ul>
+          <a class="button secondary plan-cta" href="/#downloads">Download free</a>
+          <p class="plan-note">Signing in only takes an email code. The Windows and Linux apps ask once, so we can tell you about updates.</p>
+        </article>
+
+        <article class="plan-card plan-card-featured" data-plan-card="plus" aria-labelledby="plan-plus-name">
+          <h3 class="plan-name" id="plan-plus-name">Plus</h3>
+          <p class="plan-price"><span class="plan-amount">$9.99</span><span class="plan-per">/month</span></p>
+          <p class="plan-for">7-day free trial, then $9.99 a month. Cancel anytime.</p>
+          <ul class="plan-list">
+            <li>Everything in Grove</li>
+            <li>Use your computer from your phone</li>
+            <li>Canopy cloud models step in when your computer can't do the job</li>
+            <li>Agents: Flame works for you on your computer</li>
+          </ul>
+          <a class="button plan-cta" href="/account" data-plan-cta="plus">Start 7-day free trial</a>
+          <p class="plan-note">Works with the Mac, Windows and Linux apps. On iPhone, Plus is bought through the App Store; on Android, through Google Play.</p>
+        </article>
+
+        <article class="plan-card" data-plan-card="pro" aria-labelledby="plan-pro-name">
+          <h3 class="plan-name" id="plan-pro-name">Pro</h3>
+          <p class="plan-price"><span class="plan-amount">$49.99</span><span class="plan-per">/month</span></p>
+          <p class="plan-for">For people who lean on Canopy every day.</p>
+          <ul class="plan-list">
+            <li>Everything in Plus</li>
+            <li>Agents with a more powerful model: Canopy Lore</li>
+            <li>Far higher usage limits</li>
+            <li>Flame's house in the clouds, only on Pro, when it opens</li>
+          </ul>
+          <a class="button secondary plan-cta" href="/account" data-plan-cta="pro">Choose Pro</a>
+          <p class="plan-note">Pro is bought here on the web, from your account.</p>
+        </article>
+      </div>
+
+      <a class="plans-flame" href="/flame">
+        <img src="assets/flame-face-96.png?v=3" alt="" width="40" height="40">
+        <span><strong>Coming: Flame's house in the clouds.</strong> A private cloud computer of Flame's own, only for Pro members. Invite-only for now.</span>
+        <span class="plans-flame-go">Join the waitlist</span>
+      </a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span>Copyright 2026 CanopyChat</span>
+      <span>
+        <a href="/privacy">Privacy Policy</a> |
+        <a href="/terms">Terms of Use</a> |
+        <a href="/support">Support</a>
+      </span>
+    </div>
+  </footer>
+  <script src="assets/canopy-account.js?v=5" defer></script>
 </body>
 </html>
