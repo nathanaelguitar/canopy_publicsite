@@ -5338,3 +5338,13 @@ body.enterprise-page::before {
     transform: none;
   }
 }
+
+.enterprise-page .ent-brand-sub {
+  margin-left: 4px;
+  font-family: var(--sans, "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif);
+  font-size: 0.55em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  opacity: 0.72;
+  white-space: nowrap;
+}
