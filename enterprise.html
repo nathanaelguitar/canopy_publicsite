@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#fff4df" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#120d0a" media="(prefers-color-scheme: dark)">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' https://founding-api.canopychat.app; img-src 'self' data:; media-src 'self'; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <title>Enterprise | CanopyChat</title>
+  <meta name="description" content="Canopy for companies: private AI agents that work on your code and data, on hardware you control, set up on your workflows by our forward deployed engineers.">
+  <link rel="canonical" href="https://canopychat.app/enterprise">
+  <link rel="icon" type="image/png" href="assets/app-icon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/styles.css?v=enterprise-1">
+</head>
+<body>
+  <header class="shell nav">
+    <a class="brand" href="/" aria-label="CanopyChat home">
+      <img class="mark" src="assets/app-icon.png" alt="" width="46" height="46">
+      <strong>CanopyChat</strong>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="/signup" class="nav-cta" data-account-nav>Create account</a>
+      <a href="/plans">Plans</a>
+      <a href="/enterprise" aria-current="page">Enterprise</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/support">Support</a>
+      <a href="/flame">Flame</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="shell plans plans-page enterprise" aria-labelledby="enterprise-title">
+      <div class="plans-head">
+        <div class="eyebrow">Enterprise</div>
+        <h1 id="enterprise-title">AI agents for your company, on hardware you control.</h1>
+        <p class="plans-lead">Canopy puts agents to work on your code, documents and data without sending any of it to an outside AI lab. We set it up on your workflows, and you keep the models and the data.</p>
+        <div class="enterprise-actions">
+          <a class="button" href="mailto:support@canopychat.app?subject=Canopy%20Enterprise">Talk to us</a>
+          <a class="button secondary" href="#demo">Watch the demo</a>
+        </div>
+      </div>
+
+      <figure class="enterprise-demo" id="demo">
+        <video controls preload="none" playsinline poster="assets/enterprise-demo-poster.jpg" width="1920" height="1080">
+          <source src="assets/enterprise-demo.mp4" type="video/mp4">
+          <a href="assets/enterprise-demo.mp4">Download the demo video</a>
+        </video>
+        <figcaption>A finance team's nightly reconciliation flags a customer payment by mistake. A Canopy agent reads the code, the written policy and the data, finds the bug, adds a test, and commits the fix with a note the controller can read. The model runs on a single DGX Spark in the room.</figcaption>
+      </figure>
+
+      <div class="plans-grid enterprise-grid">
+        <article class="plan-card" aria-labelledby="ent-private-name">
+          <h2 class="plan-name" id="ent-private-name">Private by default</h2>
+          <p class="plan-for">Your data stays on your hardware.</p>
+          <ul class="plan-list">
+            <li>Models run on your own machines or your own cloud account</li>
+            <li>No outside AI lab sees your data or trains on it</li>
+            <li>Built for teams with intellectual property and data governance to protect</li>
+          </ul>
+        </article>
+
+        <article class="plan-card plan-card-featured" aria-labelledby="ent-agents-name">
+          <h2 class="plan-name" id="ent-agents-name">Agents that do the work</h2>
+          <p class="plan-for">Not just a chat window.</p>
+          <ul class="plan-list">
+            <li>Agents read your code and files, run your tests, and make changes</li>
+            <li>Every step is shown, and the agent asks before anything leaves your network</li>
+            <li>Use it on a Mac, Windows or Linux computer, and check in from your phone</li>
+          </ul>
+        </article>
+
+        <article class="plan-card" aria-labelledby="ent-models-name">
+          <h2 class="plan-name" id="ent-models-name">Models fitted to you</h2>
+          <p class="plan-for">Your domain, your data.</p>
+          <ul class="plan-list">
+            <li>Retrieval over your own documents and systems</li>
+            <li>Models fine-tuned on your data, on your premises</li>
+            <li>The model you train stays yours</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="enterprise-how">
+        <h2>How it works</h2>
+        <ol class="enterprise-steps">
+          <li>
+            <strong>The software</strong>
+            <span>Canopy is sold as a subscription, like any other software your team uses.</span>
+          </li>
+          <li>
+            <strong>Forward deployed engineers</strong>
+            <span>If you want more than the software, our engineers work with your team on a retainer: connecting your data, setting up the hardware, and fitting agents to the jobs you actually do.</span>
+          </li>
+          <li>
+            <strong>It keeps getting better</strong>
+            <span>Because the models run on your side, they can keep learning from your work without that work leaving the building.</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="enterprise-cta">
+        <p><strong>Want to see it on your own workflow?</strong> Tell us what your team does and what has to stay private.</p>
+        <a class="button" href="mailto:support@canopychat.app?subject=Canopy%20Enterprise">Talk to us</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span>Copyright 2026 CanopyChat</span>
+      <span>
+        <a href="/privacy">Privacy Policy</a> |
+        <a href="/terms">Terms of Use</a> |
+        <a href="/support">Support</a>
+      </span>
+    </div>
+  </footer>
+  <script src="assets/canopy-account.js?v=5" defer></script>
+</body>
+</html>
