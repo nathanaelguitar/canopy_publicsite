@@ -16,3 +16,4 @@
   .blog-aside { border-left-color: #d9a66b; }
   .blog-list li { border-top-color: rgba(255, 244, 223, 0.2); }
 }
+.blog-code code { white-space: pre-wrap; overflow-wrap: anywhere; }
