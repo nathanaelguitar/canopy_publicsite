@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#fff4df" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#120d0a" media="(prefers-color-scheme: dark)">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <title>Can You Run AI on Your Own Computer? A Plain Guide to Local Models | CanopyChat</title>
+  <meta name="description" content="Local AI models run on your own hardware, so your prompts stay on your machine. What they are good at, what hardware you need, and the tools to start with.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://canopychat.app/blog/run-ai-models-locally">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="CanopyChat">
+  <meta property="og:title" content="Can You Run AI on Your Own Computer? A Plain Guide to Local Models">
+  <meta property="og:description" content="Local AI models run on your own hardware, so your prompts stay on your machine. What they are good at, what hardware you need, and the tools to start with.">
+  <meta property="og:url" content="https://canopychat.app/blog/run-ai-models-locally">
+  <meta property="og:image" content="https://canopychat.app/assets/icon-512.png">
+  <meta property="og:image:alt" content="The CanopyChat tree mark">
+  <meta property="article:published_time" content="2026-11-09">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Can You Run AI on Your Own Computer? A Plain Guide to Local Models">
+  <meta name="twitter:description" content="Local AI models run on your own hardware, so your prompts stay on your machine. What they are good at, what hardware you need, and the tools to start with.">
+  <meta name="twitter:image" content="https://canopychat.app/assets/icon-512.png">
+  <link rel="icon" type="image/png" href="/assets/app-icon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/styles.css?v=plans-2">
+  <link rel="stylesheet" href="/assets/canopy-code.css?v=2">
+  <link rel="stylesheet" href="/assets/blog.css?v=1">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://canopychat.app/blog/run-ai-models-locally#post",
+      "headline": "Can You Run AI on Your Own Computer? A Plain Guide to Local Models",
+      "description": "Local AI models run on your own hardware, so your prompts stay on your machine. What they are good at, what hardware you need, and the tools to start with.",
+      "datePublished": "2026-11-09",
+      "dateModified": "2026-11-09",
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://canopychat.app/blog/run-ai-models-locally",
+      "image": "https://canopychat.app/assets/icon-512.png",
+      "author": {
+        "@id": "https://canopychat.app/#organization"
+      },
+      "publisher": {
+        "@id": "https://canopychat.app/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://canopychat.app/#organization",
+      "name": "CanopyChat",
+      "url": "https://canopychat.app/",
+      "logo": "https://canopychat.app/assets/icon-512.png"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "CanopyChat",
+          "item": "https://canopychat.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://canopychat.app/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Can You Run AI on Your Own Computer? A Plain Guide to Local Models"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <header class="shell nav">
+    <a class="brand" href="/" aria-label="CanopyChat home">
+      <img class="mark" src="/assets/app-icon.png" alt="" width="46" height="46">
+      <strong>CanopyChat</strong>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="/plans">Plans</a>
+      <a href="/flame">Flame</a>
+      <a href="/canopy-code">Canopy Code</a>
+      <a href="/blog/" aria-current="page">Blog</a>
+      <a href="/support">Support</a>
+    </nav>
+  </header>
+
+  <main>
+    <article class="shell cc-hero blog-post">
+      <div class="eyebrow">AI explained &middot; <time datetime="2026-11-09">November 9, 2026</time></div>
+      <h1>Can You Run AI on Your Own Computer? A Plain Guide to Local Models</h1>
+      <p class="lead"><strong>Yes, you can run an AI model on your own computer.</strong> A local model runs on your hardware instead of a company’s servers, so your prompts and files do not have to leave your machine, and it keeps working without an internet connection. The trade-off is that the biggest models need more memory than most laptops have.</p>
+      <div class="cc-prose blog-body">
+        <h2>What do you need to run a local model?</h2>
+        <p>Memory is the main limit. As a rough rule, a small model of about 7 to 8 billion parameters, compressed to 4-bit, fits in around 5 to 6 GB of memory. Larger models need proportionally more. Apple silicon Macs share one pool of memory between the processor and graphics, which is why they handle local models well. A dedicated graphics card with plenty of video memory does the same job on a PC.</p>
+        <h2>Which tools should you start with?</h2>
+        <ul class="cc-list">
+          <li><strong>Ollama</strong> downloads and runs models with one command and exposes a local server.</li>
+          <li><strong>LM Studio</strong> is a desktop app with a model browser and a built-in chat.</li>
+          <li><strong>llama.cpp</strong> is the open-source engine many other tools are built on, for people who want control.</li>
+          <li><strong>vLLM</strong> is aimed at serving models on a GPU machine, for example a home server.</li>
+        </ul>
+        <h2>What are local models good at, and where do they fall short?</h2>
+        <p>Small local models are good at everyday writing help, summaries, simple questions and private notes. They are weaker at long, multi-step reasoning and large codebases than the biggest cloud models. Many people use both: local for private and routine work, a larger cloud model for the hard jobs.</p>
+        <h2>How do Canopy products use local models?</h2>
+        <p><a href="/">CanopyChat</a> on a computer starts with Canopy Lite, a model that runs right on your machine, with a quick hardware check that picks the right size. It needs no account to start. When a job is too big for your computer, <a href="/plans">Plus</a> lets Canopy cloud models step in. And <a href="/canopy-code">Canopy Code</a>, the terminal coding agent, has built-in providers for Ollama and LM Studio and works with other OpenAI-compatible servers such as vLLM and llama.cpp.</p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span>Copyright 2026 CanopyChat</span>
+      <span>
+        <a href="/privacy">Privacy Policy</a> |
+        <a href="/terms">Terms of Use</a> |
+        <a href="/support">Support</a>
+      </span>
+    </div>
+    <p class="shell cc-attribution">Canopy Code is built on the open-source OpenAI Codex CLI, which is licensed under the Apache License 2.0. Canopy Code is not affiliated with or endorsed by OpenAI.</p>
+  </footer>
+</body>
+</html>
