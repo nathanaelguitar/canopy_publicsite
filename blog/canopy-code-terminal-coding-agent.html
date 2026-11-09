@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#fff4df" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#120d0a" media="(prefers-color-scheme: dark)">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <title>Canopy Code: A Terminal Coding Agent for Any Model, Now in VS Code | CanopyChat</title>
+  <meta name="description" content="Canopy Code is a terminal coding agent that works with ChatGPT, Claude, API keys or local models, and can be controlled from your iPhone. Release 2026.11.05 adds a VS Code extension.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://canopychat.app/blog/canopy-code-terminal-coding-agent">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="CanopyChat">
+  <meta property="og:title" content="Canopy Code: A Terminal Coding Agent for Any Model, Now in VS Code">
+  <meta property="og:description" content="Canopy Code is a terminal coding agent that works with ChatGPT, Claude, API keys or local models, and can be controlled from your iPhone. Release 2026.11.05 adds a VS Code extension.">
+  <meta property="og:url" content="https://canopychat.app/blog/canopy-code-terminal-coding-agent">
+  <meta property="og:image" content="https://canopychat.app/assets/icon-512.png">
+  <meta property="og:image:alt" content="The CanopyChat tree mark">
+  <meta property="article:published_time" content="2026-11-09">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Canopy Code: A Terminal Coding Agent for Any Model, Now in VS Code">
+  <meta name="twitter:description" content="Canopy Code is a terminal coding agent that works with ChatGPT, Claude, API keys or local models, and can be controlled from your iPhone. Release 2026.11.05 adds a VS Code extension.">
+  <meta name="twitter:image" content="https://canopychat.app/assets/icon-512.png">
+  <link rel="icon" type="image/png" href="/assets/app-icon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/styles.css?v=plans-2">
+  <link rel="stylesheet" href="/assets/canopy-code.css?v=2">
+  <link rel="stylesheet" href="/assets/blog.css?v=1">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://canopychat.app/blog/canopy-code-terminal-coding-agent#post",
+      "headline": "Canopy Code: A Terminal Coding Agent for Any Model, Now in VS Code",
+      "description": "Canopy Code is a terminal coding agent that works with ChatGPT, Claude, API keys or local models, and can be controlled from your iPhone. Release 2026.11.05 adds a VS Code extension.",
+      "datePublished": "2026-11-09",
+      "dateModified": "2026-11-09",
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://canopychat.app/blog/canopy-code-terminal-coding-agent",
+      "image": "https://canopychat.app/assets/icon-512.png",
+      "author": { "@id": "https://canopychat.app/#organization" },
+      "publisher": { "@id": "https://canopychat.app/#organization" },
+      "about": { "@id": "https://canopychat.app/canopy-code#software" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://canopychat.app/#organization",
+      "name": "CanopyChat",
+      "url": "https://canopychat.app/",
+      "logo": "https://canopychat.app/assets/icon-512.png"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://canopychat.app/canopy-code#software",
+      "name": "Canopy Code",
+      "url": "https://canopychat.app/canopy-code"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "CanopyChat", "item": "https://canopychat.app/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://canopychat.app/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Canopy Code: a terminal coding agent for any model" }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <header class="shell nav">
+    <a class="brand" href="/" aria-label="CanopyChat home">
+      <img class="mark" src="/assets/app-icon.png" alt="" width="46" height="46">
+      <strong>CanopyChat</strong>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="/plans">Plans</a>
+      <a href="/flame">Flame</a>
+      <a href="/canopy-code">Canopy Code</a>
+      <a href="/blog/" aria-current="page">Blog</a>
+      <a href="/support">Support</a>
+    </nav>
+  </header>
+
+  <main>
+    <article class="shell cc-hero blog-post">
+      <div class="eyebrow">Release notes &middot; <time datetime="2026-11-09">November 9, 2026</time></div>
+      <h1>Canopy Code: a terminal coding agent for any model, now in VS Code</h1>
+      <p class="lead"><strong>Canopy Code is a coding agent that runs in your terminal.</strong> You describe a job in plain language, and it reads your project, edits files and runs commands using the model you choose, whether that is ChatGPT, Claude, an API key or a model on your own machine. It is the developer tool from <a href="/">CanopyChat</a>. Release 2026.11.05 adds a VS Code extension.</p>
+      <p class="blog-aside">Looking for promo codes for Canopy the humidifier and shower filter brand? This is a different Canopy: a coding tool for developers.</p>
+
+      <div class="cc-prose blog-body">
+        <h2>What is Canopy Code?</h2>
+        <p>You open a terminal in a project folder, type <code>canopy</code>, and tell it what you want: fix this failing test, add a setting, explain how this module works. It reads the code, makes the changes and runs commands, and shows you each step. You choose how much it may do on its own, from asking before every action to running freely.</p>
+        <p>It is written in Rust and runs on macOS (Apple silicon), Linux (x64 and arm64) and 64-bit Windows. Your settings, sessions and logins live in <code>~/.canopy</code> on your own computer.</p>
+
+        <h2>Which models does Canopy Code work with?</h2>
+        <p>Canopy Code is not tied to one provider. From <code>/auth</code> you can sign in with ChatGPT, use your Claude subscription, add an API key for any OpenAI-compatible, Anthropic or Gemini endpoint, or point it at a local model through Ollama, LM Studio, vLLM or llama.cpp. Release 2026.11.05 also adds Antigravity CLI integration for Gemini models.</p>
+        <p>You can change your mind mid-session. <code>/model</code> switches models, even across providers, and Canopy Code compacts the conversation first so a long session still fits the new model. Using your own accounts and keys does not need a CanopyChat plan.</p>
+
+        <h2>What is new in release 2026.11.05?</h2>
+        <h3>A VS Code extension</h3>
+        <p>The first Canopy Code extension for VS Code ships with this release. It is a native sidebar that uses the same Canopy account and the same shared sessions as the terminal, so a session you start in one place shows up in the other. It supports:</p>
+        <ul class="cc-list">
+          <li>session history and streaming conversations, including tool activity</li>
+          <li>model selection</li>
+          <li>editor selection and file context</li>
+          <li>approval cards for actions that need your OK</li>
+          <li>proposed changes shown as side-by-side diffs</li>
+        </ul>
+        <p>Install the Canopy Code CLI for your platform first, then install the extension from the <a href="https://github.com/nathanaelguitar/canopy-code/releases/tag/v2026.11.05" target="_blank" rel="noopener">release page</a> and reload VS Code:</p>
+        <pre class="blog-code"><code>code --install-extension canopy-code-vscode-0.1.0.vsix</code></pre>
+        <h3>Fixes and small additions</h3>
+        <ul class="cc-list">
+          <li>Pasted macOS screenshots are copied into Canopy-owned session storage, so they no longer vanish before the model can read them.</li>
+          <li>Images sent through DeepSeek V4.1 Flash on Sail Research are kept as images instead of being flattened to text.</li>
+          <li><code>/usage</code> shows your signed-in Canopy account's plan and monthly token usage. <code>/usage chatgpt</code> still shows ChatGPT usage.</li>
+        </ul>
+
+        <h2>Can I control Canopy Code from my phone?</h2>
+        <p>Yes. Sign this computer in to your Canopy account with <code>canopy sign-in</code>, then type <code>/rc</code> in a session. The session appears in the CanopyChat app on your iPhone, where you can follow it, send new instructions and approve actions. The connection is encrypted end to end, and a new phone has to be confirmed on the computer before it can connect. Remote control needs a Canopy account and a plan, see <a href="/plans">plans</a>.</p>
+
+        <h2>Other things it does</h2>
+        <ul class="cc-list">
+          <li><strong>Checkpoints.</strong> Every prompt gets a file checkpoint, and <code>/restore</code> puts your files back the way they were.</li>
+          <li><strong>Advisor.</strong> <code>/advisor</code> lets a second model of your choice give guidance to the main one.</li>
+          <li><strong>Extensions.</strong> Add MCP servers, skills and lifecycle hooks, plus your own slash commands.</li>
+          <li><strong>Scripts.</strong> <code>canopy exec</code> runs a job without the interface.</li>
+        </ul>
+
+        <h2>How do I install Canopy Code?</h2>
+        <p>On macOS (Apple silicon):</p>
+        <pre class="blog-code"><code>brew install nathanaelguitar/canopy/canopy-code</code></pre>
+        <p>On Linux (x64 or arm64, glibc 2.30 or newer, such as Ubuntu 20.04 or Debian 11):</p>
+        <pre class="blog-code"><code>brew install nathanaelguitar/canopy/canopy-code</code></pre>
+        <p>On Windows (PowerShell):</p>
+        <pre class="blog-code"><code>scoop install https://github.com/nathanaelguitar/canopy-code/releases/latest/download/canopy-code.json</code></pre>
+        <p>Then run <code>canopy</code> in a project folder and type <code>/auth</code> to connect a model. There is no build for Intel Macs yet. Every release also has archives with SHA-256 checksums on <a href="https://github.com/nathanaelguitar/canopy-code/releases" target="_blank" rel="noopener">GitHub Releases</a>.</p>
+        <p>For the full overview, see the <a href="/canopy-code">Canopy Code page</a>.</p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span>Copyright 2026 CanopyChat</span>
+      <span>
+        <a href="/privacy">Privacy Policy</a> |
+        <a href="/terms">Terms of Use</a> |
+        <a href="/support">Support</a>
+      </span>
+    </div>
+    <p class="shell cc-attribution">Canopy Code is built on the open-source OpenAI Codex CLI, which is licensed under the Apache License 2.0. Canopy Code is not affiliated with or endorsed by OpenAI.</p>
+  </footer>
+</body>
+</html>

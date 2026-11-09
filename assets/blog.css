@@ -1,0 +1,19 @@
+/* Blog pages (/blog). Layered on styles.css and canopy-code.css. No inline styles (CSP). */
+.blog-post > *, .blog-body { max-width: 760px; min-width: 0; }
+.blog-post h1 { font-size: clamp(34px, 5.2vw, 58px); }
+.blog-aside { margin: 18px 0 0; padding: 12px 16px; border-left: 3px solid #7a4a23; font-size: 15px; }
+.blog-body { margin-top: 26px; }
+.blog-body h2 { margin: 34px 0 10px; font-size: clamp(26px, 3.4vw, 34px); }
+.blog-body h3 { margin: 22px 0 6px; font-size: 21px; }
+.blog-code { max-width: 100%; box-sizing: border-box; margin: 0 0 1.2em; padding: 14px 16px; border-radius: 12px; background: #2a1d14; color: #fff4df; overflow-x: auto; }
+.blog-code code { background: none; padding: 0; font-size: 0.92em; white-space: pre; overflow-wrap: normal; }
+.blog-list { list-style: none; margin: 28px 0 0; padding: 0; max-width: 760px; }
+.blog-list li { padding: 18px 0; border-top: 1px solid rgba(122, 74, 35, 0.25); }
+.blog-list time { font-size: 14px; }
+.blog-list h2 { margin: 6px 0; font-size: 28px; }
+.blog-list p { margin: 0; }
+@media (prefers-color-scheme: dark) {
+  .blog-aside { border-left-color: #d9a66b; }
+  .blog-list li { border-top-color: rgba(255, 244, 223, 0.2); }
+}
+.blog-code code { white-space: pre-wrap; overflow-wrap: anywhere; }

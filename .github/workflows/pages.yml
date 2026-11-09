@@ -29,8 +29,9 @@ jobs:
         run: |
           rm -rf _site
           mkdir -p _site/assets
-          cp -- *.html CNAME .nojekyll _site/
+          cp -- *.html robots.txt sitemap.xml llms.txt CNAME .nojekyll _site/
           cp -R assets/. _site/assets/
+          cp -R blog _site/blog
           if [ -d web-lab ]; then
             cp -R web-lab _site/web-lab
           fi
