@@ -20,9 +20,9 @@ Blog
 
 - November 9, 2026
 
-  ## [Private AI Chat: What "On-Device" Does and Does Not Mean](https://canopychat.app/blog/private-ai-chat-what-on-device-means)
+  ## [Private AI Chat You Can Trust: How CanopyChat Protects Your Data](https://canopychat.app/blog/private-ai-chat-what-on-device-means)
 
-  On-device AI keeps your conversations on your phone or computer. What that protects, what it does not, and the questions to ask any AI app about your data.
+  CanopyChat answers on your device first, and every cloud feature is opt in. Here is how your data is protected, from on-device chat to zero data retention in the cloud.
 
 - November 9, 2026
 

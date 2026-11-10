@@ -1,30 +1,38 @@
-# Private AI Chat: What &quot;On-Device&quot; Does and Does Not Mean | CanopyChat
+# Private AI Chat You Can Trust: How CanopyChat Protects Your Data | CanopyChat
 
 Source: https://canopychat.app/blog/private-ai-chat-what-on-device-means
 
 AI explained · November 9, 2026
 
-# Private AI Chat: What "On-Device" Does and Does Not Mean
+# Private AI Chat You Can Trust: How CanopyChat Protects Your Data
 
-**On-device AI means the model that answers you runs on your own phone or computer, so your conversation does not have to be sent to a server.** That is a real privacy benefit, but the phrase is used loosely, so it is worth knowing what it covers and what to ask an app before you trust it.
+**Your conversations belong to you. CanopyChat answers on your own phone or computer first, and any cloud feature is something you choose to turn on.** Many AI chat apps send every message to a server by default. CanopyChat does not.
 
-## What does on-device protect?
+## Your chats stay on your device
 
-When the model runs locally, the text you type and the files you share are processed on your device. There is no server receiving your prompt, no copy sitting in someone else’s logs, and the app can keep working offline.
+On a computer, [CanopyChat](https://canopychat.app/) starts with Canopy Lite, a model that runs on your machine. The text you type and the files you share are processed there, so no server receives your prompt and no copy sits in anyone else’s logs. It needs no account, and it keeps working offline.
 
-## What does it not cover?
+## The cloud is always opt in
 
-- **Optional cloud features.** Web search, bigger cloud models and sync all send data off the device. That can be fine, as long as it is your choice and the app says so.
-- **Accounts.** Signing in tells the service who you are, even if your chats stay local.
-- **Backups.** Your phone or computer backup may include the app’s data.
+Bigger cloud models, web grounding and Flame’s memory are features you add on purpose, with [a plan](https://canopychat.app/plans) or a setting. None of them is the default, and you can turn them off again whenever you like.
 
-## What should you ask any AI app?
+## When you use the cloud, we use zero data retention
+
+For cloud models, CanopyChat works with providers under zero-data-retention terms. Your request is processed to produce a response, and it is not stored by the provider or used to train its models. Requests do not carry your name, email address or account identifiers, and CanopyChat does not keep the content of cloud requests after the answer is delivered.
+
+## Built with Apple’s privacy-first approach
+
+CanopyChat is built for Apple devices, and for harder questions it can use Apple’s Private Cloud Compute, a cloud service Apple designed around privacy. That help is off until you allow it, and you can turn it off at any time in Settings. Attachments and your on-device memory are never sent.
+
+## You decide what is kept
+
+Features that need to remember something, such as Flame’s persistent memory, are off until you turn them on. You can switch them off and ask us to delete what was kept. Your connection to your own devices for remote control is end-to-end encrypted, so our relay cannot read it.
+
+## Questions worth asking any AI app
 
 1.  Where does the model run for a normal chat?
-2.  When does it send my data elsewhere, and do I have to opt in?
-3.  Is there a plain-language privacy policy that says what is stored and for how long?
-4.  Can I delete my account and data?
+2.  Does the cloud turn on only when I choose it?
+3.  Are my requests kept, or used to train models?
+4.  Is there a plain-language privacy policy, and can I delete my data?
 
-## How does CanopyChat handle this?
-
-[CanopyChat](https://canopychat.app/) is designed to answer on your device first, with optional features such as web grounding only when you choose them. On a computer it starts with Canopy Lite running locally and needs no account. Cloud models are an option you add with [a plan](https://canopychat.app/plans), not the default. The details are in the [privacy policy](https://canopychat.app/privacy).
+CanopyChat has a clear answer to each. Read the full [privacy policy](https://canopychat.app/privacy), or learn [how local AI models work](https://canopychat.app/blog/run-ai-models-locally).
