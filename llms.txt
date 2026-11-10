@@ -2,6 +2,8 @@
 
 > CanopyChat makes a private AI chat app for iPhone, Android and computers, and Canopy Code, a terminal coding agent for developers. Not related to Canopy the humidifier and shower filter brand.
 
+Every page has a plain Markdown version: add .md to the address (for example https://canopychat.app/canopy-code.md, https://canopychat.app/blog/run-ai-models-locally.md, https://canopychat.app/index.md for the home page).
+
 ## Canopy Code
 
 - [Canopy Code](https://canopychat.app/canopy-code): The terminal coding agent from CanopyChat. Works with ChatGPT, Claude, API keys and local models (Ollama, LM Studio, vLLM, llama.cpp); switch models mid-session; control it from the CanopyChat app on iPhone. Runs on macOS (Apple silicon), Linux and Windows. Install: `brew install nathanaelguitar/canopy/canopy-code` (macOS, Linux) or Scoop (Windows).
