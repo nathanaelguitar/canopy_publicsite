@@ -24,11 +24,11 @@ Flame is offered by invitation. Joining the Flame waitlist does not guarantee an
 
 ## Subscription
 
-CanopyChat Plus is offered as a monthly auto-renewable subscription for \$9.99 per month, unless a different price is shown in the App Store purchase sheet. Payment is charged to your Apple ID. Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current billing period. You can manage or cancel your subscription in your Apple ID subscription settings.
+CanopyChat Plus is offered as a monthly auto-renewable subscription for \$9.99 per month, unless a different price is shown at checkout. Payment is charged to the account of the store you purchase through (for example, your Apple ID or your Google Play account). Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current billing period. You can manage or cancel your subscription in that store's subscription settings.
 
-## Apple Terms
+## App Store Terms
 
-Purchases made in the iOS app are processed by Apple. Apple's standard terms and subscription rules apply, including the [Apple Standard End User License Agreement](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/).
+Purchases made in a mobile app are processed by the store you buy from, and that store's standard terms and subscription rules apply. On iPhone, this includes the [Apple Standard End User License Agreement](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/). On Android, Google Play's terms apply.
 
 ## AI Model Output
 
@@ -44,7 +44,7 @@ You are responsible for prompts, files, photos, and other content you provide. D
 
 ## Availability
 
-Features may change over time. Local inference performance depends on device capability, available storage, battery state, and iOS behavior. Web-grounded features require network access.
+Features may change over time. Local inference performance depends on device capability, available storage, battery state, and operating system behavior. Web-grounded features require network access.
 
 ## Termination
 

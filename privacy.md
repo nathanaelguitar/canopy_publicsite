@@ -59,12 +59,12 @@ We retain contributor data only as long as reasonably necessary for model evalua
 
 ## Information Stored on Your Device
 
-CanopyChat may store the following locally on your iPhone:
+CanopyChat may store the following locally on your device:
 
 - Conversation titles, messages, summaries, and attachments you add.
 - Custom assistants, system preferences, workspace names, and app settings.
 - Downloaded on-device model files (such as Canopy Lite, a small language model) and related runtime cache.
-- Subscription entitlement state returned by Apple StoreKit.
+- Subscription entitlement state returned by the store you purchased through (Apple StoreKit or Google Play).
 
 ## Information Sent Outside Your Device
 
@@ -76,12 +76,12 @@ CanopyChat may send limited information outside your device only for selected fe
 - **Location-aware answers:** If you grant location permission and ask for nearby or local information, approximate location context may be used to improve search results.
 - **Attachments:** Photos, files, and camera images are used only when you attach or capture them. They may be included in the on-device model prompt and, if a web or backend feature is enabled later, only as needed for the feature you requested.
 - **Model downloads:** The app may download model files from a remote model host and cache them on your device.
-- **Purchases:** Subscriptions are processed by Apple. CanopyChat receives entitlement information from StoreKit, but does not receive your credit card or Apple ID payment details.
+- **Purchases:** Subscriptions are processed by the store you buy from (Apple or Google Play). CanopyChat receives entitlement information from that store, but does not receive your credit card or store account payment details.
 - **Feedback:** If you use the feedback or report issue feature, the message you choose to send may include app version, device information, conversation title, and selected response text.
 
 ## Location, Camera, Photos, and Files
 
-CanopyChat requests access to location, camera, photos, or files only when you use a feature that requires it. You can manage these permissions in iOS Settings at any time.
+CanopyChat requests access to location, camera, photos, or files only when you use a feature that requires it. You can manage these permissions in your device's system settings at any time.
 
 ## Tracking and Advertising
 
@@ -110,8 +110,8 @@ If you cannot access the app, email [support@canopychat.app](mailto:support@cano
 ## Your Choices
 
 - Delete conversations or attachments in the app where available.
-- Disable app permissions from iOS Settings.
-- Manage or cancel subscriptions from your Apple ID subscriptions settings.
+- Disable app permissions from your device's system settings.
+- Manage or cancel subscriptions from your Apple ID or Google Play subscription settings.
 - In the Contributor Beta, stop future model-improvement collection from the Contributor settings and delete pending contributor data on your device.
 - Contact support for privacy questions or deletion requests involving feedback you sent.
 
