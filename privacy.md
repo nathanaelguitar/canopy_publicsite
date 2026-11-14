@@ -8,7 +8,7 @@ Privacy Policy
 
 # CanopyChat Privacy Policy
 
-Effective date: October 26, 2026
+Effective date: November 13, 2026
 
 CanopyChat is a hybrid, local-first AI app for iPhone, Android, Mac, Windows, and Linux, including Flame, its AI agent. This policy explains what information the app stores, when information may leave your device, how we handle it in the cloud, and how to contact us.
 
@@ -115,9 +115,19 @@ If you cannot access the app, email [support@canopychat.app](mailto:support@cano
 - In the Contributor Beta, stop future model-improvement collection from the Contributor settings and delete pending contributor data on your device.
 - Contact support for privacy questions or deletion requests involving feedback you sent.
 
+## Canopy CI hosted checks
+
+Canopy CI is a set of read-only checking tools (arithmetic, constraints, algebra, workflow files and recorded agent traces) that you can use from ChatGPT, Codex or another tool that supports remote MCP servers, at ci.canopychat.app. This section covers that hosted service.
+
+- **What we receive.** Only the text a tool call contains: for example numbers and expressions, constraints, a workflow file or an agent trace that you or your assistant send. Please do not send passwords, keys, payment card numbers, health records or other sensitive data.
+- **No account, no storage.** There is no sign-in. Inputs are processed in memory to produce the answer and are then discarded. We do not store, sell, share or use them to train models, and the service does not call any other service with them.
+- **What we log.** One line per request with the request type, a fixed path label, the status code, the duration and the size of the response. We do not log request or response contents, tool arguments, headers or IP addresses. Request counts per network address are kept in memory only, for rate limiting, and are not written anywhere.
+- **Infrastructure.** Traffic reaches the service through Cloudflare, which provides our network and security layer and may process connection data such as IP addresses under its own privacy policy.
+- **Your assistant.** The assistant you use to call Canopy CI (for example ChatGPT) decides what to send and handles your conversation under its own terms and privacy policy.
+
 ## Contact
 
-For privacy questions, contact <support@canopychat.app>.
+CanopyChat is a product of Canopy AI LLC, a Wyoming limited liability company (formerly Canopy Labs LLC). For privacy questions, contact <support@canopychat.app>.
 
 ## Changes
 
