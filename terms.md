@@ -8,7 +8,7 @@ Terms of Use
 
 # CanopyChat Terms of Use
 
-Effective date: October 25, 2026
+Effective date: November 13, 2026
 
 These terms govern your use of CanopyChat. By using the app, you agree to these terms.
 
@@ -54,6 +54,16 @@ We may suspend or limit access if the app is misused, if required by law, or if 
 
 CanopyChat is provided "as is" and "as available." To the maximum extent permitted by law, we disclaim warranties of accuracy, fitness for a particular purpose, uninterrupted availability, and non-infringement.
 
+## Canopy CI hosted checks
+
+These terms apply to the Canopy CI hosted service at ci.canopychat.app (the read-only tools offered in ChatGPT, Codex and other MCP clients), in addition to the rest of this page.
+
+- **What it does.** It checks the inputs you provide with deterministic engines and reports verified, failed, unknown or error. It does not run code, tests or pipelines, does not deploy anything and has no access to your files or accounts. Unknown and error are never a pass.
+- **Your responsibility.** A result is only as good as the input: it says whether the expressions, constraints or trace you sent hold, not whether they describe your real system. Verify important results independently and do not rely on them for medical, legal, financial, safety or emergency decisions.
+- **Acceptable use.** Do not send secrets or sensitive personal data, attempt to overload, probe or bypass the service or its limits, or use it to harm others. Requests are rate limited and size limited.
+- **Availability and changes.** The service is provided as is and as available. We may change, limit or remove it at any time.
+- **Liability.** To the maximum extent permitted by law, we disclaim warranties and are not liable for losses arising from use of or reliance on the service.
+
 ## Contact
 
-For terms or billing support, contact <support@canopychat.app>.
+CanopyChat is a product of Canopy AI LLC, a Wyoming limited liability company (formerly Canopy Labs LLC). For terms or billing support, contact <support@canopychat.app>.
