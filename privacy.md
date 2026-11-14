@@ -2,6 +2,8 @@
 
 Source: https://canopychat.app/privacy
 
+[Privacy](https://canopychat.app/privacy)[Terms](https://canopychat.app/terms)
+
 Privacy Policy
 
 # CanopyChat Privacy Policy
@@ -61,7 +63,7 @@ CanopyChat may store the following locally on your iPhone:
 
 - Conversation titles, messages, summaries, and attachments you add.
 - Custom assistants, system preferences, workspace names, and app settings.
-- Downloaded local LLM model files and related runtime cache.
+- Downloaded on-device model files (such as Canopy Lite, a small language model) and related runtime cache.
 - Subscription entitlement state returned by Apple StoreKit.
 
 ## Information Sent Outside Your Device
@@ -72,8 +74,8 @@ CanopyChat may send limited information outside your device only for selected fe
 - **Web search:** If you ask for current, factual, local, weather, news, or web-grounded information, CanopyChat may send a search query and relevant context to a search service.
 - **Help on harder questions (Apple Private Cloud Compute):** This is off until you allow it. If you turn it on, when CanopyChat recognizes a harder question, such as multi-step math, planning, or code, it may send that question and up to three of your most recent earlier messages to Apple’s Private Cloud Compute service to get brief notes. CanopyChat’s on-device model then writes the reply. Attachments, on-device conversation memory, and your custom preferences are never sent. Apple processes these requests under its privacy commitments for Private Cloud Compute, and CanopyChat does not receive or store them. You can turn this off at any time in Settings.
 - **Location-aware answers:** If you grant location permission and ask for nearby or local information, approximate location context may be used to improve search results.
-- **Attachments:** Photos, files, and camera images are used only when you attach or capture them. They may be included in the local LLM prompt and, if a web or backend feature is enabled later, only as needed for the feature you requested.
-- **Model downloads:** The app may download LLM model files from a remote model host and cache them on your device.
+- **Attachments:** Photos, files, and camera images are used only when you attach or capture them. They may be included in the on-device model prompt and, if a web or backend feature is enabled later, only as needed for the feature you requested.
+- **Model downloads:** The app may download model files from a remote model host and cache them on your device.
 - **Purchases:** Subscriptions are processed by Apple. CanopyChat receives entitlement information from StoreKit, but does not receive your credit card or Apple ID payment details.
 - **Feedback:** If you use the feedback or report issue feature, the message you choose to send may include app version, device information, conversation title, and selected response text.
 

@@ -14,7 +14,7 @@ Free
 
 Private chat on your own computer.
 
-- Chat with Canopy Lite, right on your computer
+- Chat with Canopy Lite, our small language model, right on your computer
 - A quick hardware check picks the right model for your machine
 - No account needed to start
 

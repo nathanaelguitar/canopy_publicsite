@@ -2,6 +2,8 @@
 
 Source: https://canopychat.app/terms
 
+[Privacy](https://canopychat.app/privacy)[Terms](https://canopychat.app/terms)
+
 Terms of Use
 
 # CanopyChat Terms of Use
@@ -28,9 +30,9 @@ CanopyChat Plus is offered as a monthly auto-renewable subscription for \$9.99 p
 
 Purchases made in the iOS app are processed by Apple. Apple's standard terms and subscription rules apply, including the [Apple Standard End User License Agreement](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/).
 
-## LLM Output
+## AI Model Output
 
-CanopyChat uses large language models (LLMs) that may produce inaccurate, incomplete, outdated, or unexpected output. You are responsible for reviewing responses before relying on them. CanopyChat is not a substitute for professional legal, medical, financial, safety, or emergency advice.
+CanopyChat uses AI language models, including small on-device models such as Canopy Lite and larger cloud models, that may produce inaccurate, incomplete, outdated, or unexpected output. You are responsible for reviewing responses before relying on them. CanopyChat is not a substitute for professional legal, medical, financial, safety, or emergency advice.
 
 ## Web Search and Sources
 
