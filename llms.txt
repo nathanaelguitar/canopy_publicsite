@@ -12,7 +12,7 @@ Every page has a plain Markdown version: add .md to the address (for example htt
 - [Can You Run AI on Your Own Computer? A Plain Guide to Local Models](https://canopychat.app/blog/run-ai-models-locally): Local AI models run on your own hardware, so your prompts stay on your machine. What they are good at, what hardware you need, and the tools to start with.
 - [Private AI Chat You Can Trust: How CanopyChat Protects Your Data](https://canopychat.app/blog/private-ai-chat-what-on-device-means): CanopyChat answers on your device first, and every cloud feature is opt in. Here is how your data is protected, from on-device chat to zero data retention in the cloud.
 - [CanopyChat, Canopy Code and Flame: What Each One Does](https://canopychat.app/blog/canopychat-canopy-code-and-flame): A plain guide to the Canopy family: CanopyChat for private AI chat, Canopy Code for coding in the terminal, and Flame, the agent that keeps working in the cloud.
-- [Releases](https://github.com/nathanaelguitar/canopy-code/releases): Binaries and checksums.
+- [Releases](https://github.com/nathanaelguitar/canopy-code-releases/releases): Binaries and checksums.
 
 ## CanopyChat
 

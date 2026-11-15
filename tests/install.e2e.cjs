@@ -24,7 +24,7 @@ const SHOTS = path.join(__dirname, 'screenshots');
 const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png', '.svg': 'image/svg+xml' };
 
 const BREW = 'brew install nathanaelguitar/canopy/canopy-code';
-const SCOOP = 'scoop install https://github.com/nathanaelguitar/canopy-code/releases/latest/download/canopy-code.json';
+const SCOOP = 'scoop install https://github.com/nathanaelguitar/canopy-code-releases/releases/latest/download/canopy-code.json';
 
 function serveSite() {
   return http.createServer((req, res) => {

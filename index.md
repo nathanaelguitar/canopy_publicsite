@@ -56,7 +56,7 @@ Comfortable in a terminal? Canopy Code is the coding agent behind CanopyChat, on
 
     # Windows (x64, PowerShell)
 
-    scoop install https://github.com/nathanaelguitar/canopy-code/releases/latest/download/canopy-code.json
+    scoop install https://github.com/nathanaelguitar/canopy-code-releases/releases/latest/download/canopy-code.json
 
     canopy
 
