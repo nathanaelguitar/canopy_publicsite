@@ -45,14 +45,14 @@ Install it with Homebrew on macOS and Linux, or Scoop on Windows, then run `cano
 
     # Windows (x64, PowerShell)
 
-    scoop install https://github.com/nathanaelguitar/canopy-code/releases/latest/download/canopy-code.json
+    scoop install https://github.com/nathanaelguitar/canopy-code-releases/releases/latest/download/canopy-code.json
 
     canopy
 
 - Paste it into Terminal on an Apple silicon Mac. Intel Macs have no build yet. Need Homebrew first? Get it at [brew.sh](https://brew.sh).
 - Paste it into your shell on 64-bit Intel, AMD or ARM Linux with glibc 2.30 or newer (Ubuntu 20.04 and Debian 11 or later). Get Homebrew at [brew.sh](https://brew.sh).
 - Paste it into PowerShell on 64-bit Windows 10 (version 1809) or newer, or Windows 11. Windows support is new, so please report anything odd. Need Scoop first? Get it at [scoop.sh](https://scoop.sh).
-- Prefer a download? Each release has an archive per platform with a SHA-256 checksum on [GitHub Releases](https://github.com/nathanaelguitar/canopy-code/releases).
+- Prefer a download? Each release has an archive per platform with a SHA-256 checksum on [GitHub Releases](https://github.com/nathanaelguitar/canopy-code-releases/releases).
 - Update later with `brew upgrade canopy-code`.
 - Update later with `scoop update canopy-code`.
 
@@ -95,7 +95,7 @@ Add MCP servers with `/mcp`, skills with `/skills`, lifecycle hooks with `/hooks
 
 ### VS Code extension
 
-A native sidebar for VS Code with session history, streaming conversations, model selection, approval cards and side-by-side diffs. It shares your account and sessions with the terminal. Install the CLI first, then the extension from the [latest release](https://github.com/nathanaelguitar/canopy-code/releases/latest).
+A native sidebar for VS Code with session history, streaming conversations, model selection, approval cards and side-by-side diffs. It shares your account and sessions with the terminal. Install the CLI first, then the extension from the [latest release](https://github.com/nathanaelguitar/canopy-code-releases/releases/latest).
 
 ### Talk to it
 

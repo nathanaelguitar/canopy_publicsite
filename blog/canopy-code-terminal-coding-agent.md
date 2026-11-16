@@ -34,7 +34,7 @@ The first Canopy Code extension for VS Code ships with this release. It is a nat
 - approval cards for actions that need your OK
 - proposed changes shown as side-by-side diffs
 
-Install the Canopy Code CLI for your platform first, then install the extension from the [release page](https://github.com/nathanaelguitar/canopy-code/releases/tag/v2026.11.05) and reload VS Code:
+Install the Canopy Code CLI for your platform first, then install the extension from the [release page](https://github.com/nathanaelguitar/canopy-code-releases/releases/tag/v2026.11.05) and reload VS Code:
 
 ``` blog-code
 code --install-extension canopy-code-vscode-0.1.0.vsix
@@ -74,9 +74,9 @@ brew install nathanaelguitar/canopy/canopy-code
 On Windows (PowerShell):
 
 ``` blog-code
-scoop install https://github.com/nathanaelguitar/canopy-code/releases/latest/download/canopy-code.json
+scoop install https://github.com/nathanaelguitar/canopy-code-releases/releases/latest/download/canopy-code.json
 ```
 
-Then run `canopy` in a project folder and type `/auth` to connect a model. There is no build for Intel Macs yet. Every release also has archives with SHA-256 checksums on [GitHub Releases](https://github.com/nathanaelguitar/canopy-code/releases).
+Then run `canopy` in a project folder and type `/auth` to connect a model. There is no build for Intel Macs yet. Every release also has archives with SHA-256 checksums on [GitHub Releases](https://github.com/nathanaelguitar/canopy-code-releases/releases).
 
 For the full overview, see the [Canopy Code page](https://canopychat.app/canopy-code).
