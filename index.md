@@ -8,13 +8,15 @@ CanopyChat answers right on your phone or computer and keeps your chats, photos,
 
 ## Download
 
-[Windows](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe "Windows 10 and 11 · about 142 MB") [Mac](https://testflight.apple.com/join/f5xCZmVv "Free Mac beta on TestFlight") [iPhone](https://apps.apple.com/us/app/canopychat/id6788203137 "iPhone and iPad · App Store") [Android](https://play.google.com/store/apps/details?id=com.nathanaelguitar.canopychat "Android · Google Play") Linux [\>\_ Canopy Code](#install "Install Canopy Code (for developers)")
+[Windows](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe "Windows 10 and 11 · about 165 MB") [Mac](https://testflight.apple.com/join/f5xCZmVv "Free Mac beta on TestFlight") [iPhone](https://apps.apple.com/us/app/canopychat/id6788203137 "iPhone and iPad · App Store") [Android](https://play.google.com/store/apps/details?id=com.nathanaelguitar.canopychat "Android · Google Play") Linux [\>\_ Canopy Code](#install "Install Canopy Code (for developers)")
 
 Installing on Windows or Linux
 
 **Windows:** open `CanopyChat-Setup.exe`. The installer is new and not yet code-signed, so Windows may say “Windows protected your PC.” Choose **More info**, then **Run anyway**.
 
 **Linux:** download the `.deb` and double-click it, or in a terminal run `sudo apt install ./CanopyChat-amd64.deb`. Ubuntu 22.04 or newer.
+
+**Updates:** from version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose **Check for updates**, then **Update now**. On Windows the installer opens for you; on Linux the new package is saved to your Downloads folder.
 
 Open CanopyChat and sign in with your email: we send a 6-digit code, no password. Your plan unlocks cloud models; the free plan runs on your computer.
 
