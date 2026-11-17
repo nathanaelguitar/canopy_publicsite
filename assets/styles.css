@@ -3805,6 +3805,26 @@ html:has(.founding-mobile-funnel) {
   overflow-wrap: anywhere;
 }
 
+.download-help-list {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+
+.download-help pre {
+  margin: 8px 0 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(127, 127, 127, 0.35);
+  background: rgba(127, 127, 127, 0.1);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+
+.download-help pre code {
+  font-size: 0.88em;
+}
+
 /* Canopy Code pill at the end of the Join Beta row: main's dark install pill, shorter label,
    at the row's height. The row may wrap so it drops to its own line on narrow phones. */
 .download + .actions .actions-row {

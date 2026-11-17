@@ -14,7 +14,18 @@ Installing on Windows or Linux
 
 **Windows:** open `CanopyChat-Setup.exe`. The installer is new and not yet code-signed, so Windows may say “Windows protected your PC.” Choose **More info**, then **Run anyway**.
 
-**Linux:** download the `.deb` and double-click it, or in a terminal run `sudo apt install ./CanopyChat-amd64.deb`. Ubuntu 22.04 or newer.
+**Linux** (x86-64: Ubuntu 22.04 or newer; ARM64: Ubuntu 24.04 or newer): pick the file for your computer. Not sure which? Run `uname -m`: `x86_64` means x86-64, `aarch64` means ARM64.
+
+- [Linux x86-64 (.deb)](https://downloads.canopychat.app/linux/CanopyChat-amd64.deb)
+- [Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)](https://downloads.canopychat.app/linux/CanopyChat-arm64.deb)
+
+Or install in one line from any folder. It downloads the right file for your computer and installs it:
+
+```
+curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(dpkg --print-architecture).deb && sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb
+```
+
+Downloaded it in your browser? It is in your Downloads folder: `cd ~/Downloads && sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb`. More in the [Linux guide](https://canopychat.app/linux).
 
 **Updates:** from version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose **Check for updates**, then **Update now**. On Windows the installer opens for you; on Linux the new package is saved to your Downloads folder.
 
@@ -68,6 +79,7 @@ Comfortable in a terminal? Canopy Code is the coding agent behind CanopyChat, on
 - Using Claude? Install Claude Code too (`brew install --cask claude-code`), then choose **Sign in with Anthropic** in `/auth`.
 - Using Claude? Install Claude Code too (`curl -fsSL https://claude.ai/install.sh | bash`), then choose **Sign in with Anthropic** in `/auth`.
 - Using Claude? Install Claude Code too (`irm https://claude.ai/install.ps1 | iex`), then choose **Sign in with Anthropic** in `/auth`.
+- Use VS Code? Install the extension: [download the VSIX](https://downloads.canopychat.app/vscode/canopy-code-vscode-latest.vsix), or run `code --install-extension canopy-code-vscode-latest.vsix` from the folder it downloaded to. Needs VS Code 1.106 or newer and Canopy Code installed first.
 - Want remote control from your phone? [Create a Canopy account](https://canopychat.app/signup), then [link your computer](https://canopychat.app/link).
 
 Easy on the planet
