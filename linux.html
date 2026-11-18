@@ -138,7 +138,17 @@
 
           <section id="first-start" class="doc-section">
             <h2>First start</h2>
-            <p>Open CanopyChat from your applications menu. Sign in with your email: we send a 6-digit code, no password. Your plan unlocks cloud models. The free plan runs on your computer.</p>
+            <p>To check that it installed, run this. It prints the path of the launcher and the installed version:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-verify">command -v canopychat &amp;&amp; dpkg -s canopy-chat | grep '^Version'</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-verify" aria-label="Copy the check command">Copy</button>
+            </div>
+            <p>Start it from a terminal on the computer&rsquo;s desktop:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-launch">canopychat &amp;</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-launch" aria-label="Copy the launch command">Copy</button>
+            </div>
+            <p>Or open CanopyChat from your applications menu. Sign in with your email: we send a 6-digit code, no password. Your plan unlocks cloud models. The free plan runs on your computer.</p>
             <p>Your chats and settings are stored on your computer, in <code>~/.local/share/canopychat</code>.</p>
           </section>
 
@@ -175,6 +185,8 @@
             <h2>Troubleshooting</h2>
             <h3>E: Unsupported file ./CanopyChat-amd64.deb given on commandline</h3>
             <p><code>apt</code> cannot find the file at that path. Most often the file is not in the folder you are in: browsers save to <code>~/Downloads</code>, not your home folder. Run <code>ls CanopyChat-*.deb</code> to check, then <code>cd ~/Downloads</code> and try again, or use the <a href="#quick-install">one-line command</a>, which downloads the file into the folder you are in.</p>
+            <h3>N: Download is performed unsandboxed as root</h3>
+            <p>This is a notice, not an error. It appears when the <code>.deb</code> is in your home folder, which the <code>_apt</code> user cannot read, so <code>apt</code> reads it as root instead. If the output ends with <code>Setting up canopy-chat</code>, the install worked. To avoid the notice, install from <code>~/Downloads</code> or <code>/tmp</code>.</p>
             <h3>Architecture mismatch</h3>
             <p>You have the file for the other architecture. The amd64 file does not install on an ARM64 computer, and the arm64 file does not install on x86-64. Run <code>dpkg --print-architecture</code> and download that file. The one-line command picks it for you.</p>
             <h3>Graphics problems</h3>

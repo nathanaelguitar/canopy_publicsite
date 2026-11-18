@@ -89,7 +89,19 @@ The download is about 230 to 280 MB, and the app takes about 550 MB on disk. The
 
 ## First start
 
-Open CanopyChat from your applications menu. Sign in with your email: we send a 6-digit code, no password. Your plan unlocks cloud models. The free plan runs on your computer.
+To check that it installed, run this. It prints the path of the launcher and the installed version:
+
+```
+command -v canopychat && dpkg -s canopy-chat | grep '^Version'
+```
+
+Start it from a terminal on the computer’s desktop:
+
+```
+canopychat &
+```
+
+Or open CanopyChat from your applications menu. Sign in with your email: we send a 6-digit code, no password. Your plan unlocks cloud models. The free plan runs on your computer.
 
 Your chats and settings are stored on your computer, in `~/.local/share/canopychat`.
 
@@ -126,6 +138,10 @@ Use `CanopyChat-aarch64.AppImage` on ARM64. The sections above on installing, up
 ### E: Unsupported file ./CanopyChat-amd64.deb given on commandline
 
 `apt` cannot find the file at that path. Most often the file is not in the folder you are in: browsers save to `~/Downloads`, not your home folder. Run `ls CanopyChat-*.deb` to check, then `cd ~/Downloads` and try again, or use the [one-line command](#quick-install), which downloads the file into the folder you are in.
+
+### N: Download is performed unsandboxed as root
+
+This is a notice, not an error. It appears when the `.deb` is in your home folder, which the `_apt` user cannot read, so `apt` reads it as root instead. If the output ends with `Setting up canopy-chat`, the install worked. To avoid the notice, install from `~/Downloads` or `/tmp`.
 
 ### Architecture mismatch
 

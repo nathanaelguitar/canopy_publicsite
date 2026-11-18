@@ -130,8 +130,8 @@ curl -fsS https://downloads.canopychat.app/linux/latest.json</code></pre>
           <section id="check" class="doc-section">
             <h2>Check that it worked</h2>
             <ul>
-              <li>Debian and Ubuntu: <code>dpkg -s canopy-chat</code> shows the installed version. Compare it with <code>version</code> in the manifest.</li>
-              <li>Open CanopyChat from the applications menu.</li>
+              <li>Debian and Ubuntu: <code>command -v canopychat &amp;&amp; dpkg -s canopy-chat | grep '^Version'</code> prints the launcher path and the installed version. Compare it with <code>version</code> in the manifest.</li>
+              <li>To start it, run <code>canopychat &amp;</code> in a terminal on the computer&rsquo;s desktop, or open CanopyChat from the applications menu. Over SSH there is no screen, so skip this step and rely on the check above.</li>
               <li>Then tell the user it is ready for them to sign in.</li>
             </ul>
           </section>

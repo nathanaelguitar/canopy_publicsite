@@ -75,8 +75,8 @@ Download [CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyC
 
 ## Check that it worked
 
-- Debian and Ubuntu: `dpkg -s canopy-chat` shows the installed version. Compare it with `version` in the manifest.
-- Open CanopyChat from the applications menu.
+- Debian and Ubuntu: `command -v canopychat && dpkg -s canopy-chat | grep '^Version'` prints the launcher path and the installed version. Compare it with `version` in the manifest.
+- To start it, run `canopychat &` in a terminal on the computer’s desktop, or open CanopyChat from the applications menu. Over SSH there is no screen, so skip this step and rely on the check above.
 - Then tell the user it is ready for them to sign in.
 
 ## Updates and uninstall
