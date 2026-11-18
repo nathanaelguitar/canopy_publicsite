@@ -4832,9 +4832,19 @@ html:has(.flame-page) {
 }
 
 .cmd .copy-button {
-  min-height: 34px;
-  padding: 0 14px;
+  min-height: 36px;
+  padding: 0 16px;
+  background: var(--oak);
   font-size: 14px;
+}
+
+.cmd .copy-button:hover,
+.cmd .copy-button:focus-visible {
+  background: #5e3719;
+}
+
+.cmd .copy-button.copied {
+  background: var(--moss);
 }
 
 .cmd .copy-button:focus-visible {
@@ -5018,7 +5028,8 @@ html:has(.flame-page) {
 }
 
 .doc-section {
-  padding: 26px 0;
+  padding-top: 28px;
+  padding-bottom: 28px;
   border-top: 1px solid var(--line);
   scroll-margin-top: 20px;
 }
@@ -5135,8 +5146,8 @@ html:has(.flame-page) {
   }
 
   .arch-tab[aria-selected="true"] {
-    background: #a36a35;
-    color: #fff4df;
+    background: #e9dcc4;
+    color: var(--bark);
   }
 
   .doc-toc-title {
