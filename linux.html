@@ -189,6 +189,13 @@
             <p>This is a notice, not an error. It appears when the <code>.deb</code> is in your home folder, which the <code>_apt</code> user cannot read, so <code>apt</code> reads it as root instead. If the output ends with <code>Setting up canopy-chat</code>, the install worked. To avoid the notice, install from <code>~/Downloads</code> or <code>/tmp</code>.</p>
             <h3>Architecture mismatch</h3>
             <p>You have the file for the other architecture. The amd64 file does not install on an ARM64 computer, and the arm64 file does not install on x86-64. Run <code>dpkg --print-architecture</code> and download that file. The one-line command picks it for you.</p>
+            <h3>The window opens but stays blank</h3>
+            <p>Some computers with an NVIDIA graphics driver (the NVIDIA DGX Spark, for one) draw a blank window because of a rendering problem in the web engine. Start the app like this instead:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-blank">WEBKIT_DISABLE_DMABUF_RENDERER=1 canopychat &amp;</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-blank" aria-label="Copy the command for a blank window">Copy</button>
+            </div>
+            <p>We are fixing this in the app, so a later version will not need it.</p>
             <h3>Graphics problems</h3>
             <p>Make sure <code>libvulkan1</code> is installed (<code>sudo apt install libvulkan1</code>) and that your graphics driver supports Vulkan. Without Vulkan, the local model runs on the processor.</p>
             <p>Still stuck? Email <a href="mailto:support@canopychat.app">support@canopychat.app</a> with your distribution, the output of <code>uname -m</code> and the exact error.</p>

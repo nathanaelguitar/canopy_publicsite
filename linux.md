@@ -147,6 +147,16 @@ This is a notice, not an error. It appears when the `.deb` is in your home folde
 
 You have the file for the other architecture. The amd64 file does not install on an ARM64 computer, and the arm64 file does not install on x86-64. Run `dpkg --print-architecture` and download that file. The one-line command picks it for you.
 
+### The window opens but stays blank
+
+Some computers with an NVIDIA graphics driver (the NVIDIA DGX Spark, for one) draw a blank window because of a rendering problem in the web engine. Start the app like this instead:
+
+```
+WEBKIT_DISABLE_DMABUF_RENDERER=1 canopychat &
+```
+
+We are fixing this in the app, so a later version will not need it.
+
 ### Graphics problems
 
 Make sure `libvulkan1` is installed (`sudo apt install libvulkan1`) and that your graphics driver supports Vulkan. Without Vulkan, the local model runs on the processor.
