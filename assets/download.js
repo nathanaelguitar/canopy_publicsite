@@ -34,11 +34,13 @@
     var mine = CONFIG.linux[arch];
     var label = arch === 'arm64' ? 'ARM64' : 'x86_64';
     var otherLabel = arch === 'arm64' ? 'x86_64' : 'ARM64';
+    // ARM64 needs Ubuntu 24.04 (glibc 2.38 for the local model engine); x86-64 runs on 22.04.
+    var minimum = arch === 'arm64' ? 'Ubuntu 24.04 or newer' : 'Ubuntu 22.04 or newer';
     pill.href = mine.deb;
     pill.setAttribute('download', fileName(mine.deb));
-    pill.title = 'Linux · Ubuntu 22.04 or newer · .deb for ' + label +
+    pill.title = 'Linux · ' + minimum + ' · .deb for ' + label +
       ' (also available as an AppImage and for ' + otherLabel + ')';
-    pill.setAttribute('aria-label', 'Download CanopyChat for Linux, .deb for Ubuntu 22.04 or newer, ' + label);
+    pill.setAttribute('aria-label', 'Download CanopyChat for Linux, .deb for ' + minimum + ', ' + label);
   }
 
   var ua = navigator.userAgent || '';

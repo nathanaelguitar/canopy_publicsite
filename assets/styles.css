@@ -4843,8 +4843,9 @@ html:has(.flame-page) {
   background: #5e3719;
 }
 
+/* Darker than --moss so the white label stays above 4.5:1 while it says "Copied". */
 .cmd .copy-button.copied {
-  background: var(--moss);
+  background: #4f6a3a;
 }
 
 .cmd .copy-button:focus-visible {

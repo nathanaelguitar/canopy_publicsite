@@ -125,7 +125,7 @@ Use `CanopyChat-aarch64.AppImage` on ARM64. The sections above on installing, up
 
 ### E: Unsupported file ./CanopyChat-amd64.deb given on commandline
 
-`apt` cannot find the file at that path. Most often the file is not in the folder you are in: browsers save to `~/Downloads`, not your home folder. Run `ls CanopyChat-*.deb` to check, then `cd ~/Downloads` and try again, or use the [one-line command](#quick-install-title), which downloads the file into the folder you are in.
+`apt` cannot find the file at that path. Most often the file is not in the folder you are in: browsers save to `~/Downloads`, not your home folder. Run `ls CanopyChat-*.deb` to check, then `cd ~/Downloads` and try again, or use the [one-line command](#quick-install), which downloads the file into the folder you are in.
 
 ### Architecture mismatch
 

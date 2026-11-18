@@ -108,8 +108,11 @@
     return -1;
   }
 
+  // Once the visitor picks a tab, the delayed architecture lookup below must not undo it.
+  var picked = false;
   for (var t = 0; t < tabs.length; t++) {
     tabs[t].addEventListener('click', function (event) {
+      picked = true;
       select(event.currentTarget.getAttribute('data-arch'), false);
     });
     tabs[t].addEventListener('keydown', function (event) {
@@ -121,6 +124,7 @@
       else if (event.key === 'End') next = tabs.length - 1;
       else return;
       event.preventDefault();
+      picked = true;
       select(tabs[next].getAttribute('data-arch'), true);
     });
   }
@@ -133,7 +137,7 @@
   var uad = navigator.userAgentData;
   if (uad && uad.getHighEntropyValues) {
     uad.getHighEntropyValues(['architecture', 'bitness']).then(function (v) {
-      if (v && v.architecture === 'arm' && v.bitness === '64') select('arm64', false);
+      if (!picked && v && v.architecture === 'arm' && v.bitness === '64') select('arm64', false);
     }).catch(function () {});
   }
 })();

@@ -36,7 +36,7 @@
         <p class="linux-lead">A desktop app for Ubuntu 22.04 or newer, on x86-64 and ARM64. The free plan runs a small model on your computer, and a paid plan unlocks cloud models.</p>
       </header>
 
-      <section class="quick-install" aria-labelledby="quick-install-title">
+      <section class="quick-install" id="quick-install" aria-labelledby="quick-install-title">
         <div class="quick-install-head">
           <h2 id="quick-install-title">Quick install</h2>
           <p>Ubuntu and Debian. One line, from any folder: it downloads the <code>.deb</code> for your computer and installs it.</p>
@@ -174,7 +174,7 @@
           <section id="troubleshooting" class="doc-section">
             <h2>Troubleshooting</h2>
             <h3>E: Unsupported file ./CanopyChat-amd64.deb given on commandline</h3>
-            <p><code>apt</code> cannot find the file at that path. Most often the file is not in the folder you are in: browsers save to <code>~/Downloads</code>, not your home folder. Run <code>ls CanopyChat-*.deb</code> to check, then <code>cd ~/Downloads</code> and try again, or use the <a href="#quick-install-title">one-line command</a>, which downloads the file into the folder you are in.</p>
+            <p><code>apt</code> cannot find the file at that path. Most often the file is not in the folder you are in: browsers save to <code>~/Downloads</code>, not your home folder. Run <code>ls CanopyChat-*.deb</code> to check, then <code>cd ~/Downloads</code> and try again, or use the <a href="#quick-install">one-line command</a>, which downloads the file into the folder you are in.</p>
             <h3>Architecture mismatch</h3>
             <p>You have the file for the other architecture. The amd64 file does not install on an ARM64 computer, and the arm64 file does not install on x86-64. Run <code>dpkg --print-architecture</code> and download that file. The one-line command picks it for you.</p>
             <h3>Graphics problems</h3>

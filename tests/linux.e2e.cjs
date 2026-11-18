@@ -69,10 +69,19 @@ const UA = {
         colorScheme: opts.scheme || 'light',
         permissions: real ? ['clipboard-read', 'clipboard-write'] : []
       });
-      await ctx.addInitScript(() => {
-        Object.defineProperty(Navigator.prototype, 'userAgentData', { get: () => undefined });
-      });
-      if (!real) {
+      // Chromium's UA-CH: either absent (Firefox/WebKit shape) or an ARM64 Linux fixture.
+      await ctx.addInitScript((arm) => {
+        const uad = arm ? { platform: 'Linux', getHighEntropyValues: () => Promise.resolve({ architecture: 'arm', bitness: '64' }) } : undefined;
+        Object.defineProperty(Navigator.prototype, 'userAgentData', { get: () => uad });
+      }, !!opts.uach);
+      if (opts.clipboard) {
+        await ctx.addInitScript((mode) => {
+          const reject = () => Promise.reject(new Error('denied'));
+          if (mode === 'reject') Object.defineProperty(Navigator.prototype, 'clipboard', { get: () => ({ writeText: reject }), configurable: true });
+          else Object.defineProperty(Navigator.prototype, 'clipboard', { get: () => undefined, configurable: true });
+          if (mode === 'none') document.execCommand = () => false;
+        }, opts.clipboard);
+      } else if (!real) {
         await ctx.addInitScript(() => {
           window.__copied = null;
           const writeText = (t) => { window.__copied = t; return Promise.resolve(); };
@@ -154,13 +163,21 @@ const UA = {
       assert.ok(blocks.length >= 8, engine + ' guide: command blocks ' + blocks.length);
       for (const b of blocks) assert.ok(b.button, engine + ' guide: copy button for ' + b.id);
       assert.ok(blocks.some((b) => b.text === ONELINER), engine + ' guide: one-liner block');
-      for (const b of blocks.filter((b) => b.visible)) {
+      const copyBlock = async (b) => {
         const btn = page.locator('.copy-button[data-copy-target="' + b.id + '"]');
         if (engine === 'webkit') await btn.dispatchEvent('click'); else await btn.click();
         await page.waitForFunction((id) => document.querySelector('.copy-button[data-copy-target="' + id + '"]').textContent === 'Copied', b.id);
         const copied = real ? await page.evaluate(() => navigator.clipboard.readText()) : await page.evaluate(() => window.__copied);
         assert.strictEqual(copied, b.text, engine + ' guide: clipboard after copying ' + b.id);
-      }
+      };
+      for (const b of blocks.filter((b) => b.visible)) await copyBlock(b);
+      // The other architecture's panel: switch to it, check its block wraps, copy it too.
+      await page.locator('#tab-arm64').dispatchEvent('click');
+      const armBlock = blocks.find((b) => b.id === 'cmd-browser-arm64');
+      assert.ok(armBlock && !(await page.evaluate(() => document.getElementById('panel-arm64').hidden)), engine + ' guide: ARM64 panel shown');
+      assert.strictEqual(await page.$eval('#panel-arm64 pre', (p) => p.scrollWidth > p.clientWidth + 1), false, engine + ' guide: ARM64 block wraps');
+      await copyBlock(armBlock);
+      await page.locator('#tab-amd64').dispatchEvent('click');
       // The announcement is written a tick later so repeated copies re-announce.
       await page.waitForFunction(() => document.getElementById('copy-status').textContent === 'Command copied to the clipboard');
       assert.strictEqual(await page.evaluate(() => document.getElementById('copy-status').getAttribute('aria-live')), 'polite', engine + ' guide: aria-live status');
@@ -189,6 +206,50 @@ const UA = {
       await ctx.close();
     }
     console.log('ok  ' + engine + ': default architecture tab');
+
+    // Chromium hides the architecture from the user agent: the UA-CH lookup must pick ARM64 on
+    // the homepage pill and the guide tab, but never undo a tab the visitor already chose.
+    {
+      const { ctx, page } = await open('', { uach: true });
+      await page.waitForFunction((arm) => document.querySelector('.download-grid [data-platform="linux"]').href === arm, ARM);
+      const pill = await page.evaluate(() => { const p = document.querySelector('.download-grid [data-platform="linux"]'); return [p.getAttribute('download'), p.title, p.getAttribute('aria-label')]; });
+      assert.strictEqual(pill[0], 'CanopyChat-arm64.deb', engine + ' home UA-CH: ARM64 download name');
+      assert.ok(pill[1].includes('Ubuntu 24.04 or newer') && pill[1].includes('ARM64') && pill[2].includes('Ubuntu 24.04 or newer'), engine + ' home UA-CH: ARM64 minimum Ubuntu ' + pill[1]);
+      await ctx.close();
+    }
+    {
+      const { ctx, page } = await open('linux', { uach: true });
+      await page.waitForFunction(() => document.querySelector('.arch-tab[aria-selected="true"]').getAttribute('data-arch') === 'arm64');
+      await ctx.close();
+    }
+    {
+      const { ctx, page } = await open('linux', { uach: true });
+      await page.locator('#tab-amd64').dispatchEvent('click');
+      await page.waitForTimeout(150);
+      const got = await page.evaluate(() => document.querySelector('.arch-tab[aria-selected="true"]').getAttribute('data-arch'));
+      assert.strictEqual(got, 'amd64', engine + ' guide UA-CH: a manual pick is not undone by the lookup');
+      await ctx.close();
+    }
+    console.log('ok  ' + engine + ': UA-CH ARM64 detection on the pill and the tab');
+
+    // Clipboard fallbacks: a rejected writeText falls back to execCommand (still "Copied"); with no
+    // clipboard at all and execCommand refused, the command is selected and the hint names Ctrl+C.
+    {
+      const { ctx, page } = await open('linux', { clipboard: 'reject' });
+      await page.locator('.copy-button[data-copy-target="cmd-remove"]').dispatchEvent('click');
+      await page.waitForFunction(() => document.querySelector('.copy-button[data-copy-target="cmd-remove"]').textContent === 'Copied');
+      await ctx.close();
+    }
+    {
+      const { ctx, page } = await open('linux', { clipboard: 'none' });
+      await page.locator('.copy-button[data-copy-target="cmd-remove"]').dispatchEvent('click');
+      await page.waitForFunction(() => document.querySelector('.copy-button[data-copy-target="cmd-remove"]').textContent === 'Press Ctrl+C');
+      const sel = await page.evaluate(() => String(window.getSelection()).trim());
+      assert.strictEqual(sel, 'sudo apt remove canopy-chat', engine + ' guide: command selected when nothing can copy');
+      await page.waitForFunction(() => /Could not copy automatically/.test(document.getElementById('copy-status').textContent));
+      await ctx.close();
+    }
+    console.log('ok  ' + engine + ': clipboard fallbacks (rejected writeText, no clipboard)');
 
     await browser.close();
   }
