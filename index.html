@@ -12,7 +12,7 @@
   <meta name="description" content="CanopyChat is a private, local-first chat app available on iPhone and Android, with on-device intelligence and user-controlled attachments.">
   <link rel="icon" type="image/png" href="assets/app-icon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/styles.css?v=plans-3">
+  <link rel="stylesheet" href="assets/styles.css?v=linux-2">
   <script src="assets/plans-redirect.js?v=1"></script>
   <link rel="alternate" type="text/markdown" href="/index.md">
 </head>
@@ -66,20 +66,10 @@
               <span>Canopy Code</span>
             </a>
           </nav>
-          <details class="download-help">
-            <summary>Installing on Windows or Linux</summary>
-            <p><strong>Windows:</strong> open <code>CanopyChat-Setup.exe</code>. The installer is new and not yet code-signed, so Windows may say &ldquo;Windows protected your PC.&rdquo; Choose <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
-            <p><strong>Linux</strong> (x86-64: Ubuntu 22.04 or newer; ARM64: Ubuntu 24.04 or newer): pick the file for your computer. Not sure which? Run <code>uname -m</code>: <code>x86_64</code> means x86-64, <code>aarch64</code> means ARM64.</p>
-            <ul class="download-help-list">
-              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-amd64.deb" data-linux-arch="amd64" download>Linux x86-64 (.deb)</a></li>
-              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-arm64.deb" data-linux-arch="arm64" download>Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)</a></li>
-            </ul>
-            <p>Or install in one line from any folder. It downloads the right file for your computer and installs it:</p>
-            <pre><code id="linux-install-command">curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(dpkg --print-architecture).deb &amp;&amp; sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb</code></pre>
-            <p>Downloaded it in your browser? It is in your Downloads folder: <code>cd ~/Downloads &amp;&amp; sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb</code>. More in the <a href="/linux">Linux guide</a>.</p>
-            <p><strong>Updates:</strong> from version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose <strong>Check for updates</strong>, then <strong>Update now</strong>. On Windows the installer opens for you; on Linux the new package is saved to your Downloads folder.</p>
-            <p>Open CanopyChat and sign in with your email: we send a 6-digit code, no password. Your plan unlocks cloud models; the free plan runs on your computer.</p>
-          </details>
+          <div class="download-help">
+            <p><strong>Windows:</strong> open <code>CanopyChat-Setup.exe</code>. The installer is new and not yet code-signed, so Windows may say &ldquo;Windows protected your PC.&rdquo; Choose <strong>More info</strong>, then <strong>Run anyway</strong>. From version 0.3.6 it updates from Settings (<strong>Check for updates</strong>, then <strong>Update now</strong>): the installer opens for you.</p>
+            <p><strong>Linux:</strong> <a href="https://downloads.canopychat.app/linux/CanopyChat-amd64.deb" data-linux-arch="amd64" download>Linux x86-64 (.deb)</a> or <a href="https://downloads.canopychat.app/linux/CanopyChat-arm64.deb" data-linux-arch="arm64" download>Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)</a>. Steps, requirements and fixes: <a href="/linux" class="download-help-guide">Linux install guide</a>.</p>
+          </div>
         </div>
         <div class="actions">
           <div class="actions-row">

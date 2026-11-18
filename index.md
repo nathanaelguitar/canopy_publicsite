@@ -10,26 +10,9 @@ CanopyChat answers right on your phone or computer and keeps your chats, photos,
 
 [Windows](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe "Windows 10 and 11 · about 165 MB") [Mac](https://testflight.apple.com/join/f5xCZmVv "Free Mac beta on TestFlight") [iPhone](https://apps.apple.com/us/app/canopychat/id6788203137 "iPhone and iPad · App Store") [Android](https://play.google.com/store/apps/details?id=com.nathanaelguitar.canopychat "Android · Google Play") Linux [\>\_ Canopy Code](#install "Install Canopy Code (for developers)")
 
-Installing on Windows or Linux
+**Windows:** open `CanopyChat-Setup.exe`. The installer is new and not yet code-signed, so Windows may say “Windows protected your PC.” Choose **More info**, then **Run anyway**. From version 0.3.6 it updates from Settings (**Check for updates**, then **Update now**): the installer opens for you.
 
-**Windows:** open `CanopyChat-Setup.exe`. The installer is new and not yet code-signed, so Windows may say “Windows protected your PC.” Choose **More info**, then **Run anyway**.
-
-**Linux** (x86-64: Ubuntu 22.04 or newer; ARM64: Ubuntu 24.04 or newer): pick the file for your computer. Not sure which? Run `uname -m`: `x86_64` means x86-64, `aarch64` means ARM64.
-
-- [Linux x86-64 (.deb)](https://downloads.canopychat.app/linux/CanopyChat-amd64.deb)
-- [Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)](https://downloads.canopychat.app/linux/CanopyChat-arm64.deb)
-
-Or install in one line from any folder. It downloads the right file for your computer and installs it:
-
-```
-curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(dpkg --print-architecture).deb && sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb
-```
-
-Downloaded it in your browser? It is in your Downloads folder: `cd ~/Downloads && sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb`. More in the [Linux guide](https://canopychat.app/linux).
-
-**Updates:** from version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose **Check for updates**, then **Update now**. On Windows the installer opens for you; on Linux the new package is saved to your Downloads folder.
-
-Open CanopyChat and sign in with your email: we send a 6-digit code, no password. Your plan unlocks cloud models; the free plan runs on your computer.
+**Linux:** [Linux x86-64 (.deb)](https://downloads.canopychat.app/linux/CanopyChat-amd64.deb) or [Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)](https://downloads.canopychat.app/linux/CanopyChat-arm64.deb). Steps, requirements and fixes: [Linux install guide](https://canopychat.app/linux).
 
 [![](assets/flame-face-96.png?v=3)Meet Flame](https://canopychat.app/flame) [How It Works](#how-it-works)
 

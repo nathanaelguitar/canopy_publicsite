@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-13T00:00:00.000Z",
+  "generatedAt": "2026-11-18T01:48:13.000Z",
   "title": "Design System: CanopyChat Public Site",
   "extensions": {
     "colorMeta": {
@@ -10,7 +10,8 @@
     },
     "typographyMeta": {
       "display": { "displayName": "Editorial Display", "purpose": "Large thesis and section headlines on persuasion surfaces." },
-      "body": { "displayName": "Readable Sans", "purpose": "Explanatory copy, terms, and controls." }
+      "body": { "displayName": "Readable Sans", "purpose": "Explanatory copy, terms, and controls." },
+      "mono": { "displayName": "Command Mono", "purpose": "Commands, file names and inline code: the Canopy Code terminal, the Linux guide command blocks, inline code. Never headings or body copy." }
     },
     "shadows": [
       { "name": "mark-ambient", "value": "0 24px 60px rgba(0,0,0,0.28)", "purpose": "Soft depth for the supplied tree mark in the hero." },

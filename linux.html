@@ -7,14 +7,14 @@
   <meta name="theme-color" content="#fff4df" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#120d0a" media="(prefers-color-scheme: dark)">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://connect.facebook.net; connect-src 'self' https://founding-api.canopychat.app https://www.facebook.com https://connect.facebook.net; img-src 'self' data: https://www.facebook.com; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://checkout.stripe.com; upgrade-insecure-requests">
-  <title>CanopyChat on Linux</title>
+  <title>Install CanopyChat on Linux</title>
   <meta name="description" content="Install, update and remove CanopyChat on Linux (Ubuntu 22.04 or newer, x86-64 and ARM64), and fix common install errors.">
   <link rel="icon" type="image/png" href="assets/app-icon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/styles.css?v=plans-3">
+  <link rel="stylesheet" href="assets/styles.css?v=linux-2">
   <link rel="alternate" type="text/markdown" href="/linux.md">
 </head>
-<body>
+<body class="linux-page">
   <header class="shell nav">
     <a class="brand" href="/"><img class="mark" src="assets/app-icon.png" alt="" width="46" height="46"><strong>CanopyChat</strong></a>
     <nav class="nav-links" aria-label="Primary navigation">
@@ -29,64 +29,163 @@
   </header>
 
   <main class="shell">
-    <article class="document">
-      <p class="eyebrow">Linux</p>
-      <h1>CanopyChat on Linux</h1>
-      <p>CanopyChat for Linux is a desktop app. The free plan runs a small model on your computer, and a paid plan unlocks cloud models.</p>
+    <article class="document linux-doc">
+      <header class="linux-head">
+        <nav class="linux-crumb" aria-label="Breadcrumb"><a href="/">CanopyChat</a> <span aria-hidden="true">/</span> <a href="/#downloads">Download</a> <span aria-hidden="true">/</span> <span aria-current="page">Linux</span></nav>
+        <h1>Install CanopyChat on Linux</h1>
+        <p class="linux-lead">A desktop app for Ubuntu 22.04 or newer, on x86-64 and ARM64. The free plan runs a small model on your computer, and a paid plan unlocks cloud models.</p>
+      </header>
 
-      <h2>Supported systems</h2>
-      <ul>
-        <li>x86-64 (Intel and AMD): Ubuntu 22.04 or newer.</li>
-        <li>ARM64 (for example NVIDIA DGX Spark, Raspberry Pi 5, Ampere servers): Ubuntu 24.04 or newer. The local model engine for ARM64 needs a newer system library (glibc 2.38) than Ubuntu 22.04 has.</li>
-        <li>We test on Ubuntu. Other Debian-based systems may work with the <code>.deb</code> but are not tested.</li>
-        <li>Fedora, Arch and other distributions: there is no package for them. The AppImage below is the option; we have not tested it on those systems.</li>
-      </ul>
+      <section class="quick-install" id="quick-install" aria-labelledby="quick-install-title">
+        <div class="quick-install-head">
+          <h2 id="quick-install-title">Quick install</h2>
+          <p>Ubuntu and Debian. One line, from any folder: it downloads the <code>.deb</code> for your computer and installs it.</p>
+        </div>
+        <div class="cmd" data-cmd>
+          <pre><code id="cmd-oneliner">curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(dpkg --print-architecture).deb &amp;&amp; sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb</code></pre>
+          <button class="copy-button" type="button" data-copy-target="cmd-oneliner" aria-label="Copy the one-line install command">Copy</button>
+        </div>
+        <div class="arch-pick">
+          <p class="arch-pick-label" id="arch-pick-label">Prefer to download the file?</p>
+          <div class="arch-tabs" role="tablist" aria-labelledby="arch-pick-label" hidden>
+            <button class="arch-tab" type="button" role="tab" id="tab-amd64" aria-selected="true" aria-controls="panel-amd64" data-arch="amd64">x86-64</button>
+            <button class="arch-tab" type="button" role="tab" id="tab-arm64" aria-selected="false" aria-controls="panel-arm64" tabindex="-1" data-arch="arm64">ARM64</button>
+          </div>
+          <div class="arch-panel" id="panel-amd64" data-arch="amd64">
+            <p class="arch-panel-title">x86-64 (Intel and AMD)</p>
+            <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/linux/CanopyChat-amd64.deb" download>Linux x86-64 (.deb)</a> <span class="arch-panel-size">about 280 MB &middot; Ubuntu 22.04 or newer</span></p>
+            <p class="arch-panel-note">Then install it from your Downloads folder:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-browser-amd64">cd ~/Downloads &amp;&amp; sudo apt install ./CanopyChat-amd64.deb</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-browser-amd64" aria-label="Copy the x86-64 install command">Copy</button>
+            </div>
+          </div>
+          <div class="arch-panel" id="panel-arm64" data-arch="arm64">
+            <p class="arch-panel-title">ARM64 (for example NVIDIA DGX Spark, Raspberry Pi 5, Ampere)</p>
+            <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/linux/CanopyChat-arm64.deb" download>Linux ARM64 (.deb)</a> <span class="arch-panel-size">about 230 MB &middot; Ubuntu 24.04 or newer</span></p>
+            <p class="arch-panel-note">Then install it from your Downloads folder:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-browser-arm64">cd ~/Downloads &amp;&amp; sudo apt install ./CanopyChat-arm64.deb</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-browser-arm64" aria-label="Copy the ARM64 install command">Copy</button>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <h2>Choose the right file</h2>
-      <p>Run this in a terminal on any Linux:</p>
-      <pre><code>uname -m</code></pre>
-      <p><code>x86_64</code> means x86-64. <code>aarch64</code> means ARM64. On Ubuntu and Debian, <code>dpkg --print-architecture</code> prints the same choice as <code>amd64</code> or <code>arm64</code>.</p>
-      <ul>
-        <li><a href="https://downloads.canopychat.app/linux/CanopyChat-amd64.deb" download>Linux x86-64 (.deb)</a>, about 280 MB</li>
-        <li><a href="https://downloads.canopychat.app/linux/CanopyChat-arm64.deb" download>Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)</a>, about 230 MB</li>
-        <li>AppImage, for other distributions: <a href="https://downloads.canopychat.app/linux/CanopyChat-x86_64.AppImage" download>x86-64</a> or <a href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.AppImage" download>ARM64</a>. Run it from the folder you saved it in: <code>chmod +x CanopyChat-x86_64.AppImage &amp;&amp; ./CanopyChat-x86_64.AppImage</code> (use <code>CanopyChat-aarch64.AppImage</code> on ARM64). The sections below on installing, updating and removing describe the <code>.deb</code>; to remove an AppImage, delete the file.</li>
-      </ul>
+      <div class="linux-body">
+        <nav class="doc-toc" aria-label="On this page">
+          <p class="doc-toc-title">On this page</p>
+          <ol>
+            <li><a href="#supported-systems">Supported systems</a></li>
+            <li><a href="#choose-a-file">Choose a file</a></li>
+            <li><a href="#install">Install</a></li>
+            <li><a href="#first-start">First start</a></li>
+            <li><a href="#updates">Updates</a></li>
+            <li><a href="#uninstall">Uninstall</a></li>
+            <li><a href="#other-distributions">Other distributions</a></li>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+          </ol>
+        </nav>
 
-      <h2>Install from the terminal</h2>
-      <p>On Ubuntu and Debian. This works from any folder. It downloads the file for your computer and installs it:</p>
-      <pre><code>curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(dpkg --print-architecture).deb &amp;&amp; sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb</code></pre>
-      <p>If you downloaded the file in your browser, it is in your Downloads folder:</p>
-      <pre><code>cd ~/Downloads &amp;&amp; sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb</code></pre>
-      <p>Keep the <code>./</code> in front of the file name: it tells <code>apt</code> to install the file instead of searching its package lists.</p>
+        <div class="doc-sections">
+          <section id="supported-systems" class="doc-section">
+            <h2>Supported systems</h2>
+            <ul>
+              <li><strong>x86-64</strong> (Intel and AMD): Ubuntu 22.04 or newer.</li>
+              <li><strong>ARM64</strong> (for example NVIDIA DGX Spark, Raspberry Pi 5, Ampere servers): Ubuntu 24.04 or newer. The local model engine for ARM64 needs a newer system library (glibc 2.38) than Ubuntu 22.04 has.</li>
+              <li>We test on Ubuntu. Other Debian-based systems may work with the <code>.deb</code> but are not tested.</li>
+              <li>Fedora, Arch and other distributions: see <a href="#other-distributions">Other distributions</a>.</li>
+            </ul>
+          </section>
 
-      <h2>Install by double-clicking</h2>
-      <p>Open the <code>.deb</code> in your file manager. It opens in your software installer (App Center on recent Ubuntu). Ubuntu may say &ldquo;Potentially unsafe&rdquo; or show an unknown publisher. That is because CanopyChat is a third-party package that is not in the Ubuntu archive, and Ubuntu cannot vouch for it. Only install files you downloaded from downloads.canopychat.app. To check a download, run <code>sha256sum</code> on it and compare the result with the <code>sha256</code> for your file (<code>amd64-deb</code> or <code>arm64-deb</code>) in <a href="https://downloads.canopychat.app/linux/latest.json">latest.json</a>.</p>
+          <section id="choose-a-file" class="doc-section">
+            <h2>Choose a file</h2>
+            <p>Not sure which architecture you have? Run this in a terminal on any Linux:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-uname">uname -m</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-uname" aria-label="Copy the uname command">Copy</button>
+            </div>
+            <p><code>x86_64</code> means x86-64. <code>aarch64</code> means ARM64. On Ubuntu and Debian, <code>dpkg --print-architecture</code> prints the same choice as <code>amd64</code> or <code>arm64</code>.</p>
+            <ul class="file-list">
+              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-amd64.deb" download>Linux x86-64 (.deb)</a>, about 280 MB</li>
+              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-arm64.deb" download>Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)</a>, about 230 MB</li>
+              <li>AppImage, for Fedora, Arch and other distributions (untested, <a href="#other-distributions">details below</a>): <a href="https://downloads.canopychat.app/linux/CanopyChat-x86_64.AppImage" download>x86-64</a> or <a href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.AppImage" download>ARM64</a>.</li>
+            </ul>
+            <p>To check a download, run <code>sha256sum</code> on it and compare the result with the <code>sha256</code> for your file (<code>amd64-deb</code> or <code>arm64-deb</code>) in <a href="https://downloads.canopychat.app/linux/latest.json">latest.json</a>.</p>
+          </section>
 
-      <h2>What gets installed</h2>
-      <p>The download is about 230 to 280 MB, and the app takes about 550 MB on disk. The package needs WebKitGTK, GTK 3, GStreamer plugins and a few small libraries. <code>apt</code> installs them for you. On a fresh system that can be a few hundred MB of extra downloads. <code>libvulkan1</code> (the Vulkan loader) is recommended, so the local model can use your graphics card when your graphics driver supports Vulkan.</p>
+          <section id="install" class="doc-section">
+            <h2>Install</h2>
+            <h3 id="install-terminal">From the terminal</h3>
+            <p>On Ubuntu and Debian. This works from any folder. It downloads the file for your computer and installs it:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-oneliner-2">curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(dpkg --print-architecture).deb &amp;&amp; sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-oneliner-2" aria-label="Copy the one-line install command">Copy</button>
+            </div>
+            <p>If you downloaded the file in your browser, it is in your Downloads folder:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-browser">cd ~/Downloads &amp;&amp; sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-browser" aria-label="Copy the install-from-Downloads command">Copy</button>
+            </div>
+            <p>Keep the <code>./</code> in front of the file name: it tells <code>apt</code> to install the file instead of searching its package lists.</p>
 
-      <h2>First start</h2>
-      <p>Open CanopyChat from your applications menu. Sign in with your email: we send a 6-digit code, no password. Your plan unlocks cloud models. The free plan runs on your computer.</p>
-      <p>Your chats and settings are stored on your computer, in <code>~/.local/share/canopychat</code>.</p>
+            <h3 id="install-double-click">By double-clicking</h3>
+            <p>Open the <code>.deb</code> in your file manager. It opens in your software installer (App Center on recent Ubuntu). Ubuntu may say &ldquo;Potentially unsafe&rdquo; or show an unknown publisher. That is because CanopyChat is a third-party package that is not in the Ubuntu archive, and Ubuntu cannot vouch for it. Only install files you downloaded from downloads.canopychat.app; <a href="#choose-a-file">Choose a file</a> explains how to check a download.</p>
 
-      <h2>Updates</h2>
-      <p>From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose <strong>Check for updates</strong>, then <strong>Update now</strong>. On Linux the new package is saved to your Downloads folder; install it the same way as above. If you have 0.3.5 or older, install 0.3.6 by hand once, using the steps above.</p>
+            <h3 id="what-gets-installed">What gets installed</h3>
+            <p>The download is about 230 to 280 MB, and the app takes about 550 MB on disk. The package needs WebKitGTK, GTK 3, GStreamer plugins and a few small libraries. <code>apt</code> installs them for you. On a fresh system that can be a few hundred MB of extra downloads. <code>libvulkan1</code> (the Vulkan loader) is recommended, so the local model can use your graphics card when your graphics driver supports Vulkan.</p>
+          </section>
 
-      <h2>Uninstall</h2>
-      <pre><code>sudo apt remove canopy-chat</code></pre>
-      <p>This removes the app but keeps your chats and settings. To delete them too:</p>
-      <pre><code>rm -rf ~/.local/share/canopychat</code></pre>
+          <section id="first-start" class="doc-section">
+            <h2>First start</h2>
+            <p>Open CanopyChat from your applications menu. Sign in with your email: we send a 6-digit code, no password. Your plan unlocks cloud models. The free plan runs on your computer.</p>
+            <p>Your chats and settings are stored on your computer, in <code>~/.local/share/canopychat</code>.</p>
+          </section>
 
-      <h2>Troubleshooting</h2>
-      <h3>E: Unsupported file ./CanopyChat-amd64.deb given on commandline</h3>
-      <p><code>apt</code> cannot find the file at that path. Most often the file is not in the folder you are in: browsers save to <code>~/Downloads</code>, not your home folder. Run <code>ls CanopyChat-*.deb</code> to check, then <code>cd ~/Downloads</code> and try again, or use the one-line command above, which downloads the file into the folder you are in.</p>
-      <h3>Architecture mismatch</h3>
-      <p>You have the file for the other architecture. The amd64 file does not install on an ARM64 computer, and the arm64 file does not install on x86-64. Run <code>dpkg --print-architecture</code> and download that file. The one-line command picks it for you.</p>
-      <h3>Graphics problems</h3>
-      <p>Make sure <code>libvulkan1</code> is installed (<code>sudo apt install libvulkan1</code>) and that your graphics driver supports Vulkan. Without Vulkan, the local model runs on the processor.</p>
-      <p>Still stuck? Email <a href="mailto:support@canopychat.app">support@canopychat.app</a> with your distribution, the output of <code>uname -m</code> and the exact error.</p>
+          <section id="updates" class="doc-section">
+            <h2>Updates</h2>
+            <p>From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose <strong>Check for updates</strong>, then <strong>Update now</strong>. On Linux the new package is saved to your Downloads folder; install it the same way as above. If you have 0.3.5 or older, install 0.3.6 by hand once, using the steps above.</p>
+          </section>
 
-      <p>Back to <a href="/">canopychat.app</a> or <a href="/support">Support</a>.</p>
+          <section id="uninstall" class="doc-section">
+            <h2>Uninstall</h2>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-remove">sudo apt remove canopy-chat</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-remove" aria-label="Copy the uninstall command">Copy</button>
+            </div>
+            <p>This removes the app but keeps your chats and settings. To delete them too:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-purge">rm -rf ~/.local/share/canopychat</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-purge" aria-label="Copy the command that deletes your chats and settings">Copy</button>
+            </div>
+            <p>To remove an AppImage, delete the file.</p>
+          </section>
+
+          <section id="other-distributions" class="doc-section">
+            <h2>Other distributions</h2>
+            <p>Fedora, Arch and other distributions: there is no package for them. The AppImage is the option; we have not tested it on those systems. Run it from the folder you saved it in:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-appimage">chmod +x CanopyChat-x86_64.AppImage &amp;&amp; ./CanopyChat-x86_64.AppImage</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-appimage" aria-label="Copy the AppImage command">Copy</button>
+            </div>
+            <p>Use <code>CanopyChat-aarch64.AppImage</code> on ARM64. The sections above on installing, updating and removing describe the <code>.deb</code>; to remove an AppImage, delete the file.</p>
+          </section>
+
+          <section id="troubleshooting" class="doc-section">
+            <h2>Troubleshooting</h2>
+            <h3>E: Unsupported file ./CanopyChat-amd64.deb given on commandline</h3>
+            <p><code>apt</code> cannot find the file at that path. Most often the file is not in the folder you are in: browsers save to <code>~/Downloads</code>, not your home folder. Run <code>ls CanopyChat-*.deb</code> to check, then <code>cd ~/Downloads</code> and try again, or use the <a href="#quick-install">one-line command</a>, which downloads the file into the folder you are in.</p>
+            <h3>Architecture mismatch</h3>
+            <p>You have the file for the other architecture. The amd64 file does not install on an ARM64 computer, and the arm64 file does not install on x86-64. Run <code>dpkg --print-architecture</code> and download that file. The one-line command picks it for you.</p>
+            <h3>Graphics problems</h3>
+            <p>Make sure <code>libvulkan1</code> is installed (<code>sudo apt install libvulkan1</code>) and that your graphics driver supports Vulkan. Without Vulkan, the local model runs on the processor.</p>
+            <p>Still stuck? Email <a href="mailto:support@canopychat.app">support@canopychat.app</a> with your distribution, the output of <code>uname -m</code> and the exact error.</p>
+          </section>
+
+          <p class="doc-back">Back to <a href="/">canopychat.app</a> or <a href="/support">Support</a>.</p>
+        </div>
+      </div>
+      <p class="visually-hidden" id="copy-status" role="status" aria-live="polite"></p>
     </article>
   </main>
 
@@ -97,6 +196,7 @@
       <span><a href="/">Home</a> | <a href="/privacy">Privacy</a> | <a href="/terms">Terms</a> | <a href="/support">Support</a></span>
     </div>
   </footer>
+  <script src="assets/linux.js?v=1" defer></script>
   <script src="assets/canopy-account.js?v=1" defer></script>
 </body>
 </html>
