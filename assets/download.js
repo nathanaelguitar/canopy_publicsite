@@ -45,11 +45,6 @@
   show(/aarch64|arm64/i.test(ua) ? 'arm64' : 'x64');
   pill.hidden = false;
 
-  // On a Linux desktop, open the install help so both architectures and the one-line command are
-  // in view (the user agent cannot be trusted to say ARM, so the page never relies on it alone).
-  var help = document.querySelector('.download-help');
-  if (help && /Linux|X11/i.test(ua + ' ' + (navigator.platform || '')) && !/Android/i.test(ua)) help.open = true;
-
   // Chromium hides the architecture from the user agent; ask for it.
   var uad = navigator.userAgentData;
   if (uad && uad.getHighEntropyValues && /linux/i.test(uad.platform || '')) {

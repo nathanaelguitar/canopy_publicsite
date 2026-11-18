@@ -12,6 +12,9 @@ for page in PAGES:
     body = re.sub(r'<(script|style|svg|form)\b.*?</\1>', '', m.group(1), flags=re.S)
     body = re.sub(r'<time[^>]*>', '<time>', body)
     body = re.sub(r'<div class="terminal-tabs".*?</div>', '', body, flags=re.S)
+    body = re.sub(r'<div class="arch-tabs".*?</div>', '', body, flags=re.S)
+    body = re.sub(r'<nav class="doc-toc".*?</nav>', '', body, flags=re.S)
+    body = re.sub(r'<p class="visually-hidden"[^>]*>.*?</p>', '', body, flags=re.S)
     body = re.sub(r'<span class="terminal-prompt"[^>]*>.*?</span>', '', body, flags=re.S)
     body = re.sub(r'<button\b.*?</button>', '', body, flags=re.S)
     body = re.sub(r'<div class="terminal-line[^"]*">\s*<code[^>]*>(.*?)</code>\s*</div>',

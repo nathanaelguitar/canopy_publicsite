@@ -1,49 +1,89 @@
-# CanopyChat on Linux
+# Install CanopyChat on Linux
 
 Source: https://canopychat.app/linux
 
 Linux
 
-# CanopyChat on Linux
+# Install CanopyChat on Linux
 
-CanopyChat for Linux is a desktop app. The free plan runs a small model on your computer, and a paid plan unlocks cloud models.
+A desktop app for Ubuntu 22.04 or newer, on x86-64 and ARM64. The free plan runs a small model on your computer, and a paid plan unlocks cloud models.
+
+## Quick install
+
+Ubuntu and Debian. One line, from any folder: it downloads the `.deb` for your computer and installs it.
+
+```
+curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(dpkg --print-architecture).deb && sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb
+```
+
+Prefer to download the file?
+
+x86-64 (Intel and AMD)
+
+[Linux x86-64 (.deb)](https://downloads.canopychat.app/linux/CanopyChat-amd64.deb) about 280 MB · Ubuntu 22.04 or newer
+
+Then install it from your Downloads folder:
+
+```
+cd ~/Downloads && sudo apt install ./CanopyChat-amd64.deb
+```
+
+ARM64 (for example NVIDIA DGX Spark, Raspberry Pi 5, Ampere)
+
+[Linux ARM64 (.deb)](https://downloads.canopychat.app/linux/CanopyChat-arm64.deb) about 230 MB · Ubuntu 24.04 or newer
+
+Then install it from your Downloads folder:
+
+```
+cd ~/Downloads && sudo apt install ./CanopyChat-arm64.deb
+```
 
 ## Supported systems
 
-- x86-64 (Intel and AMD): Ubuntu 22.04 or newer.
-- ARM64 (for example NVIDIA DGX Spark, Raspberry Pi 5, Ampere servers): Ubuntu 24.04 or newer. The local model engine for ARM64 needs a newer system library (glibc 2.38) than Ubuntu 22.04 has.
+- **x86-64** (Intel and AMD): Ubuntu 22.04 or newer.
+- **ARM64** (for example NVIDIA DGX Spark, Raspberry Pi 5, Ampere servers): Ubuntu 24.04 or newer. The local model engine for ARM64 needs a newer system library (glibc 2.38) than Ubuntu 22.04 has.
 - We test on Ubuntu. Other Debian-based systems may work with the `.deb` but are not tested.
-- Fedora, Arch and other distributions: there is no package for them. The AppImage below is the option; we have not tested it on those systems.
+- Fedora, Arch and other distributions: see [Other distributions](#other-distributions).
 
-## Choose the right file
+## Choose a file
 
-Run this in a terminal on any Linux:
+Not sure which architecture you have? Run this in a terminal on any Linux:
 
-    uname -m
+```
+uname -m
+```
 
 `x86_64` means x86-64. `aarch64` means ARM64. On Ubuntu and Debian, `dpkg --print-architecture` prints the same choice as `amd64` or `arm64`.
 
 - [Linux x86-64 (.deb)](https://downloads.canopychat.app/linux/CanopyChat-amd64.deb), about 280 MB
 - [Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)](https://downloads.canopychat.app/linux/CanopyChat-arm64.deb), about 230 MB
-- AppImage, for other distributions: [x86-64](https://downloads.canopychat.app/linux/CanopyChat-x86_64.AppImage) or [ARM64](https://downloads.canopychat.app/linux/CanopyChat-aarch64.AppImage). Run it from the folder you saved it in: `chmod +x CanopyChat-x86_64.AppImage && ./CanopyChat-x86_64.AppImage` (use `CanopyChat-aarch64.AppImage` on ARM64). The sections below on installing, updating and removing describe the `.deb`; to remove an AppImage, delete the file.
+- AppImage, for other distributions: [x86-64](https://downloads.canopychat.app/linux/CanopyChat-x86_64.AppImage) or [ARM64](https://downloads.canopychat.app/linux/CanopyChat-aarch64.AppImage). See [Other distributions](#other-distributions).
 
-## Install from the terminal
+To check a download, run `sha256sum` on it and compare the result with the `sha256` for your file (`amd64-deb` or `arm64-deb`) in [latest.json](https://downloads.canopychat.app/linux/latest.json).
+
+## Install
+
+### From the terminal
 
 On Ubuntu and Debian. This works from any folder. It downloads the file for your computer and installs it:
 
-    curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(dpkg --print-architecture).deb && sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb
+```
+curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(dpkg --print-architecture).deb && sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb
+```
 
 If you downloaded the file in your browser, it is in your Downloads folder:
 
-    cd ~/Downloads && sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb
+```
+cd ~/Downloads && sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb
+```
 
 Keep the `./` in front of the file name: it tells `apt` to install the file instead of searching its package lists.
 
-## Install by double-clicking
+### By double-clicking
 
-Open the `.deb` in your file manager. It opens in your software installer (App Center on recent Ubuntu). Ubuntu may say “Potentially unsafe” or show an unknown publisher. That is because CanopyChat is a third-party package that is not in the Ubuntu archive, and Ubuntu cannot vouch for it. Only install files you downloaded from downloads.canopychat.app. To check a download, run `sha256sum` on it and compare the result with the `sha256` for your file (`amd64-deb` or `arm64-deb`) in [latest.json](https://downloads.canopychat.app/linux/latest.json).
+Open the `.deb` in your file manager. It opens in your software installer (App Center on recent Ubuntu). Ubuntu may say “Potentially unsafe” or show an unknown publisher. That is because CanopyChat is a third-party package that is not in the Ubuntu archive, and Ubuntu cannot vouch for it. Only install files you downloaded from downloads.canopychat.app; [Choose a file](#choose-a-file) explains how to check a download.
 
-## What gets installed
+### What gets installed
 
 The download is about 230 to 280 MB, and the app takes about 550 MB on disk. The package needs WebKitGTK, GTK 3, GStreamer plugins and a few small libraries. `apt` installs them for you. On a fresh system that can be a few hundred MB of extra downloads. `libvulkan1` (the Vulkan loader) is recommended, so the local model can use your graphics card when your graphics driver supports Vulkan.
 
@@ -59,17 +99,33 @@ From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, c
 
 ## Uninstall
 
-    sudo apt remove canopy-chat
+```
+sudo apt remove canopy-chat
+```
 
 This removes the app but keeps your chats and settings. To delete them too:
 
-    rm -rf ~/.local/share/canopychat
+```
+rm -rf ~/.local/share/canopychat
+```
+
+To remove an AppImage, delete the file.
+
+## Other distributions
+
+Fedora, Arch and other distributions: there is no package for them. The AppImage is the option; we have not tested it on those systems. Run it from the folder you saved it in:
+
+```
+chmod +x CanopyChat-x86_64.AppImage && ./CanopyChat-x86_64.AppImage
+```
+
+Use `CanopyChat-aarch64.AppImage` on ARM64. The sections above on installing, updating and removing describe the `.deb`; to remove an AppImage, delete the file.
 
 ## Troubleshooting
 
 ### E: Unsupported file ./CanopyChat-amd64.deb given on commandline
 
-`apt` cannot find the file at that path. Most often the file is not in the folder you are in: browsers save to `~/Downloads`, not your home folder. Run `ls CanopyChat-*.deb` to check, then `cd ~/Downloads` and try again, or use the one-line command above, which downloads the file into the folder you are in.
+`apt` cannot find the file at that path. Most often the file is not in the folder you are in: browsers save to `~/Downloads`, not your home folder. Run `ls CanopyChat-*.deb` to check, then `cd ~/Downloads` and try again, or use the [one-line command](#quick-install-title), which downloads the file into the folder you are in.
 
 ### Architecture mismatch
 
