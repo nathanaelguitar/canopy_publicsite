@@ -132,6 +132,7 @@ curl -fsS https://downloads.canopychat.app/linux/latest.json</code></pre>
             <ul>
               <li>Debian and Ubuntu: <code>command -v canopychat &amp;&amp; dpkg -s canopy-chat | grep '^Version'</code> prints the launcher path and the installed version. Compare it with <code>version</code> in the manifest.</li>
               <li>To start it, run <code>canopychat &amp;</code> in a terminal on the computer&rsquo;s desktop, or open CanopyChat from the applications menu. Over SSH there is no screen, so skip this step and rely on the check above.</li>
+              <li>If the window is blank, see <a href="#troubleshooting">Troubleshooting</a>.</li>
               <li>Then tell the user it is ready for them to sign in.</li>
             </ul>
           </section>
@@ -148,6 +149,13 @@ curl -fsS https://downloads.canopychat.app/linux/latest.json</code></pre>
             <h2>Troubleshooting</h2>
             <h3>E: Unsupported file ./CanopyChat-amd64.deb given on commandline</h3>
             <p>The file is not in the current folder. Run <code>ls CanopyChat-*.deb</code>, or run the one-line command again.</p>
+            <h3>The window opens but stays blank</h3>
+            <p>Some computers with an NVIDIA graphics driver (the NVIDIA DGX Spark, for one) draw a blank window. Close the app and start it like this:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-blank">WEBKIT_DISABLE_DMABUF_RENDERER=1 canopychat &amp;</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-blank" aria-label="Copy the command for a blank window">Copy</button>
+            </div>
+            <p>A later version will do this by itself.</p>
             <h3>Architecture mismatch</h3>
             <p>You have the file for the other architecture. Use <code>dpkg --print-architecture</code> to choose.</p>
             <p>For anything else, see the <a href="/linux">Linux guide</a>, or email <a href="mailto:support@canopychat.app">support@canopychat.app</a> with the distribution, <code>uname -m</code> and the exact error.</p>

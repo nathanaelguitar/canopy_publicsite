@@ -77,6 +77,7 @@ Download [CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyC
 
 - Debian and Ubuntu: `command -v canopychat && dpkg -s canopy-chat | grep '^Version'` prints the launcher path and the installed version. Compare it with `version` in the manifest.
 - To start it, run `canopychat &` in a terminal on the computer’s desktop, or open CanopyChat from the applications menu. Over SSH there is no screen, so skip this step and rely on the check above.
+- If the window is blank, see [Troubleshooting](#troubleshooting).
 - Then tell the user it is ready for them to sign in.
 
 ## Updates and uninstall
@@ -89,6 +90,16 @@ Download [CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyC
 ### E: Unsupported file ./CanopyChat-amd64.deb given on commandline
 
 The file is not in the current folder. Run `ls CanopyChat-*.deb`, or run the one-line command again.
+
+### The window opens but stays blank
+
+Some computers with an NVIDIA graphics driver (the NVIDIA DGX Spark, for one) draw a blank window. Close the app and start it like this:
+
+```
+WEBKIT_DISABLE_DMABUF_RENDERER=1 canopychat &
+```
+
+A later version will do this by itself.
 
 ### Architecture mismatch
 
