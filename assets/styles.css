@@ -3783,14 +3783,57 @@ html:has(.founding-mobile-funnel) {
   margin-top: 22px;
 }
 
-/* Two calm lines under the pills: the SmartScreen note for the unsigned Windows installer, and
-   the Linux files with a link to the guide. Commands live on /linux, not here. */
+/* One calm line under the pills that expands into the SmartScreen note for the unsigned Windows
+   installer and the Linux files with a link to the guide. Commands live on /linux, not here. */
 .download-help {
   margin-top: 14px;
   max-width: 460px;
   color: var(--muted);
   font-size: 15px;
   line-height: 1.5;
+}
+
+.download-help summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 0;
+  border-radius: 6px;
+  color: var(--oak);
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.download-help summary::-webkit-details-marker {
+  display: none;
+}
+
+.download-help summary:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.download-help summary:focus-visible {
+  outline: 3px solid var(--oak-bright);
+  outline-offset: 3px;
+}
+
+.download-help-chevron {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  transition: transform 160ms ease;
+}
+
+.download-help[open] .download-help-chevron {
+  transform: rotate(180deg);
+}
+
+.download-help-body {
+  padding-top: 2px;
 }
 
 .download-help p {
@@ -3827,6 +3870,18 @@ html:has(.founding-mobile-funnel) {
 
   .download-help a {
     color: #d9a66b;
+  }
+
+  .download-help summary {
+    color: #d9a66b;
+  }
+
+  .download-help summary:hover {
+    color: #e8bd8a;
+  }
+
+  .download-help summary:focus-visible {
+    outline-color: #e8bd8a;
   }
 }
 
