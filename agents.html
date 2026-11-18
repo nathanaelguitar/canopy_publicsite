@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#fff4df" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#120d0a" media="(prefers-color-scheme: dark)">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://connect.facebook.net; connect-src 'self' https://founding-api.canopychat.app https://www.facebook.com https://connect.facebook.net; img-src 'self' data: https://www.facebook.com; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://checkout.stripe.com; upgrade-insecure-requests">
+  <title>Install CanopyChat with an AI agent</title>
+  <meta name="description" content="Instructions for an AI agent that installs CanopyChat for you: which file to pick, the install commands, how to check the download, and what to leave to you.">
+  <link rel="icon" type="image/png" href="assets/app-icon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/styles.css?v=linux-2">
+  <link rel="alternate" type="text/markdown" href="/agents.md">
+</head>
+<body class="linux-page">
+  <header class="shell nav">
+    <a class="brand" href="/"><img class="mark" src="assets/app-icon.png" alt="" width="46" height="46"><strong>CanopyChat</strong></a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="/signup" class="nav-cta" data-account-nav>Create account</a>
+      <a href="/plans">Plans</a>
+      <a href="https://enterprise.canopychat.app/">Enterprise</a>
+      <a href="/privacy">Privacy &amp; Terms</a>
+      <a href="/support">Support</a>
+      <a href="/flame">Flame</a>
+      <a href="/canopy-code">Canopy Code</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <article class="document linux-doc">
+      <header class="linux-head">
+        <nav class="linux-crumb" aria-label="Breadcrumb"><a href="/">CanopyChat</a> <span aria-hidden="true">/</span> <a href="/#downloads">Download</a> <span aria-hidden="true">/</span> <span aria-current="page">Install with an agent</span></nav>
+        <h1>Install CanopyChat with an AI agent</h1>
+        <p class="linux-lead">Want your coding agent to download and install CanopyChat for you? Give it this page. The same text is at <a href="/agents.md">canopychat.app/agents.md</a> as plain Markdown, which is easier for an agent to read.</p>
+      </header>
+
+      <section class="quick-install" id="prompt" aria-labelledby="prompt-title">
+        <div class="quick-install-head">
+          <h2 id="prompt-title">Tell your agent</h2>
+          <p>Paste this into Claude Code, Codex or any agent that can run commands on your computer.</p>
+        </div>
+        <div class="cmd" data-cmd>
+          <pre><code id="cmd-prompt">Install CanopyChat on this computer. Follow the instructions at https://canopychat.app/agents.md and ask me before you run anything that needs sudo.</code></pre>
+          <button class="copy-button" type="button" data-copy-target="cmd-prompt" aria-label="Copy the agent prompt">Copy</button>
+        </div>
+      </section>
+
+      <div class="linux-body">
+        <nav class="doc-toc" aria-label="On this page">
+          <p class="doc-toc-title">On this page</p>
+          <ol>
+            <li><a href="#ask-first">Ask the user first</a></li>
+            <li><a href="#pick-the-platform">Pick the platform</a></li>
+            <li><a href="#find-the-file">Find the current file</a></li>
+            <li><a href="#debian-ubuntu">Ubuntu and Debian</a></li>
+            <li><a href="#other-linux">Other Linux</a></li>
+            <li><a href="#windows">Windows</a></li>
+            <li><a href="#check">Check that it worked</a></li>
+            <li><a href="#updates-uninstall">Updates and uninstall</a></li>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+          </ol>
+        </nav>
+
+        <div class="doc-sections">
+          <section id="ask-first" class="doc-section">
+            <h2>Ask the user first</h2>
+            <ul>
+              <li>Confirm before you install anything. Say which file you will download and which command you will run.</li>
+              <li>Installing the Linux package needs <code>sudo</code>. Do not ask for the user&rsquo;s password and do not type one; let them run the <code>sudo</code> step themselves or approve it.</li>
+              <li>Do not sign in for the user. First start asks for an email address and a 6-digit code that is sent to it. Leave that to the user.</li>
+              <li>Download only from <code>downloads.canopychat.app</code>. Do not use mirrors or other sites.</li>
+            </ul>
+          </section>
+
+          <section id="pick-the-platform" class="doc-section">
+            <h2>Pick the platform</h2>
+            <ul>
+              <li><strong>Ubuntu or Debian, x86-64:</strong> the <code>.deb</code> (Ubuntu 22.04 or newer).</li>
+              <li><strong>Ubuntu or Debian, ARM64</strong> (for example NVIDIA DGX Spark): the <code>.deb</code> (Ubuntu 24.04 or newer).</li>
+              <li><strong>Other Linux:</strong> the AppImage (not tested on every distribution).</li>
+              <li><strong>Windows 10 or 11, x64:</strong> the setup <code>.exe</code>.</li>
+              <li><strong>macOS, iPhone, iPad, Android:</strong> App Store or Google Play, from <a href="/#downloads">canopychat.app</a>.</li>
+            </ul>
+            <p>Check the architecture: <code>uname -m</code> prints <code>x86_64</code> or <code>aarch64</code>. On Debian and Ubuntu, <code>dpkg --print-architecture</code> prints <code>amd64</code> or <code>arm64</code>.</p>
+          </section>
+
+          <section id="find-the-file" class="doc-section">
+            <h2>Find the current file</h2>
+            <p>Each platform has a small JSON manifest that always describes the newest release:</p>
+            <ul>
+              <li>Linux: <a href="https://downloads.canopychat.app/linux/latest.json">downloads.canopychat.app/linux/latest.json</a></li>
+              <li>Windows: <a href="https://downloads.canopychat.app/windows/latest.json">downloads.canopychat.app/windows/latest.json</a></li>
+            </ul>
+            <p>The Linux manifest has a <code>files</code> object with the keys <code>amd64-deb</code>, <code>arm64-deb</code>, <code>x86_64-appimage</code> and <code>aarch64-appimage</code>. Each entry has <code>url</code> (always the newest), <code>versionedUrl</code>, <code>sha256</code> and <code>size</code> in bytes. The Windows manifest has <code>version</code>, <code>url</code>, <code>versionedUrl</code>, <code>sha256</code> and <code>size</code> at the top level.</p>
+          </section>
+
+          <section id="debian-ubuntu" class="doc-section">
+            <h2>Ubuntu and Debian</h2>
+            <p>One command, from any folder. It downloads the <code>.deb</code> for this computer and installs it:</p>
+        <div class="cmd" data-cmd>
+          <pre><code id="cmd-deb">curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(dpkg --print-architecture).deb &amp;&amp; sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb</code></pre>
+          <button class="copy-button" type="button" data-copy-target="cmd-deb" aria-label="Copy the install command">Copy</button>
+        </div>
+            <p>Keep the <code>./</code> before the file name, and run it in a folder you can write to. To check the download first, compare its hash with the manifest:</p>
+        <div class="cmd" data-cmd>
+          <pre><code id="cmd-sha">sha256sum CanopyChat-$(dpkg --print-architecture).deb
+curl -fsS https://downloads.canopychat.app/linux/latest.json</code></pre>
+          <button class="copy-button" type="button" data-copy-target="cmd-sha" aria-label="Copy the checksum commands">Copy</button>
+        </div>
+            <p>The hash must equal the <code>sha256</code> of the <code>amd64-deb</code> or <code>arm64-deb</code> entry. If it does not, delete the file and stop.</p>
+            <p>The package pulls in WebKitGTK, GTK 3 and GStreamer through <code>apt</code>. That can add a few hundred MB on a fresh system. The app itself is about 550 MB on disk. <code>libvulkan1</code> is recommended so the local model can use the graphics card.</p>
+          </section>
+
+          <section id="other-linux" class="doc-section">
+            <h2>Other Linux (AppImage)</h2>
+        <div class="cmd" data-cmd>
+          <pre><code id="cmd-appimage">curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(uname -m).AppImage &amp;&amp; chmod +x CanopyChat-$(uname -m).AppImage &amp;&amp; ./CanopyChat-$(uname -m).AppImage</code></pre>
+          <button class="copy-button" type="button" data-copy-target="cmd-appimage" aria-label="Copy the AppImage command">Copy</button>
+        </div>
+            <p><code>uname -m</code> gives <code>x86_64</code> or <code>aarch64</code>, which are the two file names. The AppImage needs the system&rsquo;s graphics and web libraries.</p>
+          </section>
+
+          <section id="windows" class="doc-section">
+            <h2>Windows</h2>
+            <p>Download <a href="https://downloads.canopychat.app/windows/CanopyChat-Setup.exe">CanopyChat-Setup.exe</a>, check its SHA-256 against the <code>sha256</code> in the Windows manifest, then run it. The installer is not code-signed yet, so Windows SmartScreen may warn about an unknown publisher. Tell the user, and let them choose to continue.</p>
+          </section>
+
+          <section id="check" class="doc-section">
+            <h2>Check that it worked</h2>
+            <ul>
+              <li>Debian and Ubuntu: <code>dpkg -s canopy-chat</code> shows the installed version. Compare it with <code>version</code> in the manifest.</li>
+              <li>Open CanopyChat from the applications menu.</li>
+              <li>Then tell the user it is ready for them to sign in.</li>
+            </ul>
+          </section>
+
+          <section id="updates-uninstall" class="doc-section">
+            <h2>Updates and uninstall</h2>
+            <ul>
+              <li>From version 0.3.6, the app checks for updates itself (Settings, then Check for updates).</li>
+              <li>Remove on Debian and Ubuntu with <code>sudo apt remove canopy-chat</code>. That keeps chats and settings. To delete them too, remove <code>~/.local/share/canopychat</code>, and only if the user asks.</li>
+            </ul>
+          </section>
+
+          <section id="troubleshooting" class="doc-section">
+            <h2>Troubleshooting</h2>
+            <h3>E: Unsupported file ./CanopyChat-amd64.deb given on commandline</h3>
+            <p>The file is not in the current folder. Run <code>ls CanopyChat-*.deb</code>, or run the one-line command again.</p>
+            <h3>Architecture mismatch</h3>
+            <p>You have the file for the other architecture. Use <code>dpkg --print-architecture</code> to choose.</p>
+            <p>For anything else, see the <a href="/linux">Linux guide</a>, or email <a href="mailto:support@canopychat.app">support@canopychat.app</a> with the distribution, <code>uname -m</code> and the exact error.</p>
+          </section>
+
+          <p class="doc-back">Back to <a href="/">canopychat.app</a> or <a href="/support">Support</a>.</p>
+        </div>
+      </div>
+      <p class="visually-hidden" id="copy-status" role="status" aria-live="polite"></p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span>Copyright 2026 CanopyChat</span>
+      <span><a href="/">Home</a> | <a href="/privacy">Privacy</a> | <a href="/terms">Terms</a> | <a href="/support">Support</a></span>
+    </div>
+  </footer>
+  <script src="assets/linux.js?v=1" defer></script>
+  <script src="assets/canopy-account.js?v=1" defer></script>
+</body>
+</html>
