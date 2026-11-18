@@ -2,7 +2,7 @@
 """Generate plain-Markdown twins (page.md) of the public pages, for AI agents.
 Run from the repo root: python3 tools/build-md.py   (needs pandoc)"""
 import re, subprocess, glob, pathlib
-PAGES = ['index','canopy-code','flame','plans','support','linux','privacy','terms'] + \
+PAGES = ['index','canopy-code','flame','plans','support','linux','agents','privacy','terms'] + \
         [p[:-5] for p in sorted(glob.glob('blog/*.html'))]
 BASE = 'https://canopychat.app'
 for page in PAGES:

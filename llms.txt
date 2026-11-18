@@ -21,4 +21,5 @@ Every page has a plain Markdown version: add .md to the address (for example htt
 - [Flame](https://canopychat.app/flame): The AI agent in CanopyChat, invite only.
 - [Support](https://canopychat.app/support)
 - [Linux](https://canopychat.app/linux): Install, update and remove CanopyChat on Linux (x86-64 and ARM64).
+- [Install with an AI agent](https://canopychat.app/agents): Instructions for an agent that downloads and installs CanopyChat on Linux or Windows: file picker, install commands, checksum check, what to leave to the user. Plain Markdown at https://canopychat.app/agents.md.
 - [Privacy](https://canopychat.app/privacy)
