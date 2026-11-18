@@ -10,6 +10,8 @@ CanopyChat answers right on your phone or computer and keeps your chats, photos,
 
 [Windows](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe "Windows 10 and 11 · about 165 MB") [Mac](https://testflight.apple.com/join/f5xCZmVv "Free Mac beta on TestFlight") [iPhone](https://apps.apple.com/us/app/canopychat/id6788203137 "iPhone and iPad · App Store") [Android](https://play.google.com/store/apps/details?id=com.nathanaelguitar.canopychat "Android · Google Play") Linux [\>\_ Canopy Code](#install "Install Canopy Code (for developers)")
 
+### Installing on Windows or Linux
+
 **Windows:** open `CanopyChat-Setup.exe`. The installer is new and not yet code-signed, so Windows may say “Windows protected your PC.” Choose **More info**, then **Run anyway**. From version 0.3.6 it updates from Settings (**Check for updates**, then **Update now**): the installer opens for you.
 
 **Linux:** [Linux x86-64 (.deb)](https://downloads.canopychat.app/linux/CanopyChat-amd64.deb) or [Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)](https://downloads.canopychat.app/linux/CanopyChat-arm64.deb). Steps, requirements and fixes: [Linux install guide](https://canopychat.app/linux).
