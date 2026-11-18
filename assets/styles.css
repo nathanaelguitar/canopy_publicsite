@@ -4728,8 +4728,30 @@ html:has(.flame-page) {
   overflow-wrap: anywhere;
 }
 
+.linux-crumb {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.linux-crumb a {
+  color: var(--oak);
+  text-decoration: none;
+}
+
+.linux-crumb a:hover,
+.linux-crumb a:focus-visible {
+  text-decoration: underline;
+}
+
+.linux-crumb span[aria-hidden] {
+  margin: 0 4px;
+  opacity: 0.6;
+}
+
 .linux-doc .linux-head h1 {
-  margin-bottom: 14px;
+  margin: 0 0 14px;
   font-size: clamp(38px, 6vw, 68px);
 }
 
@@ -5128,7 +5150,24 @@ html:has(.flame-page) {
   }
 
   .doc-toc a {
+    color: #d8c5ae;
+  }
+
+  .linux-crumb {
     color: #cdbba6;
+  }
+
+  .linux-crumb a {
+    color: #d9a66b;
+  }
+
+  /* The footer kept the light-mode muted brown and oak links on dark pages (2.3:1); site-wide fix. */
+  .footer {
+    color: #cdbba6;
+  }
+
+  .footer a {
+    color: #d9a66b;
   }
 
   .doc-toc a:hover,

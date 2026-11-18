@@ -26,6 +26,10 @@ typography:
     fontSize: "12px"
     fontWeight: 850
     letterSpacing: "0.16em"
+  mono:
+    fontFamily: "ui-monospace, SF Mono, Menlo, monospace"
+    fontSize: "15px"
+    lineHeight: 1.5
 rounded:
   control: "999px"
   field: "14px"
@@ -91,6 +95,8 @@ The founding funnel uses a committed palette: forest does most of the structural
 **Display Font:** Iowan Old Style, Palatino Linotype, Palatino, Georgia, serif
 
 **Body Font:** Avenir Next, Gill Sans, Trebuchet MS, sans-serif
+
+**Mono Font:** ui-monospace, SF Mono, Menlo, monospace. Commands and file names only: the Canopy Code terminal on the homepage, the command blocks on the Linux guide, and inline `code`. Never for headings or body copy.
 
 **Character:** The serif is compact, expressive, and slightly literary; the sans-serif keeps terms and actions familiar on a small phone screen.
 

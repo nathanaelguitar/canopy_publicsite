@@ -2,7 +2,7 @@
 
 Source: https://canopychat.app/linux
 
-Linux
+[CanopyChat](https://canopychat.app/) / [Download](https://canopychat.app/#downloads) / Linux
 
 # Install CanopyChat on Linux
 
@@ -57,7 +57,7 @@ uname -m
 
 - [Linux x86-64 (.deb)](https://downloads.canopychat.app/linux/CanopyChat-amd64.deb), about 280 MB
 - [Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)](https://downloads.canopychat.app/linux/CanopyChat-arm64.deb), about 230 MB
-- AppImage, for other distributions: [x86-64](https://downloads.canopychat.app/linux/CanopyChat-x86_64.AppImage) or [ARM64](https://downloads.canopychat.app/linux/CanopyChat-aarch64.AppImage). See [Other distributions](#other-distributions).
+- AppImage, for Fedora, Arch and other distributions (untested, [details below](#other-distributions)): [x86-64](https://downloads.canopychat.app/linux/CanopyChat-x86_64.AppImage) or [ARM64](https://downloads.canopychat.app/linux/CanopyChat-aarch64.AppImage).
 
 To check a download, run `sha256sum` on it and compare the result with the `sha256` for your file (`amd64-deb` or `arm64-deb`) in [latest.json](https://downloads.canopychat.app/linux/latest.json).
 
