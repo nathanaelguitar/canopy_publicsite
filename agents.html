@@ -11,7 +11,7 @@
   <meta name="description" content="Instructions for an AI agent that installs CanopyChat for you: which file to pick, the install commands, how to check the download, and what to leave to you.">
   <link rel="icon" type="image/png" href="assets/app-icon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/styles.css?v=linux-2">
+  <link rel="stylesheet" href="assets/styles.css?v=os-pages-1">
   <link rel="alternate" type="text/markdown" href="/agents.md">
 </head>
 <body class="linux-page">
@@ -34,6 +34,9 @@
         <nav class="linux-crumb" aria-label="Breadcrumb"><a href="/">CanopyChat</a> <span aria-hidden="true">/</span> <a href="/#downloads">Download</a> <span aria-hidden="true">/</span> <span aria-current="page">Install with an agent</span></nav>
         <h1>Install CanopyChat with an AI agent</h1>
         <p class="linux-lead">Want your coding agent to download and install CanopyChat for you? Give it this page. The same text is at <a href="/agents.md">canopychat.app/agents.md</a> as plain Markdown, which is easier for an agent to read.</p>
+        <div class="beta-note" role="note">
+          <p><strong>The computer apps are betas.</strong> Windows, Mac and Linux all work but still miss features and have rough edges. Each system has its own page with a prompt written for it: <a href="/windows">Windows</a>, <a href="/mac">Mac</a>, <a href="/linux">Linux</a>.</p>
+        </div>
       </header>
 
       <section class="quick-install" id="prompt" aria-labelledby="prompt-title">
@@ -57,6 +60,7 @@
             <li><a href="#debian-ubuntu">Ubuntu and Debian</a></li>
             <li><a href="#other-linux">Other Linux</a></li>
             <li><a href="#windows">Windows</a></li>
+            <li><a href="#mac">Mac</a></li>
             <li><a href="#check">Check that it worked</a></li>
             <li><a href="#updates-uninstall">Updates and uninstall</a></li>
             <li><a href="#troubleshooting">Troubleshooting</a></li>
@@ -69,6 +73,8 @@
             <ul>
               <li>Confirm before you install anything. Say which file you will download and which command you will run.</li>
               <li>Installing the Linux package needs <code>sudo</code>. Do not ask for the user&rsquo;s password and do not type one; let them run the <code>sudo</code> step themselves or approve it.</li>
+              <li>On Windows, SmartScreen and any administrator prompt are the user&rsquo;s to click. On a Mac, the TestFlight Accept and Install buttons are the user&rsquo;s to click. Stop and tell them what to do.</li>
+              <li>Tell the user the computer apps are in beta: they work, but features are still missing.</li>
               <li>Do not sign in for the user. First start asks for an email address and a 6-digit code that is sent to it. Leave that to the user.</li>
               <li>Download only from <code>downloads.canopychat.app</code>. Do not use mirrors or other sites.</li>
             </ul>
@@ -80,8 +86,9 @@
               <li><strong>Ubuntu or Debian, x86-64:</strong> the <code>.deb</code> (Ubuntu 22.04 or newer).</li>
               <li><strong>Ubuntu or Debian, ARM64</strong> (for example NVIDIA DGX Spark): the <code>.deb</code> (Ubuntu 24.04 or newer).</li>
               <li><strong>Other Linux:</strong> the AppImage (not tested on every distribution).</li>
-              <li><strong>Windows 10 or 11, x64:</strong> the setup <code>.exe</code>.</li>
-              <li><strong>macOS, iPhone, iPad, Android:</strong> App Store or Google Play, from <a href="/#downloads">canopychat.app</a>.</li>
+              <li><strong>Windows 10 or 11, x64:</strong> the setup <code>.exe</code>. Guide for people: <a href="/windows">canopychat.app/windows</a>.</li>
+              <li><strong>Mac:</strong> a free TestFlight beta, not on the Mac App Store yet. You can open the invite but not finish the install; see <a href="#mac">Mac</a>. Guide for people: <a href="/mac">canopychat.app/mac</a>.</li>
+              <li><strong>iPhone, iPad, Android:</strong> App Store or Google Play, from <a href="/#downloads">canopychat.app</a>. Nothing for an agent to do.</li>
             </ul>
             <p>Check the architecture: <code>uname -m</code> prints <code>x86_64</code> or <code>aarch64</code>. On Debian and Ubuntu, <code>dpkg --print-architecture</code> prints <code>amd64</code> or <code>arm64</code>.</p>
           </section>
@@ -124,13 +131,34 @@ curl -fsS https://downloads.canopychat.app/linux/latest.json</code></pre>
 
           <section id="windows" class="doc-section">
             <h2>Windows</h2>
-            <p>Download <a href="https://downloads.canopychat.app/windows/CanopyChat-Setup.exe">CanopyChat-Setup.exe</a>, check its SHA-256 against the <code>sha256</code> in the Windows manifest, then run it. The installer is not code-signed yet, so Windows SmartScreen may warn about an unknown publisher. Tell the user, and let them choose to continue.</p>
+            <p>Download <a href="https://downloads.canopychat.app/windows/CanopyChat-Setup.exe">CanopyChat-Setup.exe</a> (about 165 MB), check its SHA-256 against the <code>sha256</code> in the Windows manifest, then start it. In PowerShell:</p>
+        <div class="cmd" data-cmd>
+          <pre><code id="cmd-win">$ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest https://downloads.canopychat.app/windows/CanopyChat-Setup.exe -OutFile "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"
+(Get-FileHash "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe" -Algorithm SHA256).Hash.ToLower()
+Invoke-RestMethod https://downloads.canopychat.app/windows/latest.json | Select-Object version, sha256, size
+Start-Process "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"</code></pre>
+          <button class="copy-button" type="button" data-copy-target="cmd-win" aria-label="Copy the Windows commands">Copy</button>
+        </div>
+            <p>If the hashes differ, delete the file and stop. The installer is not code-signed yet, so Windows SmartScreen shows &ldquo;Windows protected your PC&rdquo;; the user chooses <strong>More info</strong>, then <strong>Run anyway</strong>. Any administrator prompt is also theirs. When the installer finishes, CanopyChat is in the Start menu. From version 0.3.6 the app updates itself from Settings.</p>
+          </section>
+
+          <section id="mac" class="doc-section">
+            <h2>Mac</h2>
+            <p>The Mac app is a free TestFlight beta while it is in App Review. TestFlight is Apple&rsquo;s app, signed in with the user&rsquo;s Apple Account, so you cannot complete this install. Do this instead:</p>
+            <ol>
+              <li>Check that TestFlight is installed (<code>ls /Applications/TestFlight.app</code>). If not, tell the user to install it from the Mac App Store first.</li>
+              <li>Open the invite for them: <code>open "https://testflight.apple.com/join/f5xCZmVv"</code>.</li>
+              <li>Tell them to choose <strong>Accept</strong>, then <strong>Install</strong> in TestFlight, and to say when it has finished.</li>
+              <li>Then start the app with <code>open -a CanopyChat</code>. If that fails, the install has not finished.</li>
+            </ol>
+            <p>Updates come through TestFlight. There is nothing to download from downloads.canopychat.app for a Mac.</p>
           </section>
 
           <section id="check" class="doc-section">
             <h2>Check that it worked</h2>
             <ul>
               <li>Debian and Ubuntu: <code>command -v canopychat &amp;&amp; dpkg -s canopy-chat | grep '^Version'</code> prints the launcher path and the installed version. Compare it with <code>version</code> in the manifest.</li>
+              <li>Windows: CanopyChat appears in the Start menu once the installer finishes. The version is in the app&rsquo;s Settings.</li>
               <li>To start it, run <code>canopychat &amp;</code> in a terminal on the computer&rsquo;s desktop, or open CanopyChat from the applications menu. Over SSH there is no screen, so skip this step and rely on the check above.</li>
               <li>If the window is blank, see <a href="#troubleshooting">Troubleshooting</a>.</li>
               <li>Then tell the user it is ready for them to sign in.</li>
@@ -158,7 +186,7 @@ curl -fsS https://downloads.canopychat.app/linux/latest.json</code></pre>
             <p>A later version will do this by itself.</p>
             <h3>Architecture mismatch</h3>
             <p>You have the file for the other architecture. Use <code>dpkg --print-architecture</code> to choose.</p>
-            <p>For anything else, see the <a href="/linux">Linux guide</a>, or email <a href="mailto:support@canopychat.app">support@canopychat.app</a> with the distribution, <code>uname -m</code> and the exact error.</p>
+            <p>For anything else, see the <a href="/linux">Linux</a>, <a href="/windows">Windows</a> or <a href="/mac">Mac</a> guide, or email <a href="mailto:support@canopychat.app">support@canopychat.app</a> with the distribution, <code>uname -m</code> and the exact error.</p>
           </section>
 
           <p class="doc-back">Back to <a href="/">canopychat.app</a> or <a href="/support">Support</a>.</p>

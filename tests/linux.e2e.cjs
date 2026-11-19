@@ -58,7 +58,7 @@ const UA = {
   const SITE = 'http://localhost:' + port + '/';
 
   for (const engine of ENGINES) {
-    const browser = await playwright[engine].launch();
+    const browser = await playwright[engine].launch({ executablePath: engine === 'chromium' ? process.env.CHROMIUM_PATH || undefined : undefined });
     const real = engine === 'chromium'; // only Chromium grants clipboard-read to a test page
 
     async function open(url, opts) {
@@ -104,32 +104,30 @@ const UA = {
 
     const noOverflow = (page) => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
 
-    // ---- Home page: short note, no commands, link to the guide ----
+    // ---- Home page: beta line, no commands, every desktop pill opens its guide ----
     for (const ua of ['linux', 'windows']) {
       const { ctx, page, errors } = await open('', { ua: UA[ua] });
       const got = await page.evaluate(() => {
         const dl = document.querySelector('.download');
-        const help = dl.querySelector('.download-help');
-        const a = (k) => { const e = help.querySelector('[data-linux-arch="' + k + '"]'); return e && { href: e.href, text: e.textContent.trim() }; };
+        const beta = dl.querySelector('.download-beta');
+        const pill = (k) => { const p = document.querySelector('.download-grid [data-platform="' + k + '"]'); return { hidden: p.hidden, href: p.getAttribute('href'), target: p.getAttribute('target'), download: p.getAttribute('download') }; };
         return {
-          amd: a('amd64'), arm: a('arm64'), text: dl.textContent,
-          guide: !!help.querySelector('a[href="/linux"]'),
-          pre: dl.querySelectorAll('pre').length,
-          linuxPill: !document.querySelector('.download-grid [data-platform="linux"]').hidden,
-          pillHref: document.querySelector('.download-grid [data-platform="linux"]').href
+          text: dl.textContent,
+          beta: beta && beta.textContent.replace(/\s+/g, ' ').trim(),
+          betaLinks: beta && [...beta.querySelectorAll('a')].map((a) => a.getAttribute('href')),
+          pre: dl.querySelectorAll('pre, details').length,
+          windows: pill('windows'), mac: pill('mac'), linux: pill('linux')
         };
       });
       assert.deepStrictEqual(errors, [], engine + ' home/' + ua + ': page errors');
-      assert.deepStrictEqual(got.amd, { href: AMD, text: 'Linux x86-64 (.deb)' }, engine + ' home: x86-64 link');
-      assert.ok(got.arm && got.arm.href === ARM && got.arm.text.startsWith('Linux ARM64 (.deb, e.g. DGX Spark'), engine + ' home: ARM64 link');
-      assert.ok(got.guide, engine + ' home: links to /linux');
+      assert.ok(got.beta && /^Beta/.test(got.beta) && /rough edges/.test(got.beta), engine + ' home: beta line ' + got.beta);
+      assert.deepStrictEqual(got.betaLinks, ['/windows', '/mac', '/linux'], engine + ' home: beta line links the three guides');
       assert.ok(!/apt |curl |dpkg|uname/.test(got.text), engine + ' home: no install command in the download block');
-      assert.strictEqual(got.pre, 0, engine + ' home: no code block in the download block');
-      assert.ok(got.text.includes('not yet code-signed') && got.text.includes('More info') && got.text.includes('Run anyway'), engine + ' home: Windows note kept');
-      assert.ok(got.linuxPill && got.pillHref === AMD, engine + ' home: Linux pill shown, x86-64 by default');
+      assert.strictEqual(got.pre, 0, engine + ' home: no code block or dropdown in the download block');
+      for (const k of ['windows', 'mac', 'linux']) assert.deepStrictEqual(got[k], { hidden: false, href: '/' + k, target: null, download: null }, engine + ' home: ' + k + ' pill opens /' + k + ' in the same tab');
       await ctx.close();
     }
-    console.log('ok  ' + engine + ': home page install note');
+    console.log('ok  ' + engine + ': home page beta line and guide pills');
 
     // ---- /linux: content, links, no overflow in every width and theme ----
     for (const scheme of SCHEMES) {
@@ -152,7 +150,7 @@ const UA = {
     {
       const { ctx, page } = await open('linux');
       const t = await page.evaluate(() => document.body.innerText);
-      for (const need of ['uname -m', 'dpkg --print-architecture', 'sudo apt remove canopy-chat', 'E: Unsupported file ./CanopyChat-amd64.deb given on commandline', '~/.local/share/canopychat', BROWSER, ONELINER, 'Linux x86-64 (.deb)', 'Linux ARM64 (.deb', 'Ubuntu 24.04 or newer', 'Ubuntu 22.04 or newer', 'Other distributions']) assert.ok(t.includes(need), engine + ' guide: ' + need);
+      for (const need of ['uname -m', 'dpkg --print-architecture', 'sudo apt remove canopy-chat', 'WEBKIT_DISABLE_DMABUF_RENDERER=1 canopychat &', 'The Linux app is a beta', 'Known gaps', 'Install with an agent', 'E: Unsupported file ./CanopyChat-amd64.deb given on commandline', '~/.local/share/canopychat', BROWSER, ONELINER, 'Linux x86-64 (.deb)', 'Linux ARM64 (.deb', 'Ubuntu 24.04 or newer', 'Ubuntu 22.04 or newer', 'Other distributions']) assert.ok(t.includes(need), engine + ' guide: ' + need);
       const hrefs = await page.$$eval('a', (as) => as.map((a) => a.href));
       for (const h of [AMD, ARM, 'https://downloads.canopychat.app/linux/CanopyChat-x86_64.AppImage', 'https://downloads.canopychat.app/linux/CanopyChat-aarch64.AppImage', 'https://downloads.canopychat.app/linux/latest.json']) assert.ok(hrefs.includes(h), engine + ' guide link ' + h);
       const toc = await page.$$eval('.doc-toc a', (as) => as.map((a) => [a.getAttribute('href'), !!document.querySelector(a.getAttribute('href'))]));
@@ -208,15 +206,7 @@ const UA = {
     console.log('ok  ' + engine + ': default architecture tab');
 
     // Chromium hides the architecture from the user agent: the UA-CH lookup must pick ARM64 on
-    // the homepage pill and the guide tab, but never undo a tab the visitor already chose.
-    {
-      const { ctx, page } = await open('', { uach: true });
-      await page.waitForFunction((arm) => document.querySelector('.download-grid [data-platform="linux"]').href === arm, ARM);
-      const pill = await page.evaluate(() => { const p = document.querySelector('.download-grid [data-platform="linux"]'); return [p.getAttribute('download'), p.title, p.getAttribute('aria-label')]; });
-      assert.strictEqual(pill[0], 'CanopyChat-arm64.deb', engine + ' home UA-CH: ARM64 download name');
-      assert.ok(pill[1].includes('Ubuntu 24.04 or newer') && pill[1].includes('ARM64') && pill[2].includes('Ubuntu 24.04 or newer'), engine + ' home UA-CH: ARM64 minimum Ubuntu ' + pill[1]);
-      await ctx.close();
-    }
+    // the guide tab, but never undo a tab the visitor already chose.
     {
       const { ctx, page } = await open('linux', { uach: true });
       await page.waitForFunction(() => document.querySelector('.arch-tab[aria-selected="true"]').getAttribute('data-arch') === 'arm64');
@@ -230,7 +220,7 @@ const UA = {
       assert.strictEqual(got, 'amd64', engine + ' guide UA-CH: a manual pick is not undone by the lookup');
       await ctx.close();
     }
-    console.log('ok  ' + engine + ': UA-CH ARM64 detection on the pill and the tab');
+    console.log('ok  ' + engine + ': UA-CH ARM64 detection on the tab');
 
     // Clipboard fallbacks: a rejected writeText falls back to execCommand (still "Copied"); with no
     // clipboard at all and execCommand refused, the command is selected and the hint names Ctrl+C.

@@ -141,8 +141,12 @@ Primary actions are pill-shaped for thumb recognition. Amount choices and input 
 
 ### Download (homepage hero)
 
-- **Pattern:** A serif "Download" heading (800, `clamp(30px, 3.6vw, 44px)`), then the platforms as equal pills in a 2 x 2 grid: Windows, Mac, iPhone, Android, and Linux once it ships. Nothing sits under them.
-- **Pills:** The hero's existing `.appstore-badge` (oak pill, glyph, bold platform name) with no kicker words. Every pill has the same size, colour and shadow; no platform gets its own colour or emphasis. `aria-label` and `title` carry the store or requirements.
+- **Pattern:** A serif "Download" heading (800, `clamp(30px, 3.6vw, 44px)`), then the platforms as equal pills in a two-column grid: Windows, Mac, iPhone, Android, Linux, and the dark Canopy Code pill for developers. Under them, one muted line (`.download-beta`) says the computer apps are in beta and links the three guides; no commands and no dropdown on the home page.
+- **Pills:** The hero's existing `.appstore-badge` (oak pill, glyph, bold platform name) with no kicker words. Every pill has the same size, colour and shadow; no platform gets its own colour or emphasis. iPhone and Android open their stores; Windows, Mac and Linux open their guide pages (`/windows`, `/mac`, `/linux`) in the same tab. `aria-label` and `title` carry the store, the beta status or the requirements.
+
+### Install guides (`/windows`, `/mac`, `/linux`, `/agents`)
+
+Read-mode documents in the legacy oak / paper language: breadcrumb, serif H1, one lead sentence, then `.beta-note` (a tonal 1px-ruled block, never a coloured stripe or alert) stating that the app is a beta and where to report problems, and `.os-switch` linking the other systems. A `.quick-install` card carries the one action (download, one-line command or TestFlight invite). Sections follow under a sticky "On this page" rail in the same order on every page: what you get, supported systems, install by hand, install with an agent, first start, updates, uninstall, known gaps, troubleshooting. Commands live in `.cmd` blocks with a copy button; the agent prompt is a `.cmd` block too, so it copies whole.
 
 ### Amount Choices
 

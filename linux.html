@@ -7,11 +7,11 @@
   <meta name="theme-color" content="#fff4df" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#120d0a" media="(prefers-color-scheme: dark)">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://connect.facebook.net; connect-src 'self' https://founding-api.canopychat.app https://www.facebook.com https://connect.facebook.net; img-src 'self' data: https://www.facebook.com; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://checkout.stripe.com; upgrade-insecure-requests">
-  <title>Install CanopyChat on Linux</title>
-  <meta name="description" content="Install, update and remove CanopyChat on Linux (Ubuntu 22.04 or newer, x86-64 and ARM64), and fix common install errors.">
+  <title>Install CanopyChat on Linux (beta)</title>
+  <meta name="description" content="Install, update and remove the CanopyChat beta on Linux (Ubuntu 22.04 or newer, x86-64 and ARM64), by hand or with an AI agent, and fix common install errors.">
   <link rel="icon" type="image/png" href="assets/app-icon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/styles.css?v=linux-2">
+  <link rel="stylesheet" href="assets/styles.css?v=os-pages-1">
   <link rel="alternate" type="text/markdown" href="/linux.md">
 </head>
 <body class="linux-page">
@@ -34,6 +34,11 @@
         <nav class="linux-crumb" aria-label="Breadcrumb"><a href="/">CanopyChat</a> <span aria-hidden="true">/</span> <a href="/#downloads">Download</a> <span aria-hidden="true">/</span> <span aria-current="page">Linux</span></nav>
         <h1>Install CanopyChat on Linux</h1>
         <p class="linux-lead">A desktop app for Ubuntu 22.04 or newer, on x86-64 and ARM64. The free plan runs a small model on your computer, and a paid plan unlocks cloud models.</p>
+        <div class="beta-note" role="note">
+          <p><strong>The Linux app is a beta.</strong> It works, but it is missing features that the phone apps and the Mac app already have, and you will run into rough edges. We ship fixes as we go.</p>
+          <p>If something breaks or does not make sense, email <a href="mailto:support@canopychat.app">support@canopychat.app</a> and tell us what happened. Those reports decide what we fix next.</p>
+        </div>
+        <p class="os-switch">Other systems: <a href="/windows">Windows</a> <a href="/mac">Mac</a> <a href="/agents">Install with an agent</a></p>
       </header>
 
       <section class="quick-install" id="quick-install" aria-labelledby="quick-install-title">
@@ -76,18 +81,31 @@
         <nav class="doc-toc" aria-label="On this page">
           <p class="doc-toc-title">On this page</p>
           <ol>
+            <li><a href="#what-you-get">What you get</a></li>
             <li><a href="#supported-systems">Supported systems</a></li>
             <li><a href="#choose-a-file">Choose a file</a></li>
-            <li><a href="#install">Install</a></li>
+            <li><a href="#install">Install by hand</a></li>
+            <li><a href="#agent">Install with an agent</a></li>
             <li><a href="#first-start">First start</a></li>
             <li><a href="#updates">Updates</a></li>
             <li><a href="#uninstall">Uninstall</a></li>
             <li><a href="#other-distributions">Other distributions</a></li>
+            <li><a href="#known-gaps">Known gaps</a></li>
             <li><a href="#troubleshooting">Troubleshooting</a></li>
           </ol>
         </nav>
 
         <div class="doc-sections">
+          <section id="what-you-get" class="doc-section">
+            <h2>What you get</h2>
+            <ul>
+              <li>The CanopyChat app on your Linux desktop: private chat that answers on your computer first. Your chats stay on the machine, in <code>~/.local/share/canopychat</code>.</li>
+              <li>The free plan runs Canopy Lite, our small language model, on your computer. A <a href="/plans">paid plan</a> adds cloud models for bigger jobs.</li>
+              <li>Sign in with your email: we send a 6-digit code, no password. The same account works on your phone.</li>
+              <li>A <code>canopychat</code> launcher command and an entry in your applications menu.</li>
+            </ul>
+          </section>
+
           <section id="supported-systems" class="doc-section">
             <h2>Supported systems</h2>
             <ul>
@@ -115,7 +133,7 @@
           </section>
 
           <section id="install" class="doc-section">
-            <h2>Install</h2>
+            <h2>Install by hand</h2>
             <h3 id="install-terminal">From the terminal</h3>
             <p>On Ubuntu and Debian. This works from any folder. It downloads the file for your computer and installs it:</p>
             <div class="cmd" data-cmd>
@@ -134,6 +152,16 @@
 
             <h3 id="what-gets-installed">What gets installed</h3>
             <p>The download is about 230 to 280 MB, and the app takes about 550 MB on disk. The package needs WebKitGTK, GTK 3, GStreamer plugins and a few small libraries. <code>apt</code> installs them for you. On a fresh system that can be a few hundred MB of extra downloads. <code>libvulkan1</code> (the Vulkan loader) is recommended, so the local model can use your graphics card when your graphics driver supports Vulkan.</p>
+          </section>
+
+          <section id="agent" class="doc-section">
+            <h2>Install with an agent</h2>
+            <p>Have a coding agent on this computer, like Claude Code or Codex? Paste this into it. It points the agent at <a href="/agents.md">canopychat.app/agents.md</a>, which has the full instructions, and sets the rules: it asks you before anything that needs <code>sudo</code>, it never types your password, and it never signs in for you.</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-prompt">Install CanopyChat on this Linux computer. Follow the Linux instructions at https://canopychat.app/agents.md. Download only from https://downloads.canopychat.app/linux/ and check the SHA-256 against https://downloads.canopychat.app/linux/latest.json. Ask me before you run anything that needs sudo, and never type my password. Do not sign in to CanopyChat for me.</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-prompt" aria-label="Copy the agent prompt for Linux">Copy</button>
+            </div>
+            <p>On Ubuntu and Debian the agent runs the <a href="#quick-install">one-line command</a> above, checks <code>sha256sum</code> against the manifest, then verifies with <code>command -v canopychat</code>. The <code>sudo</code> step and the sign-in screen are yours. When it is done, start the app and sign in.</p>
           </section>
 
           <section id="first-start" class="doc-section">
@@ -179,6 +207,17 @@
               <button class="copy-button" type="button" data-copy-target="cmd-appimage" aria-label="Copy the AppImage command">Copy</button>
             </div>
             <p>Use <code>CanopyChat-aarch64.AppImage</code> on ARM64. The sections above on installing, updating and removing describe the <code>.deb</code>; to remove an AppImage, delete the file.</p>
+          </section>
+
+          <section id="known-gaps" class="doc-section">
+            <h2>Known gaps</h2>
+            <p>The honest list of what the Linux beta does not do yet:</p>
+            <ul>
+              <li>No list of your other computers and no remote control of them from this app. The Mac app has it.</li>
+              <li>Model recommendations are limited to Canopy Lite for now. Other local models are not suggested yet.</li>
+              <li>On some NVIDIA machines the window opens blank until you start the app with the <a href="#troubleshooting">workaround below</a>.</li>
+              <li>Features arrive over time, and some screens are rougher than on the phone. If something is missing that you need, tell <a href="mailto:support@canopychat.app">support@canopychat.app</a>.</li>
+            </ul>
           </section>
 
           <section id="troubleshooting" class="doc-section">

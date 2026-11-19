@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#fff4df" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#120d0a" media="(prefers-color-scheme: dark)">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://connect.facebook.net; connect-src 'self' https://founding-api.canopychat.app https://www.facebook.com https://connect.facebook.net; img-src 'self' data: https://www.facebook.com; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://checkout.stripe.com; upgrade-insecure-requests">
+  <title>Install CanopyChat on Windows (beta)</title>
+  <meta name="description" content="Download and install the CanopyChat beta on Windows 10 and 11, by hand or with an AI agent. What the beta is missing, how to update, uninstall and fix common problems.">
+  <link rel="icon" type="image/png" href="assets/app-icon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/styles.css?v=os-pages-1">
+  <link rel="alternate" type="text/markdown" href="/windows.md">
+</head>
+<body class="linux-page">
+  <header class="shell nav">
+    <a class="brand" href="/"><img class="mark" src="assets/app-icon.png" alt="" width="46" height="46"><strong>CanopyChat</strong></a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="/signup" class="nav-cta" data-account-nav>Create account</a>
+      <a href="/plans">Plans</a>
+      <a href="https://enterprise.canopychat.app/">Enterprise</a>
+      <a href="/privacy">Privacy &amp; Terms</a>
+      <a href="/support">Support</a>
+      <a href="/flame">Flame</a>
+      <a href="/canopy-code">Canopy Code</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <article class="document linux-doc">
+      <header class="linux-head">
+        <nav class="linux-crumb" aria-label="Breadcrumb"><a href="/">CanopyChat</a> <span aria-hidden="true">/</span> <a href="/#downloads">Download</a> <span aria-hidden="true">/</span> <span aria-current="page">Windows</span></nav>
+        <h1>Install CanopyChat on Windows</h1>
+        <p class="linux-lead">A desktop app for Windows 10 and 11 on 64-bit PCs. The free plan runs a small model on your computer, and a paid plan unlocks cloud models.</p>
+        <div class="beta-note" role="note">
+          <p><strong>The Windows app is a beta.</strong> It works, but it is missing features that the phone apps and the Mac app already have, and you will run into rough edges. We ship fixes as we go.</p>
+          <p>If something breaks or does not make sense, email <a href="mailto:support@canopychat.app">support@canopychat.app</a> and tell us what happened. Those reports decide what we fix next.</p>
+        </div>
+        <p class="os-switch">Other systems: <a href="/mac">Mac</a> <a href="/linux">Linux</a> <a href="/agents">Install with an agent</a></p>
+      </header>
+
+      <section class="quick-install" id="quick-install" aria-labelledby="quick-install-title">
+        <div class="quick-install-head">
+          <h2 id="quick-install-title">Download and install</h2>
+          <p>One file. Download it, open it, and tell Windows it is fine to run.</p>
+        </div>
+        <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/windows/CanopyChat-Setup.exe" download>Download CanopyChat-Setup.exe</a> <span class="arch-panel-size">about 165 MB &middot; Windows 10 and 11, 64-bit</span></p>
+        <ol>
+          <li>Open <code>CanopyChat-Setup.exe</code> from your Downloads folder.</li>
+          <li>Windows may show <strong>&ldquo;Windows protected your PC&rdquo;</strong>. That is SmartScreen, because the installer is new and not yet code-signed. Choose <strong>More info</strong>, then <strong>Run anyway</strong>.</li>
+          <li>Follow the installer. When it finishes, CanopyChat is in your Start menu.</li>
+        </ol>
+      </section>
+
+      <div class="linux-body">
+        <nav class="doc-toc" aria-label="On this page">
+          <p class="doc-toc-title">On this page</p>
+          <ol>
+            <li><a href="#what-you-get">What you get</a></li>
+            <li><a href="#supported-systems">Supported systems</a></li>
+            <li><a href="#install">Install by hand</a></li>
+            <li><a href="#agent">Install with an agent</a></li>
+            <li><a href="#first-start">First start</a></li>
+            <li><a href="#updates">Updates</a></li>
+            <li><a href="#uninstall">Uninstall</a></li>
+            <li><a href="#known-gaps">Known gaps</a></li>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+          </ol>
+        </nav>
+
+        <div class="doc-sections">
+          <section id="what-you-get" class="doc-section">
+            <h2>What you get</h2>
+            <ul>
+              <li>The CanopyChat app on your PC: private chat that answers on your computer first. Your chats stay on the machine.</li>
+              <li>The free plan runs Canopy Lite, our small language model, on your computer. A <a href="/plans">paid plan</a> adds cloud models for bigger jobs.</li>
+              <li>Sign in with your email: we send a 6-digit code, no password. The same account works on your phone.</li>
+              <li>In-app updates from version 0.3.6 on, so you install by hand only once.</li>
+            </ul>
+          </section>
+
+          <section id="supported-systems" class="doc-section">
+            <h2>Supported systems</h2>
+            <ul>
+              <li><strong>Windows 10 and Windows 11</strong>, 64-bit (x64). There is no ARM build for Windows yet.</li>
+              <li>The installer is not code-signed yet, so SmartScreen warns about it. The <a href="#install">checksum</a> lets you confirm the file is ours.</li>
+            </ul>
+          </section>
+
+          <section id="install" class="doc-section">
+            <h2>Install by hand</h2>
+            <p>Download <a href="https://downloads.canopychat.app/windows/CanopyChat-Setup.exe" download>CanopyChat-Setup.exe</a> (about 165 MB) and open it. If Windows says <strong>&ldquo;Windows protected your PC&rdquo;</strong>, choose <strong>More info</strong>, then <strong>Run anyway</strong>. Then follow the installer.</p>
+            <h3 id="check-the-download">Check the download</h3>
+            <p>Want to be sure the file is the one we published? Open PowerShell and run this. It prints the SHA-256 of the file you downloaded, then the <code>sha256</code>, <code>version</code> and <code>size</code> we publish in <a href="https://downloads.canopychat.app/windows/latest.json">latest.json</a>. The two hashes must match.</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-hash">(Get-FileHash "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe" -Algorithm SHA256).Hash.ToLower()
+Invoke-RestMethod https://downloads.canopychat.app/windows/latest.json | Select-Object version, sha256, size</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-hash" aria-label="Copy the checksum commands">Copy</button>
+            </div>
+            <p>If they differ, delete the file and download it again from downloads.canopychat.app. Do not run it.</p>
+            <h3 id="download-from-powershell">Download from PowerShell</h3>
+            <p>Prefer the terminal? This saves the installer to your Downloads folder and opens it:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-download">$ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest https://downloads.canopychat.app/windows/CanopyChat-Setup.exe -OutFile "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"; Start-Process "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-download" aria-label="Copy the PowerShell download command">Copy</button>
+            </div>
+          </section>
+
+          <section id="agent" class="doc-section">
+            <h2>Install with an agent</h2>
+            <p>Have a coding agent on this PC, like Claude Code or Codex? Paste this into it. It points the agent at <a href="/agents.md">canopychat.app/agents.md</a>, which has the full instructions, and sets the rules: it asks you before it runs the installer, it leaves administrator prompts to you, and it never signs in for you.</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-prompt">Install CanopyChat on this Windows computer. Follow the Windows instructions at https://canopychat.app/agents.md. Download only https://downloads.canopychat.app/windows/CanopyChat-Setup.exe and check its SHA-256 against https://downloads.canopychat.app/windows/latest.json before anything else. Tell me before you run the installer. If Windows asks for administrator approval or shows a SmartScreen warning, stop and let me click it myself. Do not sign in to CanopyChat for me.</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-prompt" aria-label="Copy the agent prompt for Windows">Copy</button>
+            </div>
+            <p>The agent will run the same commands as above: download with <code>Invoke-WebRequest</code>, compare the hash with <code>Get-FileHash</code>, then start the installer. The installer's own windows, SmartScreen and the sign-in screen are yours to click through. When it is done, open CanopyChat from the Start menu and sign in.</p>
+          </section>
+
+          <section id="first-start" class="doc-section">
+            <h2>First start</h2>
+            <p>Open <strong>CanopyChat</strong> from the Start menu. Sign in with your email: we send a 6-digit code, no password. The free plan runs on your computer; a paid plan unlocks cloud models.</p>
+            <p>To see which version you have, open Settings inside the app. The newest version is listed as <code>version</code> in <a href="https://downloads.canopychat.app/windows/latest.json">latest.json</a>.</p>
+          </section>
+
+          <section id="updates" class="doc-section">
+            <h2>Updates</h2>
+            <p>From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose <strong>Check for updates</strong>, then <strong>Update now</strong>: the installer opens for you, and SmartScreen may ask again. If you have 0.3.5 or older, download the installer above and run it once; it replaces the old version.</p>
+          </section>
+
+          <section id="uninstall" class="doc-section">
+            <h2>Uninstall</h2>
+            <p>Open Windows <strong>Settings</strong>, then <strong>Apps</strong>, find <strong>CanopyChat</strong> in the list of installed apps and choose <strong>Uninstall</strong>. On Windows 10 the list is called Apps &amp; features.</p>
+          </section>
+
+          <section id="known-gaps" class="doc-section">
+            <h2>Known gaps</h2>
+            <p>The honest list of what the Windows beta does not do yet:</p>
+            <ul>
+              <li>No list of your other computers and no remote control of them from this app. The Mac app has it.</li>
+              <li>Model recommendations are limited to Canopy Lite for now. Other local models are not suggested yet.</li>
+              <li>The installer is not code-signed, so SmartScreen warns about it on every install and update.</li>
+              <li>Features arrive over time, and some screens are rougher than on the phone. If something is missing that you need, tell <a href="mailto:support@canopychat.app">support@canopychat.app</a>.</li>
+            </ul>
+          </section>
+
+          <section id="troubleshooting" class="doc-section">
+            <h2>Troubleshooting</h2>
+            <h3>&ldquo;Windows protected your PC&rdquo;</h3>
+            <p>That is SmartScreen, because the installer is not code-signed yet. Choose <strong>More info</strong>, then <strong>Run anyway</strong>. If there is no More info link, a policy on your PC blocks unsigned apps (common on work computers); ask whoever manages it, or email us.</p>
+            <h3>Not sure the file is ours</h3>
+            <p>Compare its SHA-256 with <a href="https://downloads.canopychat.app/windows/latest.json">latest.json</a> using the <a href="#check-the-download">commands above</a>. Only download from downloads.canopychat.app.</p>
+            <h3>The download is very slow in PowerShell</h3>
+            <p>Older PowerShell draws a progress bar that slows <code>Invoke-WebRequest</code> down a lot. The command above turns it off with <code>$ProgressPreference = 'SilentlyContinue'</code>. Or download the file in your browser.</p>
+            <h3>Something else</h3>
+            <p>Email <a href="mailto:support@canopychat.app">support@canopychat.app</a> with your Windows version, the CanopyChat version from Settings and the exact message you saw. Screenshots help.</p>
+          </section>
+
+          <p class="doc-back">Back to <a href="/">canopychat.app</a> or <a href="/support">Support</a>.</p>
+        </div>
+      </div>
+      <p class="visually-hidden" id="copy-status" role="status" aria-live="polite"></p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span>Copyright 2026 CanopyChat</span>
+      <span><a href="/">Home</a> | <a href="/privacy">Privacy</a> | <a href="/terms">Terms</a> | <a href="/support">Support</a></span>
+    </div>
+  </footer>
+  <script src="assets/linux.js?v=1" defer></script>
+  <script src="assets/canopy-account.js?v=1" defer></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-# Install CanopyChat on Linux
+# Install CanopyChat on Linux (beta)
 
 Source: https://canopychat.app/linux
 
@@ -7,6 +7,12 @@ Source: https://canopychat.app/linux
 # Install CanopyChat on Linux
 
 A desktop app for Ubuntu 22.04 or newer, on x86-64 and ARM64. The free plan runs a small model on your computer, and a paid plan unlocks cloud models.
+
+**The Linux app is a beta.** It works, but it is missing features that the phone apps and the Mac app already have, and you will run into rough edges. We ship fixes as we go.
+
+If something breaks or does not make sense, email <support@canopychat.app> and tell us what happened. Those reports decide what we fix next.
+
+Other systems: [Windows](https://canopychat.app/windows) [Mac](https://canopychat.app/mac) [Install with an agent](https://canopychat.app/agents)
 
 ## Quick install
 
@@ -38,6 +44,13 @@ Then install it from your Downloads folder:
 cd ~/Downloads && sudo apt install ./CanopyChat-arm64.deb
 ```
 
+## What you get
+
+- The CanopyChat app on your Linux desktop: private chat that answers on your computer first. Your chats stay on the machine, in `~/.local/share/canopychat`.
+- The free plan runs Canopy Lite, our small language model, on your computer. A [paid plan](https://canopychat.app/plans) adds cloud models for bigger jobs.
+- Sign in with your email: we send a 6-digit code, no password. The same account works on your phone.
+- A `canopychat` launcher command and an entry in your applications menu.
+
 ## Supported systems
 
 - **x86-64** (Intel and AMD): Ubuntu 22.04 or newer.
@@ -61,7 +74,7 @@ uname -m
 
 To check a download, run `sha256sum` on it and compare the result with the `sha256` for your file (`amd64-deb` or `arm64-deb`) in [latest.json](https://downloads.canopychat.app/linux/latest.json).
 
-## Install
+## Install by hand
 
 ### From the terminal
 
@@ -86,6 +99,16 @@ Open the `.deb` in your file manager. It opens in your software installer (App C
 ### What gets installed
 
 The download is about 230 to 280 MB, and the app takes about 550 MB on disk. The package needs WebKitGTK, GTK 3, GStreamer plugins and a few small libraries. `apt` installs them for you. On a fresh system that can be a few hundred MB of extra downloads. `libvulkan1` (the Vulkan loader) is recommended, so the local model can use your graphics card when your graphics driver supports Vulkan.
+
+## Install with an agent
+
+Have a coding agent on this computer, like Claude Code or Codex? Paste this into it. It points the agent at [canopychat.app/agents.md](https://canopychat.app/agents.md), which has the full instructions, and sets the rules: it asks you before anything that needs `sudo`, it never types your password, and it never signs in for you.
+
+```
+Install CanopyChat on this Linux computer. Follow the Linux instructions at https://canopychat.app/agents.md. Download only from https://downloads.canopychat.app/linux/ and check the SHA-256 against https://downloads.canopychat.app/linux/latest.json. Ask me before you run anything that needs sudo, and never type my password. Do not sign in to CanopyChat for me.
+```
+
+On Ubuntu and Debian the agent runs the [one-line command](#quick-install) above, checks `sha256sum` against the manifest, then verifies with `command -v canopychat`. The `sudo` step and the sign-in screen are yours. When it is done, start the app and sign in.
 
 ## First start
 
@@ -132,6 +155,15 @@ chmod +x CanopyChat-x86_64.AppImage && ./CanopyChat-x86_64.AppImage
 ```
 
 Use `CanopyChat-aarch64.AppImage` on ARM64. The sections above on installing, updating and removing describe the `.deb`; to remove an AppImage, delete the file.
+
+## Known gaps
+
+The honest list of what the Linux beta does not do yet:
+
+- No list of your other computers and no remote control of them from this app. The Mac app has it; Linux will get it.
+- Model recommendations are limited to Canopy Lite for now. Other local models are not suggested yet.
+- On some NVIDIA machines the window opens blank until you start the app with the [workaround below](#troubleshooting).
+- Features arrive over time, and some screens are rougher than on the phone. If something is missing that you need, tell <support@canopychat.app>.
 
 ## Troubleshooting
 
