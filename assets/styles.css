@@ -3783,105 +3783,40 @@ html:has(.founding-mobile-funnel) {
   margin-top: 22px;
 }
 
-/* One calm line under the pills that expands into the SmartScreen note for the unsigned Windows
-   installer and the Linux files with a link to the guide. Commands live on /linux, not here. */
-.download-help {
-  margin-top: 14px;
+/* One honest line under the pills: the desktop apps are in beta, with a link to each guide. */
+.download-beta {
   max-width: 460px;
+  margin: 14px 0 0;
   color: var(--muted);
   font-size: 15px;
   line-height: 1.5;
 }
 
-.download-help summary {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 44px;
-  padding: 8px 0;
-  border-radius: 6px;
-  color: var(--oak);
-  font-weight: 700;
-  cursor: pointer;
-  list-style: none;
-}
-
-.download-help summary::-webkit-details-marker {
-  display: none;
-}
-
-.download-help summary:hover {
-  color: var(--ink);
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
-}
-
-.download-help summary:focus-visible {
-  outline: 3px solid var(--oak-bright);
-  outline-offset: 3px;
-}
-
-.download-help-chevron {
-  width: 16px;
-  height: 16px;
-  flex: none;
-  transition: transform 160ms ease;
-}
-
-.download-help[open] .download-help-chevron {
-  transform: rotate(180deg);
-}
-
-.download-help-body {
-  padding-top: 2px;
-}
-
-.download-help p {
-  margin: 8px 0 0;
-}
-
-.download-help strong {
+.download-beta strong {
   color: var(--ink);
 }
 
-.download-help code {
-  font-size: 0.92em;
-  overflow-wrap: anywhere;
-}
-
-.download-help a {
+.download-beta a {
   color: var(--oak);
   font-weight: 600;
 }
 
-.download-help a:hover,
-.download-help a:focus-visible {
+.download-beta a:hover,
+.download-beta a:focus-visible {
   color: var(--oak-bright);
 }
 
 @media (prefers-color-scheme: dark) {
-  .download-help {
+  .download-beta {
     color: rgba(255, 244, 223, 0.72);
   }
 
-  .download-help strong {
+  .download-beta strong {
     color: var(--cream);
   }
 
-  .download-help a {
+  .download-beta a {
     color: #d9a66b;
-  }
-
-  .download-help summary {
-    color: #d9a66b;
-  }
-
-  .download-help summary:hover {
-    color: #e8bd8a;
-  }
-
-  .download-help summary:focus-visible {
-    outline-color: #e8bd8a;
   }
 }
 
@@ -5253,5 +5188,86 @@ html:has(.flame-page) {
     .doc-toc a:focus-visible {
       border-color: #d9a66b;
     }
+  }
+}
+
+/*
+ * Per-system install guides (windows.html, mac.html, linux.html) share the Linux guide's document
+ * layout. Added here: the beta notice under the lead, the row of links to the other systems, and
+ * numbered steps inside a section.
+ */
+.beta-note {
+  max-width: 680px;
+  margin: 20px 0 0;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(122, 74, 35, 0.08);
+}
+
+.beta-note p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.beta-note p + p {
+  margin-top: 8px;
+}
+
+.beta-note strong {
+  color: var(--ink);
+}
+
+.os-switch {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.os-switch a + a {
+  margin-left: 14px;
+}
+
+.doc-section ol {
+  margin: 0;
+  padding-left: 24px;
+}
+
+.doc-section ol li + li {
+  margin-top: 8px;
+}
+
+.quick-install ol {
+  margin: 14px 0 0;
+  padding-left: 24px;
+}
+
+.quick-install ol li + li {
+  margin-top: 8px;
+}
+
+.quick-install .arch-panel-row {
+  margin-top: 14px;
+}
+
+@media (max-width: 820px) {
+  .linux-page .shell {
+    width: calc(100% - 32px);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .beta-note {
+    background: rgba(255, 244, 223, 0.06);
+    border-color: rgba(255, 244, 223, 0.14);
+  }
+
+  .beta-note strong {
+    color: var(--cream);
+  }
+
+  .os-switch {
+    color: #cdbba6;
   }
 }

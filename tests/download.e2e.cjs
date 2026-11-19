@@ -1,12 +1,17 @@
 /*
- * Headless-Chromium test of the hero "Download CanopyChat" button (assets/download.js).
- * Same setup as tests/link.e2e.cjs:
+ * Headless-Chromium test of the hero "Download" pills on the home page. Same setup as
+ * tests/link.e2e.cjs:
  *
  *   npm i playwright && npx playwright install chromium   (in any temp dir)
  *   NODE_PATH=<that dir>/node_modules node tests/download.e2e.cjs
  *
- * Spoofs each device's user agent and platform, checks where the button goes, and saves
- * screenshots to tests/screenshots/. Nothing leaves the machine.
+ * CHROMIUM_PATH points at a chrome-headless-shell binary when the package and the downloaded
+ * browsers disagree; SHOTS_DIR moves the screenshots out of tests/screenshots/.
+ *
+ * Spoofs each device's user agent and platform and checks: iPhone and Android pills open their
+ * stores; Windows, Mac and Linux pills open the guide pages in the same tab (no direct download,
+ * no target=_blank); the beta line under the pills names all three systems and links each guide;
+ * every pill looks the same; no horizontal scroll. Nothing leaves the machine.
  */
 'use strict';
 const http = require('http');
@@ -16,8 +21,8 @@ const assert = require('assert');
 const { chromium } = require('playwright');
 
 const ROOT = path.resolve(__dirname, '..');
-const SHOTS = path.join(__dirname, 'screenshots');
-const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png', '.svg': 'image/svg+xml' };
+const SHOTS = process.env.SHOTS_DIR || path.join(__dirname, 'screenshots');
+const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png', '.svg': 'image/svg+xml', '.webp': 'image/webp' };
 
 function serveSite() {
   return http.createServer((req, res) => {
@@ -40,12 +45,12 @@ const DEVICES = {
   chromeos: { platform: 'Linux x86_64', ua: 'Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36' }
 };
 
-const HREF = {
-  windows: 'https://downloads.canopychat.app/windows/CanopyChat-Setup.exe',
-  mac: 'https://testflight.apple.com/join/f5xCZmVv',
+// Where each pill points. The guide pages are site-relative and resolved against the test server.
+const STORE = {
   ios: 'https://apps.apple.com/us/app/canopychat/id6788203137',
   android: 'https://play.google.com/store/apps/details?id=com.nathanaelguitar.canopychat'
 };
+const GUIDE = { windows: '/windows', mac: '/mac', linux: '/linux' };
 
 (async () => {
   const srv = serveSite();
@@ -81,38 +86,63 @@ const HREF = {
   for (const name of Object.keys(DEVICES)) {
     const { ctx, page, errors } = await open(name);
     const got = await page.evaluate(() => {
-      const pills = [...document.querySelectorAll('.download-grid > a')].filter((e) => !e.hidden && e.offsetParent !== null);
+      const pills = [...document.querySelectorAll('.download-grid > a.dl-pill')].filter((e) => !e.hidden && e.offsetParent !== null);
       const rows = [...new Set(pills.map((p) => Math.round(p.getBoundingClientRect().top)))];
+      const beta = document.querySelector('.download .download-beta');
       return {
         title: document.querySelector('.download-title').textContent.trim(),
         names: pills.map((p) => p.textContent.trim()),
-        order: pills.map((p) => p.dataset.platform),
-        hrefs: Object.fromEntries(pills.map((p) => [p.dataset.platform, p.href])),
+        hrefs: Object.fromEntries(pills.map((p) => [p.dataset.platform, p.getAttribute('href')])),
+        targets: Object.fromEntries(pills.map((p) => [p.dataset.platform, p.getAttribute('target')])),
+        downloads: pills.filter((p) => p.hasAttribute('download')).map((p) => p.dataset.platform),
         labelled: pills.every((p) => p.getAttribute('aria-label') && p.title),
+        betaLabelled: ['windows', 'mac', 'linux'].every((k) => /beta/i.test(pills.find((p) => p.dataset.platform === k).getAttribute('aria-label'))),
         sizes: [...new Set(pills.map((p) => p.offsetWidth + 'x' + p.offsetHeight))],
         looks: [...new Set(pills.map((p) => { const c = getComputedStyle(p); return c.backgroundColor + c.color + c.boxShadow + c.borderRadius; }))],
         rows: rows.length,
-        below: document.querySelector('.download').nextElementSibling.className,
-        winDownload: document.querySelector('[data-platform="windows"]').getAttribute('download'),
-        code: (() => { const a = document.querySelector('.install-cta-compact'); const r = a.getBoundingClientRect(); const row = document.querySelector('.actions-row').getBoundingClientRect(); return { label: a.getAttribute('aria-label'), text: a.textContent.replace(/\s+/g, ' ').trim(), href: a.getAttribute('href'), inRow: r.top >= row.top - 1 && r.bottom <= row.bottom + 1, h: a.offsetHeight, rowH: document.querySelector('.actions-row .button').offsetHeight }; })(),
-        devLink: [...document.querySelectorAll('.hero-footnotes a')].some((a) => a.getAttribute('href') === '#install'),
+        beta: beta && { text: beta.textContent.replace(/\s+/g, ' ').trim(), links: [...beta.querySelectorAll('a')].map((a) => a.getAttribute('href')), visible: beta.offsetParent !== null },
+        details: document.querySelectorAll('.download details').length,
+        commands: /apt |curl |dpkg|uname|Invoke-|\.exe/.test(document.querySelector('.download').textContent),
+        code: (() => { const a = document.querySelector('.download-grid .dl-cc'); return { label: a.getAttribute('aria-label'), text: a.textContent.replace(/\s+/g, ' ').trim(), href: a.getAttribute('href') }; })(),
+        footer: ['/windows', '/mac', '/linux'].every((h) => [...document.querySelectorAll('.footer a')].some((a) => a.getAttribute('href') === h)),
         overflow: document.documentElement.scrollWidth > window.innerWidth
       };
     });
     assert.deepStrictEqual(errors, [], name + ': page errors');
-    assert.deepStrictEqual(got.code, { label: 'Install Canopy Code (for developers)', text: '>_ Canopy Code', href: '#install', inRow: true, h: got.code.rowH, rowH: got.code.rowH }, name + ': Canopy Code pill in the Join Beta row');
-    assert.strictEqual(got.devLink, false, name + ': developer text link removed');
     assert.strictEqual(got.title, 'Download', name + ': heading');
-    assert.deepStrictEqual(got.names, ['Windows', 'Mac', 'iPhone', 'Android'], name + ': pills are just platform names');
-    for (const k of Object.keys(HREF)) assert.strictEqual(got.hrefs[k], HREF[k], name + ': ' + k + ' link');
-    assert.strictEqual(got.winDownload, 'CanopyChat-Setup.exe', name + ': windows download attribute');
+    assert.deepStrictEqual(got.names, ['Windows', 'Mac', 'iPhone', 'Android', 'Linux'], name + ': pills are just platform names');
+    for (const k of Object.keys(GUIDE)) assert.strictEqual(got.hrefs[k], GUIDE[k], name + ': ' + k + ' pill opens its guide');
+    for (const k of Object.keys(STORE)) assert.strictEqual(got.hrefs[k], STORE[k], name + ': ' + k + ' pill opens its store');
+    for (const k of Object.keys(GUIDE)) assert.strictEqual(got.targets[k], null, name + ': ' + k + ' pill stays in the same tab');
+    assert.deepStrictEqual(got.downloads, [], name + ': no pill downloads a file directly');
     assert.ok(got.labelled, name + ': every pill has aria-label and title');
+    assert.ok(got.betaLabelled, name + ': desktop pills say beta in their label');
     assert.strictEqual(got.sizes.length, 1, name + ': equal pill sizes ' + got.sizes);
     assert.strictEqual(got.looks.length, 1, name + ': identical pill styling');
-    assert.strictEqual(got.rows, 2, name + ': 2 x 2 grid');
-    assert.strictEqual(got.below, 'actions', name + ': nothing between the pills and Join Beta');
+    assert.strictEqual(got.rows, 3, name + ': pills in a two-column grid (3 rows)');
+    assert.ok(got.beta && got.beta.visible, name + ': beta line under the pills');
+    assert.ok(/^Beta/.test(got.beta.text) && /Windows/.test(got.beta.text) && /Mac/.test(got.beta.text) && /Linux/.test(got.beta.text), name + ': beta line names the three systems: ' + got.beta.text);
+    assert.deepStrictEqual(got.beta.links, ['/windows', '/mac', '/linux'], name + ': beta line links the three guides');
+    assert.strictEqual(got.details, 0, name + ': no dropdown under the pills');
+    assert.strictEqual(got.commands, false, name + ': no install commands or file names on the home page');
+    assert.deepStrictEqual(got.code, { label: 'Install Canopy Code (for developers)', text: '>_ Canopy Code', href: '#install' }, name + ': Canopy Code pill in the grid');
+    assert.ok(got.footer, name + ': footer links the three guides');
     assert.strictEqual(got.overflow, false, name + ': horizontal scroll');
     console.log('ok  ' + name + ' -> ' + got.names.join(', ') + ' (' + got.sizes[0] + ')');
+    await ctx.close();
+  }
+
+  // Clicking a desktop pill lands on the matching guide, in the same tab.
+  for (const [platform, route] of Object.entries(GUIDE)) {
+    const { ctx, page } = await open('windows');
+    const pagesBefore = ctx.pages().length;
+    await page.locator('.download-grid [data-platform="' + platform + '"]').click();
+    await page.waitForLoadState('load');
+    assert.strictEqual(new URL(page.url()).pathname, route, platform + ': pill navigates to ' + route);
+    assert.strictEqual(ctx.pages().length, pagesBefore, platform + ': no new tab');
+    const h1 = await page.locator('h1').first().textContent();
+    assert.ok(/Install CanopyChat on/.test(h1), platform + ': guide heading ' + h1);
+    console.log('ok  click ' + platform + ' -> ' + route);
     await ctx.close();
   }
 
@@ -120,12 +150,8 @@ const HREF = {
     ['download-windows-light.png', 'windows', {}],
     ['download-windows-dark.png', 'windows', { dark: true }],
     ['download-iphone-light.png', 'iphone', {}],
-    ['download-android-dark.png', 'android', { dark: true }],
     ['download-windows-mobile-width.png', 'windows', { viewport: { width: 390, height: 844 } }],
-    ['download-linux-light.png', 'linux', {}],
-    ['download-mac-light.png', 'mac', {}],
-    ['download-iphone-dark.png', 'iphone', { dark: true }],
-    ['download-android-light.png', 'android', {}]
+    ['download-mac-light.png', 'mac', {}]
   ];
   for (const [file, name, opts] of shots) {
     const { ctx, page } = await open(name, opts);

@@ -20,7 +20,7 @@ const assert = require('assert');
 const { chromium } = require('playwright');
 
 const ROOT = path.resolve(__dirname, '..');
-const SHOTS = path.join(__dirname, 'screenshots');
+const SHOTS = process.env.SHOTS_DIR || path.join(__dirname, 'screenshots');
 const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png', '.svg': 'image/svg+xml' };
 
 const BREW = 'brew install nathanaelguitar/canopy/canopy-code';
@@ -172,11 +172,11 @@ const DEVICES = {
     assert.strictEqual(got.tablistVisible, false, 'no-js: tab strip hidden');
     assert.deepStrictEqual(got.panels, ['macos', 'linux', 'windows'], 'no-js: all three commands');
     assert.strictEqual(got.tabpanels, 0, 'no-js: no tabpanels');
-    assert.strictEqual(got.notes.length, 7, 'no-js: every note');
+    assert.strictEqual(got.notes.length, 8, 'no-js: every note');
     assert.strictEqual(got.comingSoon, false, 'no-js: no "coming soon"');
     const commands = await page.evaluate(() => [...document.querySelectorAll('.terminal-panel code[id]')].map((c) => c.textContent.replace(/^\S+\s+/, '').trim()));
     assert.deepStrictEqual(commands, [BREW, BREW, SCOOP], 'no-js: all three commands readable');
-    console.log('ok  no-js -> 3 commands, 7 notes, no strip');
+    console.log('ok  no-js -> 3 commands, 8 notes, no strip');
     await ctx.close();
   }
 

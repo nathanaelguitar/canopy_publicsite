@@ -8,6 +8,8 @@ Source: https://canopychat.app/agents
 
 Want your coding agent to download and install CanopyChat for you? Give it this page. The same text is at [canopychat.app/agents.md](https://canopychat.app/agents.md) as plain Markdown, which is easier for an agent to read.
 
+**The computer apps are betas.** Windows, Mac and Linux all work but still miss features and have rough edges. Each system has its own page with a prompt written for it: [Windows](https://canopychat.app/windows), [Mac](https://canopychat.app/mac), [Linux](https://canopychat.app/linux).
+
 ## Tell your agent
 
 Paste this into Claude Code, Codex or any agent that can run commands on your computer.
@@ -20,6 +22,8 @@ Install CanopyChat on this computer. Follow the instructions at https://canopych
 
 - Confirm before you install anything. Say which file you will download and which command you will run.
 - Installing the Linux package needs `sudo`. Do not ask for the user’s password and do not type one; let them run the `sudo` step themselves or approve it.
+- On Windows, SmartScreen and any administrator prompt are the user’s to click. On a Mac, the TestFlight Accept and Install buttons are the user’s to click. Stop and tell them what to do.
+- Tell the user the computer apps are in beta: they work, but features are still missing.
 - Do not sign in for the user. First start asks for an email address and a 6-digit code that is sent to it. Leave that to the user.
 - Download only from `downloads.canopychat.app`. Do not use mirrors or other sites.
 
@@ -28,8 +32,9 @@ Install CanopyChat on this computer. Follow the instructions at https://canopych
 - **Ubuntu or Debian, x86-64:** the `.deb` (Ubuntu 22.04 or newer).
 - **Ubuntu or Debian, ARM64** (for example NVIDIA DGX Spark): the `.deb` (Ubuntu 24.04 or newer).
 - **Other Linux:** the AppImage (not tested on every distribution).
-- **Windows 10 or 11, x64:** the setup `.exe`.
-- **macOS, iPhone, iPad, Android:** App Store or Google Play, from [canopychat.app](https://canopychat.app/#downloads).
+- **Windows 10 or 11, x64:** the setup `.exe`. Guide for people: [canopychat.app/windows](https://canopychat.app/windows).
+- **Mac:** a free TestFlight beta, not on the Mac App Store yet. You can open the invite but not finish the install; see [Mac](#mac). Guide for people: [canopychat.app/mac](https://canopychat.app/mac).
+- **iPhone, iPad, Android:** App Store or Google Play, from [canopychat.app](https://canopychat.app/#downloads). Nothing for an agent to do.
 
 Check the architecture: `uname -m` prints `x86_64` or `aarch64`. On Debian and Ubuntu, `dpkg --print-architecture` prints `amd64` or `arm64`.
 
@@ -71,11 +76,32 @@ curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(uname -m).AppImage
 
 ## Windows
 
-Download [CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe), check its SHA-256 against the `sha256` in the Windows manifest, then run it. The installer is not code-signed yet, so Windows SmartScreen may warn about an unknown publisher. Tell the user, and let them choose to continue.
+Download [CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) (about 165 MB), check its SHA-256 against the `sha256` in the Windows manifest, then start it. In PowerShell:
+
+```
+$ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest https://downloads.canopychat.app/windows/CanopyChat-Setup.exe -OutFile "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"
+(Get-FileHash "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe" -Algorithm SHA256).Hash.ToLower()
+Invoke-RestMethod https://downloads.canopychat.app/windows/latest.json | Select-Object version, sha256, size
+Start-Process "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"
+```
+
+If the hashes differ, delete the file and stop. The installer is not code-signed yet, so Windows SmartScreen shows “Windows protected your PC”; the user chooses **More info**, then **Run anyway**. Any administrator prompt is also theirs. When the installer finishes, CanopyChat is in the Start menu. From version 0.3.6 the app updates itself from Settings.
+
+## Mac
+
+The Mac app is a free TestFlight beta while it is in App Review. TestFlight is Apple’s app, signed in with the user’s Apple Account, so you cannot complete this install. Do this instead:
+
+1.  Check that TestFlight is installed (`ls /Applications/TestFlight.app`). If not, tell the user to install it from the Mac App Store first.
+2.  Open the invite for them: `open "https://testflight.apple.com/join/f5xCZmVv"`.
+3.  Tell them to choose **Accept**, then **Install** in TestFlight, and to say when it has finished.
+4.  Then start the app with `open -a CanopyChat`. If that fails, the install has not finished.
+
+Updates come through TestFlight. There is nothing to download from downloads.canopychat.app for a Mac.
 
 ## Check that it worked
 
 - Debian and Ubuntu: `command -v canopychat && dpkg -s canopy-chat | grep '^Version'` prints the launcher path and the installed version. Compare it with `version` in the manifest.
+- Windows: CanopyChat appears in the Start menu once the installer finishes. The version is in the app’s Settings.
 - To start it, run `canopychat &` in a terminal on the computer’s desktop, or open CanopyChat from the applications menu. Over SSH there is no screen, so skip this step and rely on the check above.
 - If the window is blank, see [Troubleshooting](#troubleshooting).
 - Then tell the user it is ready for them to sign in.
@@ -105,6 +131,6 @@ A later version will do this by itself.
 
 You have the file for the other architecture. Use `dpkg --print-architecture` to choose.
 
-For anything else, see the [Linux guide](https://canopychat.app/linux), or email <support@canopychat.app> with the distribution, `uname -m` and the exact error.
+For anything else, see the [Linux](https://canopychat.app/linux), [Windows](https://canopychat.app/windows) or [Mac](https://canopychat.app/mac) guide, or email <support@canopychat.app> with the distribution, `uname -m` and the exact error.
 
 Back to [canopychat.app](https://canopychat.app/) or [Support](https://canopychat.app/support).
