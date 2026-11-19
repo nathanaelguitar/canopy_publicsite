@@ -87,7 +87,7 @@ Open Windows **Settings**, then **Apps**, find **CanopyChat** in the list of ins
 
 The honest list of what the Windows beta does not do yet:
 
-- No list of your other computers and no remote control of them from this app. The Mac app has it; Windows will get it.
+- No list of your other computers and no remote control of them from this app. The Mac app has it.
 - Model recommendations are limited to Canopy Lite for now. Other local models are not suggested yet.
 - The installer is not code-signed, so SmartScreen warns about it on every install and update.
 - Features arrive over time, and some screens are rougher than on the phone. If something is missing that you need, tell <support@canopychat.app>.

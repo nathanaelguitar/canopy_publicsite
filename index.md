@@ -8,7 +8,7 @@ CanopyChat answers right on your phone or computer and keeps your chats, photos,
 
 ## Download
 
-[Windows](https://canopychat.app/windows "Windows 10 and 11 · beta · install guide") [Mac](https://canopychat.app/mac "Mac · free TestFlight beta · install guide") [iPhone](https://apps.apple.com/us/app/canopychat/id6788203137 "iPhone and iPad · App Store") [Android](https://play.google.com/store/apps/details?id=com.nathanaelguitar.canopychat "Android · Google Play") [Linux](https://canopychat.app/linux "Linux · Ubuntu 22.04 or newer · beta · install guide") [\>\_ Canopy Code](#install "Install Canopy Code (for developers)")
+[Windows](https://canopychat.app/windows "Windows 10 and 11 · beta · install guide") [Mac](https://canopychat.app/mac "Mac · free TestFlight beta · install guide") [iPhone](https://apps.apple.com/us/app/canopychat/id6788203137 "iPhone and iPad · App Store") [Android](https://play.google.com/store/apps/details?id=com.nathanaelguitar.canopychat "Android · Google Play") [Linux](https://canopychat.app/linux "Linux · Ubuntu 22.04 or newer (ARM64: 24.04) · beta · install guide") [\>\_ Canopy Code](#install "Install Canopy Code (for developers)")
 
 **Beta on computers.** The [Windows](https://canopychat.app/windows), [Mac](https://canopychat.app/mac) and [Linux](https://canopychat.app/linux) apps work but still miss features and have rough edges. Each page explains how to install, by hand or with an agent.
 

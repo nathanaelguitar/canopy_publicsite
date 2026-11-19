@@ -160,7 +160,7 @@ Use `CanopyChat-aarch64.AppImage` on ARM64. The sections above on installing, up
 
 The honest list of what the Linux beta does not do yet:
 
-- No list of your other computers and no remote control of them from this app. The Mac app has it; Linux will get it.
+- No list of your other computers and no remote control of them from this app. The Mac app has it.
 - Model recommendations are limited to Canopy Lite for now. Other local models are not suggested yet.
 - On some NVIDIA machines the window opens blank until you start the app with the [workaround below](#troubleshooting).
 - Features arrive over time, and some screens are rougher than on the phone. If something is missing that you need, tell <support@canopychat.app>.
