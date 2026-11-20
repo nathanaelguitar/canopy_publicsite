@@ -91,7 +91,7 @@ const GUIDE = { windows: '/windows', mac: '/mac', linux: '/linux' };
       const beta = document.querySelector('.download .download-beta');
       return {
         title: document.querySelector('.download-title').textContent.trim(),
-        names: pills.map((p) => p.textContent.trim()),
+        names: pills.map((p) => p.textContent.replace(/\s+/g, ' ').trim().replace(/ beta$/i, '')),
         hrefs: Object.fromEntries(pills.map((p) => [p.dataset.platform, p.getAttribute('href')])),
         targets: Object.fromEntries(pills.map((p) => [p.dataset.platform, p.getAttribute('target')])),
         downloads: pills.filter((p) => p.hasAttribute('download')).map((p) => p.dataset.platform),
