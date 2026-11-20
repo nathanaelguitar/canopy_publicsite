@@ -8,7 +8,7 @@ Source: https://canopychat.app/agents
 
 Want your coding agent to download and install CanopyChat for you? Give it this page. The same text is at [canopychat.app/agents.md](https://canopychat.app/agents.md) as plain Markdown, which is easier for an agent to read.
 
-**The computer apps are betas.** Windows, Mac and Linux all work but still miss features and have rough edges. Each system has its own page with a prompt written for it: [Windows](https://canopychat.app/windows), [Mac](https://canopychat.app/mac), [Linux](https://canopychat.app/linux).
+**The computer apps are betas.** Windows, Mac and Linux are all in beta. Each system has its own page with a prompt written for it: [Windows](https://canopychat.app/windows), [Mac](https://canopychat.app/mac), [Linux](https://canopychat.app/linux).
 
 ## Tell your agent
 
@@ -23,7 +23,7 @@ Install CanopyChat on this computer. Follow the instructions at https://canopych
 - Confirm before you install anything. Say which file you will download and which command you will run.
 - Installing the Linux package needs `sudo`. Do not ask for the user’s password and do not type one; let them run the `sudo` step themselves or approve it.
 - On Windows, SmartScreen and any administrator prompt are the user’s to click. On a Mac, the TestFlight Accept and Install buttons are the user’s to click. Stop and tell them what to do.
-- Tell the user the computer apps are in beta: they work, but features are still missing.
+- Tell the user the computer apps are in beta, and that feature requests and bug reports go to support@canopychat.app.
 - Do not sign in for the user. First start asks for an email address and a 6-digit code that is sent to it. Leave that to the user.
 - Download only from `downloads.canopychat.app`. Do not use mirrors or other sites.
 

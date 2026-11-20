@@ -10,7 +10,7 @@
  *
  * Spoofs each device's user agent and platform and checks: iPhone and Android pills open their
  * stores; Windows, Mac and Linux pills open the guide pages in the same tab (no direct download,
- * no target=_blank); the beta line under the pills names all three systems and links each guide;
+ * no target=_blank); there is no beta line under the pills;
  * every pill looks the same; no horizontal scroll. Nothing leaves the machine.
  */
 'use strict';
@@ -120,9 +120,7 @@ const GUIDE = { windows: '/windows', mac: '/mac', linux: '/linux' };
     assert.strictEqual(got.sizes.length, 1, name + ': equal pill sizes ' + got.sizes);
     assert.strictEqual(got.looks.length, 1, name + ': identical pill styling');
     assert.strictEqual(got.rows, 3, name + ': pills in a two-column grid (3 rows)');
-    assert.ok(got.beta && got.beta.visible, name + ': beta line under the pills');
-    assert.ok(/^Beta/.test(got.beta.text) && /Windows/.test(got.beta.text) && /Mac/.test(got.beta.text) && /Linux/.test(got.beta.text), name + ': beta line names the three systems: ' + got.beta.text);
-    assert.deepStrictEqual(got.beta.links, ['/windows', '/mac', '/linux'], name + ': beta line links the three guides');
+    assert.ok(!got.beta, name + ': no beta line under the pills (the beta status is on each pill and on each guide)');
     assert.strictEqual(got.details, 0, name + ': no dropdown under the pills');
     assert.strictEqual(got.commands, false, name + ': no install commands or file names on the home page');
     assert.deepStrictEqual(got.code, { label: 'Install Canopy Code (for developers)', text: '>_ Canopy Code', href: '#install' }, name + ': Canopy Code pill in the grid');

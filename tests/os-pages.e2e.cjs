@@ -157,7 +157,8 @@ const PAGES = {
     assert.strictEqual(got.h1, want.h1, tag + ': heading');
     assert.ok(/beta/i.test(got.title), tag + ': title says beta: ' + got.title);
     assert.ok(got.beta && got.beta.afterLead, tag + ': beta notice right under the lead');
-    assert.ok(/beta/i.test(got.beta.text) && /missing|miss features/i.test(got.beta.text) && /rough edges/i.test(got.beta.text), tag + ': beta notice is plain about missing features: ' + got.beta.text);
+    assert.ok(/beta/i.test(got.beta.text) && /feature requests/i.test(got.beta.text) && /bug reports/i.test(got.beta.text), tag + ': beta notice says beta and invites feature requests and bug reports: ' + got.beta.text);
+    assert.ok(!/rough edges|missing/i.test(got.beta.text), tag + ': beta notice does not talk the app down: ' + got.beta.text);
     assert.ok(got.beta.support, tag + ': beta notice links support@canopychat.app');
     assert.deepStrictEqual(got.others, want.others.concat(['/agents']), tag + ': links to the other systems and /agents');
     assert.ok(got.toc.length >= 9 && got.tocTargets, tag + ': every on-this-page link has a target ' + JSON.stringify(got.toc));
