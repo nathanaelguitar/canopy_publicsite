@@ -3779,6 +3779,30 @@ html:has(.founding-mobile-funnel) {
   font-size: 18px;
 }
 
+.dl-pill .appstore-badge-line {
+  white-space: nowrap;
+}
+
+@media (max-width: 420px) {
+  .dl-pill {
+    padding-left: 12px;
+    padding-right: 14px;
+  }
+
+  .dl-pill .appstore-badge-line {
+    font-size: 16px;
+  }
+}
+
+.dl-pill .dl-beta {
+  margin-left: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
 .download + .actions {
   margin-top: 22px;
 }
