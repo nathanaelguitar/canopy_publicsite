@@ -50,7 +50,7 @@ const PAGES = {
     h1: 'Install CanopyChat on Windows',
     others: ['/mac', '/linux'],
     links: [WIN_EXE, WIN_MANIFEST],
-    text: ['Windows protected your PC', 'More info', 'Run anyway', 'about 165 MB', 'not yet code-signed', 'Get-FileHash', 'Check for updates', 'Update now', 'Uninstall', 'No list of your other computers', 'Canopy Lite'],
+    text: ['Windows protected your PC', 'More info', 'Run anyway', 'about 167 MB', 'not yet code-signed', 'Get-FileHash', 'Check for updates', 'Update now', 'Uninstall', 'No list of your other computers', 'Canopy Lite'],
     prompt: ['https://canopychat.app/agents.md', 'Tell me before you run the installer', 'administrator', 'Do not sign in'],
     noText: ['Mac App Store']
   },
@@ -66,8 +66,8 @@ const PAGES = {
   linux: {
     h1: 'Install CanopyChat on Linux',
     others: ['/windows', '/mac'],
-    links: ['https://downloads.canopychat.app/linux/CanopyChat-amd64.deb', 'https://downloads.canopychat.app/linux/CanopyChat-arm64.deb', 'https://downloads.canopychat.app/linux/latest.json'],
-    text: [ONELINER, 'WEBKIT_DISABLE_DMABUF_RENDERER=1 canopychat &', 'sudo apt remove canopy-chat', 'Ubuntu 22.04 or newer', 'Ubuntu 24.04 or newer', 'No list of your other computers', 'Canopy Lite'],
+    links: ['https://downloads.canopychat.app/linux/CanopyChat-amd64.deb', 'https://downloads.canopychat.app/linux/CanopyChat-arm64.deb', 'https://downloads.canopychat.app/linux/CanopyChat-x86_64.rpm', 'https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm', 'https://downloads.canopychat.app/linux/latest.json'],
+    text: [ONELINER, 'WEBKIT_DISABLE_DMABUF_RENDERER=1 canopychat &', 'sudo apt remove canopy-chat', 'sudo dnf remove canopy-chat', 'sudo zypper remove canopy-chat', 'sudo dnf install ./CanopyChat-$(uname -m).rpm', 'Ubuntu 22.04 or newer', 'Ubuntu 24.04 or newer', 'No list of your other computers', 'Canopy Lite'],
     prompt: ['https://canopychat.app/agents.md', 'needs sudo', 'never type my password', 'Do not sign in'],
     noText: []
   }
