@@ -5258,3 +5258,6 @@ html:has(.flame-page) {
     color: #cdbba6;
   }
 }
+
+/* A second package row (the .rpm) under the .deb command in an architecture panel */
+.arch-panel .cmd + .arch-panel-row { margin-top: 1.5rem; }
