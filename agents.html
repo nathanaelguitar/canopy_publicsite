@@ -177,7 +177,7 @@ Start-Process "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"</code></pre>
             <h2>Check that it worked</h2>
             <ul>
               <li>Debian and Ubuntu: <code>command -v canopychat &amp;&amp; dpkg -s canopy-chat | grep '^Version'</code> prints the launcher path and the installed version. Compare it with <code>version</code> in the manifest.</li>
-              <li>Fedora and openSUSE: <code>command -v canopychat &amp;&amp; rpm -q canopy-chat</code> prints the launcher path and the installed version (for example <code>canopy-chat-0.3.8-1</code>).</li>
+              <li>Fedora and openSUSE: <code>command -v canopychat &amp;&amp; rpm -q canopy-chat</code> prints the launcher path and the installed version (for example <code>canopy-chat-0.3.8-1.x86_64</code>).</li>
               <li>Windows: CanopyChat appears in the Start menu once the installer finishes. The version is in the app&rsquo;s Settings.</li>
               <li>To start it, run <code>canopychat &amp;</code> in a terminal on the computer&rsquo;s desktop, or open CanopyChat from the applications menu. Over SSH there is no screen, so skip this step and rely on the check above.</li>
               <li>If the window is blank, see <a href="#troubleshooting">Troubleshooting</a>.</li>

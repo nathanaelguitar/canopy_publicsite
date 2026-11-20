@@ -26,7 +26,7 @@ Fedora. The same, with the `.rpm`:
 curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(uname -m).rpm && sudo dnf install ./CanopyChat-$(uname -m).rpm
 ```
 
-openSUSE. `zypper` asks once about the missing package signature; choose to continue if the file came from downloads.canopychat.app.
+openSUSE, x86-64 only (ARM64 openSUSE is not confirmed; see [Supported systems](#supported-systems)). `zypper` asks once about the missing package signature; choose to continue only after you have checked the file’s `sha256` ([Choose a file](#choose-a-file)).
 
 ```
 curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(uname -m).rpm && sudo zypper install ./CanopyChat-$(uname -m).rpm
@@ -68,7 +68,7 @@ Then install it from your Downloads folder:
 cd ~/Downloads && sudo apt install ./CanopyChat-arm64.deb
 ```
 
-[Linux ARM64 (.rpm)](https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm) about 186 MB · Fedora and openSUSE
+[Linux ARM64 (.rpm)](https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm) about 186 MB · Fedora (openSUSE ARM64 is not confirmed)
 
 Then install it from your Downloads folder, on Fedora:
 
@@ -76,11 +76,7 @@ Then install it from your Downloads folder, on Fedora:
 cd ~/Downloads && sudo dnf install ./CanopyChat-aarch64.rpm
 ```
 
-or on openSUSE:
-
-```
-cd ~/Downloads && sudo zypper install ./CanopyChat-aarch64.rpm
-```
+On openSUSE ARM64 the app is not confirmed to work with the system web engine; see [Supported systems](#supported-systems) and use the [AppImage](#other-distributions) there.
 
 ## What you get
 
@@ -112,7 +108,7 @@ uname -m
 - [Linux x86-64 (.deb)](https://downloads.canopychat.app/linux/CanopyChat-amd64.deb), about 280 MB
 - [Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)](https://downloads.canopychat.app/linux/CanopyChat-arm64.deb), about 230 MB
 - [Linux x86-64 (.rpm, for Fedora and openSUSE)](https://downloads.canopychat.app/linux/CanopyChat-x86_64.rpm), about 215 MB
-- [Linux ARM64 (.rpm, for Fedora and openSUSE)](https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm), about 186 MB
+- [Linux ARM64 (.rpm, for Fedora; openSUSE ARM64 is not confirmed)](https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm), about 186 MB
 - AppImage, for Arch and other distributions (untested, [details below](#other-distributions)): [x86-64](https://downloads.canopychat.app/linux/CanopyChat-x86_64.AppImage) or [ARM64](https://downloads.canopychat.app/linux/CanopyChat-aarch64.AppImage).
 
 To check a download, run `sha256sum` on it and compare the result with the `sha256` for your file (`amd64-deb`, `arm64-deb`, `x86_64-rpm` or `aarch64-rpm`) in [latest.json](https://downloads.canopychat.app/linux/latest.json).
@@ -143,7 +139,7 @@ Download the `.rpm` for your computer ([Choose a file](#choose-a-file)), then in
 cd ~/Downloads && sudo dnf install ./CanopyChat-$(uname -m).rpm
 ```
 
-On openSUSE:
+On openSUSE (x86-64; on ARM64 use the AppImage):
 
 ```
 cd ~/Downloads && sudo zypper install ./CanopyChat-$(uname -m).rpm
@@ -195,7 +191,7 @@ Your chats and settings are stored on your computer, in `~/.local/share/canopych
 
 ## Updates
 
-From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose **Check for updates**, then **Update now**. On Linux the new package is saved to your Downloads folder; install it the same way as above (`apt`, `dnf` or `zypper`, to match the file). On Arch there is no package yet, so the app has nothing to download there. If you have 0.3.5 or older, install 0.3.6 by hand once, using the steps above.
+From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose **Check for updates**, then **Update now**. On Linux the new package is saved to your Downloads folder; install it the same way as above. We have tested that path only for the `.deb`; on Fedora and openSUSE, if **Update now** finds nothing, download the new `.rpm` from this page and install it with `dnf` or `zypper`. On Arch there is no package yet, so the app has nothing to download there. If you have 0.3.5 or older, install 0.3.6 by hand once, using the steps above.
 
 ## Uninstall
 

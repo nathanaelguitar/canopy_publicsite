@@ -57,7 +57,7 @@
           <button class="copy-button" type="button" data-copy-target="cmd-oneliner-fedora" aria-label="Copy the one-line install command for Fedora">Copy</button>
         </div>
         <div class="quick-install-head">
-          <p>openSUSE. <code>zypper</code> asks once about the missing package signature; choose to continue if the file came from downloads.canopychat.app.</p>
+          <p>openSUSE, x86-64 only (ARM64 openSUSE is not confirmed; see <a href="#supported-systems">Supported systems</a>). <code>zypper</code> asks once about the missing package signature; choose to continue only after you have checked the file&rsquo;s <code>sha256</code> (<a href="#choose-a-file">Choose a file</a>).</p>
         </div>
         <div class="cmd" data-cmd>
           <pre><code id="cmd-oneliner-suse">curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(uname -m).rpm &amp;&amp; sudo zypper install ./CanopyChat-$(uname -m).rpm</code></pre>
@@ -97,17 +97,13 @@
               <pre><code id="cmd-browser-arm64">cd ~/Downloads &amp;&amp; sudo apt install ./CanopyChat-arm64.deb</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-browser-arm64" aria-label="Copy the ARM64 install command">Copy</button>
             </div>
-            <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm" download>Linux ARM64 (.rpm)</a> <span class="arch-panel-size">about 186 MB &middot; Fedora and openSUSE</span></p>
+            <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm" download>Linux ARM64 (.rpm)</a> <span class="arch-panel-size">about 186 MB &middot; Fedora (openSUSE ARM64 is not confirmed)</span></p>
             <p class="arch-panel-note">Then install it from your Downloads folder, on Fedora:</p>
             <div class="cmd" data-cmd>
               <pre><code id="cmd-browser-arm64-dnf">cd ~/Downloads &amp;&amp; sudo dnf install ./CanopyChat-aarch64.rpm</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-browser-arm64-dnf" aria-label="Copy the ARM64 install command for Fedora">Copy</button>
             </div>
-            <p class="arch-panel-note">or on openSUSE:</p>
-            <div class="cmd" data-cmd>
-              <pre><code id="cmd-browser-arm64-zypper">cd ~/Downloads &amp;&amp; sudo zypper install ./CanopyChat-aarch64.rpm</code></pre>
-              <button class="copy-button" type="button" data-copy-target="cmd-browser-arm64-zypper" aria-label="Copy the ARM64 install command for openSUSE">Copy</button>
-            </div>
+            <p class="arch-panel-note">On openSUSE ARM64 the app is not confirmed to work with the system web engine; see <a href="#supported-systems">Supported systems</a> and use the <a href="#other-distributions">AppImage</a> there.</p>
           </div>
         </div>
       </section>
@@ -166,7 +162,7 @@
               <li><a href="https://downloads.canopychat.app/linux/CanopyChat-amd64.deb" download>Linux x86-64 (.deb)</a>, about 280 MB</li>
               <li><a href="https://downloads.canopychat.app/linux/CanopyChat-arm64.deb" download>Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)</a>, about 230 MB</li>
               <li><a href="https://downloads.canopychat.app/linux/CanopyChat-x86_64.rpm" download>Linux x86-64 (.rpm, for Fedora and openSUSE)</a>, about 215 MB</li>
-              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm" download>Linux ARM64 (.rpm, for Fedora and openSUSE)</a>, about 186 MB</li>
+              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm" download>Linux ARM64 (.rpm, for Fedora; openSUSE ARM64 is not confirmed)</a>, about 186 MB</li>
               <li>AppImage, for Arch and other distributions (untested, <a href="#other-distributions">details below</a>): <a href="https://downloads.canopychat.app/linux/CanopyChat-x86_64.AppImage" download>x86-64</a> or <a href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.AppImage" download>ARM64</a>.</li>
             </ul>
             <p>To check a download, run <code>sha256sum</code> on it and compare the result with the <code>sha256</code> for your file (<code>amd64-deb</code>, <code>arm64-deb</code>, <code>x86_64-rpm</code> or <code>aarch64-rpm</code>) in <a href="https://downloads.canopychat.app/linux/latest.json">latest.json</a>.</p>
@@ -193,7 +189,7 @@
               <pre><code id="cmd-rpm-dnf">cd ~/Downloads &amp;&amp; sudo dnf install ./CanopyChat-$(uname -m).rpm</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-rpm-dnf" aria-label="Copy the Fedora install command">Copy</button>
             </div>
-            <p>On openSUSE:</p>
+            <p>On openSUSE (x86-64; on ARM64 use the AppImage):</p>
             <div class="cmd" data-cmd>
               <pre><code id="cmd-rpm-zypper">cd ~/Downloads &amp;&amp; sudo zypper install ./CanopyChat-$(uname -m).rpm</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-rpm-zypper" aria-label="Copy the openSUSE install command">Copy</button>
@@ -240,7 +236,7 @@
 
           <section id="updates" class="doc-section">
             <h2>Updates</h2>
-            <p>From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose <strong>Check for updates</strong>, then <strong>Update now</strong>. On Linux the new package is saved to your Downloads folder; install it the same way as above (<code>apt</code>, <code>dnf</code> or <code>zypper</code>, to match the file). On Arch there is no package yet, so the app has nothing to download there. If you have 0.3.5 or older, install 0.3.6 by hand once, using the steps above.</p>
+            <p>From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose <strong>Check for updates</strong>, then <strong>Update now</strong>. On Linux the new package is saved to your Downloads folder; install it the same way as above. We have tested that path only for the <code>.deb</code>; on Fedora and openSUSE, if <strong>Update now</strong> finds nothing, download the new <code>.rpm</code> from this page and install it with <code>dnf</code> or <code>zypper</code>. On Arch there is no package yet, so the app has nothing to download there. If you have 0.3.5 or older, install 0.3.6 by hand once, using the steps above.</p>
           </section>
 
           <section id="uninstall" class="doc-section">

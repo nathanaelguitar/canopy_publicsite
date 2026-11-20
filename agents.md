@@ -121,7 +121,7 @@ Updates come through TestFlight. There is nothing to download from downloads.can
 ## Check that it worked
 
 - Debian and Ubuntu: `command -v canopychat && dpkg -s canopy-chat | grep '^Version'` prints the launcher path and the installed version. Compare it with `version` in the manifest.
-- Fedora and openSUSE: `command -v canopychat && rpm -q canopy-chat` prints the launcher path and the installed version (for example `canopy-chat-0.3.8-1`).
+- Fedora and openSUSE: `command -v canopychat && rpm -q canopy-chat` prints the launcher path and the installed version (for example `canopy-chat-0.3.8-1.x86_64`).
 - Windows: CanopyChat appears in the Start menu once the installer finishes. The version is in the app’s Settings.
 - To start it, run `canopychat &` in a terminal on the computer’s desktop, or open CanopyChat from the applications menu. Over SSH there is no screen, so skip this step and rely on the check above.
 - If the window is blank, see [Troubleshooting](#troubleshooting).
