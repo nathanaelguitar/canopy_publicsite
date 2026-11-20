@@ -8,10 +8,10 @@
   <meta name="theme-color" content="#120d0a" media="(prefers-color-scheme: dark)">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://connect.facebook.net; connect-src 'self' https://founding-api.canopychat.app https://www.facebook.com https://connect.facebook.net; img-src 'self' data: https://www.facebook.com; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://checkout.stripe.com; upgrade-insecure-requests">
   <title>Install CanopyChat on Linux (beta)</title>
-  <meta name="description" content="Install, update and remove the CanopyChat beta on Linux (Ubuntu 22.04 or newer, x86-64 and ARM64), by hand or with an AI agent, and fix common install errors.">
+  <meta name="description" content="Install, update and remove the CanopyChat beta on Linux (Ubuntu 22.04 or newer, plus Fedora and openSUSE, x86-64 and ARM64), by hand or with an AI agent, and fix common install errors.">
   <link rel="icon" type="image/png" href="assets/app-icon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/styles.css?v=os-pages-1">
+  <link rel="stylesheet" href="assets/styles.css?v=os-pages-2">
   <link rel="alternate" type="text/markdown" href="/linux.md">
 </head>
 <body class="linux-page">
@@ -33,7 +33,7 @@
       <header class="linux-head">
         <nav class="linux-crumb" aria-label="Breadcrumb"><a href="/">CanopyChat</a> <span aria-hidden="true">/</span> <a href="/#downloads">Download</a> <span aria-hidden="true">/</span> <span aria-current="page">Linux</span></nav>
         <h1>Install CanopyChat on Linux</h1>
-        <p class="linux-lead">A desktop app for Ubuntu 22.04 or newer, on x86-64 and ARM64. The free plan runs a small model on your computer, and a paid plan unlocks cloud models.</p>
+        <p class="linux-lead">A desktop app for Ubuntu 22.04 or newer, with packages for Fedora and openSUSE too, on x86-64 and ARM64. The free plan runs a small model on your computer, and a paid plan unlocks cloud models.</p>
         <div class="beta-note" role="note">
           <p><strong>The Linux app is a beta.</strong> We are taking feature requests and bug reports at <a href="mailto:support@canopychat.app">support@canopychat.app</a>.</p>
         </div>
@@ -49,6 +49,20 @@
           <pre><code id="cmd-oneliner">curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(dpkg --print-architecture).deb &amp;&amp; sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb</code></pre>
           <button class="copy-button" type="button" data-copy-target="cmd-oneliner" aria-label="Copy the one-line install command">Copy</button>
         </div>
+        <div class="quick-install-head">
+          <p>Fedora. The same, with the <code>.rpm</code>:</p>
+        </div>
+        <div class="cmd" data-cmd>
+          <pre><code id="cmd-oneliner-fedora">curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(uname -m).rpm &amp;&amp; sudo dnf install ./CanopyChat-$(uname -m).rpm</code></pre>
+          <button class="copy-button" type="button" data-copy-target="cmd-oneliner-fedora" aria-label="Copy the one-line install command for Fedora">Copy</button>
+        </div>
+        <div class="quick-install-head">
+          <p>openSUSE, x86-64 only (ARM64 openSUSE is not confirmed; see <a href="#supported-systems">Supported systems</a>). <code>zypper</code> asks once about the missing package signature; choose to continue only after you have checked the file&rsquo;s <code>sha256</code> (<a href="#choose-a-file">Choose a file</a>).</p>
+        </div>
+        <div class="cmd" data-cmd>
+          <pre><code id="cmd-oneliner-suse">curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(uname -m).rpm &amp;&amp; sudo zypper install ./CanopyChat-$(uname -m).rpm</code></pre>
+          <button class="copy-button" type="button" data-copy-target="cmd-oneliner-suse" aria-label="Copy the one-line install command for openSUSE">Copy</button>
+        </div>
         <div class="arch-pick">
           <p class="arch-pick-label" id="arch-pick-label">Prefer to download the file?</p>
           <div class="arch-tabs" role="tablist" aria-labelledby="arch-pick-label" hidden>
@@ -63,6 +77,17 @@
               <pre><code id="cmd-browser-amd64">cd ~/Downloads &amp;&amp; sudo apt install ./CanopyChat-amd64.deb</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-browser-amd64" aria-label="Copy the x86-64 install command">Copy</button>
             </div>
+            <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/linux/CanopyChat-x86_64.rpm" download>Linux x86-64 (.rpm)</a> <span class="arch-panel-size">about 215 MB &middot; Fedora and openSUSE</span></p>
+            <p class="arch-panel-note">Then install it from your Downloads folder, on Fedora:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-browser-amd64-dnf">cd ~/Downloads &amp;&amp; sudo dnf install ./CanopyChat-x86_64.rpm</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-browser-amd64-dnf" aria-label="Copy the x86-64 install command for Fedora">Copy</button>
+            </div>
+            <p class="arch-panel-note">or on openSUSE:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-browser-amd64-zypper">cd ~/Downloads &amp;&amp; sudo zypper install ./CanopyChat-x86_64.rpm</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-browser-amd64-zypper" aria-label="Copy the x86-64 install command for openSUSE">Copy</button>
+            </div>
           </div>
           <div class="arch-panel" id="panel-arm64" data-arch="arm64">
             <p class="arch-panel-title">ARM64 (for example NVIDIA DGX Spark, Raspberry Pi 5, Ampere)</p>
@@ -72,6 +97,13 @@
               <pre><code id="cmd-browser-arm64">cd ~/Downloads &amp;&amp; sudo apt install ./CanopyChat-arm64.deb</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-browser-arm64" aria-label="Copy the ARM64 install command">Copy</button>
             </div>
+            <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm" download>Linux ARM64 (.rpm)</a> <span class="arch-panel-size">about 186 MB &middot; Fedora (openSUSE ARM64 is not confirmed)</span></p>
+            <p class="arch-panel-note">Then install it from your Downloads folder, on Fedora:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-browser-arm64-dnf">cd ~/Downloads &amp;&amp; sudo dnf install ./CanopyChat-aarch64.rpm</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-browser-arm64-dnf" aria-label="Copy the ARM64 install command for Fedora">Copy</button>
+            </div>
+            <p class="arch-panel-note">On openSUSE ARM64 the app is not confirmed to work with the system web engine; see <a href="#supported-systems">Supported systems</a> and use the <a href="#other-distributions">AppImage</a> there.</p>
           </div>
         </div>
       </section>
@@ -110,8 +142,11 @@
             <ul>
               <li><strong>x86-64</strong> (Intel and AMD): Ubuntu 22.04 or newer.</li>
               <li><strong>ARM64</strong> (for example NVIDIA DGX Spark, Raspberry Pi 5, Ampere servers): Ubuntu 24.04 or newer. The local model engine for ARM64 needs a newer system library (glibc 2.38) than Ubuntu 22.04 has.</li>
+              <li><strong>Fedora</strong> (x86-64 and ARM64): the <code>.rpm</code>. Tested on Fedora 45, on both x86-64 and ARM64, in a container with a virtual display: it installs with <code>dnf</code>, starts and loads its web view, and removes cleanly. Not tested on a real desktop with a graphics card.</li>
+              <li><strong>openSUSE</strong>: the same <code>.rpm</code>. Tested on openSUSE Tumbleweed on x86-64 in a container, as above. <strong>ARM64 openSUSE is not confirmed:</strong> in our test its system web engine crashed when the app drew its window, so use the AppImage there.</li>
+              <li>The <code>.rpm</code> needs WebKitGTK 4.1 and glibc 2.34 or newer. <code>dnf</code> refused it on Rocky Linux 9 when we tried. Red Hat and AlmaLinux 9 and openSUSE Leap 15 are older than those requirements too, so expect the same there (we did not try them).</li>
               <li>We test on Ubuntu. Other Debian-based systems may work with the <code>.deb</code> but are not tested.</li>
-              <li>Fedora, Arch and other distributions: see <a href="#other-distributions">Other distributions</a>.</li>
+              <li>Arch and other distributions: see <a href="#other-distributions">Other distributions</a>.</li>
             </ul>
           </section>
 
@@ -122,13 +157,15 @@
               <pre><code id="cmd-uname">uname -m</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-uname" aria-label="Copy the uname command">Copy</button>
             </div>
-            <p><code>x86_64</code> means x86-64. <code>aarch64</code> means ARM64. On Ubuntu and Debian, <code>dpkg --print-architecture</code> prints the same choice as <code>amd64</code> or <code>arm64</code>.</p>
+            <p><code>x86_64</code> means x86-64. <code>aarch64</code> means ARM64. On Ubuntu and Debian, <code>dpkg --print-architecture</code> prints the same choice as <code>amd64</code> or <code>arm64</code>. The <code>.rpm</code> files are named with the <code>uname -m</code> value.</p>
             <ul class="file-list">
               <li><a href="https://downloads.canopychat.app/linux/CanopyChat-amd64.deb" download>Linux x86-64 (.deb)</a>, about 280 MB</li>
               <li><a href="https://downloads.canopychat.app/linux/CanopyChat-arm64.deb" download>Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)</a>, about 230 MB</li>
-              <li>AppImage, for Fedora, Arch and other distributions (untested, <a href="#other-distributions">details below</a>): <a href="https://downloads.canopychat.app/linux/CanopyChat-x86_64.AppImage" download>x86-64</a> or <a href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.AppImage" download>ARM64</a>.</li>
+              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-x86_64.rpm" download>Linux x86-64 (.rpm, for Fedora and openSUSE)</a>, about 215 MB</li>
+              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm" download>Linux ARM64 (.rpm, for Fedora; openSUSE ARM64 is not confirmed)</a>, about 186 MB</li>
+              <li>AppImage, for Arch and other distributions (untested, <a href="#other-distributions">details below</a>): <a href="https://downloads.canopychat.app/linux/CanopyChat-x86_64.AppImage" download>x86-64</a> or <a href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.AppImage" download>ARM64</a>.</li>
             </ul>
-            <p>To check a download, run <code>sha256sum</code> on it and compare the result with the <code>sha256</code> for your file (<code>amd64-deb</code> or <code>arm64-deb</code>) in <a href="https://downloads.canopychat.app/linux/latest.json">latest.json</a>.</p>
+            <p>To check a download, run <code>sha256sum</code> on it and compare the result with the <code>sha256</code> for your file (<code>amd64-deb</code>, <code>arm64-deb</code>, <code>x86_64-rpm</code> or <code>aarch64-rpm</code>) in <a href="https://downloads.canopychat.app/linux/latest.json">latest.json</a>.</p>
           </section>
 
           <section id="install" class="doc-section">
@@ -146,11 +183,24 @@
             </div>
             <p>Keep the <code>./</code> in front of the file name: it tells <code>apt</code> to install the file instead of searching its package lists.</p>
 
+            <h3 id="install-rpm">On Fedora and openSUSE</h3>
+            <p>Download the <code>.rpm</code> for your computer (<a href="#choose-a-file">Choose a file</a>), then install it from the folder it is in. On Fedora:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-rpm-dnf">cd ~/Downloads &amp;&amp; sudo dnf install ./CanopyChat-$(uname -m).rpm</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-rpm-dnf" aria-label="Copy the Fedora install command">Copy</button>
+            </div>
+            <p>On openSUSE (x86-64; on ARM64 use the AppImage):</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-rpm-zypper">cd ~/Downloads &amp;&amp; sudo zypper install ./CanopyChat-$(uname -m).rpm</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-rpm-zypper" aria-label="Copy the openSUSE install command">Copy</button>
+            </div>
+            <p>The <code>.rpm</code> is not signed yet. <code>dnf</code> installs a local unsigned file without asking. <code>zypper</code> asks once about the missing signature; only continue if you downloaded the file from downloads.canopychat.app and its <code>sha256</code> matches (<a href="#choose-a-file">Choose a file</a>). The package manager installs WebKitGTK, GTK 3 and the GStreamer plugins for you.</p>
+
             <h3 id="install-double-click">By double-clicking</h3>
             <p>Open the <code>.deb</code> in your file manager. It opens in your software installer (App Center on recent Ubuntu). Ubuntu may say &ldquo;Potentially unsafe&rdquo; or show an unknown publisher. That is because CanopyChat is a third-party package that is not in the Ubuntu archive, and Ubuntu cannot vouch for it. Only install files you downloaded from downloads.canopychat.app; <a href="#choose-a-file">Choose a file</a> explains how to check a download.</p>
 
             <h3 id="what-gets-installed">What gets installed</h3>
-            <p>The download is about 230 to 280 MB, and the app takes about 550 MB on disk. The package needs WebKitGTK, GTK 3, GStreamer plugins and a few small libraries. <code>apt</code> installs them for you. On a fresh system that can be a few hundred MB of extra downloads. <code>libvulkan1</code> (the Vulkan loader) is recommended, so the local model can use your graphics card when your graphics driver supports Vulkan.</p>
+            <p>The download is about 185 to 280 MB, and the app takes about 550 MB on disk. The package needs WebKitGTK, GTK 3, GStreamer plugins and a few small libraries. <code>apt</code> (or <code>dnf</code> or <code>zypper</code>) installs them for you. On a fresh system that can be a few hundred MB of extra downloads. <code>libvulkan1</code> (the Vulkan loader) is recommended, so the local model can use your graphics card when your graphics driver supports Vulkan.</p>
           </section>
 
           <section id="agent" class="doc-section">
@@ -160,7 +210,7 @@
               <pre><code id="cmd-prompt">Install CanopyChat on this Linux computer. Follow the Linux instructions at https://canopychat.app/agents.md. Download only from https://downloads.canopychat.app/linux/ and check the SHA-256 against https://downloads.canopychat.app/linux/latest.json. Ask me before you run anything that needs sudo, and never type my password. Do not sign in to CanopyChat for me.</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-prompt" aria-label="Copy the agent prompt for Linux">Copy</button>
             </div>
-            <p>On Ubuntu and Debian the agent runs the <a href="#quick-install">one-line command</a> above, checks <code>sha256sum</code> against the manifest, then verifies with <code>command -v canopychat</code>. The <code>sudo</code> step and the sign-in screen are yours. When it is done, start the app and sign in.</p>
+            <p>On Ubuntu and Debian the agent runs the <a href="#quick-install">one-line command</a> above (on Fedora and openSUSE, the <code>.rpm</code> one), checks <code>sha256sum</code> against the manifest, then verifies with <code>command -v canopychat</code>. The <code>sudo</code> step and the sign-in screen are yours. When it is done, start the app and sign in.</p>
           </section>
 
           <section id="first-start" class="doc-section">
@@ -169,6 +219,11 @@
             <div class="cmd" data-cmd>
               <pre><code id="cmd-verify">command -v canopychat &amp;&amp; dpkg -s canopy-chat | grep '^Version'</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-verify" aria-label="Copy the check command">Copy</button>
+            </div>
+            <p>On Fedora and openSUSE, use this instead:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-verify-rpm">command -v canopychat &amp;&amp; rpm -q canopy-chat</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-verify-rpm" aria-label="Copy the check command for Fedora and openSUSE">Copy</button>
             </div>
             <p>Start it from a terminal on the computer&rsquo;s desktop:</p>
             <div class="cmd" data-cmd>
@@ -181,7 +236,7 @@
 
           <section id="updates" class="doc-section">
             <h2>Updates</h2>
-            <p>From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose <strong>Check for updates</strong>, then <strong>Update now</strong>. On Linux the new package is saved to your Downloads folder; install it the same way as above. If you have 0.3.5 or older, install 0.3.6 by hand once, using the steps above.</p>
+            <p>From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose <strong>Check for updates</strong>, then <strong>Update now</strong>. On Linux the new package is saved to your Downloads folder; install it the same way as above. We have tested that path only for the <code>.deb</code>; on Fedora and openSUSE, if <strong>Update now</strong> finds nothing, download the new <code>.rpm</code> from this page and install it with <code>dnf</code> or <code>zypper</code>. On Arch there is no package yet, so the app has nothing to download there. If you have 0.3.5 or older, install 0.3.6 by hand once, using the steps above.</p>
           </section>
 
           <section id="uninstall" class="doc-section">
@@ -190,7 +245,17 @@
               <pre><code id="cmd-remove">sudo apt remove canopy-chat</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-remove" aria-label="Copy the uninstall command">Copy</button>
             </div>
-            <p>This removes the app but keeps your chats and settings. To delete them too:</p>
+            <p>On Fedora:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-remove-dnf">sudo dnf remove canopy-chat</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-remove-dnf" aria-label="Copy the uninstall command for Fedora">Copy</button>
+            </div>
+            <p>On openSUSE:</p>
+            <div class="cmd" data-cmd>
+              <pre><code id="cmd-remove-zypper">sudo zypper remove canopy-chat</code></pre>
+              <button class="copy-button" type="button" data-copy-target="cmd-remove-zypper" aria-label="Copy the uninstall command for openSUSE">Copy</button>
+            </div>
+            <p>Each of these removes the app but keeps your chats and settings. To delete them too:</p>
             <div class="cmd" data-cmd>
               <pre><code id="cmd-purge">rm -rf ~/.local/share/canopychat</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-purge" aria-label="Copy the command that deletes your chats and settings">Copy</button>
@@ -200,12 +265,12 @@
 
           <section id="other-distributions" class="doc-section">
             <h2>Other distributions</h2>
-            <p>Fedora, Arch and other distributions: there is no package for them. The AppImage is the option; we have not tested it on those systems. Run it from the folder you saved it in:</p>
+            <p>Fedora and openSUSE have their own <code>.rpm</code> (above). Arch has no package yet: nothing is published for it, not in the AUR and not for <code>pacman</code>. For Arch and any other distribution the AppImage is the option; we have not tested it on those systems. Run it from the folder you saved it in:</p>
             <div class="cmd" data-cmd>
               <pre><code id="cmd-appimage">chmod +x CanopyChat-x86_64.AppImage &amp;&amp; ./CanopyChat-x86_64.AppImage</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-appimage" aria-label="Copy the AppImage command">Copy</button>
             </div>
-            <p>Use <code>CanopyChat-aarch64.AppImage</code> on ARM64. The sections above on installing, updating and removing describe the <code>.deb</code>; to remove an AppImage, delete the file.</p>
+            <p>Use <code>CanopyChat-aarch64.AppImage</code> on ARM64. The sections above on installing, updating and removing describe the <code>.deb</code> and the <code>.rpm</code>; to remove an AppImage, delete the file.</p>
           </section>
 
           <section id="known-gaps" class="doc-section">
@@ -226,7 +291,11 @@
             <h3>N: Download is performed unsandboxed as root</h3>
             <p>This is a notice, not an error. It appears when the <code>.deb</code> is in your home folder, which the <code>_apt</code> user cannot read, so <code>apt</code> reads it as root instead. If the output ends with <code>Setting up canopy-chat</code>, the install worked. To avoid the notice, install from <code>~/Downloads</code> or <code>/tmp</code>.</p>
             <h3>Architecture mismatch</h3>
-            <p>You have the file for the other architecture. The amd64 file does not install on an ARM64 computer, and the arm64 file does not install on x86-64. Run <code>dpkg --print-architecture</code> and download that file. The one-line command picks it for you.</p>
+            <p>You have the file for the other architecture. The amd64 file does not install on an ARM64 computer, and the arm64 file does not install on x86-64. Run <code>dpkg --print-architecture</code> and download that file. The one-line command picks it for you. For an <code>.rpm</code>, run <code>uname -m</code>: <code>x86_64</code> or <code>aarch64</code> is the name in the file.</p>
+            <h3>dnf or zypper refuses the .rpm (nothing provides, or a version is too old)</h3>
+            <p>The <code>.rpm</code> needs WebKitGTK 4.1 and glibc 2.34 or newer. Rocky Linux 9 is too old for it (<code>dnf</code> refused the file in our test), and Red Hat and AlmaLinux 9 and openSUSE Leap 15 are expected to be too. The package manager refuses instead of installing a broken app. Use the AppImage there.</p>
+            <h3>zypper says the file has no signature</h3>
+            <p>That is expected: the <code>.rpm</code> is not signed yet. <code>zypper</code> asks once; choose to continue if you downloaded the file from downloads.canopychat.app and its <code>sha256</code> matches.</p>
             <h3>The window opens but stays blank</h3>
             <p>Some computers with an NVIDIA graphics driver (the NVIDIA DGX Spark, for one) draw a blank window because of a rendering problem in the web engine. Start the app like this instead:</p>
             <div class="cmd" data-cmd>

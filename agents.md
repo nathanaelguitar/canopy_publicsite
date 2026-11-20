@@ -31,7 +31,8 @@ Install CanopyChat on this computer. Follow the instructions at https://canopych
 
 - **Ubuntu or Debian, x86-64:** the `.deb` (Ubuntu 22.04 or newer).
 - **Ubuntu or Debian, ARM64** (for example NVIDIA DGX Spark): the `.deb` (Ubuntu 24.04 or newer).
-- **Other Linux:** the AppImage (not tested on every distribution).
+- **Fedora or openSUSE, x86-64 or ARM64:** the `.rpm` (see [Fedora and openSUSE](#fedora-opensuse) for what was tested; ARM64 openSUSE is not confirmed, use the AppImage there).
+- **Other Linux, including Arch:** the AppImage (not tested on every distribution). There is no Arch package yet.
 - **Windows 10 or 11, x64:** the setup `.exe`. Guide for people: [canopychat.app/windows](https://canopychat.app/windows).
 - **Mac:** a free TestFlight beta, not on the Mac App Store yet. You can open the invite but not finish the install; see [Mac](#mac). Guide for people: [canopychat.app/mac](https://canopychat.app/mac).
 - **iPhone, iPad, Android:** App Store or Google Play, from [canopychat.app](https://canopychat.app/#downloads). Nothing for an agent to do.
@@ -45,7 +46,7 @@ Each platform has a small JSON manifest that always describes the newest release
 - Linux: [downloads.canopychat.app/linux/latest.json](https://downloads.canopychat.app/linux/latest.json)
 - Windows: [downloads.canopychat.app/windows/latest.json](https://downloads.canopychat.app/windows/latest.json)
 
-The Linux manifest has a `files` object with the keys `amd64-deb`, `arm64-deb`, `x86_64-appimage` and `aarch64-appimage`. Each entry has `url` (always the newest), `versionedUrl`, `sha256` and `size` in bytes. The Windows manifest has `version`, `url`, `versionedUrl`, `sha256` and `size` at the top level.
+The Linux manifest has a `files` object with the keys `amd64-deb`, `arm64-deb`, `x86_64-rpm`, `aarch64-rpm`, `x86_64-appimage` and `aarch64-appimage`. Each entry has `url` (always the newest), `versionedUrl`, `sha256` and `size` in bytes. The Windows manifest has `version`, `url`, `versionedUrl`, `sha256` and `size` at the top level.
 
 ## Ubuntu and Debian
 
@@ -66,7 +67,26 @@ The hash must equal the `sha256` of the `amd64-deb` or `arm64-deb` entry. If it 
 
 The package pulls in WebKitGTK, GTK 3 and GStreamer through `apt`. That can add a few hundred MB on a fresh system. The app itself is about 550 MB on disk. `libvulkan1` is recommended so the local model can use the graphics card.
 
-## Other Linux (AppImage)
+## Fedora and openSUSE
+
+`uname -m` gives `x86_64` or `aarch64`, which are the two `.rpm` file names. On Fedora:
+
+```
+curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(uname -m).rpm && sudo dnf install ./CanopyChat-$(uname -m).rpm
+```
+
+On openSUSE, use `sudo zypper install ./CanopyChat-$(uname -m).rpm` instead of the `dnf` part. The `.rpm` is not signed yet: `dnf` accepts a local file, `zypper` asks once about the missing signature, and the user decides whether to continue after the hash check below.
+
+```
+sha256sum CanopyChat-$(uname -m).rpm
+curl -fsS https://downloads.canopychat.app/linux/latest.json
+```
+
+The hash must equal the `sha256` of the `x86_64-rpm` or `aarch64-rpm` entry. If it does not, delete the file and stop.
+
+What was tested, on the 0.3.8 files: Fedora 45 on x86-64 and ARM64, and openSUSE Tumbleweed on x86-64, in containers (install, start with a web view under a virtual display, remove). ARM64 openSUSE is not confirmed: its system web engine crashed in our test, so use the AppImage there. Rocky Linux 9 is too old (the package needs WebKitGTK 4.1 and glibc 2.34) and `dnf` refused the file there; Red Hat and AlmaLinux 9 and openSUSE Leap 15 are expected to be too. If the package manager refuses the file, do not work around it: use the AppImage.
+
+## Other Linux, including Arch (AppImage)
 
 ```
 curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(uname -m).AppImage && chmod +x CanopyChat-$(uname -m).AppImage && ./CanopyChat-$(uname -m).AppImage
@@ -76,7 +96,7 @@ curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(uname -m).AppImage
 
 ## Windows
 
-Download [CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) (about 165 MB), check its SHA-256 against the `sha256` in the Windows manifest, then start it. In PowerShell:
+Download [CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) (about 167 MB), check its SHA-256 against the `sha256` in the Windows manifest, then start it. In PowerShell:
 
 ```
 $ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest https://downloads.canopychat.app/windows/CanopyChat-Setup.exe -OutFile "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"
@@ -101,6 +121,7 @@ Updates come through TestFlight. There is nothing to download from downloads.can
 ## Check that it worked
 
 - Debian and Ubuntu: `command -v canopychat && dpkg -s canopy-chat | grep '^Version'` prints the launcher path and the installed version. Compare it with `version` in the manifest.
+- Fedora and openSUSE: `command -v canopychat && rpm -q canopy-chat` prints the launcher path and the installed version (for example `canopy-chat-0.3.8-1.x86_64`).
 - Windows: CanopyChat appears in the Start menu once the installer finishes. The version is in the app’s Settings.
 - To start it, run `canopychat &` in a terminal on the computer’s desktop, or open CanopyChat from the applications menu. Over SSH there is no screen, so skip this step and rely on the check above.
 - If the window is blank, see [Troubleshooting](#troubleshooting).
@@ -109,6 +130,7 @@ Updates come through TestFlight. There is nothing to download from downloads.can
 ## Updates and uninstall
 
 - From version 0.3.6, the app checks for updates itself (Settings, then Check for updates).
+- Remove on Fedora with `sudo dnf remove canopy-chat` and on openSUSE with `sudo zypper remove canopy-chat`; both keep chats and settings like the next item.
 - Remove on Debian and Ubuntu with `sudo apt remove canopy-chat`. That keeps chats and settings. To delete them too, remove `~/.local/share/canopychat`, and only if the user asks.
 
 ## Troubleshooting

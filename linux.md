@@ -6,7 +6,7 @@ Source: https://canopychat.app/linux
 
 # Install CanopyChat on Linux
 
-A desktop app for Ubuntu 22.04 or newer, on x86-64 and ARM64. The free plan runs a small model on your computer, and a paid plan unlocks cloud models.
+A desktop app for Ubuntu 22.04 or newer, with packages for Fedora and openSUSE too, on x86-64 and ARM64. The free plan runs a small model on your computer, and a paid plan unlocks cloud models.
 
 **The Linux app is a beta.** We are taking feature requests and bug reports at <support@canopychat.app>.
 
@@ -18,6 +18,18 @@ Ubuntu and Debian. One line, from any folder: it downloads the `.deb` for your c
 
 ```
 curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(dpkg --print-architecture).deb && sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb
+```
+
+Fedora. The same, with the `.rpm`:
+
+```
+curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(uname -m).rpm && sudo dnf install ./CanopyChat-$(uname -m).rpm
+```
+
+openSUSE, x86-64 only (ARM64 openSUSE is not confirmed; see [Supported systems](#supported-systems)). `zypper` asks once about the missing package signature; choose to continue only after you have checked the file’s `sha256` ([Choose a file](#choose-a-file)).
+
+```
+curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(uname -m).rpm && sudo zypper install ./CanopyChat-$(uname -m).rpm
 ```
 
 Prefer to download the file?
@@ -32,6 +44,20 @@ Then install it from your Downloads folder:
 cd ~/Downloads && sudo apt install ./CanopyChat-amd64.deb
 ```
 
+[Linux x86-64 (.rpm)](https://downloads.canopychat.app/linux/CanopyChat-x86_64.rpm) about 215 MB · Fedora and openSUSE
+
+Then install it from your Downloads folder, on Fedora:
+
+```
+cd ~/Downloads && sudo dnf install ./CanopyChat-x86_64.rpm
+```
+
+or on openSUSE:
+
+```
+cd ~/Downloads && sudo zypper install ./CanopyChat-x86_64.rpm
+```
+
 ARM64 (for example NVIDIA DGX Spark, Raspberry Pi 5, Ampere)
 
 [Linux ARM64 (.deb)](https://downloads.canopychat.app/linux/CanopyChat-arm64.deb) about 230 MB · Ubuntu 24.04 or newer
@@ -41,6 +67,16 @@ Then install it from your Downloads folder:
 ```
 cd ~/Downloads && sudo apt install ./CanopyChat-arm64.deb
 ```
+
+[Linux ARM64 (.rpm)](https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm) about 186 MB · Fedora (openSUSE ARM64 is not confirmed)
+
+Then install it from your Downloads folder, on Fedora:
+
+```
+cd ~/Downloads && sudo dnf install ./CanopyChat-aarch64.rpm
+```
+
+On openSUSE ARM64 the app is not confirmed to work with the system web engine; see [Supported systems](#supported-systems) and use the [AppImage](#other-distributions) there.
 
 ## What you get
 
@@ -53,8 +89,11 @@ cd ~/Downloads && sudo apt install ./CanopyChat-arm64.deb
 
 - **x86-64** (Intel and AMD): Ubuntu 22.04 or newer.
 - **ARM64** (for example NVIDIA DGX Spark, Raspberry Pi 5, Ampere servers): Ubuntu 24.04 or newer. The local model engine for ARM64 needs a newer system library (glibc 2.38) than Ubuntu 22.04 has.
+- **Fedora** (x86-64 and ARM64): the `.rpm`. Tested on Fedora 45, on both x86-64 and ARM64, in a container with a virtual display: it installs with `dnf`, starts and loads its web view, and removes cleanly. Not tested on a real desktop with a graphics card.
+- **openSUSE**: the same `.rpm`. Tested on openSUSE Tumbleweed on x86-64 in a container, as above. **ARM64 openSUSE is not confirmed:** in our test its system web engine crashed when the app drew its window, so use the AppImage there.
+- The `.rpm` needs WebKitGTK 4.1 and glibc 2.34 or newer. `dnf` refused it on Rocky Linux 9 when we tried. Red Hat and AlmaLinux 9 and openSUSE Leap 15 are older than those requirements too, so expect the same there (we did not try them).
 - We test on Ubuntu. Other Debian-based systems may work with the `.deb` but are not tested.
-- Fedora, Arch and other distributions: see [Other distributions](#other-distributions).
+- Arch and other distributions: see [Other distributions](#other-distributions).
 
 ## Choose a file
 
@@ -64,13 +103,15 @@ Not sure which architecture you have? Run this in a terminal on any Linux:
 uname -m
 ```
 
-`x86_64` means x86-64. `aarch64` means ARM64. On Ubuntu and Debian, `dpkg --print-architecture` prints the same choice as `amd64` or `arm64`.
+`x86_64` means x86-64. `aarch64` means ARM64. On Ubuntu and Debian, `dpkg --print-architecture` prints the same choice as `amd64` or `arm64`. The `.rpm` files are named with the `uname -m` value.
 
 - [Linux x86-64 (.deb)](https://downloads.canopychat.app/linux/CanopyChat-amd64.deb), about 280 MB
 - [Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)](https://downloads.canopychat.app/linux/CanopyChat-arm64.deb), about 230 MB
-- AppImage, for Fedora, Arch and other distributions (untested, [details below](#other-distributions)): [x86-64](https://downloads.canopychat.app/linux/CanopyChat-x86_64.AppImage) or [ARM64](https://downloads.canopychat.app/linux/CanopyChat-aarch64.AppImage).
+- [Linux x86-64 (.rpm, for Fedora and openSUSE)](https://downloads.canopychat.app/linux/CanopyChat-x86_64.rpm), about 215 MB
+- [Linux ARM64 (.rpm, for Fedora; openSUSE ARM64 is not confirmed)](https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm), about 186 MB
+- AppImage, for Arch and other distributions (untested, [details below](#other-distributions)): [x86-64](https://downloads.canopychat.app/linux/CanopyChat-x86_64.AppImage) or [ARM64](https://downloads.canopychat.app/linux/CanopyChat-aarch64.AppImage).
 
-To check a download, run `sha256sum` on it and compare the result with the `sha256` for your file (`amd64-deb` or `arm64-deb`) in [latest.json](https://downloads.canopychat.app/linux/latest.json).
+To check a download, run `sha256sum` on it and compare the result with the `sha256` for your file (`amd64-deb`, `arm64-deb`, `x86_64-rpm` or `aarch64-rpm`) in [latest.json](https://downloads.canopychat.app/linux/latest.json).
 
 ## Install by hand
 
@@ -90,13 +131,29 @@ cd ~/Downloads && sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb
 
 Keep the `./` in front of the file name: it tells `apt` to install the file instead of searching its package lists.
 
+### On Fedora and openSUSE
+
+Download the `.rpm` for your computer ([Choose a file](#choose-a-file)), then install it from the folder it is in. On Fedora:
+
+```
+cd ~/Downloads && sudo dnf install ./CanopyChat-$(uname -m).rpm
+```
+
+On openSUSE (x86-64; on ARM64 use the AppImage):
+
+```
+cd ~/Downloads && sudo zypper install ./CanopyChat-$(uname -m).rpm
+```
+
+The `.rpm` is not signed yet. `dnf` installs a local unsigned file without asking. `zypper` asks once about the missing signature; only continue if you downloaded the file from downloads.canopychat.app and its `sha256` matches ([Choose a file](#choose-a-file)). The package manager installs WebKitGTK, GTK 3 and the GStreamer plugins for you.
+
 ### By double-clicking
 
 Open the `.deb` in your file manager. It opens in your software installer (App Center on recent Ubuntu). Ubuntu may say “Potentially unsafe” or show an unknown publisher. That is because CanopyChat is a third-party package that is not in the Ubuntu archive, and Ubuntu cannot vouch for it. Only install files you downloaded from downloads.canopychat.app; [Choose a file](#choose-a-file) explains how to check a download.
 
 ### What gets installed
 
-The download is about 230 to 280 MB, and the app takes about 550 MB on disk. The package needs WebKitGTK, GTK 3, GStreamer plugins and a few small libraries. `apt` installs them for you. On a fresh system that can be a few hundred MB of extra downloads. `libvulkan1` (the Vulkan loader) is recommended, so the local model can use your graphics card when your graphics driver supports Vulkan.
+The download is about 185 to 280 MB, and the app takes about 550 MB on disk. The package needs WebKitGTK, GTK 3, GStreamer plugins and a few small libraries. `apt` (or `dnf` or `zypper`) installs them for you. On a fresh system that can be a few hundred MB of extra downloads. `libvulkan1` (the Vulkan loader) is recommended, so the local model can use your graphics card when your graphics driver supports Vulkan.
 
 ## Install with an agent
 
@@ -106,7 +163,7 @@ Have a coding agent on this computer, like Claude Code or Codex? Paste this into
 Install CanopyChat on this Linux computer. Follow the Linux instructions at https://canopychat.app/agents.md. Download only from https://downloads.canopychat.app/linux/ and check the SHA-256 against https://downloads.canopychat.app/linux/latest.json. Ask me before you run anything that needs sudo, and never type my password. Do not sign in to CanopyChat for me.
 ```
 
-On Ubuntu and Debian the agent runs the [one-line command](#quick-install) above, checks `sha256sum` against the manifest, then verifies with `command -v canopychat`. The `sudo` step and the sign-in screen are yours. When it is done, start the app and sign in.
+On Ubuntu and Debian the agent runs the [one-line command](#quick-install) above (on Fedora and openSUSE, the `.rpm` one), checks `sha256sum` against the manifest, then verifies with `command -v canopychat`. The `sudo` step and the sign-in screen are yours. When it is done, start the app and sign in.
 
 ## First start
 
@@ -114,6 +171,12 @@ To check that it installed, run this. It prints the path of the launcher and the
 
 ```
 command -v canopychat && dpkg -s canopy-chat | grep '^Version'
+```
+
+On Fedora and openSUSE, use this instead:
+
+```
+command -v canopychat && rpm -q canopy-chat
 ```
 
 Start it from a terminal on the computer’s desktop:
@@ -128,7 +191,7 @@ Your chats and settings are stored on your computer, in `~/.local/share/canopych
 
 ## Updates
 
-From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose **Check for updates**, then **Update now**. On Linux the new package is saved to your Downloads folder; install it the same way as above. If you have 0.3.5 or older, install 0.3.6 by hand once, using the steps above.
+From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose **Check for updates**, then **Update now**. On Linux the new package is saved to your Downloads folder; install it the same way as above. We have tested that path only for the `.deb`; on Fedora and openSUSE, if **Update now** finds nothing, download the new `.rpm` from this page and install it with `dnf` or `zypper`. On Arch there is no package yet, so the app has nothing to download there. If you have 0.3.5 or older, install 0.3.6 by hand once, using the steps above.
 
 ## Uninstall
 
@@ -136,7 +199,19 @@ From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, c
 sudo apt remove canopy-chat
 ```
 
-This removes the app but keeps your chats and settings. To delete them too:
+On Fedora:
+
+```
+sudo dnf remove canopy-chat
+```
+
+On openSUSE:
+
+```
+sudo zypper remove canopy-chat
+```
+
+Each of these removes the app but keeps your chats and settings. To delete them too:
 
 ```
 rm -rf ~/.local/share/canopychat
@@ -146,13 +221,13 @@ To remove an AppImage, delete the file.
 
 ## Other distributions
 
-Fedora, Arch and other distributions: there is no package for them. The AppImage is the option; we have not tested it on those systems. Run it from the folder you saved it in:
+Fedora and openSUSE have their own `.rpm` (above). Arch has no package yet: nothing is published for it, not in the AUR and not for `pacman`. For Arch and any other distribution the AppImage is the option; we have not tested it on those systems. Run it from the folder you saved it in:
 
 ```
 chmod +x CanopyChat-x86_64.AppImage && ./CanopyChat-x86_64.AppImage
 ```
 
-Use `CanopyChat-aarch64.AppImage` on ARM64. The sections above on installing, updating and removing describe the `.deb`; to remove an AppImage, delete the file.
+Use `CanopyChat-aarch64.AppImage` on ARM64. The sections above on installing, updating and removing describe the `.deb` and the `.rpm`; to remove an AppImage, delete the file.
 
 ## Known gaps
 
@@ -175,7 +250,15 @@ This is a notice, not an error. It appears when the `.deb` is in your home folde
 
 ### Architecture mismatch
 
-You have the file for the other architecture. The amd64 file does not install on an ARM64 computer, and the arm64 file does not install on x86-64. Run `dpkg --print-architecture` and download that file. The one-line command picks it for you.
+You have the file for the other architecture. The amd64 file does not install on an ARM64 computer, and the arm64 file does not install on x86-64. Run `dpkg --print-architecture` and download that file. The one-line command picks it for you. For an `.rpm`, run `uname -m`: `x86_64` or `aarch64` is the name in the file.
+
+### dnf or zypper refuses the .rpm (nothing provides, or a version is too old)
+
+The `.rpm` needs WebKitGTK 4.1 and glibc 2.34 or newer. Rocky Linux 9 is too old for it (`dnf` refused the file in our test), and Red Hat and AlmaLinux 9 and openSUSE Leap 15 are expected to be too. The package manager refuses instead of installing a broken app. Use the AppImage there.
+
+### zypper says the file has no signature
+
+That is expected: the `.rpm` is not signed yet. `zypper` asks once; choose to continue if you downloaded the file from downloads.canopychat.app and its `sha256` matches.
 
 ### The window opens but stays blank
 

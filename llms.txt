@@ -22,6 +22,6 @@ Every page has a plain Markdown version: add .md to the address (for example htt
 - [Support](https://canopychat.app/support)
 - [Windows](https://canopychat.app/windows): The Windows beta (Windows 10 and 11, x64): download CanopyChat-Setup.exe, SmartScreen, checksum, agent prompt, updates, uninstall, known gaps.
 - [Mac](https://canopychat.app/mac): The free Mac beta through TestFlight (not on the Mac App Store yet): join, first start, updates, what an agent can and cannot do.
-- [Linux](https://canopychat.app/linux): The Linux beta: install, update and remove CanopyChat on Ubuntu 22.04 or newer (x86-64 and ARM64), agent prompt, known gaps.
+- [Linux](https://canopychat.app/linux): The Linux beta: install, update and remove CanopyChat on Ubuntu 22.04 or newer (x86-64 and ARM64) and from .rpm on Fedora and openSUSE (tested architectures are listed on the page), agent prompt, known gaps.
 - [Install with an AI agent](https://canopychat.app/agents): Instructions for an agent that downloads and installs CanopyChat on Linux or Windows, and opens the TestFlight invite on a Mac: file picker, install commands, checksum check, what to leave to the user. Plain Markdown at https://canopychat.app/agents.md.
 - [Privacy](https://canopychat.app/privacy)

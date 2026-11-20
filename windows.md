@@ -16,7 +16,7 @@ Other systems: [Mac](https://canopychat.app/mac) [Linux](https://canopychat.app/
 
 One file. Download it, open it, and tell Windows it is fine to run.
 
-[Download CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) about 165 MB · Windows 10 and 11, 64-bit
+[Download CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) about 167 MB · Windows 10 and 11, 64-bit
 
 1.  Open `CanopyChat-Setup.exe` from your Downloads folder.
 2.  Windows may show **“Windows protected your PC”**. That is SmartScreen, because the installer is new and not yet code-signed. Choose **More info**, then **Run anyway**.
@@ -36,7 +36,7 @@ One file. Download it, open it, and tell Windows it is fine to run.
 
 ## Install by hand
 
-Download [CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) (about 165 MB) and open it. If Windows says **“Windows protected your PC”**, choose **More info**, then **Run anyway**. Then follow the installer.
+Download [CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) (about 167 MB) and open it. If Windows says **“Windows protected your PC”**, choose **More info**, then **Run anyway**. Then follow the installer.
 
 ### Check the download
 
