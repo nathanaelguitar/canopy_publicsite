@@ -141,7 +141,7 @@ Primary actions are pill-shaped for thumb recognition. Amount choices and input 
 
 ### Download (homepage hero)
 
-- **Pattern:** A serif "Download" heading (800, `clamp(30px, 3.6vw, 44px)`), then the platforms as equal pills in a two-column grid: Windows, Mac, iPhone, Android, Linux, and the dark Canopy Code pill for developers. Under them, one muted line (`.download-beta`) says the computer apps are in beta and links the three guides; no commands and no dropdown on the home page.
+- **Pattern:** A serif "Download" heading (800, `clamp(30px, 3.6vw, 44px)`), then the platforms as equal pills in a two-column grid: Windows, Mac, iPhone, Android, Linux, and the dark Canopy Code pill for developers. No beta line under them; no commands and no dropdown on the home page.
 - **Pills:** The hero's existing `.appstore-badge` (oak pill, glyph, bold platform name) with no kicker words. Every pill has the same size, colour and shadow; no platform gets its own colour or emphasis. iPhone and Android open their stores; Windows, Mac and Linux open their guide pages (`/windows`, `/mac`, `/linux`) in the same tab. `aria-label` and `title` carry the store, the beta status or the requirements.
 
 ### Install guides (`/windows`, `/mac`, `/linux`, `/agents`)

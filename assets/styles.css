@@ -3783,43 +3783,6 @@ html:has(.founding-mobile-funnel) {
   margin-top: 22px;
 }
 
-/* One honest line under the pills: the desktop apps are in beta, with a link to each guide. */
-.download-beta {
-  max-width: 460px;
-  margin: 14px 0 0;
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.5;
-}
-
-.download-beta strong {
-  color: var(--ink);
-}
-
-.download-beta a {
-  color: var(--oak);
-  font-weight: 600;
-}
-
-.download-beta a:hover,
-.download-beta a:focus-visible {
-  color: var(--oak-bright);
-}
-
-@media (prefers-color-scheme: dark) {
-  .download-beta {
-    color: rgba(255, 244, 223, 0.72);
-  }
-
-  .download-beta strong {
-    color: var(--cream);
-  }
-
-  .download-beta a {
-    color: #d9a66b;
-  }
-}
-
 /* Canopy Code pill at the end of the Join Beta row: main's dark install pill, shorter label,
    at the row's height. The row may wrap so it drops to its own line on narrow phones. */
 .download + .actions .actions-row {

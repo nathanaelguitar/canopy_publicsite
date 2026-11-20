@@ -8,9 +8,7 @@ Source: https://canopychat.app/mac
 
 A free Mac app, delivered through Apple’s TestFlight while it is in App Review. The free plan runs a small model on your Mac, and a paid plan unlocks cloud models.
 
-**The Mac app is a beta.** It is not on the Mac App Store yet. It works, but features are still missing and you will run into rough edges. We ship fixes as we go.
-
-If something breaks or does not make sense, email <support@canopychat.app> and tell us what happened. Those reports decide what we fix next.
+**The Mac app is a beta.** It is not on the Mac App Store yet. We are taking feature requests and bug reports at <support@canopychat.app>.
 
 Other systems: [Windows](https://canopychat.app/windows) [Linux](https://canopychat.app/linux) [Install with an agent](https://canopychat.app/agents)
 

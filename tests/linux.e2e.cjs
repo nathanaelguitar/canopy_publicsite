@@ -104,7 +104,7 @@ const UA = {
 
     const noOverflow = (page) => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
 
-    // ---- Home page: beta line, no commands, every desktop pill opens its guide ----
+    // ---- Home page: no beta line, no commands, every desktop pill opens its guide ----
     for (const ua of ['linux', 'windows']) {
       const { ctx, page, errors } = await open('', { ua: UA[ua] });
       const got = await page.evaluate(() => {
@@ -120,14 +120,13 @@ const UA = {
         };
       });
       assert.deepStrictEqual(errors, [], engine + ' home/' + ua + ': page errors');
-      assert.ok(got.beta && /^Beta/.test(got.beta) && /rough edges/.test(got.beta), engine + ' home: beta line ' + got.beta);
-      assert.deepStrictEqual(got.betaLinks, ['/windows', '/mac', '/linux'], engine + ' home: beta line links the three guides');
+      assert.ok(!got.beta, engine + ' home: no beta line under the pills');
       assert.ok(!/apt |curl |dpkg|uname/.test(got.text), engine + ' home: no install command in the download block');
       assert.strictEqual(got.pre, 0, engine + ' home: no code block or dropdown in the download block');
       for (const k of ['windows', 'mac', 'linux']) assert.deepStrictEqual(got[k], { hidden: false, href: '/' + k, target: null, download: null }, engine + ' home: ' + k + ' pill opens /' + k + ' in the same tab');
       await ctx.close();
     }
-    console.log('ok  ' + engine + ': home page beta line and guide pills');
+    console.log('ok  ' + engine + ': home page guide pills');
 
     // ---- /linux: content, links, no overflow in every width and theme ----
     for (const scheme of SCHEMES) {

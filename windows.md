@@ -8,9 +8,7 @@ Source: https://canopychat.app/windows
 
 A desktop app for Windows 10 and 11 on 64-bit PCs. The free plan runs a small model on your computer, and a paid plan unlocks cloud models.
 
-**The Windows app is a beta.** It works, but it is missing features that the phone apps and the Mac app already have, and you will run into rough edges. We ship fixes as we go.
-
-If something breaks or does not make sense, email <support@canopychat.app> and tell us what happened. Those reports decide what we fix next.
+**The Windows app is a beta.** We are taking feature requests and bug reports at <support@canopychat.app>.
 
 Other systems: [Mac](https://canopychat.app/mac) [Linux](https://canopychat.app/linux) [Install with an agent](https://canopychat.app/agents)
 
