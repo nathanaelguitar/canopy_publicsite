@@ -8,7 +8,7 @@ Source: https://canopychat.app/agents
 
 Want your coding agent to download and install CanopyChat for you? Give it this page. The same text is at [canopychat.app/agents.md](https://canopychat.app/agents.md) as plain Markdown, which is easier for an agent to read.
 
-**The computer apps are betas.** Windows, Mac and Linux are all in beta. Each system has its own page with a prompt written for it: [Windows](https://canopychat.app/windows), [Mac](https://canopychat.app/mac), [Linux](https://canopychat.app/linux).
+**Windows and Linux are betas.** The Mac app is on the Mac App Store. Each system has its own page with a prompt written for it: [Windows](https://canopychat.app/windows), [Mac](https://canopychat.app/mac), [Linux](https://canopychat.app/linux).
 
 ## Tell your agent
 
@@ -22,8 +22,8 @@ Install CanopyChat on this computer. Follow the instructions at https://canopych
 
 - Confirm before you install anything. Say which file you will download and which command you will run.
 - Installing the Linux package needs `sudo`. Do not ask for the user’s password and do not type one; let them run the `sudo` step themselves or approve it.
-- On Windows, SmartScreen and any administrator prompt are the user’s to click. On a Mac, the TestFlight Accept and Install buttons are the user’s to click. Stop and tell them what to do.
-- Tell the user the computer apps are in beta, and that feature requests and bug reports go to support@canopychat.app.
+- On Windows, SmartScreen and any administrator prompt are the user’s to click. On a Mac, the App Store Get and Install buttons are the user’s to click. Stop and tell them what to do.
+- Tell the user the Windows and Linux apps are in beta (the Mac app is not), and that feature requests and bug reports go to support@canopychat.app.
 - Do not sign in for the user. First start asks for an email address and a 6-digit code that is sent to it. Leave that to the user.
 - Download only from `downloads.canopychat.app`. Do not use mirrors or other sites.
 
@@ -34,7 +34,7 @@ Install CanopyChat on this computer. Follow the instructions at https://canopych
 - **Fedora or openSUSE, x86-64 or ARM64:** the `.rpm` (see [Fedora and openSUSE](#fedora-opensuse) for what was tested; ARM64 openSUSE is not confirmed, use the AppImage there).
 - **Other Linux, including Arch:** the AppImage (not tested on every distribution). There is no Arch package yet.
 - **Windows 10 or 11, x64:** the setup `.exe`. Guide for people: [canopychat.app/windows](https://canopychat.app/windows).
-- **Mac:** a free TestFlight beta, not on the Mac App Store yet. You can open the invite but not finish the install; see [Mac](#mac). Guide for people: [canopychat.app/mac](https://canopychat.app/mac).
+- **Mac:** the Mac App Store (macOS 14.0 or later). You can open the App Store page but not finish the install; see [Mac](#mac). Guide for people: [canopychat.app/mac](https://canopychat.app/mac).
 - **iPhone, iPad, Android:** App Store or Google Play, from [canopychat.app](https://canopychat.app/#downloads). Nothing for an agent to do.
 
 Check the architecture: `uname -m` prints `x86_64` or `aarch64`. On Debian and Ubuntu, `dpkg --print-architecture` prints `amd64` or `arm64`.
@@ -109,14 +109,14 @@ If the hashes differ, delete the file and stop. The installer is not code-signed
 
 ## Mac
 
-The Mac app is a free TestFlight beta while it is in App Review. TestFlight is Apple’s app, signed in with the user’s Apple Account, so you cannot complete this install. Do this instead:
+The Mac app is free on the Mac App Store. The App Store is Apple’s app, signed in with the user’s Apple Account, so you cannot complete this install. Do this instead:
 
-1.  Check that TestFlight is installed (`ls /Applications/TestFlight.app`). If not, tell the user to install it from the Mac App Store first.
-2.  Open the invite for them: `open "https://testflight.apple.com/join/f5xCZmVv"`.
-3.  Tell them to choose **Accept**, then **Install** in TestFlight, and to say when it has finished.
+1.  Check the Mac runs macOS 14.0 or later (`sw_vers -productVersion`).
+2.  Open the App Store page for them: `open "https://apps.apple.com/us/app/canopychat/id6788203137"`.
+3.  Tell them to choose **Get**, then **Install** in the Mac App Store, and to say when it has finished.
 4.  Then start the app with `open -a CanopyChat`. If that fails, the install has not finished.
 
-Updates come through TestFlight. There is nothing to download from downloads.canopychat.app for a Mac.
+Updates come through the Mac App Store. There is nothing to download from downloads.canopychat.app for a Mac.
 
 ## Check that it worked
 

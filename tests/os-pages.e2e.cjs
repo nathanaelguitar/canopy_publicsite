@@ -40,9 +40,10 @@ function serveSite() {
 const WIDTHS = [390, 768, 1280];
 const SCHEMES = ['light', 'dark'];
 const ORDER = ['what-you-get', 'supported-systems', 'install', 'agent', 'first-start', 'updates', 'uninstall', 'known-gaps', 'troubleshooting'];
+const MAC_ORDER = ORDER.filter((id) => id !== 'known-gaps');
+const APP_STORE = 'https://apps.apple.com/us/app/canopychat/id6788203137';
 const WIN_EXE = 'https://downloads.canopychat.app/windows/CanopyChat-Setup.exe';
 const WIN_MANIFEST = 'https://downloads.canopychat.app/windows/latest.json';
-const TESTFLIGHT = 'https://testflight.apple.com/join/f5xCZmVv';
 const ONELINER = 'curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(dpkg --print-architecture).deb && sudo apt install ./CanopyChat-$(dpkg --print-architecture).deb';
 
 const PAGES = {
@@ -57,11 +58,13 @@ const PAGES = {
   mac: {
     h1: 'Install CanopyChat on Mac',
     others: ['/windows', '/linux'],
-    links: [TESTFLIGHT, 'https://apps.apple.com/app/testflight/id899247664'],
-    text: ['TestFlight', 'App Review', 'not on the Mac App Store', 'Accept', 'Install', 'cannot finish this install', 'Stop Testing', '90 days'],
-    prompt: ['https://canopychat.app/agents.md', TESTFLIGHT, 'cannot click Accept or Install', 'do not sign in'],
-    // The Mac page must not claim a macOS version or a store listing we cannot verify.
-    noText: ['macOS 1', 'macOS 2', 'Sonoma', 'Sequoia', 'Tahoe', 'available on the Mac App Store']
+    released: true,
+    order: MAC_ORDER,
+    links: [APP_STORE],
+    text: ['Mac App Store', 'macOS 14.0 or later', 'universal build', 'Apple-silicon Macs with enough memory', 'Canopy Lite', 'offline', 'no account', 'cannot finish this install', 'Get', 'Updates', 'Trash'],
+    prompt: ['https://canopychat.app/agents.md', APP_STORE, 'cannot click Get or Install', 'do not sign in'],
+    // The Mac app is released: no beta, no TestFlight.
+    noText: ['TestFlight', 'beta', 'Beta', 'Stop Testing', '90 days', 'App Review']
   },
   linux: {
     h1: 'Install CanopyChat on Linux',
@@ -152,16 +155,21 @@ const PAGES = {
         eyebrow: !!document.querySelector('.linux-head .eyebrow'),
         blocks: [...document.querySelectorAll('.cmd')].map((c) => { const code = c.querySelector('pre code'); return { id: code.id, text: code.textContent, button: !!c.querySelector('.copy-button[data-copy-target="' + code.id + '"]'), visible: !c.closest('[hidden]') }; })
       };
-    }, ORDER);
+    }, want.order || ORDER);
     const tag = '/' + route;
     assert.strictEqual(got.h1, want.h1, tag + ': heading');
+    if (want.released) {
+      assert.ok(!/beta|testflight/i.test(got.title), tag + ': title does not say beta: ' + got.title);
+      assert.strictEqual(got.beta, null, tag + ': no beta notice on a released app');
+    } else {
     assert.ok(/beta/i.test(got.title), tag + ': title says beta: ' + got.title);
     assert.ok(got.beta && got.beta.afterLead, tag + ': beta notice right under the lead');
     assert.ok(/beta/i.test(got.beta.text) && /feature requests/i.test(got.beta.text) && /bug reports/i.test(got.beta.text), tag + ': beta notice says beta and invites feature requests and bug reports: ' + got.beta.text);
     assert.ok(!/rough edges|missing/i.test(got.beta.text), tag + ': beta notice does not talk the app down: ' + got.beta.text);
     assert.ok(got.beta.support, tag + ': beta notice links support@canopychat.app');
+    }
     assert.deepStrictEqual(got.others, want.others.concat(['/agents']), tag + ': links to the other systems and /agents');
-    assert.ok(got.toc.length >= 9 && got.tocTargets, tag + ': every on-this-page link has a target ' + JSON.stringify(got.toc));
+    assert.ok(got.toc.length >= (want.released ? 8 : 9) && got.tocTargets, tag + ': every on-this-page link has a target ' + JSON.stringify(got.toc));
     assert.ok(got.order, tag + ': sections in the shared order ' + JSON.stringify(got.sections));
     assert.strictEqual(got.eyebrow, false, tag + ': no eyebrow above the heading');
     for (const need of want.text) assert.ok(got.text.includes(need), tag + ': text "' + need + '"');
@@ -199,8 +207,9 @@ const PAGES = {
     }));
     assert.ok(got.links, '/agents: links the three guides');
     assert.ok(got.mac && got.toc, '/agents: Mac section in the body and the on-this-page nav');
-    for (const need of ['TestFlight', 'cannot complete this install', 'Do not sign in for the user', 'beta', 'Get-FileHash']) assert.ok(got.text.includes(need), '/agents: text "' + need + '"');
-    assert.ok(!/macOS, iPhone, iPad, Android:\s*App Store/.test(got.text), '/agents: does not send Macs to the App Store');
+    for (const need of ['App Store', 'cannot complete this install', 'Do not sign in for the user', 'beta', 'Get-FileHash']) assert.ok(got.text.includes(need), '/agents: text "' + need + '"');
+    assert.ok(!/TestFlight/.test(got.text), '/agents: no TestFlight left');
+    assert.ok(got.text.includes('macOS 14.0'), '/agents: Mac section names the macOS requirement');
     assert.strictEqual(got.overflow, false, '/agents: horizontal overflow');
     console.log('ok  /agents: beta note, Mac section, links to the guides');
     await ctx.close();

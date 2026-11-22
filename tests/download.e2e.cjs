@@ -9,7 +9,7 @@
  * browsers disagree; SHOTS_DIR moves the screenshots out of tests/screenshots/.
  *
  * Spoofs each device's user agent and platform and checks: iPhone and Android pills open their
- * stores; Windows, Mac and Linux pills open the guide pages in the same tab (no direct download,
+ * stores (the Mac pill goes straight to the Mac App Store, in a new tab, with no beta tag); Windows and Linux pills open the guide pages in the same tab (no direct download,
  * no target=_blank); there is no beta line under the pills;
  * every pill looks the same; no horizontal scroll. Nothing leaves the machine.
  */
@@ -48,9 +48,10 @@ const DEVICES = {
 // Where each pill points. The guide pages are site-relative and resolved against the test server.
 const STORE = {
   ios: 'https://apps.apple.com/us/app/canopychat/id6788203137',
+  mac: 'https://apps.apple.com/us/app/canopychat/id6788203137',
   android: 'https://play.google.com/store/apps/details?id=com.nathanaelguitar.canopychat'
 };
-const GUIDE = { windows: '/windows', mac: '/mac', linux: '/linux' };
+const GUIDE = { windows: '/windows', linux: '/linux' };
 
 (async () => {
   const srv = serveSite();
@@ -96,7 +97,10 @@ const GUIDE = { windows: '/windows', mac: '/mac', linux: '/linux' };
         targets: Object.fromEntries(pills.map((p) => [p.dataset.platform, p.getAttribute('target')])),
         downloads: pills.filter((p) => p.hasAttribute('download')).map((p) => p.dataset.platform),
         labelled: pills.every((p) => p.getAttribute('aria-label') && p.title),
-        betaLabelled: ['windows', 'mac', 'linux'].every((k) => /beta/i.test(pills.find((p) => p.dataset.platform === k).getAttribute('aria-label'))),
+        macBeta: /beta|testflight/i.test(pills.find((p) => p.dataset.platform === 'mac').outerHTML),
+        macTarget: pills.find((p) => p.dataset.platform === 'mac').getAttribute('target'),
+        testflight: /testflight/i.test(document.body.innerHTML),
+        betaLabelled: ['windows', 'linux'].every((k) => /beta/i.test(pills.find((p) => p.dataset.platform === k).getAttribute('aria-label'))),
         sizes: [...new Set(pills.map((p) => p.offsetWidth + 'x' + p.offsetHeight))],
         looks: [...new Set(pills.map((p) => { const c = getComputedStyle(p); return c.backgroundColor + c.color + c.boxShadow + c.borderRadius; }))],
         rows: rows.length,
@@ -116,7 +120,10 @@ const GUIDE = { windows: '/windows', mac: '/mac', linux: '/linux' };
     for (const k of Object.keys(GUIDE)) assert.strictEqual(got.targets[k], null, name + ': ' + k + ' pill stays in the same tab');
     assert.deepStrictEqual(got.downloads, [], name + ': no pill downloads a file directly');
     assert.ok(got.labelled, name + ': every pill has aria-label and title');
-    assert.ok(got.betaLabelled, name + ': desktop pills say beta in their label');
+    assert.ok(got.betaLabelled, name + ': Windows and Linux pills say beta in their label');
+    assert.strictEqual(got.macBeta, false, name + ': Mac pill has no beta or TestFlight wording');
+    assert.strictEqual(got.macTarget, '_blank', name + ': Mac pill opens the App Store in a new tab');
+    assert.strictEqual(got.testflight, false, name + ': no TestFlight on the home page');
     assert.strictEqual(got.sizes.length, 1, name + ': equal pill sizes ' + got.sizes);
     assert.strictEqual(got.looks.length, 1, name + ': identical pill styling');
     assert.strictEqual(got.rows, 3, name + ': pills in a two-column grid (3 rows)');
