@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#fff4df" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#120d0a" media="(prefers-color-scheme: dark)">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://connect.facebook.net; connect-src 'self' https://founding-api.canopychat.app https://www.facebook.com https://connect.facebook.net; img-src 'self' data: https://www.facebook.com; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://checkout.stripe.com; upgrade-insecure-requests">
-  <title>Install CanopyChat on Mac (TestFlight beta)</title>
-  <meta name="description" content="Get the free CanopyChat beta for Mac through TestFlight, by hand or with help from an AI agent. First start, updates, leaving the beta, and where to report problems.">
+  <title>Install CanopyChat on Mac</title>
+  <meta name="description" content="Get CanopyChat for Mac from the Mac App Store: what it needs, first start, updates and how to remove it, by hand or with help from an AI agent.">
   <link rel="icon" type="image/png" href="assets/app-icon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="stylesheet" href="assets/styles.css?v=os-pages-1">
@@ -33,24 +33,16 @@
       <header class="linux-head">
         <nav class="linux-crumb" aria-label="Breadcrumb"><a href="/">CanopyChat</a> <span aria-hidden="true">/</span> <a href="/#downloads">Download</a> <span aria-hidden="true">/</span> <span aria-current="page">Mac</span></nav>
         <h1>Install CanopyChat on Mac</h1>
-        <p class="linux-lead">A free Mac app, delivered through Apple&rsquo;s TestFlight while it is in App Review. The free plan runs a small model on your Mac, and a paid plan unlocks cloud models.</p>
-        <div class="beta-note" role="note">
-          <p><strong>The Mac app is a beta.</strong> It is not on the Mac App Store yet. We are taking feature requests and bug reports at <a href="mailto:support@canopychat.app">support@canopychat.app</a>.</p>
-        </div>
+        <p class="linux-lead">The free CanopyChat app for Mac, on the Mac App Store. The free plan runs a small model on your Mac, and a paid plan unlocks cloud models.</p>
         <p class="os-switch">Other systems: <a href="/windows">Windows</a> <a href="/linux">Linux</a> <a href="/agents">Install with an agent</a></p>
       </header>
 
       <section class="quick-install" id="quick-install" aria-labelledby="quick-install-title">
         <div class="quick-install-head">
-          <h2 id="quick-install-title">Join the beta</h2>
-          <p>Three steps, all in Apple&rsquo;s own apps. Nothing to download from us.</p>
+          <h2 id="quick-install-title">Get it from the Mac App Store</h2>
+          <p>One click, in Apple&rsquo;s own app. Nothing to download from us. Needs macOS 14.0 or later.</p>
         </div>
-        <ol>
-          <li>Install <strong>TestFlight</strong> from the <a href="https://apps.apple.com/app/testflight/id899247664" target="_blank" rel="noopener">Mac App Store</a>, if you do not have it. It is Apple&rsquo;s free app for beta software.</li>
-          <li>Open our invite link below. It opens in TestFlight. Choose <strong>Accept</strong>, then <strong>Install</strong>.</li>
-          <li>Open <strong>CanopyChat</strong> from Launchpad, Spotlight or the Open button in TestFlight, and sign in with your email.</li>
-        </ol>
-        <p class="arch-panel-row"><a class="button arch-download" href="https://testflight.apple.com/join/f5xCZmVv" target="_blank" rel="noopener">Open the TestFlight invite</a> <span class="arch-panel-size">testflight.apple.com &middot; free</span></p>
+        <p class="arch-panel-row"><a class="button arch-download" href="https://apps.apple.com/us/app/canopychat/id6788203137" target="_blank" rel="noopener">Get CanopyChat on the App Store</a> <span class="arch-panel-size">apps.apple.com &middot; free</span></p>
       </section>
 
       <div class="linux-body">
@@ -58,13 +50,12 @@
           <p class="doc-toc-title">On this page</p>
           <ol>
             <li><a href="#what-you-get">What you get</a></li>
-            <li><a href="#supported-systems">Supported systems</a></li>
+            <li><a href="#supported-systems">What it needs</a></li>
             <li><a href="#install">Install by hand</a></li>
             <li><a href="#agent">Install with an agent</a></li>
             <li><a href="#first-start">First start</a></li>
             <li><a href="#updates">Updates</a></li>
             <li><a href="#uninstall">Uninstall</a></li>
-            <li><a href="#known-gaps">Known gaps</a></li>
             <li><a href="#troubleshooting">Troubleshooting</a></li>
           </ol>
         </nav>
@@ -75,81 +66,74 @@
             <ul>
               <li>The CanopyChat app on your Mac: private chat that answers on your computer first. Your chats stay on the machine.</li>
               <li>The free plan runs Canopy Lite, our small language model, on your Mac. A <a href="/plans">paid plan</a> adds cloud models for bigger jobs.</li>
-              <li>Sign in with your email: we send a 6-digit code, no password. The same account works on your iPhone.</li>
-              <li>Updates come through TestFlight, like any other beta app on your Mac.</li>
+              <li>Chat needs no account. Sign in with your email (we send a 6-digit code, no password) when you want your account, plans or your other computers.</li>
+              <li>Updates come through the Mac App Store, like any other app on your Mac.</li>
             </ul>
           </section>
 
           <section id="supported-systems" class="doc-section">
-            <h2>Supported systems</h2>
+            <h2>What it needs</h2>
             <ul>
-              <li>A Mac that can run the TestFlight app. The TestFlight page for CanopyChat shows the exact macOS version the current build needs; if your Mac is too old, TestFlight says so before you install.</li>
-              <li>The app is free during the beta. TestFlight requires an Apple Account, the same one you use for the App Store.</li>
+              <li><strong>macOS 14.0 or later.</strong> This is the requirement on the App Store page.</li>
+              <li>The app is a universal build: it contains code for both Apple-silicon and Intel Macs.</li>
+              <li>Picture creation is available on Apple-silicon Macs with enough memory. It asks before a one-time download, and the app hides it on Macs that cannot run it. The picture helper is Apple-silicon only.</li>
+              <li>An Apple Account, the one you already use for the App Store. The app is free.</li>
             </ul>
           </section>
 
           <section id="install" class="doc-section">
             <h2>Install by hand</h2>
             <ol>
-              <li>Open the Mac App Store and install <a href="https://apps.apple.com/app/testflight/id899247664" target="_blank" rel="noopener">TestFlight</a> if it is not already in your Applications folder.</li>
-              <li>Open <a href="https://testflight.apple.com/join/f5xCZmVv" target="_blank" rel="noopener">testflight.apple.com/join/f5xCZmVv</a>. Safari hands it to TestFlight. If the page shows a <strong>View in TestFlight</strong> button instead, click it.</li>
-              <li>In TestFlight, choose <strong>Accept</strong>, then <strong>Install</strong>. TestFlight downloads CanopyChat and puts it in your Applications folder.</li>
-              <li>Open CanopyChat. The first time, macOS may ask you to confirm you want to open a beta app from TestFlight; choose Open.</li>
+              <li>Open <a href="https://apps.apple.com/us/app/canopychat/id6788203137" target="_blank" rel="noopener">CanopyChat on the App Store</a>. On a Mac the link opens the Mac App Store. If it opens a web page instead, click <strong>View in Mac App Store</strong>, or search the Mac App Store for <strong>CanopyChat</strong>.</li>
+              <li>Choose <strong>Get</strong>, then <strong>Install</strong>, and sign in with your Apple Account if the App Store asks. CanopyChat goes into your Applications folder.</li>
+              <li>Open CanopyChat from Launchpad or Spotlight.</li>
             </ol>
-            <p>Prefer the terminal for step 2? This opens the invite:</p>
-            <div class="cmd" data-cmd>
-              <pre><code id="cmd-open">open "https://testflight.apple.com/join/f5xCZmVv"</code></pre>
-              <button class="copy-button" type="button" data-copy-target="cmd-open" aria-label="Copy the command that opens the TestFlight invite">Copy</button>
-            </div>
+            <p>The App Store page is shared with the iPhone and iPad app, and that is expected: it is one listing for all three.</p>
           </section>
 
           <section id="agent" class="doc-section">
             <h2>Install with an agent</h2>
-            <p>An agent on your Mac, like Claude Code or Codex, <strong>cannot finish this install by itself</strong>. TestFlight is Apple&rsquo;s app and signed in with your Apple Account, so the Accept and Install clicks are yours. What an agent can do is open the invite for you and walk you through the clicks. Paste this into it:</p>
+            <p>An agent on your Mac, like Claude Code or Codex, <strong>cannot finish this install by itself</strong>. The Mac App Store is Apple&rsquo;s app and signed in with your Apple Account, so the Get and Install clicks are yours. What an agent can do is open the App Store page for you and walk you through the clicks. Paste this into it:</p>
             <div class="cmd" data-cmd>
-              <pre><code id="cmd-prompt">Help me install CanopyChat on this Mac. Follow the Mac instructions at https://canopychat.app/agents.md. It is a TestFlight beta: check that the TestFlight app is installed, open https://testflight.apple.com/join/f5xCZmVv for me, then tell me what to click in TestFlight. You cannot click Accept or Install in TestFlight for me, and do not sign in to anything for me. When I say the install finished, open CanopyChat for me.</code></pre>
+              <pre><code id="cmd-prompt">Help me install CanopyChat on this Mac. Follow the Mac instructions at https://canopychat.app/agents.md. It is on the Mac App Store: open https://apps.apple.com/us/app/canopychat/id6788203137 for me, then tell me what to click. You cannot click Get or Install in the App Store for me, and do not sign in to anything for me. When I say the install finished, open CanopyChat for me.</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-prompt" aria-label="Copy the agent prompt for Mac">Copy</button>
             </div>
-            <p>These are the commands the agent runs. They open the invite in TestFlight and, once you have installed the app, start it:</p>
+            <p>These are the commands the agent runs. They open the App Store page and, once you have installed the app, start it:</p>
             <div class="cmd" data-cmd>
-              <pre><code id="cmd-agent">open "https://testflight.apple.com/join/f5xCZmVv"
+              <pre><code id="cmd-agent">open "https://apps.apple.com/us/app/canopychat/id6788203137"
 open -a CanopyChat</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-agent" aria-label="Copy the commands an agent runs on a Mac">Copy</button>
             </div>
-            <p>If <code>open -a CanopyChat</code> says the app cannot be found, the TestFlight install has not finished yet.</p>
+            <p>If <code>open -a CanopyChat</code> says the app cannot be found, the App Store install has not finished yet.</p>
           </section>
 
           <section id="first-start" class="doc-section">
             <h2>First start</h2>
-            <p>Open <strong>CanopyChat</strong> from Launchpad or Spotlight. Sign in with your email: we send a 6-digit code, no password. The free plan runs on your Mac; a paid plan unlocks cloud models.</p>
-            <p>TestFlight may ask once whether you want to send crash reports and feedback to the developer. That goes through Apple and helps us fix the beta.</p>
+            <p>The first time you chat, CanopyChat downloads its built-in model, Canopy Lite, once. After that it works offline, with no internet connection. You do not need an account to chat.</p>
+            <p>Sign in with your email when you want your account: we send a 6-digit code, no password. A paid plan unlocks cloud models.</p>
+            <p>The Agents screen works in a folder on your Mac. macOS only lets CanopyChat open folders you choose, so the app asks you to pick one; it does not read the rest of your files.</p>
           </section>
 
           <section id="updates" class="doc-section">
             <h2>Updates</h2>
-            <p>New builds arrive in TestFlight. Open TestFlight and choose <strong>Update</strong> next to CanopyChat, or turn on automatic updates for it in TestFlight. Each TestFlight build stops working 90 days after we publish it; when TestFlight tells you a build has expired, install the newer one from the same place.</p>
+            <p>The Mac App Store delivers updates. Open the App Store, choose <strong>Updates</strong> and update CanopyChat, or turn on automatic updates for apps in the App Store settings.</p>
           </section>
 
           <section id="uninstall" class="doc-section">
             <h2>Uninstall</h2>
-            <p>Drag <strong>CanopyChat</strong> from your Applications folder to the Trash. To leave the beta as well, open TestFlight, select CanopyChat and choose <strong>Stop Testing</strong>.</p>
-          </section>
-
-          <section id="known-gaps" class="doc-section">
-            <h2>Known gaps</h2>
-            <p>The Mac app is in beta: some features are still missing and some screens are rough. We would rather you hear that from us than find out after installing. If something you need is not there, tell <a href="mailto:support@canopychat.app">support@canopychat.app</a> and we will say whether it is coming.</p>
+            <p>Drag <strong>CanopyChat</strong> from your Applications folder to the Trash. That removes the app. Its chats and settings stay in the app&rsquo;s own folder, <code>~/Library/Containers/com.nathanaelguitar.aetherchat</code>, so you can reinstall without losing them. To erase them as well, delete that folder after you remove the app.</p>
           </section>
 
           <section id="troubleshooting" class="doc-section">
             <h2>Troubleshooting</h2>
-            <h3>The invite link shows a web page, not TestFlight</h3>
-            <p>TestFlight is not installed, or the link opened in a browser that does not hand off to it. Install <a href="https://apps.apple.com/app/testflight/id899247664" target="_blank" rel="noopener">TestFlight</a> from the Mac App Store, then open the link again, or click <strong>View in TestFlight</strong> on that page.</p>
-            <h3>TestFlight says the beta is full or no longer accepting testers</h3>
-            <p>Apple caps the number of testers. Email <a href="mailto:support@canopychat.app">support@canopychat.app</a> and we will open a spot.</p>
-            <h3>TestFlight says my Mac is not compatible</h3>
-            <p>The current build needs a newer macOS than your Mac has. The TestFlight page lists the version. Updating macOS is the fix; if you cannot, email us so we know.</p>
+            <h3>The App Store says my Mac is not compatible</h3>
+            <p>CanopyChat needs macOS 14.0 or later. Updating macOS is the fix; if you cannot, email us so we know.</p>
+            <h3>The link opens a web page, not the Mac App Store</h3>
+            <p>Click <strong>View in Mac App Store</strong> on that page, or search the Mac App Store for CanopyChat.</p>
+            <h3>I do not see picture creation</h3>
+            <p>Picture creation is hidden on Macs that cannot run it: it needs an Apple-silicon Mac with enough memory. Chat works the same on every supported Mac.</p>
             <h3>Something else</h3>
-            <p>Email <a href="mailto:support@canopychat.app">support@canopychat.app</a> with your macOS version, the CanopyChat build number from TestFlight and the exact message you saw. Screenshots help.</p>
+            <p>Email <a href="mailto:support@canopychat.app">support@canopychat.app</a> with your macOS version, the CanopyChat version from the app and the exact message you saw. Screenshots help.</p>
           </section>
 
           <p class="doc-back">Back to <a href="/">canopychat.app</a> or <a href="/support">Support</a>.</p>
