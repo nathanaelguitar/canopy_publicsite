@@ -78,9 +78,15 @@ To see which version you have, open Settings inside the app. The newest version 
 
 From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose **Check for updates**, then **Update now**: the installer opens for you, and SmartScreen may ask again. If you have 0.3.5 or older, download the installer above and run it once; it replaces the old version.
 
-## What is new in 0.3.11
+## What is new in 0.3.12
 
-Version 0.3.11 is the current Windows version. The installer was built and its file list checked. We have not yet tested it on a real Windows PC; so far it has run only in a Windows 11 ARM virtual machine. Changes since 0.3.9:
+Version 0.3.12 is the current Windows version. The installer was built and its file list checked. Testing on real Windows PCs is still pending; so far it has run in a Windows 11 ARM virtual machine. New in 0.3.12:
+
+- **Flame Host:** a new switch in Settings, **Let Flame use this computer**, is off by default. When it is on, your Flame assistant, which you manage from your phone, can use this computer. On Windows it starts when you sign in, for your user only. It signs in as its own device on your Canopy account and only listens on this computer, with no listener on your local network. Traffic is encrypted. It stops within about 15 seconds after you remove the device, sign out or turn it off. It has not yet been tested on a real Windows PC.
+- **Restrict Flame (sandbox):** an optional setting for people with sensitive workloads. It is Linux-only and off by default, so Windows does not have it. Some systems cannot enforce it; the app then says so and does not run Flame.
+- **Models:** you can find models on your local network with Bonjour. Your other signed-in computers can appear as model sources. You can import settings from Canopy Code. Saved keys are only sent to addresses on your own network or to a host you saved.
+
+Changes since 0.3.9, from version 0.3.11:
 
 - **Agents:** **Ask before running commands** is on by default. You can sign in to Agents with ChatGPT. There is a **Summarize to Grove** action.
 - **Grove:** web search shows **Sources**, and replies can include tables and links. You can add photos only where the local Canopy Lite has a vision projector; otherwise the app says so clearly.

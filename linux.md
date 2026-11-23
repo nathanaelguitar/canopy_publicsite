@@ -193,9 +193,15 @@ Your chats and settings are stored on your computer, in `~/.local/share/canopych
 
 From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose **Check for updates**, then **Update now**. On Linux the new package is saved to your Downloads folder; install it the same way as above. We have tested that path only for the `.deb`; on Fedora and openSUSE, if **Update now** finds nothing, download the new `.rpm` from this page and install it with `dnf` or `zypper`. On Arch there is no package yet, so the app has nothing to download there. If you have 0.3.5 or older, install 0.3.6 by hand once, using the steps above.
 
-## What is new in 0.3.11
+## What is new in 0.3.12
 
-Version 0.3.11 is the current Linux version. Its packages passed our old-versus-new package check on ARM64 and x86-64. Changes since 0.3.9:
+Version 0.3.12 is the current Linux version. Its packages passed our old-versus-new package check on ARM64 and x86-64. The Fedora and openSUSE container tests are still the 0.3.8 ones. New in 0.3.12:
+
+- **Flame Host:** a new switch in Settings, **Let Flame use this computer**, is off by default. When it is on, your Flame assistant, which you manage from your phone, can use this computer. On Linux it runs as a user service. It signs in as its own device on your Canopy account and only listens on this computer, with no listener on your local network. Traffic is encrypted. It stops within about 15 seconds after you remove the device, sign out or turn it off. It has been tested on Linux.
+- **Restrict Flame (sandbox):** an optional setting for people with sensitive workloads. It is Linux-only and off by default. Some systems cannot enforce it; the app then says so and does not run Flame.
+- **Models:** you can find models on your local network with Bonjour. Your other signed-in computers can appear as model sources. You can import settings from Canopy Code. Saved keys are only sent to addresses on your own network or to a host you saved.
+
+Changes since 0.3.9, from version 0.3.11:
 
 - **Agents:** **Ask before running commands** is on by default. You can sign in to Agents with ChatGPT. There is a **Summarize to Grove** action.
 - **Grove:** web search shows **Sources**, and replies can include tables and links. You can add photos only where the local Canopy Lite has a vision projector; otherwise the app says so clearly.

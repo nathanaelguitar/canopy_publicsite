@@ -241,8 +241,14 @@
           </section>
 
           <section id="whats-new" class="doc-section">
-            <h2>What is new in 0.3.11</h2>
-            <p>Version 0.3.11 is the current Linux version. Its packages passed our old-versus-new package check on ARM64 and x86-64. Changes since 0.3.9:</p>
+            <h2>What is new in 0.3.12</h2>
+            <p>Version 0.3.12 is the current Linux version. Its packages passed our old-versus-new package check on ARM64 and x86-64. The Fedora and openSUSE container tests are still the 0.3.8 ones. New in 0.3.12:</p>
+            <ul>
+              <li><strong>Flame Host:</strong> a new switch in Settings, <strong>Let Flame use this computer</strong>, is off by default. When it is on, your Flame assistant, which you manage from your phone, can use this computer. On Linux it runs as a user service. It signs in as its own device on your Canopy account and only listens on this computer, with no listener on your local network. Traffic is encrypted. It stops within about 15 seconds after you remove the device, sign out or turn it off. It has been tested on Linux.</li>
+              <li><strong>Restrict Flame (sandbox):</strong> an optional setting for people with sensitive workloads. It is Linux-only and off by default. Some systems cannot enforce it; the app then says so and does not run Flame.</li>
+              <li><strong>Models:</strong> you can find models on your local network with Bonjour. Your other signed-in computers can appear as model sources. You can import settings from Canopy Code. Saved keys are only sent to addresses on your own network or to a host you saved.</li>
+            </ul>
+            <p>Changes since 0.3.9, from version 0.3.11:</p>
             <ul>
               <li><strong>Agents:</strong> <strong>Ask before running commands</strong> is on by default. You can sign in to Agents with ChatGPT. There is a <strong>Summarize to Grove</strong> action.</li>
               <li><strong>Grove:</strong> web search shows <strong>Sources</strong>, and replies can include tables and links. You can add photos only where the local Canopy Lite has a vision projector; otherwise the app says so clearly.</li>
