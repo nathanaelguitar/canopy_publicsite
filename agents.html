@@ -136,7 +136,7 @@ curl -fsS https://downloads.canopychat.app/linux/latest.json</code></pre>
           <button class="copy-button" type="button" data-copy-target="cmd-rpm-sha" aria-label="Copy the checksum commands for the rpm">Copy</button>
         </div>
             <p>The hash must equal the <code>sha256</code> of the <code>x86_64-rpm</code> or <code>aarch64-rpm</code> entry. If it does not, delete the file and stop.</p>
-            <p>What was tested, on the 0.3.8 files: Fedora 45 on x86-64 and ARM64, and openSUSE Tumbleweed on x86-64, in containers (install, start with a web view under a virtual display, remove). ARM64 openSUSE is not confirmed: its system web engine crashed in our test, so use the AppImage there. Rocky Linux 9 is too old (the package needs WebKitGTK 4.1 and glibc 2.34) and <code>dnf</code> refused the file there; Red Hat and AlmaLinux 9 and openSUSE Leap 15 are expected to be too. If the package manager refuses the file, do not work around it: use the AppImage.</p>
+            <p>What was tested: the 0.3.11 packages passed an old-versus-new package check on ARM64 and x86-64. The Fedora and openSUSE results below are from the 0.3.8 files: Fedora 45 on x86-64 and ARM64, and openSUSE Tumbleweed on x86-64, in containers (install, start with a web view under a virtual display, remove). ARM64 openSUSE is not confirmed: its system web engine crashed in our test, so use the AppImage there. Rocky Linux 9 is too old (the package needs WebKitGTK 4.1 and glibc 2.34) and <code>dnf</code> refused the file there; Red Hat and AlmaLinux 9 and openSUSE Leap 15 are expected to be too. If the package manager refuses the file, do not work around it: use the AppImage.</p>
           </section>
 
           <section id="other-linux" class="doc-section">
@@ -150,7 +150,7 @@ curl -fsS https://downloads.canopychat.app/linux/latest.json</code></pre>
 
           <section id="windows" class="doc-section">
             <h2>Windows</h2>
-            <p>Download <a href="https://downloads.canopychat.app/windows/CanopyChat-Setup.exe">CanopyChat-Setup.exe</a> (about 167 MB), check its SHA-256 against the <code>sha256</code> in the Windows manifest, then start it. In PowerShell:</p>
+            <p>Download <a href="https://downloads.canopychat.app/windows/CanopyChat-Setup.exe">CanopyChat-Setup.exe</a> (about 169 MB), check its SHA-256 against the <code>sha256</code> in the Windows manifest, then start it. In PowerShell:</p>
         <div class="cmd" data-cmd>
           <pre><code id="cmd-win">$ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest https://downloads.canopychat.app/windows/CanopyChat-Setup.exe -OutFile "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"
 (Get-FileHash "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe" -Algorithm SHA256).Hash.ToLower()
@@ -158,7 +158,7 @@ Invoke-RestMethod https://downloads.canopychat.app/windows/latest.json | Select-
 Start-Process "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"</code></pre>
           <button class="copy-button" type="button" data-copy-target="cmd-win" aria-label="Copy the Windows commands">Copy</button>
         </div>
-            <p>If the hashes differ, delete the file and stop. The installer is not code-signed yet, so Windows SmartScreen shows &ldquo;Windows protected your PC&rdquo;; the user chooses <strong>More info</strong>, then <strong>Run anyway</strong>. Any administrator prompt is also theirs. When the installer finishes, CanopyChat is in the Start menu. From version 0.3.6 the app updates itself from Settings.</p>
+            <p>The installer was built and its file list checked, but it has not been tested on a real Windows PC beyond a Windows 11 ARM virtual machine. If the hashes differ, delete the file and stop. The installer is not code-signed yet, so Windows SmartScreen shows &ldquo;Windows protected your PC&rdquo;; the user chooses <strong>More info</strong>, then <strong>Run anyway</strong>. Any administrator prompt is also theirs. When the installer finishes, CanopyChat is in the Start menu. From version 0.3.6 the app updates itself from Settings.</p>
           </section>
 
           <section id="mac" class="doc-section">
@@ -177,7 +177,7 @@ Start-Process "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"</code></pre>
             <h2>Check that it worked</h2>
             <ul>
               <li>Debian and Ubuntu: <code>command -v canopychat &amp;&amp; dpkg -s canopy-chat | grep '^Version'</code> prints the launcher path and the installed version. Compare it with <code>version</code> in the manifest.</li>
-              <li>Fedora and openSUSE: <code>command -v canopychat &amp;&amp; rpm -q canopy-chat</code> prints the launcher path and the installed version (for example <code>canopy-chat-0.3.8-1.x86_64</code>).</li>
+              <li>Fedora and openSUSE: <code>command -v canopychat &amp;&amp; rpm -q canopy-chat</code> prints the launcher path and the installed version (for example <code>canopy-chat-0.3.11-1.x86_64</code>).</li>
               <li>Windows: CanopyChat appears in the Start menu once the installer finishes. The version is in the app&rsquo;s Settings.</li>
               <li>To start it, run <code>canopychat &amp;</code> in a terminal on the computer&rsquo;s desktop, or open CanopyChat from the applications menu. Over SSH there is no screen, so skip this step and rely on the check above.</li>
               <li>If the window is blank, see <a href="#troubleshooting">Troubleshooting</a>.</li>
@@ -199,12 +199,12 @@ Start-Process "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"</code></pre>
             <h3>E: Unsupported file ./CanopyChat-amd64.deb given on commandline</h3>
             <p>The file is not in the current folder. Run <code>ls CanopyChat-*.deb</code>, or run the one-line command again.</p>
             <h3>The window opens but stays blank</h3>
-            <p>Some computers with an NVIDIA graphics driver (the NVIDIA DGX Spark, for one) draw a blank window. Close the app and start it like this:</p>
+            <p>Some computers with an NVIDIA graphics driver (the NVIDIA DGX Spark, for one) draw a blank window. From version 0.3.7 the app turns on the fix by itself when <code>/proc/driver/nvidia</code> exists, so there is nothing to do. For an older version, close the app and start it like this:</p>
             <div class="cmd" data-cmd>
               <pre><code id="cmd-blank">WEBKIT_DISABLE_DMABUF_RENDERER=1 canopychat &amp;</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-blank" aria-label="Copy the command for a blank window">Copy</button>
             </div>
-            <p>A later version will do this by itself.</p>
+            <p>If the user sets <code>WEBKIT_DISABLE_DMABUF_RENDERER</code> themselves, the app keeps that value.</p>
             <h3>Architecture mismatch</h3>
             <p>You have the file for the other architecture. Use <code>dpkg --print-architecture</code> to choose.</p>
             <p>For anything else, see the <a href="/linux">Linux</a>, <a href="/windows">Windows</a> or <a href="/mac">Mac</a> guide, or email <a href="mailto:support@canopychat.app">support@canopychat.app</a> with the distribution, <code>uname -m</code> and the exact error.</p>

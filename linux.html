@@ -71,13 +71,13 @@
           </div>
           <div class="arch-panel" id="panel-amd64" data-arch="amd64">
             <p class="arch-panel-title">x86-64 (Intel and AMD)</p>
-            <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/linux/CanopyChat-amd64.deb" download>Linux x86-64 (.deb)</a> <span class="arch-panel-size">about 280 MB &middot; Ubuntu 22.04 or newer</span></p>
+            <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/linux/CanopyChat-amd64.deb" download>Linux x86-64 (.deb)</a> <span class="arch-panel-size">about 285 MB &middot; Ubuntu 22.04 or newer</span></p>
             <p class="arch-panel-note">Then install it from your Downloads folder:</p>
             <div class="cmd" data-cmd>
               <pre><code id="cmd-browser-amd64">cd ~/Downloads &amp;&amp; sudo apt install ./CanopyChat-amd64.deb</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-browser-amd64" aria-label="Copy the x86-64 install command">Copy</button>
             </div>
-            <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/linux/CanopyChat-x86_64.rpm" download>Linux x86-64 (.rpm)</a> <span class="arch-panel-size">about 215 MB &middot; Fedora and openSUSE</span></p>
+            <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/linux/CanopyChat-x86_64.rpm" download>Linux x86-64 (.rpm)</a> <span class="arch-panel-size">about 218 MB &middot; Fedora and openSUSE</span></p>
             <p class="arch-panel-note">Then install it from your Downloads folder, on Fedora:</p>
             <div class="cmd" data-cmd>
               <pre><code id="cmd-browser-amd64-dnf">cd ~/Downloads &amp;&amp; sudo dnf install ./CanopyChat-x86_64.rpm</code></pre>
@@ -91,13 +91,13 @@
           </div>
           <div class="arch-panel" id="panel-arm64" data-arch="arm64">
             <p class="arch-panel-title">ARM64 (for example NVIDIA DGX Spark, Raspberry Pi 5, Ampere)</p>
-            <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/linux/CanopyChat-arm64.deb" download>Linux ARM64 (.deb)</a> <span class="arch-panel-size">about 230 MB &middot; Ubuntu 24.04 or newer</span></p>
+            <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/linux/CanopyChat-arm64.deb" download>Linux ARM64 (.deb)</a> <span class="arch-panel-size">about 235 MB &middot; Ubuntu 24.04 or newer</span></p>
             <p class="arch-panel-note">Then install it from your Downloads folder:</p>
             <div class="cmd" data-cmd>
               <pre><code id="cmd-browser-arm64">cd ~/Downloads &amp;&amp; sudo apt install ./CanopyChat-arm64.deb</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-browser-arm64" aria-label="Copy the ARM64 install command">Copy</button>
             </div>
-            <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm" download>Linux ARM64 (.rpm)</a> <span class="arch-panel-size">about 186 MB &middot; Fedora (openSUSE ARM64 is not confirmed)</span></p>
+            <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm" download>Linux ARM64 (.rpm)</a> <span class="arch-panel-size">about 188 MB &middot; Fedora (openSUSE ARM64 is not confirmed)</span></p>
             <p class="arch-panel-note">Then install it from your Downloads folder, on Fedora:</p>
             <div class="cmd" data-cmd>
               <pre><code id="cmd-browser-arm64-dnf">cd ~/Downloads &amp;&amp; sudo dnf install ./CanopyChat-aarch64.rpm</code></pre>
@@ -119,6 +119,7 @@
             <li><a href="#agent">Install with an agent</a></li>
             <li><a href="#first-start">First start</a></li>
             <li><a href="#updates">Updates</a></li>
+            <li><a href="#whats-new">What is new</a></li>
             <li><a href="#uninstall">Uninstall</a></li>
             <li><a href="#other-distributions">Other distributions</a></li>
             <li><a href="#known-gaps">Known gaps</a></li>
@@ -142,7 +143,7 @@
             <ul>
               <li><strong>x86-64</strong> (Intel and AMD): Ubuntu 22.04 or newer.</li>
               <li><strong>ARM64</strong> (for example NVIDIA DGX Spark, Raspberry Pi 5, Ampere servers): Ubuntu 24.04 or newer. The local model engine for ARM64 needs a newer system library (glibc 2.38) than Ubuntu 22.04 has.</li>
-              <li><strong>Fedora</strong> (x86-64 and ARM64): the <code>.rpm</code>. Tested on Fedora 45, on both x86-64 and ARM64, in a container with a virtual display: it installs with <code>dnf</code>, starts and loads its web view, and removes cleanly. Not tested on a real desktop with a graphics card.</li>
+              <li><strong>Fedora</strong> (x86-64 and ARM64): the <code>.rpm</code>. Tested on Fedora 45, on both x86-64 and ARM64, in a container with a virtual display: it installs with <code>dnf</code>, starts and loads its web view, and removes cleanly. Not tested on a real desktop with a graphics card. These Fedora and openSUSE tests were run on the 0.3.8 files.</li>
               <li><strong>openSUSE</strong>: the same <code>.rpm</code>. Tested on openSUSE Tumbleweed on x86-64 in a container, as above. <strong>ARM64 openSUSE is not confirmed:</strong> in our test its system web engine crashed when the app drew its window, so use the AppImage there.</li>
               <li>The <code>.rpm</code> needs WebKitGTK 4.1 and glibc 2.34 or newer. <code>dnf</code> refused it on Rocky Linux 9 when we tried. Red Hat and AlmaLinux 9 and openSUSE Leap 15 are older than those requirements too, so expect the same there (we did not try them).</li>
               <li>We test on Ubuntu. Other Debian-based systems may work with the <code>.deb</code> but are not tested.</li>
@@ -159,10 +160,10 @@
             </div>
             <p><code>x86_64</code> means x86-64. <code>aarch64</code> means ARM64. On Ubuntu and Debian, <code>dpkg --print-architecture</code> prints the same choice as <code>amd64</code> or <code>arm64</code>. The <code>.rpm</code> files are named with the <code>uname -m</code> value.</p>
             <ul class="file-list">
-              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-amd64.deb" download>Linux x86-64 (.deb)</a>, about 280 MB</li>
-              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-arm64.deb" download>Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)</a>, about 230 MB</li>
-              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-x86_64.rpm" download>Linux x86-64 (.rpm, for Fedora and openSUSE)</a>, about 215 MB</li>
-              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm" download>Linux ARM64 (.rpm, for Fedora; openSUSE ARM64 is not confirmed)</a>, about 186 MB</li>
+              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-amd64.deb" download>Linux x86-64 (.deb)</a>, about 285 MB</li>
+              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-arm64.deb" download>Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)</a>, about 235 MB</li>
+              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-x86_64.rpm" download>Linux x86-64 (.rpm, for Fedora and openSUSE)</a>, about 218 MB</li>
+              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm" download>Linux ARM64 (.rpm, for Fedora; openSUSE ARM64 is not confirmed)</a>, about 188 MB</li>
               <li>AppImage, for Arch and other distributions (untested, <a href="#other-distributions">details below</a>): <a href="https://downloads.canopychat.app/linux/CanopyChat-x86_64.AppImage" download>x86-64</a> or <a href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.AppImage" download>ARM64</a>.</li>
             </ul>
             <p>To check a download, run <code>sha256sum</code> on it and compare the result with the <code>sha256</code> for your file (<code>amd64-deb</code>, <code>arm64-deb</code>, <code>x86_64-rpm</code> or <code>aarch64-rpm</code>) in <a href="https://downloads.canopychat.app/linux/latest.json">latest.json</a>.</p>
@@ -200,7 +201,7 @@
             <p>Open the <code>.deb</code> in your file manager. It opens in your software installer (App Center on recent Ubuntu). Ubuntu may say &ldquo;Potentially unsafe&rdquo; or show an unknown publisher. That is because CanopyChat is a third-party package that is not in the Ubuntu archive, and Ubuntu cannot vouch for it. Only install files you downloaded from downloads.canopychat.app; <a href="#choose-a-file">Choose a file</a> explains how to check a download.</p>
 
             <h3 id="what-gets-installed">What gets installed</h3>
-            <p>The download is about 185 to 280 MB, and the app takes about 550 MB on disk. The package needs WebKitGTK, GTK 3, GStreamer plugins and a few small libraries. <code>apt</code> (or <code>dnf</code> or <code>zypper</code>) installs them for you. On a fresh system that can be a few hundred MB of extra downloads. <code>libvulkan1</code> (the Vulkan loader) is recommended, so the local model can use your graphics card when your graphics driver supports Vulkan.</p>
+            <p>The download is about 188 to 285 MB, and the app takes about 550 MB on disk. The package needs WebKitGTK, GTK 3, GStreamer plugins and a few small libraries. <code>apt</code> (or <code>dnf</code> or <code>zypper</code>) installs them for you. On a fresh system that can be a few hundred MB of extra downloads. <code>libvulkan1</code> (the Vulkan loader) is recommended, so the local model can use your graphics card when your graphics driver supports Vulkan.</p>
           </section>
 
           <section id="agent" class="doc-section">
@@ -237,6 +238,17 @@
           <section id="updates" class="doc-section">
             <h2>Updates</h2>
             <p>From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose <strong>Check for updates</strong>, then <strong>Update now</strong>. On Linux the new package is saved to your Downloads folder; install it the same way as above. We have tested that path only for the <code>.deb</code>; on Fedora and openSUSE, if <strong>Update now</strong> finds nothing, download the new <code>.rpm</code> from this page and install it with <code>dnf</code> or <code>zypper</code>. On Arch there is no package yet, so the app has nothing to download there. If you have 0.3.5 or older, install 0.3.6 by hand once, using the steps above.</p>
+          </section>
+
+          <section id="whats-new" class="doc-section">
+            <h2>What is new in 0.3.11</h2>
+            <p>Version 0.3.11 is the current Linux version. Its packages passed our old-versus-new package check on ARM64 and x86-64. Changes since 0.3.9:</p>
+            <ul>
+              <li><strong>Agents:</strong> <strong>Ask before running commands</strong> is on by default. You can sign in to Agents with ChatGPT. There is a <strong>Summarize to Grove</strong> action.</li>
+              <li><strong>Grove:</strong> web search shows <strong>Sources</strong>, and replies can include tables and links. You can add photos only where the local Canopy Lite has a vision projector; otherwise the app says so clearly.</li>
+              <li>PDFs are read in a protected helper process.</li>
+              <li><strong>Your computers</strong> reconnects by itself and prefers Wi-Fi or Tailscale.</li>
+            </ul>
           </section>
 
           <section id="uninstall" class="doc-section">
@@ -297,12 +309,12 @@
             <h3>zypper says the file has no signature</h3>
             <p>That is expected: the <code>.rpm</code> is not signed yet. <code>zypper</code> asks once; choose to continue if you downloaded the file from downloads.canopychat.app and its <code>sha256</code> matches.</p>
             <h3>The window opens but stays blank</h3>
-            <p>Some computers with an NVIDIA graphics driver (the NVIDIA DGX Spark, for one) draw a blank window because of a rendering problem in the web engine. Start the app like this instead:</p>
+            <p>Some computers with an NVIDIA graphics driver (the NVIDIA DGX Spark, for one) draw a blank window because of a rendering problem in the web engine. From version 0.3.7 the app turns on the fix by itself on those computers, so there is nothing to do. If you have an older version, update, or start the app like this:</p>
             <div class="cmd" data-cmd>
               <pre><code id="cmd-blank">WEBKIT_DISABLE_DMABUF_RENDERER=1 canopychat &amp;</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-blank" aria-label="Copy the command for a blank window">Copy</button>
             </div>
-            <p>We are fixing this in the app, so a later version will not need it.</p>
+            <p>If you set <code>WEBKIT_DISABLE_DMABUF_RENDERER</code> yourself, the app keeps your value.</p>
             <h3>Graphics problems</h3>
             <p>Make sure <code>libvulkan1</code> is installed (<code>sudo apt install libvulkan1</code>) and that your graphics driver supports Vulkan. Without Vulkan, the local model runs on the processor.</p>
             <p>Still stuck? Email <a href="mailto:support@canopychat.app">support@canopychat.app</a> with your distribution, the output of <code>uname -m</code> and the exact error.</p>

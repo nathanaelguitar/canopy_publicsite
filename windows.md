@@ -16,7 +16,7 @@ Other systems: [Mac](https://canopychat.app/mac) [Linux](https://canopychat.app/
 
 One file. Download it, open it, and tell Windows it is fine to run.
 
-[Download CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) about 167 MB · Windows 10 and 11, 64-bit
+[Download CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) about 169 MB · Windows 10 and 11, 64-bit
 
 1.  Open `CanopyChat-Setup.exe` from your Downloads folder.
 2.  Windows may show **“Windows protected your PC”**. That is SmartScreen, because the installer is new and not yet code-signed. Choose **More info**, then **Run anyway**.
@@ -28,6 +28,7 @@ One file. Download it, open it, and tell Windows it is fine to run.
 - The free plan runs Canopy Lite, our small language model, on your computer. A [paid plan](https://canopychat.app/plans) adds cloud models for bigger jobs.
 - Sign in with your email: we send a 6-digit code, no password. The same account works on your phone.
 - In-app updates from version 0.3.6 on, so you install by hand only once.
+- Voice typing: hold **Space** or click the microphone in Grove and in Agents. This is in version 0.3.10 and later; earlier Windows builds have no microphone.
 
 ## Supported systems
 
@@ -36,7 +37,7 @@ One file. Download it, open it, and tell Windows it is fine to run.
 
 ## Install by hand
 
-Download [CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) (about 167 MB) and open it. If Windows says **“Windows protected your PC”**, choose **More info**, then **Run anyway**. Then follow the installer.
+Download [CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) (about 169 MB) and open it. If Windows says **“Windows protected your PC”**, choose **More info**, then **Run anyway**. Then follow the installer.
 
 ### Check the download
 
@@ -76,6 +77,15 @@ To see which version you have, open Settings inside the app. The newest version 
 ## Updates
 
 From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose **Check for updates**, then **Update now**: the installer opens for you, and SmartScreen may ask again. If you have 0.3.5 or older, download the installer above and run it once; it replaces the old version.
+
+## What is new in 0.3.11
+
+Version 0.3.11 is the current Windows version. The installer was built and its file list checked. We have not yet tested it on a real Windows PC; so far it has run only in a Windows 11 ARM virtual machine. Changes since 0.3.9:
+
+- **Agents:** **Ask before running commands** is on by default. You can sign in to Agents with ChatGPT. There is a **Summarize to Grove** action.
+- **Grove:** web search shows **Sources**, and replies can include tables and links. You can add photos only where the local Canopy Lite has a vision projector; otherwise the app says so clearly.
+- PDFs are read in a protected helper process.
+- **Your computers** reconnects by itself and prefers Wi-Fi or Tailscale.
 
 ## Uninstall
 

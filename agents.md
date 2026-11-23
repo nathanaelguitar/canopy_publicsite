@@ -84,7 +84,7 @@ curl -fsS https://downloads.canopychat.app/linux/latest.json
 
 The hash must equal the `sha256` of the `x86_64-rpm` or `aarch64-rpm` entry. If it does not, delete the file and stop.
 
-What was tested, on the 0.3.8 files: Fedora 45 on x86-64 and ARM64, and openSUSE Tumbleweed on x86-64, in containers (install, start with a web view under a virtual display, remove). ARM64 openSUSE is not confirmed: its system web engine crashed in our test, so use the AppImage there. Rocky Linux 9 is too old (the package needs WebKitGTK 4.1 and glibc 2.34) and `dnf` refused the file there; Red Hat and AlmaLinux 9 and openSUSE Leap 15 are expected to be too. If the package manager refuses the file, do not work around it: use the AppImage.
+What was tested: the 0.3.11 packages passed an old-versus-new package check on ARM64 and x86-64. The Fedora and openSUSE results below are from the 0.3.8 files: Fedora 45 on x86-64 and ARM64, and openSUSE Tumbleweed on x86-64, in containers (install, start with a web view under a virtual display, remove). ARM64 openSUSE is not confirmed: its system web engine crashed in our test, so use the AppImage there. Rocky Linux 9 is too old (the package needs WebKitGTK 4.1 and glibc 2.34) and `dnf` refused the file there; Red Hat and AlmaLinux 9 and openSUSE Leap 15 are expected to be too. If the package manager refuses the file, do not work around it: use the AppImage.
 
 ## Other Linux, including Arch (AppImage)
 
@@ -96,7 +96,7 @@ curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(uname -m).AppImage
 
 ## Windows
 
-Download [CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) (about 167 MB), check its SHA-256 against the `sha256` in the Windows manifest, then start it. In PowerShell:
+Download [CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) (about 169 MB), check its SHA-256 against the `sha256` in the Windows manifest, then start it. In PowerShell:
 
 ```
 $ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest https://downloads.canopychat.app/windows/CanopyChat-Setup.exe -OutFile "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"
@@ -105,7 +105,7 @@ Invoke-RestMethod https://downloads.canopychat.app/windows/latest.json | Select-
 Start-Process "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"
 ```
 
-If the hashes differ, delete the file and stop. The installer is not code-signed yet, so Windows SmartScreen shows “Windows protected your PC”; the user chooses **More info**, then **Run anyway**. Any administrator prompt is also theirs. When the installer finishes, CanopyChat is in the Start menu. From version 0.3.6 the app updates itself from Settings.
+The installer was built and its file list checked, but it has not been tested on a real Windows PC beyond a Windows 11 ARM virtual machine. If the hashes differ, delete the file and stop. The installer is not code-signed yet, so Windows SmartScreen shows “Windows protected your PC”; the user chooses **More info**, then **Run anyway**. Any administrator prompt is also theirs. When the installer finishes, CanopyChat is in the Start menu. From version 0.3.6 the app updates itself from Settings.
 
 ## Mac
 
@@ -121,7 +121,7 @@ Updates come through the Mac App Store. There is nothing to download from downlo
 ## Check that it worked
 
 - Debian and Ubuntu: `command -v canopychat && dpkg -s canopy-chat | grep '^Version'` prints the launcher path and the installed version. Compare it with `version` in the manifest.
-- Fedora and openSUSE: `command -v canopychat && rpm -q canopy-chat` prints the launcher path and the installed version (for example `canopy-chat-0.3.8-1.x86_64`).
+- Fedora and openSUSE: `command -v canopychat && rpm -q canopy-chat` prints the launcher path and the installed version (for example `canopy-chat-0.3.11-1.x86_64`).
 - Windows: CanopyChat appears in the Start menu once the installer finishes. The version is in the app’s Settings.
 - To start it, run `canopychat &` in a terminal on the computer’s desktop, or open CanopyChat from the applications menu. Over SSH there is no screen, so skip this step and rely on the check above.
 - If the window is blank, see [Troubleshooting](#troubleshooting).
@@ -141,13 +141,13 @@ The file is not in the current folder. Run `ls CanopyChat-*.deb`, or run the one
 
 ### The window opens but stays blank
 
-Some computers with an NVIDIA graphics driver (the NVIDIA DGX Spark, for one) draw a blank window. Close the app and start it like this:
+Some computers with an NVIDIA graphics driver (the NVIDIA DGX Spark, for one) draw a blank window. From version 0.3.7 the app turns on the fix by itself when `/proc/driver/nvidia` exists, so there is nothing to do. For an older version, close the app and start it like this:
 
 ```
 WEBKIT_DISABLE_DMABUF_RENDERER=1 canopychat &
 ```
 
-A later version will do this by itself.
+If the user sets `WEBKIT_DISABLE_DMABUF_RENDERER` themselves, the app keeps that value.
 
 ### Architecture mismatch
 
