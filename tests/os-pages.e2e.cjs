@@ -51,7 +51,7 @@ const PAGES = {
     h1: 'Install CanopyChat on Windows',
     others: ['/mac', '/linux'],
     links: [WIN_EXE, WIN_MANIFEST],
-    text: ['Windows protected your PC', 'More info', 'Run anyway', 'about 170 MB', 'not yet code-signed', 'Get-FileHash', 'Check for updates', 'Update now', 'Uninstall', 'No list of your other computers', 'Canopy Lite'],
+    text: ['Windows protected your PC', 'More info', 'Run anyway', 'about 169 MB', 'not yet code-signed', 'Get-FileHash', 'Check for updates', 'Update now', 'Uninstall', 'No list of your other computers', 'Canopy Lite'],
     prompt: ['https://canopychat.app/agents.md', 'Tell me before you run the installer', 'administrator', 'Do not sign in'],
     noText: ['Mac App Store']
   },

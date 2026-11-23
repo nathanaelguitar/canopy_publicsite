@@ -16,7 +16,7 @@ Other systems: [Mac](https://canopychat.app/mac) [Linux](https://canopychat.app/
 
 One file. Download it, open it, and tell Windows it is fine to run.
 
-[Download CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) about 170 MB · Windows 10 and 11, 64-bit
+[Download CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) about 169 MB · Windows 10 and 11, 64-bit
 
 1.  Open `CanopyChat-Setup.exe` from your Downloads folder.
 2.  Windows may show **“Windows protected your PC”**. That is SmartScreen, because the installer is new and not yet code-signed. Choose **More info**, then **Run anyway**.
@@ -37,7 +37,7 @@ One file. Download it, open it, and tell Windows it is fine to run.
 
 ## Install by hand
 
-Download [CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) (about 170 MB) and open it. If Windows says **“Windows protected your PC”**, choose **More info**, then **Run anyway**. Then follow the installer.
+Download [CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) (about 169 MB) and open it. If Windows says **“Windows protected your PC”**, choose **More info**, then **Run anyway**. Then follow the installer.
 
 ### Check the download
 
@@ -80,7 +80,7 @@ From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, c
 
 ## What is new in 0.3.12
 
-Version 0.3.12 is the current Windows version. The installer was built and its file list checked. Testing on real Windows PCs is still pending, apart from our own use; so far it has run in a Windows 11 ARM virtual machine. New in 0.3.12:
+Version 0.3.12 is the current Windows version. The installer was built and its file list checked. Testing on real Windows PCs is still pending; so far it has run in a Windows 11 ARM virtual machine. New in 0.3.12:
 
 - **Flame Host:** a new switch in Settings, **Let Flame use this computer**, is off by default. When it is on, your Flame assistant, which you manage from your phone, can use this computer. On Windows it starts when you sign in, for your user only. It signs in as its own device on your Canopy account and only listens on this computer, with no listener on your local network. Traffic is encrypted. It stops within about 15 seconds after you remove the device, sign out or turn it off. It has not yet been tested on a real Windows PC.
 - **Restrict Flame (sandbox):** an optional setting for people with sensitive workloads. It is Linux-only and off by default, so Windows does not have it. Some systems cannot enforce it; the app then says so and does not run Flame.

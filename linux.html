@@ -97,7 +97,7 @@
               <pre><code id="cmd-browser-arm64">cd ~/Downloads &amp;&amp; sudo apt install ./CanopyChat-arm64.deb</code></pre>
               <button class="copy-button" type="button" data-copy-target="cmd-browser-arm64" aria-label="Copy the ARM64 install command">Copy</button>
             </div>
-            <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm" download>Linux ARM64 (.rpm)</a> <span class="arch-panel-size">about 189 MB &middot; Fedora (openSUSE ARM64 is not confirmed)</span></p>
+            <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm" download>Linux ARM64 (.rpm)</a> <span class="arch-panel-size">about 188 MB &middot; Fedora (openSUSE ARM64 is not confirmed)</span></p>
             <p class="arch-panel-note">Then install it from your Downloads folder, on Fedora:</p>
             <div class="cmd" data-cmd>
               <pre><code id="cmd-browser-arm64-dnf">cd ~/Downloads &amp;&amp; sudo dnf install ./CanopyChat-aarch64.rpm</code></pre>
@@ -163,7 +163,7 @@
               <li><a href="https://downloads.canopychat.app/linux/CanopyChat-amd64.deb" download>Linux x86-64 (.deb)</a>, about 285 MB</li>
               <li><a href="https://downloads.canopychat.app/linux/CanopyChat-arm64.deb" download>Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)</a>, about 235 MB</li>
               <li><a href="https://downloads.canopychat.app/linux/CanopyChat-x86_64.rpm" download>Linux x86-64 (.rpm, for Fedora and openSUSE)</a>, about 218 MB</li>
-              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm" download>Linux ARM64 (.rpm, for Fedora; openSUSE ARM64 is not confirmed)</a>, about 189 MB</li>
+              <li><a href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm" download>Linux ARM64 (.rpm, for Fedora; openSUSE ARM64 is not confirmed)</a>, about 188 MB</li>
               <li>AppImage, for Arch and other distributions (untested, <a href="#other-distributions">details below</a>): <a href="https://downloads.canopychat.app/linux/CanopyChat-x86_64.AppImage" download>x86-64</a> or <a href="https://downloads.canopychat.app/linux/CanopyChat-aarch64.AppImage" download>ARM64</a>.</li>
             </ul>
             <p>To check a download, run <code>sha256sum</code> on it and compare the result with the <code>sha256</code> for your file (<code>amd64-deb</code>, <code>arm64-deb</code>, <code>x86_64-rpm</code> or <code>aarch64-rpm</code>) in <a href="https://downloads.canopychat.app/linux/latest.json">latest.json</a>.</p>
@@ -201,7 +201,7 @@
             <p>Open the <code>.deb</code> in your file manager. It opens in your software installer (App Center on recent Ubuntu). Ubuntu may say &ldquo;Potentially unsafe&rdquo; or show an unknown publisher. That is because CanopyChat is a third-party package that is not in the Ubuntu archive, and Ubuntu cannot vouch for it. Only install files you downloaded from downloads.canopychat.app; <a href="#choose-a-file">Choose a file</a> explains how to check a download.</p>
 
             <h3 id="what-gets-installed">What gets installed</h3>
-            <p>The download is about 189 to 285 MB, and the app takes about 550 MB on disk. The package needs WebKitGTK, GTK 3, GStreamer plugins and a few small libraries. <code>apt</code> (or <code>dnf</code> or <code>zypper</code>) installs them for you. On a fresh system that can be a few hundred MB of extra downloads. <code>libvulkan1</code> (the Vulkan loader) is recommended, so the local model can use your graphics card when your graphics driver supports Vulkan.</p>
+            <p>The download is about 188 to 285 MB, and the app takes about 550 MB on disk. The package needs WebKitGTK, GTK 3, GStreamer plugins and a few small libraries. <code>apt</code> (or <code>dnf</code> or <code>zypper</code>) installs them for you. On a fresh system that can be a few hundred MB of extra downloads. <code>libvulkan1</code> (the Vulkan loader) is recommended, so the local model can use your graphics card when your graphics driver supports Vulkan.</p>
           </section>
 
           <section id="agent" class="doc-section">

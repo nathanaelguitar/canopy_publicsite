@@ -150,7 +150,7 @@ curl -fsS https://downloads.canopychat.app/linux/latest.json</code></pre>
 
           <section id="windows" class="doc-section">
             <h2>Windows</h2>
-            <p>Download <a href="https://downloads.canopychat.app/windows/CanopyChat-Setup.exe">CanopyChat-Setup.exe</a> (about 170 MB), check its SHA-256 against the <code>sha256</code> in the Windows manifest, then start it. In PowerShell:</p>
+            <p>Download <a href="https://downloads.canopychat.app/windows/CanopyChat-Setup.exe">CanopyChat-Setup.exe</a> (about 169 MB), check its SHA-256 against the <code>sha256</code> in the Windows manifest, then start it. In PowerShell:</p>
         <div class="cmd" data-cmd>
           <pre><code id="cmd-win">$ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest https://downloads.canopychat.app/windows/CanopyChat-Setup.exe -OutFile "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"
 (Get-FileHash "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe" -Algorithm SHA256).Hash.ToLower()

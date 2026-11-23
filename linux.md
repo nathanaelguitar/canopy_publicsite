@@ -68,7 +68,7 @@ Then install it from your Downloads folder:
 cd ~/Downloads && sudo apt install ./CanopyChat-arm64.deb
 ```
 
-[Linux ARM64 (.rpm)](https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm) about 189 MB · Fedora (openSUSE ARM64 is not confirmed)
+[Linux ARM64 (.rpm)](https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm) about 188 MB · Fedora (openSUSE ARM64 is not confirmed)
 
 Then install it from your Downloads folder, on Fedora:
 
@@ -108,7 +108,7 @@ uname -m
 - [Linux x86-64 (.deb)](https://downloads.canopychat.app/linux/CanopyChat-amd64.deb), about 285 MB
 - [Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)](https://downloads.canopychat.app/linux/CanopyChat-arm64.deb), about 235 MB
 - [Linux x86-64 (.rpm, for Fedora and openSUSE)](https://downloads.canopychat.app/linux/CanopyChat-x86_64.rpm), about 218 MB
-- [Linux ARM64 (.rpm, for Fedora; openSUSE ARM64 is not confirmed)](https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm), about 189 MB
+- [Linux ARM64 (.rpm, for Fedora; openSUSE ARM64 is not confirmed)](https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm), about 188 MB
 - AppImage, for Arch and other distributions (untested, [details below](#other-distributions)): [x86-64](https://downloads.canopychat.app/linux/CanopyChat-x86_64.AppImage) or [ARM64](https://downloads.canopychat.app/linux/CanopyChat-aarch64.AppImage).
 
 To check a download, run `sha256sum` on it and compare the result with the `sha256` for your file (`amd64-deb`, `arm64-deb`, `x86_64-rpm` or `aarch64-rpm`) in [latest.json](https://downloads.canopychat.app/linux/latest.json).
@@ -153,7 +153,7 @@ Open the `.deb` in your file manager. It opens in your software installer (App C
 
 ### What gets installed
 
-The download is about 189 to 285 MB, and the app takes about 550 MB on disk. The package needs WebKitGTK, GTK 3, GStreamer plugins and a few small libraries. `apt` (or `dnf` or `zypper`) installs them for you. On a fresh system that can be a few hundred MB of extra downloads. `libvulkan1` (the Vulkan loader) is recommended, so the local model can use your graphics card when your graphics driver supports Vulkan.
+The download is about 188 to 285 MB, and the app takes about 550 MB on disk. The package needs WebKitGTK, GTK 3, GStreamer plugins and a few small libraries. `apt` (or `dnf` or `zypper`) installs them for you. On a fresh system that can be a few hundred MB of extra downloads. `libvulkan1` (the Vulkan loader) is recommended, so the local model can use your graphics card when your graphics driver supports Vulkan.
 
 ## Install with an agent
 

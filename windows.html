@@ -45,7 +45,7 @@
           <h2 id="quick-install-title">Download and install</h2>
           <p>One file. Download it, open it, and tell Windows it is fine to run.</p>
         </div>
-        <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/windows/CanopyChat-Setup.exe" download>Download CanopyChat-Setup.exe</a> <span class="arch-panel-size">about 170 MB &middot; Windows 10 and 11, 64-bit</span></p>
+        <p class="arch-panel-row"><a class="button arch-download" href="https://downloads.canopychat.app/windows/CanopyChat-Setup.exe" download>Download CanopyChat-Setup.exe</a> <span class="arch-panel-size">about 169 MB &middot; Windows 10 and 11, 64-bit</span></p>
         <ol>
           <li>Open <code>CanopyChat-Setup.exe</code> from your Downloads folder.</li>
           <li>Windows may show <strong>&ldquo;Windows protected your PC&rdquo;</strong>. That is SmartScreen, because the installer is new and not yet code-signed. Choose <strong>More info</strong>, then <strong>Run anyway</strong>.</li>
@@ -92,7 +92,7 @@
 
           <section id="install" class="doc-section">
             <h2>Install by hand</h2>
-            <p>Download <a href="https://downloads.canopychat.app/windows/CanopyChat-Setup.exe" download>CanopyChat-Setup.exe</a> (about 170 MB) and open it. If Windows says <strong>&ldquo;Windows protected your PC&rdquo;</strong>, choose <strong>More info</strong>, then <strong>Run anyway</strong>. Then follow the installer.</p>
+            <p>Download <a href="https://downloads.canopychat.app/windows/CanopyChat-Setup.exe" download>CanopyChat-Setup.exe</a> (about 169 MB) and open it. If Windows says <strong>&ldquo;Windows protected your PC&rdquo;</strong>, choose <strong>More info</strong>, then <strong>Run anyway</strong>. Then follow the installer.</p>
             <h3 id="check-the-download">Check the download</h3>
             <p>Want to be sure the file is the one we published? Open PowerShell and run this. It prints the SHA-256 of the file you downloaded, then the <code>sha256</code>, <code>version</code> and <code>size</code> we publish in <a href="https://downloads.canopychat.app/windows/latest.json">latest.json</a>. The two hashes must match.</p>
             <div class="cmd" data-cmd>
@@ -132,7 +132,7 @@ Invoke-RestMethod https://downloads.canopychat.app/windows/latest.json | Select-
 
           <section id="whats-new" class="doc-section">
             <h2>What is new in 0.3.12</h2>
-            <p>Version 0.3.12 is the current Windows version. The installer was built and its file list checked. Testing on real Windows PCs is still pending, apart from our own use; so far it has run in a Windows 11 ARM virtual machine. New in 0.3.12:</p>
+            <p>Version 0.3.12 is the current Windows version. The installer was built and its file list checked. Testing on real Windows PCs is still pending; so far it has run in a Windows 11 ARM virtual machine. New in 0.3.12:</p>
             <ul>
               <li><strong>Flame Host:</strong> a new switch in Settings, <strong>Let Flame use this computer</strong>, is off by default. When it is on, your Flame assistant, which you manage from your phone, can use this computer. On Windows it starts when you sign in, for your user only. It signs in as its own device on your Canopy account and only listens on this computer, with no listener on your local network. Traffic is encrypted. It stops within about 15 seconds after you remove the device, sign out or turn it off. It has not yet been tested on a real Windows PC.</li>
               <li><strong>Restrict Flame (sandbox):</strong> an optional setting for people with sensitive workloads. It is Linux-only and off by default, so Windows does not have it. Some systems cannot enforce it; the app then says so and does not run Flame.</li>

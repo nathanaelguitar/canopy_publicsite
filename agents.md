@@ -96,7 +96,7 @@ curl -fLO https://downloads.canopychat.app/linux/CanopyChat-$(uname -m).AppImage
 
 ## Windows
 
-Download [CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) (about 170 MB), check its SHA-256 against the `sha256` in the Windows manifest, then start it. In PowerShell:
+Download [CanopyChat-Setup.exe](https://downloads.canopychat.app/windows/CanopyChat-Setup.exe) (about 169 MB), check its SHA-256 against the `sha256` in the Windows manifest, then start it. In PowerShell:
 
 ```
 $ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest https://downloads.canopychat.app/windows/CanopyChat-Setup.exe -OutFile "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"
