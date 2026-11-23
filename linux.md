@@ -68,7 +68,7 @@ Then install it from your Downloads folder:
 cd ~/Downloads && sudo apt install ./CanopyChat-arm64.deb
 ```
 
-[Linux ARM64 (.rpm)](https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm) about 188 MB · Fedora (openSUSE ARM64 is not confirmed)
+[Linux ARM64 (.rpm)](https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm) about 189 MB · Fedora (openSUSE ARM64 is not confirmed)
 
 Then install it from your Downloads folder, on Fedora:
 
@@ -108,7 +108,7 @@ uname -m
 - [Linux x86-64 (.deb)](https://downloads.canopychat.app/linux/CanopyChat-amd64.deb), about 285 MB
 - [Linux ARM64 (.deb, e.g. DGX Spark, Raspberry Pi 5, Ampere)](https://downloads.canopychat.app/linux/CanopyChat-arm64.deb), about 235 MB
 - [Linux x86-64 (.rpm, for Fedora and openSUSE)](https://downloads.canopychat.app/linux/CanopyChat-x86_64.rpm), about 218 MB
-- [Linux ARM64 (.rpm, for Fedora; openSUSE ARM64 is not confirmed)](https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm), about 188 MB
+- [Linux ARM64 (.rpm, for Fedora; openSUSE ARM64 is not confirmed)](https://downloads.canopychat.app/linux/CanopyChat-aarch64.rpm), about 189 MB
 - AppImage, for Arch and other distributions (untested, [details below](#other-distributions)): [x86-64](https://downloads.canopychat.app/linux/CanopyChat-x86_64.AppImage) or [ARM64](https://downloads.canopychat.app/linux/CanopyChat-aarch64.AppImage).
 
 To check a download, run `sha256sum` on it and compare the result with the `sha256` for your file (`amd64-deb`, `arm64-deb`, `x86_64-rpm` or `aarch64-rpm`) in [latest.json](https://downloads.canopychat.app/linux/latest.json).
@@ -153,7 +153,7 @@ Open the `.deb` in your file manager. It opens in your software installer (App C
 
 ### What gets installed
 
-The download is about 188 to 285 MB, and the app takes about 550 MB on disk. The package needs WebKitGTK, GTK 3, GStreamer plugins and a few small libraries. `apt` (or `dnf` or `zypper`) installs them for you. On a fresh system that can be a few hundred MB of extra downloads. `libvulkan1` (the Vulkan loader) is recommended, so the local model can use your graphics card when your graphics driver supports Vulkan.
+The download is about 189 to 285 MB, and the app takes about 550 MB on disk. The package needs WebKitGTK, GTK 3, GStreamer plugins and a few small libraries. `apt` (or `dnf` or `zypper`) installs them for you. On a fresh system that can be a few hundred MB of extra downloads. `libvulkan1` (the Vulkan loader) is recommended, so the local model can use your graphics card when your graphics driver supports Vulkan.
 
 ## Install with an agent
 
@@ -193,9 +193,15 @@ Your chats and settings are stored on your computer, in `~/.local/share/canopych
 
 From version 0.3.6, CanopyChat checks for new versions by itself. In Settings, choose **Check for updates**, then **Update now**. On Linux the new package is saved to your Downloads folder; install it the same way as above. We have tested that path only for the `.deb`; on Fedora and openSUSE, if **Update now** finds nothing, download the new `.rpm` from this page and install it with `dnf` or `zypper`. On Arch there is no package yet, so the app has nothing to download there. If you have 0.3.5 or older, install 0.3.6 by hand once, using the steps above.
 
-## What is new in 0.3.11
+## What is new in 0.3.12
 
-Version 0.3.11 is the current Linux version. Its packages passed our old-versus-new package check on ARM64 and x86-64. Changes since 0.3.9:
+Version 0.3.12 is the current Linux version. Its packages passed our old-versus-new package check on ARM64 and x86-64. The Fedora and openSUSE container tests are still the 0.3.8 ones. New in 0.3.12:
+
+- **Flame Host:** a new switch in Settings, **Let Flame use this computer**, is off by default. When it is on, your Flame assistant, which you manage from your phone, can use this computer. On Linux it runs as a user service. It signs in as its own device on your Canopy account and only listens on this computer, with no listener on your local network. Traffic is encrypted. It stops within about 15 seconds after you remove the device, sign out or turn it off. It has been tested on Linux.
+- **Restrict Flame (sandbox):** an optional setting for people with sensitive workloads. It is Linux-only and off by default. Some systems cannot enforce it; the app then says so and does not run Flame.
+- **Models:** you can find models on your local network with Bonjour. Your other signed-in computers can appear as model sources. You can import settings from Canopy Code. Saved keys are only sent to addresses on your own network or to a host you saved.
+
+Changes since 0.3.9, from version 0.3.11:
 
 - **Agents:** **Ask before running commands** is on by default. You can sign in to Agents with ChatGPT. There is a **Summarize to Grove** action.
 - **Grove:** web search shows **Sources**, and replies can include tables and links. You can add photos only where the local Canopy Lite has a vision projector; otherwise the app says so clearly.

@@ -136,7 +136,7 @@ curl -fsS https://downloads.canopychat.app/linux/latest.json</code></pre>
           <button class="copy-button" type="button" data-copy-target="cmd-rpm-sha" aria-label="Copy the checksum commands for the rpm">Copy</button>
         </div>
             <p>The hash must equal the <code>sha256</code> of the <code>x86_64-rpm</code> or <code>aarch64-rpm</code> entry. If it does not, delete the file and stop.</p>
-            <p>What was tested: the 0.3.11 packages passed an old-versus-new package check on ARM64 and x86-64. The Fedora and openSUSE results below are from the 0.3.8 files: Fedora 45 on x86-64 and ARM64, and openSUSE Tumbleweed on x86-64, in containers (install, start with a web view under a virtual display, remove). ARM64 openSUSE is not confirmed: its system web engine crashed in our test, so use the AppImage there. Rocky Linux 9 is too old (the package needs WebKitGTK 4.1 and glibc 2.34) and <code>dnf</code> refused the file there; Red Hat and AlmaLinux 9 and openSUSE Leap 15 are expected to be too. If the package manager refuses the file, do not work around it: use the AppImage.</p>
+            <p>What was tested: the 0.3.12 packages passed an old-versus-new package check on ARM64 and x86-64. The Fedora and openSUSE results below are from the 0.3.8 files: Fedora 45 on x86-64 and ARM64, and openSUSE Tumbleweed on x86-64, in containers (install, start with a web view under a virtual display, remove). ARM64 openSUSE is not confirmed: its system web engine crashed in our test, so use the AppImage there. Rocky Linux 9 is too old (the package needs WebKitGTK 4.1 and glibc 2.34) and <code>dnf</code> refused the file there; Red Hat and AlmaLinux 9 and openSUSE Leap 15 are expected to be too. If the package manager refuses the file, do not work around it: use the AppImage.</p>
           </section>
 
           <section id="other-linux" class="doc-section">
@@ -150,7 +150,7 @@ curl -fsS https://downloads.canopychat.app/linux/latest.json</code></pre>
 
           <section id="windows" class="doc-section">
             <h2>Windows</h2>
-            <p>Download <a href="https://downloads.canopychat.app/windows/CanopyChat-Setup.exe">CanopyChat-Setup.exe</a> (about 169 MB), check its SHA-256 against the <code>sha256</code> in the Windows manifest, then start it. In PowerShell:</p>
+            <p>Download <a href="https://downloads.canopychat.app/windows/CanopyChat-Setup.exe">CanopyChat-Setup.exe</a> (about 170 MB), check its SHA-256 against the <code>sha256</code> in the Windows manifest, then start it. In PowerShell:</p>
         <div class="cmd" data-cmd>
           <pre><code id="cmd-win">$ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest https://downloads.canopychat.app/windows/CanopyChat-Setup.exe -OutFile "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"
 (Get-FileHash "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe" -Algorithm SHA256).Hash.ToLower()
@@ -177,7 +177,7 @@ Start-Process "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"</code></pre>
             <h2>Check that it worked</h2>
             <ul>
               <li>Debian and Ubuntu: <code>command -v canopychat &amp;&amp; dpkg -s canopy-chat | grep '^Version'</code> prints the launcher path and the installed version. Compare it with <code>version</code> in the manifest.</li>
-              <li>Fedora and openSUSE: <code>command -v canopychat &amp;&amp; rpm -q canopy-chat</code> prints the launcher path and the installed version (for example <code>canopy-chat-0.3.11-1.x86_64</code>).</li>
+              <li>Fedora and openSUSE: <code>command -v canopychat &amp;&amp; rpm -q canopy-chat</code> prints the launcher path and the installed version (for example <code>canopy-chat-0.3.12-1.x86_64</code>).</li>
               <li>Windows: CanopyChat appears in the Start menu once the installer finishes. The version is in the app&rsquo;s Settings.</li>
               <li>To start it, run <code>canopychat &amp;</code> in a terminal on the computer&rsquo;s desktop, or open CanopyChat from the applications menu. Over SSH there is no screen, so skip this step and rely on the check above.</li>
               <li>If the window is blank, see <a href="#troubleshooting">Troubleshooting</a>.</li>
