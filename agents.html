@@ -89,7 +89,7 @@
               <li><strong>Fedora or openSUSE, x86-64 or ARM64:</strong> the <code>.rpm</code> (see <a href="#fedora-opensuse">Fedora and openSUSE</a> for what was tested; ARM64 openSUSE is not confirmed, use the AppImage there).</li>
               <li><strong>Other Linux, including Arch:</strong> the AppImage (not tested on every distribution). There is no Arch package yet.</li>
               <li><strong>Windows 10 or 11, x64:</strong> the setup <code>.exe</code>. Guide for people: <a href="/windows">canopychat.app/windows</a>.</li>
-              <li><strong>Mac:</strong> a free TestFlight beta, not on the Mac App Store yet. You can open the invite but not finish the install; see <a href="#mac">Mac</a>. Guide for people: <a href="/mac">canopychat.app/mac</a>.</li>
+              <li><strong>Mac:</strong> a free TestFlight beta; the Mac App Store build has a bug we are fixing. You can open the invite but not finish the install; see <a href="#mac">Mac</a>. Guide for people: <a href="/mac">canopychat.app/mac</a>.</li>
               <li><strong>iPhone, iPad, Android:</strong> App Store or Google Play, from <a href="/#downloads">canopychat.app</a>. Nothing for an agent to do.</li>
             </ul>
             <p>Check the architecture: <code>uname -m</code> prints <code>x86_64</code> or <code>aarch64</code>. On Debian and Ubuntu, <code>dpkg --print-architecture</code> prints <code>amd64</code> or <code>arm64</code>.</p>
@@ -163,7 +163,7 @@ Start-Process "$env:USERPROFILE\Downloads\CanopyChat-Setup.exe"</code></pre>
 
           <section id="mac" class="doc-section">
             <h2>Mac</h2>
-            <p>The Mac app is a free TestFlight beta while it is in App Review. TestFlight is Apple&rsquo;s app, signed in with the user&rsquo;s Apple Account, so you cannot complete this install. Do this instead:</p>
+            <p>The Mac app is a free TestFlight beta while we fix the Mac App Store build. TestFlight is Apple&rsquo;s app, signed in with the user&rsquo;s Apple Account, so you cannot complete this install. Do this instead:</p>
             <ol>
               <li>Check that TestFlight is installed (<code>ls /Applications/TestFlight.app</code>). If not, tell the user to install it from the Mac App Store first.</li>
               <li>Open the invite for them: <code>open "https://testflight.apple.com/join/f5xCZmVv"</code>.</li>

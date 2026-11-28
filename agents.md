@@ -34,7 +34,7 @@ Install CanopyChat on this computer. Follow the instructions at https://canopych
 - **Fedora or openSUSE, x86-64 or ARM64:** the `.rpm` (see [Fedora and openSUSE](#fedora-opensuse) for what was tested; ARM64 openSUSE is not confirmed, use the AppImage there).
 - **Other Linux, including Arch:** the AppImage (not tested on every distribution). There is no Arch package yet.
 - **Windows 10 or 11, x64:** the setup `.exe`. Guide for people: [canopychat.app/windows](https://canopychat.app/windows).
-- **Mac:** a free TestFlight beta, not on the Mac App Store yet. You can open the invite but not finish the install; see [Mac](#mac). Guide for people: [canopychat.app/mac](https://canopychat.app/mac).
+- **Mac:** a free TestFlight beta; the Mac App Store build has a bug we are fixing. You can open the invite but not finish the install; see [Mac](#mac). Guide for people: [canopychat.app/mac](https://canopychat.app/mac).
 - **iPhone, iPad, Android:** App Store or Google Play, from [canopychat.app](https://canopychat.app/#downloads). Nothing for an agent to do.
 
 Check the architecture: `uname -m` prints `x86_64` or `aarch64`. On Debian and Ubuntu, `dpkg --print-architecture` prints `amd64` or `arm64`.
@@ -109,7 +109,7 @@ The installer was built and its file list checked, but it has not been tested on
 
 ## Mac
 
-The Mac app is a free TestFlight beta while it is in App Review. TestFlight is Apple’s app, signed in with the user’s Apple Account, so you cannot complete this install. Do this instead:
+The Mac app is a free TestFlight beta while we fix the Mac App Store build. TestFlight is Apple’s app, signed in with the user’s Apple Account, so you cannot complete this install. Do this instead:
 
 1.  Check that TestFlight is installed (`ls /Applications/TestFlight.app`). If not, tell the user to install it from the Mac App Store first.
 2.  Open the invite for them: `open "https://testflight.apple.com/join/f5xCZmVv"`.

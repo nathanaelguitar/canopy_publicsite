@@ -58,10 +58,11 @@ const PAGES = {
     h1: 'Install CanopyChat on Mac',
     others: ['/windows', '/linux'],
     links: [TESTFLIGHT, 'https://apps.apple.com/app/testflight/id899247664'],
-    text: ['TestFlight', 'App Review', 'not on the Mac App Store', 'Accept', 'Install', 'cannot finish this install', 'Stop Testing', '90 days'],
+    text: ['TestFlight', 'while we fix the Mac App Store build', 'Accept', 'Install', 'cannot finish this install', 'Stop Testing', '90 days'],
     prompt: ['https://canopychat.app/agents.md', TESTFLIGHT, 'cannot click Accept or Install', 'do not sign in'],
-    // The Mac page must not claim a macOS version or a store listing we cannot verify.
-    noText: ['macOS 1', 'macOS 2', 'Sonoma', 'Sequoia', 'Tahoe', 'available on the Mac App Store']
+    // The Mac page must not claim a macOS version, or that the app is missing from a store listing
+    // that is live: the App Store build has a bug, so /mac sends people to TestFlight.
+    noText: ['macOS 1', 'macOS 2', 'Sonoma', 'Sequoia', 'Tahoe', 'available on the Mac App Store', 'not on the Mac App Store', 'in App Review']
   },
   linux: {
     h1: 'Install CanopyChat on Linux',
