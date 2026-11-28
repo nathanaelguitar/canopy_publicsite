@@ -6,9 +6,9 @@ Source: https://canopychat.app/mac
 
 # Install CanopyChat on Mac
 
-A free Mac app, delivered through Apple’s TestFlight while it is in App Review. The free plan runs a small model on your Mac, and a paid plan unlocks cloud models.
+A free Mac app, delivered through Apple’s TestFlight while we fix the Mac App Store build. The free plan runs a small model on your Mac, and a paid plan unlocks cloud models.
 
-**The Mac app is a beta.** It is not on the Mac App Store yet. We are taking feature requests and bug reports at <support@canopychat.app>.
+**The Mac app is a beta.** Install it through TestFlight: the Mac App Store build has a bug we are fixing. Feature requests and bug reports go to <support@canopychat.app>.
 
 Other systems: [Windows](https://canopychat.app/windows) [Linux](https://canopychat.app/linux) [Install with an agent](https://canopychat.app/agents)
 
